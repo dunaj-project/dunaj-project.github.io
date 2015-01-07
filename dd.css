@@ -1,0 +1,132 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather);
+@import url(http://fonts.googleapis.com/css?family=Amaranth);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
+
+#video-bg {
+  opacity: 0.4;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  overflow: hidden;
+  z-index:-1;
+}
+#video-bg > video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* 1. No object-fit support: */
+@media (min-aspect-ratio: 16/9) {
+  #video-bg > video { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+  #video-bg > video { width: 300%; left: -100%; }
+}
+/* 2. If supporting object-fit, overriding (1): */
+@supports (object-fit: cover) {
+  #video-bg > video {
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+}
+
+body {
+height:100%;
+margin:0;
+padding:0;
+}
+
+#fb {
+height:100%;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+#page {
+text-align: center;
+dborder:1px solid black;
+}
+
+#logo {
+  color:#235;
+  font-family: 'Amaranth', sans-serif;
+  font-weight: 400;
+  font-size:120px;
+  margin-top: auto;
+  margin-bottom: auto;
+  letter-spacing: 10px;
+}
+
+.title {
+  margin-top:20px;
+  color:#235;
+  font-family: 'Amaranth', sans-serif;
+  font-weight: 400;
+  font-size:32px;
+  letter-spacing: 2px;
+}
+
+#logo > img {
+  height:98px;
+  margin-right:0.3em;
+  margin-top: 0px;
+  margin-bottom: -10px;
+}
+
+#mc_embed_signup{
+background-color:rgba(255, 255, 255, 0.3);
+clear:left; 
+font-family: 'Open Sans', 'DejaVu Sans', sans-serif;
+margin:1em;
+margin-top:3em;
+padding:1em;
+border:1px solid rgba(34, 51, 85, 0.2);
+font-size:18px;
+border-radius:10px;
+}
+
+a {
+text-decoration:none;
+color: #2156a5;
+}
+
+a:hover {
+text-decoration:underline;
+}
+
+
+.mc-div {
+margin:0.5em;
+padding-bottom:1em;
+}
+
+#mc-embedded-subscribe {
+display:inline-block;
+font-size:18px;
+margin-left:0.5em;
+padding:5px;
+}
+
+.clear {
+display:inline-block;
+}
+
+#mce-EMAIL {
+font-size:18px;
+padding:5px;
+}
+
+#footer{
+position:absolute;
+font-family: 'Open Sans', 'DejaVu Sans', sans-serif;
+font-size:16px;
+color:#235;
+text-align:right;
+padding:1em;
+bottom:0px;
+right:0px;
+}
+
