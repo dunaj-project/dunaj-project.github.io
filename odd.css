@@ -68,7 +68,8 @@ body {
 }
 
 .stitle {
-    font-size:24px !important;
+    font-size:22px !important;
+    color:#222 !important;
 }
 
 #logo > img {

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Deconstructing Core API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Deconstructing Core API</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> Source at Github</a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="pday0.html">Introduction</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday1.html">Deconstructed API</a></div><br></br></div></nav><section id="dd-content"><div tabindex="-1" id="dd-focus" class="dd-over"><div id="header"><h1 id="dd-top">Dunaj - Deconstructing Core API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>While Clojure provides its functionalities in multiple namespaces
+(e.g. <code>clojure.string</code>, <code>clojure.zip</code>), the majority of it
+is defined in a single namespace called <code>clojure.core</code>.
+The first Dunaj experiment explores the idea of having multiple
+small namespaces where functions, macros and other public vars
+are grouped by their purpose. It investigates whether such separation
+is possible at all and whether it can be practical and useful.
+It will be interesting to see whether this experiment will be also
+able to lower the learning curve for beginners and improve the ease
+of use and clarity of the Clojure API.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Background</div>
+<div class="paragraph">
+<p>Clojure follows a single namespace design with exceptions for
+functionalities with an obvious special purpose and those specific
+to a given host (e.g. <code>clojure.test</code>, <code>clojure.java.io</code>).
+Implementation driven and historical reasons dissuade from separating
+many other special purpose or host specific functionalities.
+This design decision manifests itself in various ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Low level and internal functions (such as <code>monitor-exit</code>, <code>&#8594;VecSeq</code>
+or <code>proxy-mappings</code>) are part of a public API together with widely
+used functions such as <code>map</code>, <code>let</code> or <code>defn</code>.</p>
+</li>
+<li>
+<p>In some cases, name clashes are solved by clever prefixes and
+suffixes (<code>bit-and</code>, <code>ns-aliases</code>, <code>+'</code>), while for others
+a special namespace is used
+(<code>clojure.core.reducers/map</code>, <code>clojure.edn/read</code>).</p>
+</li>
+<li>
+<p>Special purpose functions (e.g. for the unchecked math or for
+bitwise logical operations) are mixed with ordinary ones.</p>
+</li>
+<li>
+<p>Host specific stuff is mixed in a single namespace with things
+portable across hosts.</p>
+</li>
+<li>
+<p>Some specialized functionalities are isolated in a separate
+namespace (e.g. <code>clojure.walk</code>, <code>clojure.zip</code>), while others are not
+(e.g. namespace related <code>ns-*</code> vars, array creation and coercions).</p>
+</li>
+<li>
+<p>Related functionalities are scattered in multiple namespaces
+(e.g. string utils).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Current core API is non-trivial to document, port across hosts and may
+lead to unnecessary confusions. Implementation details of a
+bootstrapping process and historical reasons currently dictate, to an
+extent, the shape and contents of the API intended for everyday use
+by application or library developers.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The goals of the first Dunaj experiment are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Devise a new user centric core API comprising multiple namespaces,
+leaving bootstrapping and low level vars in the <code>clojure.core</code>.</p>
+</li>
+<li>
+<p>Define a concept of API presets that control which
+functions, macros and vars gets referred by default.</p>
+</li>
+<li>
+<p>Let user choose which API preset he/she wants to use in his/hers
+namespace, using classic <code>clojure.core</code> as a default.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The upside of this approach is that backwards compatibility is
+maintained and users can freely intermix multiple APIs in their
+projects. Functionalities can be more logically separated by their
+purpose. List of automatically referred vars are no longer driven
+by the namespace in which they were defined, but this list is handled
+by separate API presets that can be extended and customized.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dunaj_api_and_spi">Dunaj API and SPI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj takes functionalities found in <code>clojure.core</code> and in 9
+other clojure namespaces (such as <code>clojure.string</code> and
+<code>clojure.walk</code>) and divide them into more than 50 namespaces,
+grouping vars by their purpose. Moreover, distinction between
+API (functions, macros) and SPI (protocols, protocol methods)
+has been made explicit in the documentation that comes with Dunaj.</p>
+</div>
+<div class="paragraph">
+<p>Examples of Dunaj namespaces together with some of their vars:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>dunaj.boolean</code> &nbsp; -
+<code>and</code>, <code>or</code>, <code>not</code>, <code>false?</code></p>
+</li>
+<li>
+<p><code>dunaj.coll</code> &nbsp; -
+<code>first</code>, <code>reduce</code>, <code>get</code>, <code>conj</code>, <code>map?</code></p>
+</li>
+<li>
+<p><code>dunaj.compare</code> &nbsp; -
+<code>identical?</code>, <code>nil?</code>, <code>compare</code>, <code>hash</code></p>
+</li>
+<li>
+<p><code>dunaj.flow</code> &nbsp; -
+<code>if</code>, <code>let</code>, <code>loop</code>, <code>eval</code>, <code>quote</code></p>
+</li>
+<li>
+<p><code>dunaj.function</code> &nbsp; -
+<code>apply</code>, <code>defn</code>, <code>comp</code>, <code>partial</code>, <code>memoize</code></p>
+</li>
+<li>
+<p><code>dunaj.host</code> &nbsp; -
+<code>class</code>, <code>.</code>, <code>proxy</code>, <code>set!</code></p>
+</li>
+<li>
+<p><code>dunaj.math</code> &nbsp; -
+<code>+</code>, <code>==</code>, <code>min</code>, <code>inc</code>, <code>rem</code></p>
+</li>
+<li>
+<p><code>dunaj.poly</code> &nbsp; -
+<code>deftype</code>, <code>defprotocol</code>, <code>satisfies?</code>, <code>defmulti</code></p>
+</li>
+<li>
+<p><code>dunaj.state</code> &nbsp; -
+<code>deref</code>, <code>reset!</code>, <code>realized?</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Vars named by following symbols are the only ones that a have different
+meaning in Dunaj and Clojure:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>str</code> is now a one arg function taking
+a collection of characters. <code>clojure.core/str</code> is renamed to
+<code>dunaj.string/&#8594;str</code></p>
+</li>
+<li>
+<p><code>reverse</code> returns a reversed reducible
+collection in faster than linear time. <code>clojure.core/reverse</code> is
+renamed to <code>dunaj.coll.util/revlist</code></p>
+</li>
+<li>
+<p><code>reduce</code> has different semantics than
+the Clojure&#8217;s one, as it obtains the initial value from the supplied
+reducing function, when the value is not explicitly given</p>
+</li>
+<li>
+<p><code>error-handler</code> and <code>error-mode</code> both return mutable
+references to error handler and error mode, respectively</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_presets">API Presets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>API presets enable developers to elegantly switch between Dunaj and
+Clojure within the same project. <code>ns</code> macro in Clojure has been
+patched to support an additional <code>:api</code> declaration that states which
+API preset should be used in the respective namespace. Dunaj provides
+three built-in API presets:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>clojure</code> - Refers all vars from <code>clojure.core</code>, plus Clojure&#8217;s
+special symbols and a default set of host classes. This preset is
+used by default when no preset is specified in the <code>ns</code> declaration.</p>
+</li>
+<li>
+<p><code>bare</code> - Does not refer any vars, not even special
+symbols or host classes.</p>
+</li>
+<li>
+<p><code>dunaj</code> - Loads Dunaj and refers less than 600
+most commonly used vars from Dunaj
+(out of more than 1700). No vars from <code>clojure.core</code> are included.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Custom API presets can be easily created and used in the same way as
+the three built-in presets. Following examples shows how API presets
+are used.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+</pre></td>
+  <td class="code"><pre><span class="comment">;; classic Clojure API</span>
+(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>)
+
+(<span class="keyword">time</span> (<span class="keyword">reduce</span> <span class="keyword">+</span> (<span class="keyword">take</span> <span class="integer">100000</span> (<span class="keyword">range</span>))))
+<span class="comment">;; Elapsed time: 42.034772 msecs (Clojure 1.7 alpha5)</span>
+<span class="comment">;;=&gt; 4999950000</span>
+
+(<span class="keyword">def</span> <span class="function">a</span> (<span class="keyword">atom</span> <span class="integer">0</span>))
+<span class="comment">;;=&gt; #'foo.bar/a</span>
+
+(<span class="keyword">add-watch</span> a <span class="symbol">:foo</span> (<span class="keyword">fn</span> [r k o n] (<span class="keyword">println</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">state changed to</span><span class="delimiter">&quot;</span></span> n)))
+<span class="comment">;;=&gt; #&lt;Atom@3560ac26: 0&gt;</span>
+
+(<span class="keyword">set-validator!</span> a <span class="keyword">even?</span>)
+<span class="comment">;;=&gt; nil</span>
+
+(<span class="keyword">swap!</span> a <span class="keyword">inc</span>)
+<span class="comment">;; java.lang.IllegalStateException: Invalid reference state</span>
+
+(<span class="keyword">swap!</span> a #(<span class="keyword">+</span> <span class="integer">2</span> %))
+<span class="comment">;; state changed to 2</span>
+<span class="comment">;;=&gt; 2</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+</pre></td>
+  <td class="code"><pre><span class="comment">;; Dunaj API. Note differences in elapsed time, names and idioms</span>
+(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.concurrent.port <span class="symbol">:refer</span> [reduce!]]))
+
+(<span class="keyword">time</span> (<span class="keyword">reduce</span> <span class="keyword">+</span> (<span class="keyword">take</span> <span class="integer">100000</span> (<span class="keyword">range</span>))))
+<span class="comment">;; Elapsed time: 15.84147 msecs</span>
+<span class="comment">;;=&gt; 4999950000</span>
+
+(<span class="keyword">def</span> <span class="function">a</span> (<span class="keyword">atom</span> <span class="integer">0</span>))
+<span class="comment">;;=&gt; #'foo.bar/a</span>
+
+(<span class="keyword">def</span> <span class="function">c</span> (chan))
+<span class="comment">;;=&gt; #'foo.bar/c</span>
+
+(tap! a c)
+<span class="comment">;;=&gt; #&lt;ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@6203bf4d&gt;</span>
+
+(reduce! (<span class="keyword">fn</span> [_ [_ o n]] (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">state changed to</span><span class="delimiter">&quot;</span></span> n)) <span class="predefined-constant">nil</span> c)
+<span class="comment">;;=&gt; #&lt;ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@26602ed2&gt;</span>
+
+(<span class="keyword">reset!</span> (validator a) <span class="keyword">even?</span>)
+<span class="comment">;;=&gt; nil</span>
+
+(alter! a <span class="keyword">inc</span>)
+<span class="comment">;; java.lang.IllegalStateException: Invalid reference state</span>
+
+(alter! a #(<span class="keyword">+</span> <span class="integer">2</span> %))
+<span class="comment">;; state changed to 2</span>
+<span class="comment">;;=&gt; 2</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td>
+  <td class="code"><pre><span class="comment">;; Dunaj API with exclusions</span>
+(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj <span class="symbol">:exclude</span> [<span class="keyword">+</span>])
+  (<span class="symbol">:require</span> [dunaj.math.precise <span class="symbol">:refer</span> [<span class="keyword">+</span>]]))
+
+<span class="comment">;; + now supports arbitrary precision</span>
+(<span class="keyword">+</span> <span class="integer">9223372036854775800</span> <span class="integer">10</span>)
+<span class="comment">;;=&gt; 9223372036854775810N</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+</pre></td>
+  <td class="code"><pre><span class="comment">;; Bare API, no symbols refered, not even special symbols or host classes</span>
+(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> bare))
+
+(<span class="keyword">+</span> <span class="integer">1</span> <span class="integer">2</span>)
+<span class="comment">;; java.lang.RuntimeException: Unable to resolve symbol: + in this context</span>
+
+(<span class="keyword">if</span> <span class="predefined-constant">true</span> <span class="integer">1</span> <span class="integer">2</span>)
+<span class="comment">;; java.lang.RuntimeException: Unable to resolve symbol: if in this context</span>
+
+String
+<span class="comment">;; java.lang.RuntimeException: Unable to resolve symbol: String in this context</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-06 16:56:39 CET
+</div>
+</div>
+</body>
+</html>
