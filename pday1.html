@@ -104,9 +104,9 @@ namespace, using classic <code>clojure.core</code> as a default.</p>
 <p>The upside of this approach is that backwards compatibility is
 maintained and users can freely intermix multiple APIs in their
 projects. Functionalities can be more logically separated by their
-purpose. List of automatically referred vars are no longer driven
-by the namespace in which they were defined, but this list is handled
-by separate API presets that can be extended and customized.</p>
+purpose. List of automatically referred vars is no longer driven
+by the namespace in which vars were defined, but this list is handled
+by a separate API preset that can be extended and customized.</p>
 </div>
 </div>
 </div>
@@ -322,7 +322,7 @@ are used.</p>
 29
 <strong>30</strong>
 </pre></td>
-  <td class="code"><pre><span class="comment">;; Dunaj API. Note differences in elapsed time, names and idioms</span>
+  <td class="code"><pre><span class="comment">;; Dunaj API. Note differences in elapsed time, var names and idioms</span>
 (<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
   (<span class="symbol">:api</span> dunaj)
   (<span class="symbol">:require</span> [dunaj.concurrent.port <span class="symbol">:refer</span> [reduce!]]))
@@ -344,7 +344,7 @@ are used.</p>
 <span class="comment">;;=&gt; #&lt;ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@26602ed2&gt;</span>
 
 (<span class="keyword">reset!</span> (validator a) <span class="keyword">even?</span>)
-<span class="comment">;;=&gt; nil</span>
+<span class="comment">;;=&gt; #&lt;core$even_QMARK_ clojure.core$even_QMARK_@7ea7141a&gt;</span>
 
 (alter! a <span class="keyword">inc</span>)
 <span class="comment">;; java.lang.IllegalStateException: Invalid reference state</span>
@@ -414,7 +414,7 @@ String
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-06 16:56:39 CET
+Last updated 2015-03-06 20:36:21 CET
 </div>
 </div>
 </body>
