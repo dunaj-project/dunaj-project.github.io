@@ -45,7 +45,7 @@ body {
 #fb {
     height:100%;
     display:flex;
-    align-items: center;
+    align-items: top;
     justify-content: center;
 }
 
@@ -128,7 +128,7 @@ a:hover {
 
 #footer{
     opacity:0.5;
-    position:absolute;
+    position:fixed;
     font-family: 'Open Sans', 'DejaVu Sans', sans-serif;
     font-size:16px;
     color:#235;
