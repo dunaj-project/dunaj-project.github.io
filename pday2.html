@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Optional Type Signatures</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Optional Type Signatures</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> Source at Github</a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="pday0.html">Introduction</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday1.html">Deconstructed API</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday2.html">Type Signatures</a></div><br></br></div></nav><section id="dd-content"><div tabindex="-1" id="dd-focus" class="dd-over"><div id="header"><h1 id="dd-top">Dunaj - Optional Type Signatures</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Second Dunaj experiment adds support for optional type signatures that
+can be used to annotate functions, protocol methods, type fields and
+local bindings. These type signatures are then used to automatically
+generate host type hints. At run-time, type signatures are stored
+in vars' metadata, available for third party type checking, data
+validation and documentation tools.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Background</div>
+<div class="paragraph">
+<p>In Clojure, type declarations can serve multiple purposes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Conveying type information to other developers by explicit formal
+documentation of var&#8217;s data type or function&#8217;s type signature.</p>
+</li>
+<li>
+<p>Enabling host optimizations by providing type information
+to the compiler.</p>
+</li>
+<li>
+<p>Improving safety and verifiability by run-time data validation
+of supplied arguments and computed values.</p>
+</li>
+<li>
+<p>Static type-checking by read-time or compile-time code analysis.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Clojure itself provides facilities for host optimizations (2) through
+type hints. Run-time data validation (3) is partially supported with
+<code>:pre</code> and <code>:post</code> assertion functions. Static type-checking is out
+of Clojure&#8217;s scope. Documenting type declarations is limited
+as type hints are host specific and preconditions are implemented
+with arbitrary predicate functions.</p>
+</div>
+<div class="paragraph">
+<p>A library called <a href="https://github.com/clojure/core.typed">core.typed</a>
+brings optional type system to the Clojure through gradual typing.
+Its goal is to add static type-checking (4) to the Clojure without
+alienating Clojure&#8217;s principles and idioms. Focusing on the
+feature complete and sound type system, core.typed does not aim to
+support automatic generation of type hints or run time data
+validation. Its potential for documentation purposes (1) is evident,
+but there is currently a lack of documentation tools that would
+utilize this capability.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/Prismatic/schema">Schema</a> is a library for
+run-time data validation and declarative data description.
+It is focused on being a practical library that can be used
+in real world projects. The aim of this library is to provide means
+for an explicit documentation (1) and run-time data validation (3).
+Moreover, host type hints are automatically generated (2).
+As data is validated at run-time, Schema&#8217;s type signatures incur a
+run-time performance penalty when used.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Goals of the second Dunaj experiment are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide developers with a means to document type signatures for
+functions, protocol methods, <code>let</code>-like bindings and deftype fields.</p>
+</li>
+<li>
+<p>Automatically generate type hints from provided type signatures,
+including primitive ones.</p>
+</li>
+<li>
+<p>Open up type signatures for custom extensions and use in third
+party data validation and type checking tools.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj aims to decomplect type declarations from type checking tools.
+It provides conventions and syntax extensions for defining type
+signatures, while leaving their exact interpretation to other
+libraries. Existing protocols, types and host classes can all be used
+as type declarations. By generating type hints automatically, users
+do not have to write types twice (first time as a type signature and
+second time as a type hint). Specifying type signatures does not
+produce any run-time overhead, as all processing is done at a macro
+expansion time.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>pt</code> macro returns keyword based on type
+of argument, and is used to determine whether value is of primitive
+type or not.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Introducing type signatures</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj))
+
+(warn-on-reflection!)
+
+<span class="comment">;; Following definition leads to reflection and boxed return type</span>
+(<span class="keyword">defn</span> <span class="function">firstChar</span>
+  [x]
+  (<span class="keyword">.</span>charAt x <span class="integer">0</span>))
+<span class="comment">;; Reflection warning, .../foo/bar.clj:8:3 - call to method charAt can't be resolved (target class is unknown).</span>
+<span class="comment">;;=&gt; #'foo.bar/firstChar</span>
+
+(pt (firstChar <span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>))
+<span class="comment">;;=&gt; :object</span>
+
+<span class="comment">;; By using type signatures, both reflection and forced boxing is eliminated</span>
+(<span class="keyword">defn</span> <span class="function">firstChar*</span> <span class="symbol">:-</span> Char
+  [x <span class="symbol">:-</span> String]
+  (<span class="keyword">.</span>charAt x <span class="integer">0</span>))
+<span class="comment">;;=&gt; #'foo.bar/firstChar*</span>
+
+(pt (firstChar* <span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>))
+<span class="comment">;; :char</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_built_in_type_signatures">Built-in type signatures</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Values (<code>nil</code>, <code>true</code>, <code>42</code>), host classes, interfaces
+(<code>java.util.Map</code>, <code>java.io.InputStream</code>), protocols and deftypes
+(<code>ICounted</code>, <code>Integer</code>, <code>Thread</code>) can all be used as a type
+declaration. Moreover, Dunaj defines following basic type signatures:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Any</code>, <code>AnyFn</code> - represents any type or any function, respectively</p>
+</li>
+<li>
+<p><code>Fn</code> - declaring functions. <code>Fn</code> takes one or more vectors
+representing function type signatures, where return type is the
+first item of a respective vector.</p>
+</li>
+<li>
+<p><code>U</code> for the union of types and <code>I</code> for type intersection</p>
+</li>
+<li>
+<p><code>Maybe</code> for optional values, <code>Va</code> for variadic arguments</p>
+</li>
+<li>
+<p><code>[]</code>, <code>{}</code> and <code>#{}</code> represents nil or any (including empty)
+collection, map or set, respectively.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Usage example</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">next</span> <span class="symbol">:-</span> (Maybe ISeq)
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns a seq of the items after the first. Calls seq on
+  coll. If there are no more items, returns nil.</span><span class="delimiter">&quot;</span></span>
+  [coll <span class="symbol">:-</span> []]
+  (<span class="keyword">seq</span> (<span class="keyword">rest</span> coll)))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Type signatures are not supported for macros
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntactic_sugar_and_tsig_metadata_key">Syntactic sugar and :tsig metadata key</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>User supplied type declarations are available in var&#8217;s metadata under
+both <code>:tsig</code> (evaluated) and <code>:qtsig</code> (unevaluated) keys.
+Syntactic sugar (using <code>:-</code> keyword) for defining type signatures is
+preferred and is the only option for annotating <code>loop</code> and <code>let</code>
+bindings. Specifying type signatures for vars can also be made by
+providing <code>:tsig</code> metadata directly.</p>
+</div>
+<div class="listingblock">
+<div class="title">Using :tsig metadata</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">add</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns sum of given numbers. (add) returns 0.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:tsig</span> (Fn [<span class="integer">0</span>]
+             [Number Number]
+             [Number Number (Va Number)])}
+  ([] <span class="integer">0</span>)
+  ([x] x)
+  ([x &amp; ys] (<span class="keyword">apply</span> <span class="keyword">+</span> x ys)))
+
+(<span class="symbol">:qtsig</span> (<span class="keyword">meta</span> <span class="error">#</span>'add))
+<span class="comment">;;=&gt; (Fn [0] [Number Number] [Number Number (Va Number)])</span>
+
+(<span class="symbol">:tsig</span> (<span class="keyword">meta</span> <span class="error">#</span>'add))
+<span class="comment">;;=&gt; #dunaj.type.FnSignature{:method-sigs ([0] [java.lang.Number java.lang.Number] [java.lang.Number java.lang.Number #dunaj.type.VariadicSignature{:sig java.lang.Number}])}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Using syntactic sugar</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">every?</span> <span class="symbol">:-</span> Boolean
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns true if every item of coll satisfies pred,
+  otherwise returns false.</span><span class="delimiter">&quot;</span></span>
+  [pred <span class="symbol">:-</span> AnyFn, coll <span class="symbol">:-</span> []]
+  (<span class="keyword">reduce</span> #(<span class="keyword">if</span> (pred %2) % (reduced <span class="predefined-constant">false</span>)) <span class="predefined-constant">true</span> coll))
+
+(<span class="symbol">:qtsig</span> (<span class="keyword">meta</span> <span class="error">#</span>'<span class="keyword">every?</span>))
+<span class="comment">;;=&gt; (Fn [Boolean AnyFn []])</span>
+
+(<span class="symbol">:tsig</span> (<span class="keyword">meta</span> <span class="error">#</span>'<span class="keyword">every?</span>))
+<span class="comment">;;=&gt; #dunaj.type.FnSignature{:method-sigs ([{:clojure.core/type true, :var #'dunaj.boolean/Boolean, :on-class java.lang.Boolean, :alias? true} #dunaj.type.FnSignature{:method-sigs nil} []])}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can omit one or more parts of a type signature. In that
+case, missing parts will be treated as annotated with <code>Any</code> signature.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Both deftype fields and protocol methods can be annotated with type
+declarations. First argument in protocol methods should not be
+annotated.</p>
+</div>
+<div class="listingblock">
+<div class="title">Annotating protocol methods</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defprotocol</span> <span class="class">IMutable</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A state protocol for mutable references.</span><span class="delimiter">&quot;</span></span>
+  (-reset! <span class="symbol">:-</span> Any
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">Resets the referenced value to val.
+    Returns new value. Mutates this.</span><span class="delimiter">&quot;</span></span>
+    [this <span class="keyword">val</span> <span class="symbol">:-</span> Any]))
+
+(<span class="keyword">defn</span> <span class="function">reset!</span> <span class="symbol">:-</span> Any
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Sets the referenced value to newval without regard
+  for the current value. Returns the new value.</span><span class="delimiter">&quot;</span></span>
+  [<span class="keyword">ref</span> <span class="symbol">:-</span> IMutable, <span class="keyword">val</span> <span class="symbol">:-</span> Any]
+  (-reset! <span class="keyword">ref</span> <span class="keyword">val</span>))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Annotating deftypes</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">deftype</span> Local
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Thread local mutable reference type.</span><span class="delimiter">&quot;</span></span>
+  [^<span class="symbol">:volatile-mutable</span> <span class="keyword">val</span> <span class="symbol">:-</span> Any,
+   ^<span class="symbol">:volatile-mutable</span> thread <span class="symbol">:-</span> Thread]
+  IThreadLocal
+  IMutable
+  (-reset! [this newval]
+    (ensure-thread-local thread)
+    (set! <span class="keyword">val</span> newval)
+    newval)
+  IReference
+  (-deref [this] <span class="keyword">val</span>))
+
+(<span class="keyword">defn</span> <span class="function">local</span> <span class="symbol">:-</span> Local
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns new reference to val, local to the given thread,
+  or to the current one, if thread is not explicitly given.
+  The returned reference can be read from any thread.</span><span class="delimiter">&quot;</span></span>
+  ([<span class="keyword">val</span> <span class="symbol">:-</span> Any]
+   (local <span class="keyword">val</span> <span class="predefined-constant">nil</span>))
+  ([<span class="keyword">val</span> <span class="symbol">:-</span> Any, thread <span class="symbol">:-</span> (Maybe Thread)]
+   (-&gt;Local <span class="keyword">val</span> (<span class="keyword">or</span> thread (current-thread))))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div><div id="disqus_thread"></div><script>var disqus_shortname = 'dunajproject'; var disqus_identifier = 'day2'; (function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname +
+                              '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] ||
+                     document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-07 15:46:03 CET
+</div>
+</div>
+</body>
+</html>
