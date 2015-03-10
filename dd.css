@@ -843,7 +843,7 @@ a.link { padding-top: 1em; }
 
 #dd-logo { font-family: 'Amaranth', sans-serif; font-weight: 400; font-size: 28px; margin-top: auto; margin-bottom: auto; letter-spacing: 3px; }
 
-#dd-logo img { height: 28px; margin-left: 0.3em; margin-right: 0.3em; margin-top: 0px; margin-bottom: 3px; }
+#dd-logo img { height: 25px; margin-left: 0.3em; margin-right: 0.3em; margin-top: 0px; margin-bottom: 3px; }
 
 #dd-logo a { color: #235; text-decoration: none; }
 
@@ -927,3 +927,9 @@ table.CodeRay pre span.comment, table pre.CodeRay span.comment { color: #ba3925;
 #xfooter { opacity: 0.9; font-family: 'Noto Serif', 'DejaVu Serif', serif; font-size: 18px; color: #235; text-align: center; padding: 0.5em; bottom: 0px; left: 0; width: 100%; }
 
 div:focus { outline: none; }
+
+@media (max-width: 768px) {
+    #dd-flex { flex-wrap: wrap }
+    #dd-side-nav { flex: 0 1 20%; }
+    #dd-content { max-width: 100% }
+}

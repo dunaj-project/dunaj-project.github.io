@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Protocols First</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Protocols First</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> Source at Github</a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="pday0.html">Introduction</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday2.html">Type Signatures</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday3.html">Protocols First</a></div><br></br></div></nav><section id="dd-content"><div tabindex="-1" id="dd-focus" class="dd-over"><div id="header"><h1 id="dd-top">Dunaj - Protocols First</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of Dunaj&#8217;s objectives is to facilitate host independent style of
+programming. The third Dunaj experiment aims to transform core API
+into one that uses protocols for all of its abstractions.
+Additionally, Dunaj introduces a concept of a factory protocol that
+represents an abstraction of a constructor for an abstract data type.
+Protocols and protocol methods are part of the Dunaj&#8217;s interface that
+is oriented towards implementers of custom types and language
+extensions and they are documented separatedly in the SPI
+part of Dunaj&#8217;s documentation.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Background</div>
+<div class="paragraph">
+<p>Clojure&#8217;s exceptional interop support enables a straightforward
+use of host interfaces from Clojure code. As they are not a perfect
+fit for Clojure&#8217;s purposes, a concept of
+<a href="http://clojure.org/protocols">protocols</a> was introduced in Clojure 1.2.
+Protocols came fairly late with regards to the state of API formation.
+Existing implementations of Clojure&#8217;s core abstractions were already
+well grounded in host interfaces and there was no pressing need or
+justification for their reimplementation in terms of protocols.</p>
+</div>
+<div class="paragraph">
+<p>Clojure&#8217;s implementation contains several workarounds for the
+manifestation of the
+<a href="http://en.wikipedia.org/wiki/Expression_problem">expression problem</a>
+in the core API. Special cases are introduced e.g. for Strings and
+host collection types so that they can be used interchangeably with
+Clojure&#8217;s built-in persistent collections (e.g. for <code>nth</code>, <code>seq</code> or
+<code>count</code>). However the expression problem keeps popping up in various
+places and causes unnecessary complexities in the API
+(e.g. <code>(counted? "foo")</code> returning <code>false</code>, inconsistent hashing
+described in <a href="http://dev.clojure.org/jira/browse/CLJ-1372">CLJ-1372</a>)</p>
+</div>
+<div class="paragraph">
+<p>With the coming of ClojureScript, it has been tried and successfully
+shown that protocols can also be an appropriate representation for
+core language abstractions.
+With protocols, abstractions can be expressed in a clear and natural
+way, can be ported across hosts and provide new ways to mitigate the
+expression problem.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Goals of the third Dunaj experiment are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide protocols for all existing built-in abstractions that were
+in Clojure specified by host interfaces.</p>
+</li>
+<li>
+<p>Modify existing core functionalities to build upon protocols instead
+of specific types, host classes or interfaces.</p>
+</li>
+<li>
+<p>Introduce a separate representation of deftypes, treating
+the underlying host class as an implementation detail not
+automatically imported into the current namespace.</p>
+</li>
+<li>
+<p>Introduce a new idiom of factory protocols, which are used to
+represent an abstraction of a constructor for an abstract data type.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj defines more than 120 built-in protocols. The performance of
+<code>satisfies?</code> was significantly improved. A syntax for protocol methods
+was changed to be more in line with def-like syntax
+(see Syntax section below).
+The creation of a protocol predicate was simplified by using
+<code>:predicate</code> metadata key to automatically generate a respective
+protocol predicate:</p>
+</div>
+<div class="listingblock">
+<div class="title">Definition of a protocol and its predicate</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defprotocol</span> <span class="class">IMutable</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A state protocol for mutable references.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:predicate</span> 'mutable?}
+  (-reset! <span class="symbol">:-</span> Any
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">Resets the referenced value to val.
+    Returns new value. Mutates this.</span><span class="delimiter">&quot;</span></span>
+    [this <span class="keyword">val</span> <span class="symbol">:-</span> Any]))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Dunaj tries not to reimplement existing functionality and thus can be
+more backwards compatible. <code>defprotocol</code> internal implementation was
+in Dunaj patched to support existing interfaces (or their parts) as
+protocol&#8217;s host implementations. That way implementing for example
+Dunaj&#8217;s <code>ICounted</code> protocol leads to
+the exact same code as implementing <code>clojure.lang.Counted</code> interface.
+This capability is however an internal extension and is not documented
+or even encouraged to use from user code.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Protocols in Dunaj are provided for all kinds of abstractions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>values -
+<code>INumerical</code>,
+<code>IHash</code>,
+<code>ICanonical</code>,
+<code>INamed</code>, &#8230;&#8203;</p>
+</li>
+<li>
+<p>collections - <code>ISeqable</code>,
+<code>IIndexed</code>,
+<code>ISectionable</code>,
+<code>IAssociative</code>,
+<code>IIndexed</code>, &#8230;&#8203;</p>
+</li>
+<li>
+<p>references -
+<code>IMutable</code>,
+<code>IReference</code>,
+<code>IPending</code>, &#8230;&#8203;</p>
+</li>
+<li>
+<p>abstract data types -
+<code>ISeq</code>,
+<code>IPersistentMap</code>,
+<code>IRef</code>, &#8230;&#8203;</p>
+</li>
+<li>
+<p>factories - see Factories section below</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Existing functions from the core API were modified to add support
+for protocols. This includes both predicates
+(like <code>seq?</code>,
+<code>counted?</code> or
+<code>reference?</code>) and normal functions
+(e.g. <code>nth</code>,
+<code>pop</code> or
+<code>reset!</code>).</p>
+</div>
+<div class="paragraph">
+<p>Deftypes are slightly changed. They no longer import class but rather
+intern a var containing type map object, in a way similar to what
+<code>defprotocol</code> macro is currently doing for protocols. Note that
+deftypes can be used in a type signature, generating correct type
+hints when needed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">deftype</span> Box
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">An immutable reference type holding given value for situations
+  where reference is needed and you have just a value and no
+  need to change the referenced value.</span><span class="delimiter">&quot;</span></span>
+  [<span class="keyword">val</span> <span class="symbol">:-</span> Any]
+  IReference
+  (-deref [this] <span class="keyword">val</span>))
+
+Box
+<span class="comment">;;=&gt; {:tsig [#dunaj.type.AnySignature{}], :clojure.core/type true, :on foo.bar.Box, :on-class foo.bar.Box}</span>
+
+(<span class="keyword">defn</span> <span class="function">box</span> <span class="symbol">:-</span> Box
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns a boxed x, an object which implements IReference.
+  Dereferencing such object returns back the original value.</span><span class="delimiter">&quot;</span></span>
+  [x <span class="symbol">:-</span> Any]
+  (-&gt;Box x))
+
+@(box <span class="symbol">:foo</span>)
+<span class="comment">;;=&gt; :foo</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax_and_conventions">Syntax and conventions</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Protocol methods are never a part of the public API, but are
+documented separatedly in the SPI part of the documentation.</p>
+</li>
+<li>
+<p>Protocols that have no protocol methods are called marker protocols
+and are mainly used for specifying abstract data types.</p>
+</li>
+<li>
+<p>Syntax of <code>defprotocol</code> macro is brought closer to the
+syntax of other <code>def</code>-like constructs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Following example shows protocol definitions with docstrings, type
+signatures and metadata present.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defprotocol</span> <span class="class">IPersistentMeta</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A feature protocol for objects with persistent metadata.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:added</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0</span><span class="delimiter">&quot;</span></span>
+   <span class="symbol">:see</span> '[IMeta IMutableMeta]
+   <span class="symbol">:category</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">Metadata</span><span class="delimiter">&quot;</span></span>}
+  (-assoc-meta <span class="symbol">:-</span> IPersistentMeta
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns this with m associated as object's metadata.</span><span class="delimiter">&quot;</span></span>
+    [this m <span class="symbol">:-</span> KeywordMap]))
+
+(<span class="keyword">defprotocol</span> <span class="class">IValidator</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A feature protocol for objects which can be validated.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:predicate</span> 'validable?}
+  (-validator <span class="symbol">:-</span> (I IMutable IReference)
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns mutable reference to the current validator fn.
+    Referenced value is nil if no validator is set.</span><span class="delimiter">&quot;</span></span>
+    {<span class="symbol">:foo</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">protocols methods accept metadata map too</span><span class="delimiter">&quot;</span></span>}
+    [this]))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>By convention, all protocol names are camel cased and start with the
+capital letter <code>I</code>.</p>
+</li>
+<li>
+<p>Predicate names follow the usual syntax for predicates, and will
+return a boolean value.</p>
+</li>
+<li>
+<p>Protocol methods are hyphen cased and start with the hyphen
+character <code>-</code>.</p>
+</li>
+<li>
+<p>Adjectives are preferred for protocol names (<code>IAtomic</code>,
+<code>IPeekable</code>), with nouns being used mainly for protocols specifying
+abstract data types (<code>ISeq</code>, <code>IPersistentMap</code>). Names of factory
+protocols must end with 'Factory' (<code>ICollectionFactory</code>,
+<code>IInstantFactory</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_factories">Factories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Factory protocols help to formalize the requirements of the
+construction phase for custom implementations of abstract data types
+in a standardized way.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Motivating story</div>
+<div class="paragraph">
+<p>Imagine that you want to provide a new type of persistent collection,
+lets say a new type of persistent vector based on
+<a href="https://github.com/clojure/data.finger-tree">finger trees</a>.
+By implementing collection-related protocols like
+<code>IPersistentCollection</code> or <code>IIndexed</code>, existing built-in
+collection-related functions <code>conj</code> and <code>nth</code>
+will automatically support the newly created vector type.
+The construction phase is however not addressed by those protocols,
+and it is up to implementer&#8217;s diligence and thoughtfulness to
+provide a complete set of ad-hoc constructors for the new collection
+type.</p>
+</div>
+<div class="paragraph">
+<p>This can easily get messed up with e.g. map-like collections,
+where you can have constructors that expect sequence of interleaved
+keys and values (<code>hash-map</code> like), key-value pairs, or two
+collections, one for keys and other for values (<code>zipmap</code> like).
+For some collection types, custom copy constructors (like <code>set</code>)
+may be needed in order to fulfill advertised performance guarantees.
+Moreover, implementers have to devise a custom names for their
+constructors or put them in a separate namespace, neither of which
+make the usage of custom collection types particulary simple.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Factory protocols represent an abstraction of a constructor for
+abstract data types. By implementing these protocols, implementers can
+achieve a better integratation of their custom types into the Dunaj.
+Following list describes several built-in abstract data types and
+their factory protocols:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ICollectionFactory</code> -
+Implementations of this protocol must provide constructor taking
+individual items and a copy constructor, taking another collection
+as an argument. Instances of this factory protocol are passed into
+built-in <code>-&gt;collection</code> and
+<code>collection</code> constructors.</p>
+</li>
+<li>
+<p><code>IConvolutionFactory</code> -
+Constructor taking interleaved items (e.g. key1 val1 key2 val2)
+and a constructor that takes collections of keys, values, etc.
+Instances of this factory are
+passed into built-in
+<code>-&gt;convolution</code> and
+<code>convolution</code> constructors.</p>
+</li>
+<li>
+<p><code>IInstantFactory</code> - Factory
+protocol for instant types. Used in
+<code>instant</code> constructor.</p>
+</li>
+<li>
+<p><code>IRngFactory</code> - Factory
+protocol for random number generators.
+Used in <code>rng</code> constructor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Instances of factory protocols are called <strong>factories</strong>. By convention,
+factory is implemented as a record, exposing all its options as
+record fields. This provides a powerful and standardized approach
+to the construction phase of any abstract data type.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage example</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.coll <span class="symbol">:refer</span> [-&gt;collection convolution]]
+            [dunaj.coll.rbt-sorted-map <span class="symbol">:refer</span> [rbt-sorted-map-factory]]))
+
+<span class="comment">;; dunaj provides factories for built-in collection types</span>
+rbt-sorted-map-factory
+<span class="comment">;;=&gt; #dunaj.coll.rbt_sorted_map.RbtSortedMapFactory{:comparator nil}</span>
+
+(-&gt;collection rbt-sorted-map-factory [<span class="integer">1</span> <span class="symbol">:foo</span>] [<span class="integer">3</span> <span class="symbol">:baz</span>] [<span class="integer">2</span> <span class="symbol">:bar</span>])
+<span class="comment">;;=&gt; {1 :foo, 2 :bar, 3 :baz}</span>
+
+(convolution rbt-sorted-map-factory [<span class="integer">1</span> <span class="integer">3</span> <span class="integer">2</span>] [<span class="symbol">:foo</span> <span class="symbol">:baz</span> <span class="symbol">:bar</span>])
+<span class="comment">;;=&gt; {1 :foo, 2 :bar, 3 :baz}</span>
+
+<span class="comment">;; custom comparator</span>
+(convolution (<span class="keyword">assoc</span> rbt-sorted-map-factory <span class="symbol">:comparator</span> <span class="keyword">&gt;</span>) [<span class="integer">1</span> <span class="integer">3</span> <span class="integer">2</span>] [<span class="symbol">:foo</span> <span class="symbol">:baz</span> <span class="symbol">:bar</span>])
+<span class="comment">;;=&gt; {3 :baz, 2 :bar, 1 :foo}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the introduction of factories, existing constructors such as
+<code>vector</code>, <code>set</code>, and <code>str</code> become a mere convenience functions that
+call factory protocol methods with default factories for a particular
+abstract data type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">sorted-set-by</span> <span class="symbol">:-</span> (I ISorted IPersistentSet)
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns a sorted set with contents of coll and a custom comparator.</span><span class="delimiter">&quot;</span></span>
+  [<span class="keyword">comparator</span> <span class="symbol">:-</span> Function, coll <span class="symbol">:-</span> []]
+  (-from-coll (<span class="keyword">assoc</span> sorted-set-factory <span class="symbol">:comparator</span> <span class="keyword">comparator</span>) coll))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div><div id="disqus_thread"></div><script>var disqus_shortname = 'dunajproject'; var disqus_identifier = 'day3'; (function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname +
+                              '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] ||
+                     document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-08 22:36:10 CET
+</div>
+</div>
+</body>
+</html>
