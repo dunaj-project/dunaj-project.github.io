@@ -132,8 +132,9 @@ in Dunaj patched to support existing interfaces (or their parts) as
 protocol&#8217;s host implementations. That way implementing for example
 Dunaj&#8217;s <code>ICounted</code> protocol leads to
 the exact same code as implementing <code>clojure.lang.Counted</code> interface.
-This capability is however an internal extension and is not documented
-or even encouraged to use from user code.</p>
+The capability of <code>defprotocol</code> to 'parasite' in the host interface is
+however an internal extension and is not documented or even encouraged
+to use from user-defined protocols.</p>
 </div>
 </td>
 </tr>
@@ -470,7 +471,7 @@ abstract data type.</p>
   <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">sorted-set-by</span> <span class="symbol">:-</span> (I ISorted IPersistentSet)
   <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns a sorted set with contents of coll and a custom comparator.</span><span class="delimiter">&quot;</span></span>
   [<span class="keyword">comparator</span> <span class="symbol">:-</span> Function, coll <span class="symbol">:-</span> []]
-  (-from-coll (<span class="keyword">assoc</span> sorted-set-factory <span class="symbol">:comparator</span> <span class="keyword">comparator</span>) coll))</pre></td>
+  (collection (<span class="keyword">assoc</span> sorted-set-factory <span class="symbol">:comparator</span> <span class="keyword">comparator</span>) coll))</pre></td>
 </tr></table></code></pre>
 </div>
 </div>
@@ -485,7 +486,7 @@ abstract data type.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-08 22:36:10 CET
+Last updated 2015-03-10 09:58:46 CET
 </div>
 </div>
 </body>
