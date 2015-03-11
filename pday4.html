@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Towards Simpler API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Towards Simpler API</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> Source at Github</a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="pday0.html">Introduction</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday4.html">Simplified API</a></div><br></br></div></nav><section id="dd-content"><div tabindex="-1" id="dd-focus" class="dd-over"><div id="header"><h1 id="dd-top">Dunaj - Towards Simpler API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>With core API splitted into separate namespaces and with protocols
+being used to specify core abstractions, Dunaj further simplifies its
+API by providing and adhering to additional idioms, conventions and
+best practices. Moreover, Dunaj changes how compiler recognizes
+special symbols, and makes them fully qualified.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fully_qualified_special_symbols">Fully qualified special symbols</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure defines a handful of special symbols like <code>if</code>, <code>loop</code>,
+<code>recur</code> or <code>try</code>. Unfortunatelly, special symbols are not qualified
+and it is very hard to shadow them with custom implementation when
+needed, as special symbols override any referred vars
+(such need is justified in several libraries, e.g. core.typed or
+synthread). Dunaj makes all special symbols qualified and puts them
+in the <code>clojure.core</code> namespace, subject to standard refer rules.
+Dunaj&#8217;s API does not contain any special symbols (<code>if</code>, <code>loop</code>
+and other special symbols are in Dunaj defined as macros).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>)
+
+<span class="error">#</span>'<span class="keyword">if</span>
+<span class="comment">;;=&gt; java.lang.RuntimeException: Unable to resolve var: if in this context</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj))
+
+<span class="error">#</span>'<span class="keyword">if</span>
+<span class="comment">;;=&gt; #'dunaj.flow/if</span>
+
+(dunaj.macro/macro? <span class="error">#</span>'<span class="keyword">if</span>)
+<span class="comment">;;=&gt; true</span>
+
+(<span class="keyword">macroexpand</span> '(<span class="keyword">if</span> <span class="keyword">test</span> then else))
+<span class="comment">;;=&gt; (clojure.core/if test then else)</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dunaj is implemented in a way that allows a default <code>clojure</code>
+API preset to keep supporting unqualified special symbols just like
+in Clojure.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generalized_api">Generalized API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Several language features originally provided by multiple functions
+were generalized and replaced with more general ones.
+Following list describes most important changes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>New function called <code>section</code> for subsequences that share
+underlying data with original ones,
+<code>slice</code> for subsequences that do not
+share any data (generalization of <code>clojure.core/subvec</code> and
+<code>clojure.core/subs</code>).</p>
+</li>
+<li>
+<p><code>flip</code> and
+<code>reverse</code> for reversing collections.
+(<code>clojure.core/reverse</code> was renamed to <code>revlist</code>)</p>
+</li>
+<li>
+<p><code>capacity</code> and
+<code>full?</code> for capped collections.
+(supported e.g. for channel buffers)</p>
+</li>
+<li>
+<p><code>name</code> and
+<code>namespace</code> for objects
+having string name/namespace.
+<code>canonical</code> for objects that have
+a canonical string representation.</p>
+</li>
+<li>
+<p><code>num</code> for objects other than
+numbers which however have a canonical numerical representation.
+(<code>clojure.core/num</code> was renamed to <code>dunaj.host.number/number</code>)</p>
+</li>
+<li>
+<p><code>reset!</code> and
+<code>cas!</code> (compare and set) works with
+multiple reference types.</p>
+</li>
+<li>
+<p>ref facilities were made extensible through
+<code>IRef</code> protocol, to support e.g.
+<a href="https://github.com/cgrand/megaref">megarefs</a>.</p>
+</li>
+<li>
+<p>String has better integration with core abstractions. String
+sections, slices, reversed and transient strings are provided.</p>
+</li>
+<li>
+<p><code>sort</code>,
+<code>sort-by</code> and
+<code>shuffle</code> all return a collection
+instead of a host array.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By providing such generalized predicates and functions, Dunaj was
+able to support more functionalities for transformed collections.
+For example, reversed vectors (both primitive and ordinary) are now
+sectionable and counted, Vars are named, instants and regexes
+have a canonical string representation and it is now trivial to add
+fold support for a collection that is sectionable.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unified_def_like_syntax">Unified def-like syntax</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj unifies syntax for all def-like macros. The <code>def</code>, <code>defn</code>,
+<code>defmacro</code>, <code>deftype</code>, <code>defrecord</code> and <code>defprotocol</code> now all accept
+optional type signature (not for <code>defmacro</code>), docstring and metadata
+map. Following example demonstrates the new syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">def</span> ^<span class="symbol">:const</span> foo <span class="symbol">:-</span> Integer
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A magic integer.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:added</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0</span><span class="delimiter">&quot;</span></span>
+   <span class="symbol">:see</span> '[foo-fn foo-macro]}
+  <span class="integer">42</span>)</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> ^<span class="symbol">:private</span> foo-fn <span class="symbol">:-</span> Integer
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns a magic integer plus x.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:added</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0</span><span class="delimiter">&quot;</span></span>
+   <span class="symbol">:see</span> '[foo foo-macro]}
+  [x <span class="symbol">:-</span> Number]
+  (<span class="keyword">+</span> x <span class="integer">42</span>))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre><span class="comment">;; macros do not support type signatures</span>
+(<span class="keyword">defmacro</span> ^<span class="symbol">:some-metadata</span> foo-macro
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A nonsense macro.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:added</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0</span><span class="delimiter">&quot;</span></span>
+   <span class="symbol">:see</span> '[foo foo-fn]}
+  [body]
+  `(<span class="keyword">+</span> ~@body <span class="integer">42</span>))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defprotocol</span> ^<span class="symbol">:can-put-metadata-here</span> IFoo
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A protocol for foo stuff.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:added</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0</span><span class="delimiter">&quot;</span></span>
+   <span class="symbol">:predicate</span> 'fooable?}
+  IFoo
+  (-foo! <span class="symbol">:-</span> Number
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">Sets y to new-y and returns (+ x new-y)</span><span class="delimiter">&quot;</span></span>
+    [this new-y]))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">deftype</span> ^<span class="symbol">:bar-meta</span> Foo
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A Foo type.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:added</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0</span><span class="delimiter">&quot;</span></span>
+   <span class="symbol">:predicate</span> 'foo?}
+  [x <span class="symbol">:-</span> Integer, ^<span class="symbol">:unsynchronized-mutable</span> y <span class="symbol">:-</span> Number]
+  IFoo
+  (-foo! [this new-y]
+    (set! y new-y)
+    (<span class="keyword">+</span> x y)))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api">API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A namespace consists of a set of named Vars that refer to other
+objects. API is defined as a set of namespaces, with one entry point
+namespace (which name usually ends with <code>core</code>).
+Strict rules were applied to the contents of Dunaj&#8217;s public API. The
+API as provided by Dunaj may only contain non-dynamic Vars that hold
+functions, macros, deftype maps, constants, default objects, type
+signatures or dynamic vars. Dunaj&#8217;s policy is to discourage
+the use of following types of objects in the API:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No special forms. They are an implementation detail and should be
+hidden behind a macro.</p>
+</li>
+<li>
+<p>No dynamic Vars, as they cannot be aliased or extended.</p>
+</li>
+<li>
+<p>No host classes or interfaces.</p>
+</li>
+<li>
+<p>No generated deftypes constructors (both positional and named)</p>
+</li>
+<li>
+<p>Protocols and protocol methods are considered a part of SPI
+(and documented as such), even if defined together with
+API functions or macros in the same namespace.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dynamic vars are handled as other reference types such as atoms or
+refs. Dunaj&#8217;s approach is to define vars that will hold a dynamic var
+of your choice. Just as you wouldn&#8217;t put an atom itself in a
+namespace (it&#8217;s also an impossible as namespace can only contain
+Vars), dynamic Vars have no place in the API.</p>
+</div>
+<div class="listingblock">
+<div class="title">An idiomatic way to put dynamic Vars into API</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">def</span> ^<span class="symbol">:dynamic</span> ^<span class="symbol">:private</span> *default-send-executor* <span class="symbol">:-</span> IExecutor
+  clojure.lang.Agent/pooledExecutor)
+
+(<span class="keyword">def</span> <span class="function">default-send-executor</span> <span class="symbol">:-</span> Var
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A dynamic var holding default send executor.</span><span class="delimiter">&quot;</span></span>
+  (<span class="keyword">var</span> *default-send-executor*))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_naming_conventions">Naming Conventions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj has a specific naming conventions, which it tries to
+consistently follow.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>function/macro/var names are hyphen-cased. Verbs are usually used
+for macros and functions, with nouns used for other vars and for
+constructor functions.</p>
+</li>
+<li>
+<p>Deftypes and protocols are camel-cased, with protocol names being
+prefixed with capital letter <code>I</code>.</p>
+</li>
+<li>
+<p>Overly long names (like <code>unsynchronized-reference</code>) denote
+functions that are less often needed, or they represent a very
+specific functionality that requires an experienced programmer.</p>
+</li>
+<li>
+<p>Name enclosed in asterisks is used for private dynamic Vars.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong class="big">Prefixes</strong></p>
+</div>
+<div class="paragraph">
+<p>Functions with same prefixes usually provide a similar kind of
+functionality.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-</code> names a protocol method</p>
+</li>
+<li>
+<p><code>default-*</code> holds a dynamic var</p>
+</li>
+<li>
+<p><code>empty-*</code> holds an empty object of a specific type</p>
+</li>
+<li>
+<p><code>ensure-*</code> throws if a specific requirement is not met</p>
+</li>
+<li>
+<p><code>provide-*</code> returns its argument, adjusted if needed (casting,
+enlarging, etc.)</p>
+</li>
+<li>
+<p><code>->*</code> names a positional constructor</p>
+</li>
+<li>
+<p><code>with-*</code> names a macro that takes an optional map as its first
+argument</p>
+</li>
+<li>
+<p><code>def*</code> names a macro that interns a var in a namespace. Such
+macros should only be used as top level forms.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong class="big">Suffixes</strong></p>
+</div>
+<div class="paragraph">
+<p>Functions with suffixes often have a variant without one that
+is related to the former function.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>!</code> names a function with side effects, which is usually not
+safe (or possible) to call within a ref transaction</p>
+</li>
+<li>
+<p><code>?</code> names a predicate function that returns a boolean value</p>
+</li>
+<li>
+<p><code>*</code> names a supplementary function</p>
+</li>
+<li>
+<p><code>-factory</code> names a factory var</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div id="disqus_thread"></div><script>var disqus_shortname = 'dunajproject'; var disqus_identifier = 'day4'; (function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname +
+                              '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] ||
+                     document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-11 12:35:25 CET
+</div>
+</div>
+</body>
+</html>
