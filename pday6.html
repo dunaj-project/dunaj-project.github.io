@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Enabling Host Performance</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Enabling Host Performance</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> Source at Github</a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="pday0.html">Introduction</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday5.html">Reducers First</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday6.html">Host Performance</a></div><br></br></div></nav><section id="dd-content"><div tabindex="-1" id="dd-focus" class="dd-over"><div id="header"><h1 id="dd-top">Dunaj - Enabling Host Performance</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure provides excellent facilities for creating, composing and
+building on abstractions. Thanks to great interop support, it is
+easy and even idiomatic for performance sensitive code to fall back
+into host&#8217;s primary language. Dunaj offers additional and fully
+optional ways to embrace the host platform from the comfort of
+your favorite Lisp. This experiment is specific to the JVM host.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_improved_support_for_arrays">Improved support for arrays</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj improves support for host arrays. While keeping
+already existing functions that work with specific array types
+(like <code>byte-array</code> or
+<code>aset-short!</code>) and
+operations accepting any type of array (like
+<code>amap</code> or
+<code>aget</code>), Dunaj introduces
+a concept of array manager (an enhanced version of Clojure&#8217;s
+undocumented feature found in gvec.clj) as part of a public API.
+<code>array-manager</code> and
+<code>array-manager-from</code>
+are used to create instances of array managers and are supplemented
+with dedicated type signatures for arrays and array managers.
+Array managers provide following low level functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>.itemType</code> - returns item type class</p>
+</li>
+<li>
+<p><code>.allocate</code> - returns new array of given size</p>
+</li>
+<li>
+<p><code>.duplicate</code> - returns new array with content copied from arr,
+or its section</p>
+</li>
+<li>
+<p><code>.count</code> - returns number of items in the array</p>
+</li>
+<li>
+<p><code>.get</code> - returns item at given position</p>
+</li>
+<li>
+<p><code>.set</code> - sets item at given position</p>
+</li>
+<li>
+<p><code>.copyToBatch</code> - copies contents from arr into batch (NIO buffer)</p>
+</li>
+<li>
+<p><code>.sort</code> - sorts the array in place with natural ordering</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Array managers offer a considerable flexibility for dealing with
+different array types. This allows Dunaj to provide optional
+immutable collection facade on top of arrays, which is available
+through <code>dunaj.host.array/adapt</code>
+function. This thin facade is intended for cases where the array
+represents a data source that is being passed into code which accepts
+regular Dunaj collections.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_host_primitive_integers">Host primitive integers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure choosed to use <code>Long</code> as a default type for integers.
+This simplifies many things, but there are times where it is
+better to directly support an <code>Integer</code> type, as JDK mainly uses
+<code>int</code> for passing integer values.
+For those rare cases, Dunaj provides a dedicated namespace called
+<code>dunaj.host.int</code> that implements macros for
+working with <code>int</code> values without unnecessary promoting or boxing.
+Following functionalities are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An <code>Int</code> type, constructor and value predicates</p>
+</li>
+<li>
+<p>Common int constants, including ASCII codes (as Clojure
+automatically compiles integer constants as longs)</p>
+</li>
+<li>
+<p><code>iloop</code> macro for loops that do not
+promote ints to longs</p>
+</li>
+<li>
+<p>Basic math facilities for working with ints</p>
+</li>
+<li>
+<p>Bitwise manipulation operations on top of ints</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Names of all vars provided by
+<code>dunaj.host.int</code> namespace are prefixed
+with the small letter <code>i</code>. Numerics constants are implemented as
+macros and must be unintuitively enclosed in parens.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example of using array manager and dunaj.host.int namespace</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span>
+   [dunaj.host <span class="symbol">:refer</span> [ArrayManager]]
+   [dunaj.host.array <span class="symbol">:refer</span> [array array-manager-from]]
+   [dunaj.host.int <span class="symbol">:refer</span> [Int iint iloop i=<span class="keyword">=</span> iinc iadd imul i0 i1 i31]]))
+
+(<span class="keyword">defn</span> <span class="function">array-hash</span> <span class="symbol">:-</span> Int
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Compute host hash code for an array section.</span><span class="delimiter">&quot;</span></span>
+  [am <span class="symbol">:-</span> ArrayManager, arr <span class="symbol">:-</span> Array, begin <span class="symbol">:-</span> Int, end <span class="symbol">:-</span> Int]
+  (iloop [i (iint begin), ret (i1)]
+    (<span class="keyword">if</span> (i=<span class="keyword">=</span> i end)
+      ret
+      (<span class="keyword">let</span> [v (<span class="keyword">.</span><span class="keyword">get</span> am arr i)]
+        (<span class="keyword">recur</span>
+         (iinc i)
+         (iadd (<span class="keyword">if</span> (<span class="keyword">nil?</span> v) (i0) (<span class="keyword">.</span>hashCode ^java.lang.Object v))
+               (imul (i31) ret)))))))
+<span class="comment">;;=&gt; #'foo.bar/array-hash</span>
+
+(<span class="keyword">def</span> <span class="function">arr</span> (array [<span class="integer">0</span> <span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span> <span class="integer">6</span> <span class="integer">7</span> <span class="integer">8</span> <span class="integer">9</span>]))
+<span class="comment">;;=&gt; #'foo.bar/arr</span>
+
+(<span class="keyword">.</span>hashCode [<span class="integer">5</span> <span class="integer">6</span> <span class="integer">7</span> <span class="integer">8</span>])
+<span class="comment">;;=&gt; 1078467</span>
+
+(array-hash (array-manager-from arr) arr <span class="integer">5</span> <span class="integer">9</span>)
+<span class="comment">;;=&gt; 1078467</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_more_primitive_types_for_functions">More primitive types for functions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure compiles functions into host classes that by default treat
+input arguments and the return value as instances of
+<code>java.lang.Object</code>.
+This can be customized by specifying type hints. However, primitive
+types require special handling, and due to the combinatorial
+explosion, not all combinations of primitive types can be supported.
+Clojure supports arbitrary combinations of <code>java.lang.Object</code> with 2
+primitive types (<code>long</code> and <code>double</code>), and only up to 4 input
+arguments.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj adds support for other combinations of primitive types (and a
+non-primitive <code>java.lang.Object</code>):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>0 or 1 arity functions have full support for all 8 primitive types
+in any combination</p>
+</li>
+<li>
+<p>2 and 3 arity functions are supported when all input arguments are
+of a same type. Return type can be any primitive or
+<code>java.lang.Object</code></p>
+</li>
+<li>
+<p>additional 2 and 3 arity functions are supported when first argument
+is <code>java.lang.Object</code> and the rest of arguments are of a same type</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj further simplifies the process of creating functions that
+support primitive types. Type signatures automatically emit primitive
+type hints and only for cases where given combination of primitive
+types is allowed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A special type signature
+<code>NotPrimitive</code> is provided for
+cases where primitive types are not desirable.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.host.number <span class="symbol">:refer</span> [<span class="keyword">byte</span>]]
+            [dunaj.host.int <span class="symbol">:refer</span> [Int iadd iint]]))
+
+(<span class="keyword">defn</span> <span class="function">foo</span>
+  [x]
+  x)
+
+(pt (foo <span class="integer">4</span>))
+<span class="comment">;;=&gt; :object</span>
+
+(<span class="keyword">defn</span> <span class="function">foo+</span> <span class="symbol">:-</span> java.lang.Byte
+  [x <span class="symbol">:-</span> Int, y <span class="symbol">:-</span> Int]
+  (<span class="keyword">byte</span> (iadd x y)))
+
+(pt (foo+ <span class="integer">40</span> <span class="integer">2</span>))
+<span class="comment">;;=&gt; :byte</span>
+
+(pt (foo+ <span class="integer">400</span> <span class="integer">2</span>))
+<span class="comment">;; java.lang.IllegalArgumentException: Value out of range for byte: 402</span>
+
+<span class="comment">;; following combination of primitive types is not supported,</span>
+<span class="comment">;; Dunaj emits non-primitive type hints</span>
+(<span class="keyword">defn</span> <span class="function">foo++</span> <span class="symbol">:-</span> java.lang.Byte
+  [x <span class="symbol">:-</span> Int, y <span class="symbol">:-</span> Any]
+  (<span class="keyword">byte</span> (iadd x (iint y))))
+
+(pt (foo++ <span class="integer">40</span> <span class="integer">2</span>))
+<span class="comment">;;=&gt; :object</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_batches_and_batched_reductions">Batches and batched reductions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Dunaj, Batch is an abstraction of low level data containers for
+bulk data processing. Under JVM host, batches are implemented as
+Java&#8217;s NIO buffers.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj provides <code>IBatchedRed</code>
+protocol for collections that are able to reduce themselves in
+batches in addition to the classic reduction by individual items.
+The actual batched reduction is performed with
+<code>reduce-batched</code> and
+<code>batched</code> functions. For the
+implementers, a whole new namespace called
+<code>dunaj.host.batch</code> is provided that
+implements batch manager (used in the same way as array manager),
+related type signatures and multiple helper functions.</p>
+</div>
+<div class="paragraph">
+<p>Batch manager provides following host methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>.itemType</code> - returns item type class</p>
+</li>
+<li>
+<p><code>.wrap</code> - returns new batch which wraps given array section</p>
+</li>
+<li>
+<p><code>.allocate</code> - returns new batch with given size</p>
+</li>
+<li>
+<p><code>.readOnly</code> - returns new batch which shares data but is read only</p>
+</li>
+<li>
+<p><code>.get</code> - returns item at position (current or explicitly given)</p>
+</li>
+<li>
+<p><code>.put</code> - puts item at posision (current or explicitly given)</p>
+</li>
+<li>
+<p><code>.copy</code> - copy contents from src batch to dst batch or array</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Batched reductions are great help for programs that process or handle
+large amount of raw data e.g. programs and libraries doing networking
+or file I/O. Collections or data sources that store their contents
+internally in arrays can provide those arrays (e.g. to the array
+consuming network socket or to the NIO buffer aware file channel)
+through batched reduction safely and without any intermediate memory
+copying. Batched reduction feature is also one of the features
+available in collection recipes through source awareness.</p>
+</div>
+<div class="listingblock">
+<div class="title">A naive example of using batched reduction</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">def</span> <span class="function">c</span> (<span class="keyword">.</span>getChannel (java.io.RandomAccessFile. <span class="string"><span class="delimiter">&quot;</span><span class="content">out.bin</span><span class="delimiter">&quot;</span></span> <span class="string"><span class="delimiter">&quot;</span><span class="content">rw</span><span class="delimiter">&quot;</span></span>)))
+
+(<span class="keyword">def</span> <span class="function">v</span> (vec-of <span class="symbol">:byte</span> (<span class="keyword">repeat</span> <span class="integer">1000000</span> <span class="integer">42</span>)))
+
+(dored [b (batched v)] (<span class="keyword">.</span>write c b))
+
+(<span class="keyword">.</span>close c)</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unpacked_reductions">Unpacked reductions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If collection items are multivalued, the actual item is usually
+passed into the reduction function as a vector of it&#8217;s values.
+A classic example is a hash map, which pass key-value pairs to the
+reduction function. From the implementation point of view, most of
+these vectors are created temporarily, only for the purpose of the
+reduction.
+Dunaj provides <code>IUnpackedRed</code>
+protocol for reductions where multivalued items are passed as
+multiple arguments into the reduction function, without a need for
+temporary wrappers.</p>
+</div>
+<div class="paragraph">
+<p>User code can exploit this feature by using
+<code>reduce-unpacked</code> or
+<code>unpacked</code> functions. These
+functions work with any type of collection and fall back to a
+default unpacking implementation (using <code>apply</code>) when <code>IUnpackedRed</code>
+procotol implementation is not provided. Unpacked reduction feature
+is also one of the features available in collection recipes through
+source awareness.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Besides maps, unpacked reductions are also helpful for
+multireducibles, including indexed collections.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">def</span> <span class="function">m</span> (<span class="keyword">zipmap</span> (<span class="keyword">range</span> <span class="integer">100000</span>) (<span class="keyword">range</span> <span class="integer">100000</span>)))
+
+(<span class="keyword">time</span> (<span class="keyword">reduce</span> (<span class="keyword">fn</span> [r [k v]] (<span class="keyword">+</span> r v)) <span class="integer">0</span> m))
+<span class="comment">;; &quot;Elapsed time: 31.564521 msecs&quot; (Clojure 1.7 alpha5)</span>
+<span class="comment">;;=&gt; 4999950000</span>
+
+(<span class="keyword">time</span> (reduce-unpacked (<span class="keyword">fn</span> [r k v] (<span class="keyword">+</span> r v)) <span class="integer">0</span> m))
+<span class="comment">;; &quot;Elapsed time: 16.718828 msecs&quot;</span>
+<span class="comment">;;=&gt; 4999950000</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div><div id="disqus_thread"></div><script>var disqus_shortname = 'dunajproject'; var disqus_identifier = 'day6'; (function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname +
+                              '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] ||
+                     document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-15 13:51:30 CET
+</div>
+</div>
+</body>
+</html>
