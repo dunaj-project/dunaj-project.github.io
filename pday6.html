@@ -92,7 +92,7 @@ regular Dunaj collections.</p>
 <div class="paragraph">
 <p>Clojure choosed to use <code>Long</code> as a default type for integers.
 This simplifies many things, but there are times where it is
-better to directly support an <code>Integer</code> type, as JDK mainly uses
+better to directly support the <code>Integer</code> type, as JDK mainly uses
 <code>int</code> for passing integer values.
 For those rare cases, Dunaj provides a dedicated namespace called
 <code>dunaj.host.int</code> that implements macros for
@@ -129,7 +129,7 @@ promote ints to longs</p>
 <td class="content">
 Names of all vars provided by
 <code>dunaj.host.int</code> namespace are prefixed
-with the small letter <code>i</code>. Numerics constants are implemented as
+with the small letter <code>i</code>. Numeric constants are implemented as
 macros and must be unintuitively enclosed in parens.
 </td>
 </tr>
@@ -177,7 +177,7 @@ macros and must be unintuitively enclosed in parens.
 
 (<span class="keyword">defn</span> <span class="function">array-hash</span> <span class="symbol">:-</span> Int
   <span class="string"><span class="delimiter">&quot;</span><span class="content">Compute host hash code for an array section.</span><span class="delimiter">&quot;</span></span>
-  [am <span class="symbol">:-</span> ArrayManager, arr <span class="symbol">:-</span> Array, begin <span class="symbol">:-</span> Int, end <span class="symbol">:-</span> Int]
+  [am <span class="symbol">:-</span> ArrayManager, arr <span class="symbol">:-</span> AnyArray, begin <span class="symbol">:-</span> Int, end <span class="symbol">:-</span> Int]
   (iloop [i (iint begin), ret (i1)]
     (<span class="keyword">if</span> (i=<span class="keyword">=</span> i end)
       ret
@@ -206,11 +206,11 @@ macros and must be unintuitively enclosed in parens.
 <div class="sectionbody">
 <div class="paragraph">
 <p>Clojure compiles functions into host classes that by default treat
-input arguments and the return value as instances of
+input arguments and a return value as instances of
 <code>java.lang.Object</code>.
 This can be customized by specifying type hints. However, primitive
-types require special handling, and due to the combinatorial
-explosion, not all combinations of primitive types can be supported.
+types require special handling. Due to the combinatorial explosion,
+not all combinations of primitive types can be supported.
 Clojure supports arbitrary combinations of <code>java.lang.Object</code> with 2
 primitive types (<code>long</code> and <code>double</code>), and only up to 4 input
 arguments.</p>
@@ -223,7 +223,7 @@ non-primitive <code>java.lang.Object</code>):</p>
 <ul>
 <li>
 <p>0 or 1 arity functions have full support for all 8 primitive types
-in any combination</p>
+in any combination (with or without <code>java.lang.Object</code>)</p>
 </li>
 <li>
 <p>2 and 3 arity functions are supported when all input arguments are
@@ -329,8 +329,8 @@ cases where primitive types are not desirable.
 <h2 id="_batches_and_batched_reductions">Batches and batched reductions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In Dunaj, Batch is an abstraction of low level data containers for
-bulk data processing. Under JVM host, batches are implemented as
+<p>In Dunaj, <strong>Batch is an abstraction of low level data containers for
+bulk data processing</strong>. Under JVM host, batches are implemented as
 Java&#8217;s NIO buffers.</p>
 </div>
 <div class="paragraph">
@@ -374,8 +374,8 @@ related type signatures and multiple helper functions.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Batched reductions are great help for programs that process or handle
-large amount of raw data e.g. programs and libraries doing networking
+<p>Batched reductions are a great help for programs that process or handle
+large amount of raw data, such as programs and libraries doing networking
 or file I/O. Collections or data sources that store their contents
 internally in arrays can provide those arrays (e.g. to the array
 consuming network socket or to the NIO buffer aware file channel)
@@ -412,7 +412,7 @@ available in collection recipes through source awareness.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If collection items are multivalued, the actual item is usually
-passed into the reduction function as a vector of it&#8217;s values.
+passed into the reduction function as a vector of its values.
 A classic example is a hash map, which pass key-value pairs to the
 reduction function. From the implementation point of view, most of
 these vectors are created temporarily, only for the purpose of the
