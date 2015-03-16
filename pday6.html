@@ -15,7 +15,7 @@
 <h1>Dunaj - Enabling Host Performance</h1>
 </div>
 <div id="content">
-<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> Source at Github</a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="pday0.html">Introduction</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday5.html">Reducers First</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday6.html">Host Performance</a></div><br></br></div></nav><section id="dd-content"><div tabindex="-1" id="dd-focus" class="dd-over"><div id="header"><h1 id="dd-top">Dunaj - Enabling Host Performance</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> Source at Github</a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="pday0.html">Introduction</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday5.html">Reducers First</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="pday7.html">Data Formatters</a></div><br></br></div></nav><section id="dd-content"><div tabindex="-1" id="dd-focus" class="dd-over"><div id="header"><h1 id="dd-top">Dunaj - Enabling Host Performance</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Clojure provides excellent facilities for creating, composing and
@@ -90,7 +90,7 @@ regular Dunaj collections.</p>
 <h2 id="_host_primitive_integers">Host primitive integers</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Clojure choosed to use <code>Long</code> as a default type for integers.
+<p>Clojure chose to use <code>Long</code> as a default type for integers.
 This simplifies many things, but there are times where it is
 better to directly support the <code>Integer</code> type, as JDK mainly uses
 <code>int</code> for passing integer values.
@@ -209,8 +209,8 @@ macros and must be unintuitively enclosed in parens.
 input arguments and a return value as instances of
 <code>java.lang.Object</code>.
 This can be customized by specifying type hints. However, primitive
-types require special handling. Due to the combinatorial explosion,
-not all combinations of primitive types can be supported.
+types require special handling. Due to the combinatorial
+explosion, not all combinations of primitive types can be supported.
 Clojure supports arbitrary combinations of <code>java.lang.Object</code> with 2
 primitive types (<code>long</code> and <code>double</code>), and only up to 4 input
 arguments.</p>
@@ -241,20 +241,6 @@ is <code>java.lang.Object</code> and the rest of arguments are of a same type</p
 support primitive types. Type signatures automatically emit primitive
 type hints and only for cases where given combination of primitive
 types is allowed.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A special type signature
-<code>NotPrimitive</code> is provided for
-cases where primitive types are not desirable.
-</td>
-</tr>
-</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -323,14 +309,28 @@ cases where primitive types are not desirable.
 </tr></table></code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A special type signature
+<code>NotPrimitive</code> is provided for
+cases where primitive types are not desirable.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_batches_and_batched_reductions">Batches and batched reductions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In Dunaj, <strong>Batch is an abstraction of low level data containers for
-bulk data processing</strong>. Under JVM host, batches are implemented as
+<p>In Dunaj, <em>Batch is an abstraction of low level data containers for
+bulk data processing</em>. Under JVM host, batches are implemented as
 Java&#8217;s NIO buffers.</p>
 </div>
 <div class="paragraph">
@@ -374,14 +374,14 @@ related type signatures and multiple helper functions.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Batched reductions are a great help for programs that process or handle
-large amount of raw data, such as programs and libraries doing networking
-or file I/O. Collections or data sources that store their contents
-internally in arrays can provide those arrays (e.g. to the array
-consuming network socket or to the NIO buffer aware file channel)
-through batched reduction safely and without any intermediate memory
-copying. Batched reduction feature is also one of the features
-available in collection recipes through source awareness.</p>
+<p>Batched reductions are a great help for programs that process or
+handle large amount of raw data, such as programs and libraries doing
+networking or file I/O. Collections or data sources that store their
+contents internally in arrays can provide those arrays (e.g. to the
+array consuming network socket or to the NIO buffer aware file
+channel) through batched reduction safely and without any
+intermediate memory copying. Batched reduction feature is also one of
+the features available in collection recipes through source awareness.</p>
 </div>
 <div class="listingblock">
 <div class="title">A naive example of using batched reduction</div>
@@ -481,7 +481,7 @@ multireducibles, including indexed collections.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-15 13:51:30 CET
+Last updated 2015-03-16 19:51:27 CET
 </div>
 </div>
 </body>
