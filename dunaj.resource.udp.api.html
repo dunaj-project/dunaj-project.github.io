@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.resource.udp API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.resource.udp API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.resource.udp</a></div><div class="dd-nav-ns-var"><a href="#bare_udp"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">bare-udp</span></a></div><div class="dd-nav-ns-var"><a href="#bare_udp_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">bare-udp-factory</span></a></div><div class="dd-nav-ns-var"><a href="#block_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">block!</span></a></div><div class="dd-nav-ns-var"><a href="#datagram"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">datagram</span></a></div><div class="dd-nav-ns-var"><a href="#multicast"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">multicast</span></a></div><div class="dd-nav-ns-var"><a href="#multicast_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">multicast-factory</span></a></div><div class="dd-nav-ns-var"><a href="#udp"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">udp</span></a></div><div class="dd-nav-ns-var"><a href="#udp_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">udp-factory</span></a></div><div class="dd-nav-ns-var"><a href="#unblock_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">unblock!</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.resource.udp API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>UDP sockets.</p>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="bare_udp"><a class="link" href="#bare_udp">bare-udp</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L770">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(bare&#45;udp <em>uri &amp; {:as opts}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil String Uri) ⨯ Any) → IAcquirableFactory</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns connectionless UDP resource factory with
+given <code><em>uri</em></code> and <code><em>opts</em></code> set.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-71"><label class="dd-example-label" for="toggle-71">2 examples</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource.udp <span class="symbol">:refer</span> [bare-udp datagram]]
+            [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]
+            [dunaj.repl <span class="symbol">:refer</span> [pst]]))
+
+<span class="comment">;; UDP broadcast</span>
+(with-io-scope
+  (<span class="keyword">let</span> [r (acquire! (bare-udp <span class="predefined-constant">nil</span>
+                              <span class="symbol">:local-port</span> <span class="integer">43214</span>
+                              <span class="symbol">:broadcast?</span> <span class="predefined-constant">true</span>
+                              <span class="symbol">:batch-size</span> <span class="integer">100</span>))]
+    (println! (config r))
+
+    (<span class="keyword">future</span>
+      (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">monitor enter</span><span class="delimiter">&quot;</span></span>)
+      (<span class="keyword">io!</span>
+       (<span class="keyword">try</span>
+         (<span class="keyword">vec</span> (<span class="keyword">map</span> #(println! <span class="string"><span class="delimiter">&quot;</span><span class="content">received </span><span class="delimiter">&quot;</span></span> %) (read! r)))
+         (<span class="keyword">catch</span> java.nio.channels.AsynchronousCloseException e
+           (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">monitor exit</span><span class="delimiter">&quot;</span></span>))
+         (<span class="keyword">catch</span> java.lang.Exception e
+           (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">exception in monitor </span><span class="delimiter">&quot;</span></span> (pst e))))))
+
+    (write! r [(datagram <span class="string"><span class="delimiter">&quot;</span><span class="content">192.168.1.255</span><span class="delimiter">&quot;</span></span> <span class="integer">43214</span> [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span> <span class="integer">6</span>])])
+
+    (sleep <span class="integer">1000</span>)))
+<span class="comment">;; {:uri #uri &quot;bare-udp://0.0.0.0:43214?bs=100&amp;broadcast=true&quot; :protocol-family :inet :local-address nil :local-port 43214 :batch-size 100 :reuse? nil :broadcast? true :tos nil :in-buffer-size nil :out-buffer-size nil :multicast-if nil :multicast-ttl nil :multicast-loop true :payload-fn #&lt;udp$payload__GT_array_coll dunaj.resource.udp$payload__GT_array_coll@406bf9b6&gt; :selector-provider #&lt;EPollSelectorProvider sun.nio.ch.EPollSelectorProvider@421c10c&gt; :non-blocking? false}</span>
+<span class="comment">;; monitor enter</span>
+<span class="comment">;; received  {:address 192.168.1.101 :port 43214 :payload (1 2 3 4 5 6)}</span>
+<span class="comment">;; monitor exit</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+<strong>40</strong>
+41
+42
+43
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource.udp <span class="symbol">:refer</span> [bare-udp datagram]]
+            [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]
+            [dunaj.repl <span class="symbol">:refer</span> [pst]]))
+
+<span class="comment">;; non-blocking UDP broadcast</span>
+(with-io-scope
+  (<span class="keyword">let</span> [r (acquire! (bare-udp <span class="predefined-constant">nil</span>
+                              <span class="symbol">:local-port</span> <span class="integer">43214</span>
+                              <span class="symbol">:broadcast?</span> <span class="predefined-constant">true</span>
+                              <span class="symbol">:non-blocking?</span> <span class="predefined-constant">true</span>
+                              <span class="symbol">:batch-size</span> <span class="integer">100</span>))]
+    (println! (config r))
+
+    (thread
+     (<span class="keyword">io!</span> (<span class="keyword">let</span> [x (read! r)
+                ir (<span class="keyword">atom</span> [])]
+            (<span class="keyword">loop</span> [r (<span class="keyword">reduce</span> #(<span class="keyword">do</span> (alter! ir <span class="keyword">conj</span> %2)
+                                  (<span class="keyword">inc</span> %)) <span class="integer">0</span> x)]
+                (<span class="keyword">cond</span> (postponed? r)
+                      (<span class="keyword">do</span> (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">got postponed</span><span class="delimiter">&quot;</span></span> @r @ir)
+                          (<span class="keyword">reset!</span> ir [])
+                          (sleep <span class="integer">500</span>) <span class="comment">;; better to use selector here</span>
+                          (<span class="keyword">recur</span> (unsafe-advance! r)))
+                      <span class="symbol">:else</span>
+                      (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">got final</span><span class="delimiter">&quot;</span></span> r @ir))))))
+
+    (write! r [(datagram <span class="string"><span class="delimiter">&quot;</span><span class="content">192.168.1.255</span><span class="delimiter">&quot;</span></span> <span class="integer">43214</span> [<span class="integer">0</span> <span class="integer">1</span> <span class="integer">2</span>])])
+    (write! r [(datagram <span class="string"><span class="delimiter">&quot;</span><span class="content">192.168.1.255</span><span class="delimiter">&quot;</span></span> <span class="integer">43214</span> [<span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>])])
+    (sleep <span class="integer">1000</span>)
+    (write! r [(datagram <span class="string"><span class="delimiter">&quot;</span><span class="content">192.168.1.255</span><span class="delimiter">&quot;</span></span> <span class="integer">43214</span> [<span class="integer">6</span> <span class="integer">7</span> <span class="integer">8</span> <span class="integer">9</span> <span class="integer">10</span>])])
+
+    (sleep <span class="integer">2000</span>)))
+<span class="comment">;; {:uri #uri &quot;bare-udp://0.0.0.0:43214?bs=100&amp;nb=true&amp;broadcast=true&quot; :protocol-family :inet :local-address nil :local-port 43214 :batch-size 100 :reuse? nil :broadcast? true :tos nil :in-buffer-size nil :out-buffer-size nil :multicast-if nil :multicast-ttl nil :multicast-loop true :payload-fn #&lt;udp$payload__GT_array_coll dunaj.resource.udp$payload__GT_array_coll@406bf9b6&gt; :selector-provider #&lt;EPollSelectorProvider sun.nio.ch.EPollSelectorProvider@421c10c&gt; :non-blocking? true}</span>
+<span class="comment">;; got postponed  2 [{:address 192.168.1.101 :port 43214 :payload (0 1 2)} {:address 192.168.1.101 :port 43214 :payload (3 4 5)}]</span>
+<span class="comment">;; got postponed  2 []</span>
+<span class="comment">;; got postponed  3 [{:address 192.168.1.101 :port 43214 :payload (6 7 8 9 10)}]</span>
+<span class="comment">;; got postponed  3 []</span>
+<span class="comment">;; got postponed  3 []</span>
+<span class="comment">;; got postponed  3 []</span>
+<span class="comment">;; got final  3 []</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bare_udp_factory">bare&#45;udp&#45;factory</a></code>, <code><a href="#udp">udp</a></code>, <code><a href="#multicast">multicast</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="bare_udp_factory"><a class="link" href="#bare_udp_factory">bare-udp-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L687">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IAcquirableFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A connectionless UDP resource factory.
+Current options are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:uri</code> - resource URI</p>
+</li>
+<li>
+<p><code>:protocol-family</code> - <code>:inet</code> (default) or <code>:inet6</code></p>
+</li>
+<li>
+<p><code>:local-address</code> - <code>nil</code> or string</p>
+</li>
+<li>
+<p><code>:local-port</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:batch-size</code> - batch size, low level</p>
+</li>
+<li>
+<p><code>:reuse?</code> - reuse address?. boolean</p>
+</li>
+<li>
+<p><code>:broadcast?</code> - udp broadcast?, boolean, default false</p>
+</li>
+<li>
+<p><code>:tos</code> - tos</p>
+</li>
+<li>
+<p><code>:in-buffer-size</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:out-buffer-size</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:multicast-if</code> - multicast interface</p>
+</li>
+<li>
+<p><code>:multicast-ttl</code> - multicast ttl</p>
+</li>
+<li>
+<p><code>:multicast-loop</code> - multicast loopback, boolean, default true</p>
+</li>
+<li>
+<p><code>:payload-fn</code> - takes received payload as a batch and produces
+reducible collection that has no connection to given batch.</p>
+</li>
+<li>
+<p><code>:selector-provider</code> - host selector provider</p>
+</li>
+<li>
+<p><code>:non-blocking?</code> - use non-blocking mode?, boolean</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bare_udp">bare&#45;udp</a></code>, <code><a href="#udp_factory">udp&#45;factory</a></code>, <code><a href="#multicast_factory">multicast&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="block_BANG_"><a class="link" href="#block_BANG_">block!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L793">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(block! <em>multicast address</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IMulticast ⨯ String) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Blocks given <code><em>address</em></code> for <code><em>multicast</em></code> resource. Resource must
+not be source specific.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#unblock_BANG_">unblock!</a></code>, <code><a href="#multicast">multicast</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="datagram"><a class="link" href="#datagram">datagram</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L92">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(datagram <em>address port payload</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Maybe String) ⨯ (Maybe Integer) ⨯ (U AnyBatch IRed)) → UdpDatagram</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a new datagram containing given <code><em>address</em></code>, <code><em>port</em></code> and
+<code><em>payload</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bare_udp">bare&#45;udp</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="multicast"><a class="link" href="#multicast">multicast</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L785">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(multicast <em>uri &amp; {:as opts}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil String Uri) ⨯ Any) → IAcquirableFactory</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns multicast UDP resource factory
+with given <code><em>uri</em></code> and <code><em>opts</em></code> set.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-72"><label class="dd-example-label" for="toggle-72">2 examples</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource.udp <span class="symbol">:refer</span> [multicast]]
+            [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]
+            [dunaj.repl <span class="symbol">:refer</span> [pst]]))
+
+(with-io-scope
+  (<span class="keyword">let</span> [r (acquire! (multicast <span class="predefined-constant">nil</span>
+                               <span class="symbol">:local-port</span> <span class="integer">43214</span>
+                               <span class="symbol">:multicast-group</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">224.0.0.104</span><span class="delimiter">&quot;</span></span>
+                               <span class="symbol">:network-interface</span>
+                               (java.net.NetworkInterface/getByName <span class="string"><span class="delimiter">&quot;</span><span class="content">eth0</span><span class="delimiter">&quot;</span></span>)))]
+    (println! (config r))
+    (<span class="keyword">future</span>
+      (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">monitor enter</span><span class="delimiter">&quot;</span></span>)
+      (<span class="keyword">io!</span>
+       (<span class="keyword">try</span>
+         (dored [x (read! r)] (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">received</span><span class="delimiter">&quot;</span></span> x))
+         (<span class="keyword">catch</span> java.nio.channels.AsynchronousCloseException e
+           (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">monitor exit</span><span class="delimiter">&quot;</span></span>))
+         (<span class="keyword">catch</span> java.lang.Exception e
+           (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">exception in monitor </span><span class="delimiter">&quot;</span></span> (pst e))))))
+
+    (write! r [[<span class="integer">-1</span> <span class="integer">-2</span> <span class="integer">-3</span> <span class="integer">-4</span>]])
+    (write! r [(datagram <span class="string"><span class="delimiter">&quot;</span><span class="content">224.0.0.104</span><span class="delimiter">&quot;</span></span> <span class="integer">43214</span> [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>])])
+
+    (sleep <span class="integer">200</span>)))
+<span class="comment">;; {:uri #uri &quot;multicast://eth0:43214@224.0.0.104&quot; :protocol-family :inet :multicast-group 224.0.0.104 :sources [] :network-interface #&lt;NetworkInterface name:eth0 (eth0)&gt; :local-port 43214 :batch-size nil :tos nil :in-buffer-size nil :out-buffer-size nil :multicast-if nil :multicast-ttl nil :multicast-loop true :payload-fn #&lt;udp$payload__GT_array_coll dunaj.resource.udp$payload__GT_array_coll@406bf9b6&gt; :selector-provider #&lt;EPollSelectorProvider sun.nio.ch.EPollSelectorProvider@421c10c&gt; :non-blocking? false}</span>
+<span class="comment">;; monitor enter</span>
+<span class="comment">;; received {:address 192.168.1.101 :port 43214 :payload (-1 -2 -3 -4)}</span>
+<span class="comment">;; received {:address 192.168.1.101 :port 43214 :payload (1 2 3 4 5)}</span>
+<span class="comment">;; monitor exit</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]))
+
+(with-io-scope
+  (<span class="keyword">let</span> [factory (resource <span class="string"><span class="delimiter">&quot;</span><span class="content">multicast://eth0:43214@224.0.0.104</span><span class="delimiter">&quot;</span></span>)
+        r (acquire! (<span class="keyword">assoc</span> factory <span class="symbol">:non-blocking?</span> <span class="predefined-constant">true</span>))
+        sel (acquire! (selector))
+        prf #(<span class="keyword">reduce</span> <span class="keyword">conj</span> [] (read! (<span class="symbol">:resource</span> %)))
+        rf #(println! <span class="string"><span class="delimiter">&quot;</span><span class="content">got</span><span class="delimiter">&quot;</span></span> %2 <span class="string"><span class="delimiter">&quot;</span><span class="content">\n</span><span class="content">datagrams</span><span class="delimiter">&quot;</span></span> @(prf %2))]
+    (register! sel r [<span class="symbol">:read</span>])
+    (thread (<span class="keyword">io!</span> (<span class="keyword">loop</span> [x (<span class="keyword">reduce</span> rf <span class="predefined-constant">nil</span> (read! sel))]
+                   (<span class="keyword">if</span> (postponed? x)
+                     (<span class="keyword">do</span> (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">ready</span><span class="delimiter">&quot;</span></span> (select sel))
+                         (<span class="keyword">recur</span> (unsafe-advance! x)))
+                     (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">end</span><span class="delimiter">&quot;</span></span>)))))
+
+    (write! r [[<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span>] [<span class="integer">4</span> <span class="integer">5</span> <span class="integer">6</span>]])
+    (sleep <span class="integer">100</span>)
+    (write! r [[<span class="integer">7</span> <span class="integer">8</span> <span class="integer">9</span>]])
+    (sleep <span class="integer">500</span>)))
+<span class="comment">;; ready 1</span>
+<span class="comment">;; got {:ready (:read) :resource #&lt;MulticastResource dunaj.resource.udp.MulticastResource@7c560cb5&gt;}</span>
+<span class="comment">;; datagrams [{:address 192.168.1.101 :port 43214 :payload (1 2 3)} {:address 192.168.1.101 :port 43214 :payload (4 5 6)}]</span>
+<span class="comment">;; ready 1</span>
+<span class="comment">;; got {:ready (:read) :resource #&lt;MulticastResource dunaj.resource.udp.MulticastResource@7c560cb5&gt;}</span>
+<span class="comment">;; datagrams [{:address 192.168.1.101 :port 43214 :payload (7 8 9)}]</span>
+<span class="comment">;; ready 0</span>
+<span class="comment">;; end</span>
+<span class="comment">;;=&gt;nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#multicast_factory">multicast&#45;factory</a></code>, <code><a href="#bare_udp">bare&#45;udp</a></code>, <code><a href="#udp">udp</a></code>, <code><a href="#block_BANG_">block!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="multicast_factory"><a class="link" href="#multicast_factory">multicast-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L743">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IAcquirableFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A resource factory for multicast.
+Current options are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:uri</code> - resource URI</p>
+</li>
+<li>
+<p><code>:protocol-family</code> - <code>:inet</code> (default) or <code>:inet6</code></p>
+</li>
+<li>
+<p><code>:multicast-group</code> - string</p>
+</li>
+<li>
+<p><code>:sources</code> - nil or collection of sources</p>
+</li>
+<li>
+<p><code>:network-interface</code> - host network interface</p>
+</li>
+<li>
+<p><code>:local-port</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:batch-size</code> - batch size, low level</p>
+</li>
+<li>
+<p><code>:tos</code> - tos</p>
+</li>
+<li>
+<p><code>:in-buffer-size</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:out-buffer-size</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:multicast-if</code> - multicast interface</p>
+</li>
+<li>
+<p><code>:multicast-ttl</code> - multicast ttl</p>
+</li>
+<li>
+<p><code>:multicast-loop</code> - multicast loopback, boolean, default true</p>
+</li>
+<li>
+<p><code>:payload-fn</code> - takes received payload as a batch and produces
+reducible collection that has no connection to given batch.</p>
+</li>
+<li>
+<p><code>:selector-provider</code> - host selector provider</p>
+</li>
+<li>
+<p><code>:non-blocking?</code> - use non-blocking mode?, boolean</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#multicast">multicast</a></code>, <code><a href="#bare_udp_factory">bare&#45;udp&#45;factory</a></code>, <code><a href="#udp_factory">udp&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="udp"><a class="link" href="#udp">udp</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L778">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(udp <em>uri &amp; {:as opts}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil String Uri) ⨯ Any) → IAcquirableFactory</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns UDP resource factory with given <code><em>uri</em></code> and <code><em>opts</em></code> set.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-73"><label class="dd-example-label" for="toggle-73">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource.udp <span class="symbol">:refer</span> [udp]]
+            [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]
+            [dunaj.repl <span class="symbol">:refer</span> [pst]]))
+
+(with-io-scope
+  (<span class="keyword">let</span> [r (acquire! (udp <span class="predefined-constant">nil</span>
+                         <span class="symbol">:local-port</span> <span class="integer">43214</span>
+                         <span class="symbol">:remote-port</span> <span class="integer">43214</span>
+                         <span class="symbol">:remote-address</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">localhost</span><span class="delimiter">&quot;</span></span>))]
+    (println! (config r))
+    (<span class="keyword">future</span>
+      (<span class="keyword">io!</span>
+       (<span class="keyword">try</span>
+         (dored [x (read! r)] (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">received</span><span class="delimiter">&quot;</span></span> x))
+         (<span class="keyword">catch</span> java.nio.channels.AsynchronousCloseException e
+           (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">monitor exit</span><span class="delimiter">&quot;</span></span>))
+         (<span class="keyword">catch</span> java.lang.Exception e
+           (println!
+            <span class="string"><span class="delimiter">&quot;</span><span class="content">exception in monitor </span><span class="delimiter">&quot;</span></span> (pst e))))))
+
+    (write! r [[<span class="integer">-1</span> <span class="integer">-2</span> <span class="integer">-3</span> <span class="integer">-4</span>]])
+    (write! r [[<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>]])
+
+    (sleep <span class="integer">200</span>)))
+<span class="comment">;; {:uri #uri &quot;udp://0.0.0.0:43214@localhost:43214&quot; :protocol-family :inet :remote-address localhost :remote-port 43214 :local-address nil :local-port 43214 :batch-size nil :reuse? nil :broadcast? false :tos nil :in-buffer-size nil :out-buffer-size nil :multicast-if nil :multicast-ttl nil :multicast-loop true :payload-fn #&lt;udp$payload__GT_array_coll dunaj.resource.udp$payload__GT_array_coll@406bf9b6&gt; :selector-provider #&lt;EPollSelectorProvider sun.nio.ch.EPollSelectorProvider@421c10c&gt; :non-blocking? false}</span>
+<span class="comment">;; received (-1 -2 -3 -4)</span>
+<span class="comment">;; received (1 2 3 4 5)</span>
+<span class="comment">;; monitor exit</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#udp_factory">udp&#45;factory</a></code>, <code><a href="#bare_udp">bare&#45;udp</a></code>, <code><a href="#multicast">multicast</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="udp_factory"><a class="link" href="#udp_factory">udp-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L714">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IAcquirableFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An UDP resource factory.
+Current options are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:uri</code> - resource URI</p>
+</li>
+<li>
+<p><code>:protocol-family</code> - <code>:inet</code> (default) or <code>:inet6</code></p>
+</li>
+<li>
+<p><code>:remote-address</code> - <code>nil</code> or string</p>
+</li>
+<li>
+<p><code>:remote-port</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:local-address</code> - <code>nil</code> or string</p>
+</li>
+<li>
+<p><code>:local-port</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:batch-size</code> - batch size, low level</p>
+</li>
+<li>
+<p><code>:reuse?</code> - reuse address?. boolean</p>
+</li>
+<li>
+<p><code>:broadcast?</code> - udp broadcast?, boolean, default false</p>
+</li>
+<li>
+<p><code>:tos</code> - tos</p>
+</li>
+<li>
+<p><code>:in-buffer-size</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:out-buffer-size</code> - <code>nil</code> or integer</p>
+</li>
+<li>
+<p><code>:multicast-if</code> - multicast interface</p>
+</li>
+<li>
+<p><code>:multicast-ttl</code> - multicast ttl</p>
+</li>
+<li>
+<p><code>:multicast-loop</code> - multicast loopback, boolean, default true</p>
+</li>
+<li>
+<p><code>:payload-fn</code> - takes received payload as a batch and produces
+reducible collection that has no connection to given batch.</p>
+</li>
+<li>
+<p><code>:selector-provider</code> - host selector provider</p>
+</li>
+<li>
+<p><code>:non-blocking?</code> - use non-blocking mode?, boolean</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#udp">udp</a></code>, <code><a href="#bare_udp_factory">bare&#45;udp&#45;factory</a></code>, <code><a href="#multicast_factory">multicast&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unblock_BANG_"><a class="link" href="#unblock_BANG_">unblock!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource/udp.clj#L801">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(unblock! <em>multicast address</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IMulticast ⨯ String) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Unblocks given <code><em>address</em></code> from <code><em>multicast</em></code> resource.
+Throws if <code><em>address</em></code> is not blocked.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#block_BANG_">block!</a></code>, <code><a href="#multicast">multicast</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:19:51 CET
+</div>
+</div>
+</body>
+</html>

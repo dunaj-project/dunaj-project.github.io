@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.compare API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.compare API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.compare</a></div><div class="dd-nav-ns-var"><a href="#_EQ_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">=</span></a></div><div class="dd-nav-ns-var"><a href="#decode_nil"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">decode-nil</span></a></div><div class="dd-nav-ns-var"><a href="#defsentinel"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">defsentinel</span></a></div><div class="dd-nav-ns-var"><a href="#distinct_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">distinct?</span></a></div><div class="dd-nav-ns-var"><a href="#encode_nil"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">encode-nil</span></a></div><div class="dd-nav-ns-var"><a href="#identical_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">identical?</span></a></div><div class="dd-nav-ns-var"><a href="#nil_sentinel"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">nil-sentinel</span></a></div><div class="dd-nav-ns-var"><a href="#nil_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">nil?</span></a></div><div class="dd-nav-ns-var"><a href="#not_EQ_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">not=</span></a></div><div class="dd-nav-ns-var"><a href="#sentinel"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">sentinel</span></a></div><div class="dd-nav-ns-var"><a href="#some_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">some?</span></a></div><div class="dd-nav-ns-group"><a href="#Comparison">Comparison</a></div><div class="dd-nav-ns-var"><a href="#comparable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">comparable?</span></a></div><div class="dd-nav-ns-var"><a href="#compare"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">compare</span></a></div><div class="dd-nav-ns-var"><a href="#natural_comparator"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">natural-comparator</span></a></div><div class="dd-nav-ns-group"><a href="#Hashing">Hashing</a></div><div class="dd-nav-ns-var"><a href="#basis_seed"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">basis-seed</span></a></div><div class="dd-nav-ns-var"><a href="#hash"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">hash</span></a></div><div class="dd-nav-ns-var"><a href="#hash_basis"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">hash-basis</span></a></div><div class="dd-nav-ns-var"><a href="#hash_basis_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">hash-basis?</span></a></div><div class="dd-nav-ns-var"><a href="#hash_from_basis"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">hash-from-basis</span></a></div><div class="dd-nav-ns-var"><a href="#next_basis"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">next-basis</span></a></div><div class="dd-nav-ns-var"><a href="#ordered_hash_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">ordered-hash-factory</span></a></div><div class="dd-nav-ns-var"><a href="#unordered_hash_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">unordered-hash-factory</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.compare API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.compare.spi.html">SPI documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Comparison, hashing and equality.</p>
+</div>
+<div class="paragraph">
+<p>Identity based comparison is represented by <code>identical?</code>, while
+<code>=</code> uses equivalence based on a value-based comparison.</p>
+</div>
+<div class="ulist">
+<div class="title">Design notes</div>
+<ul>
+<li>
+<p>Any object can be compared for equality with <code>identical?</code> or
+with <code>=</code>, regardless of whether it implements custom equivalence
+through <code>IEquiv</code>.</p>
+</li>
+<li>
+<p>Every object has a hash, regardless of whether it implements
+custom hash through <code>IHash</code>.</p>
+</li>
+<li>
+<p>Dunaj does not provide protocol predicate for custom equivalence,
+nor for a custom hash.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#_EQ_">&#61;</a></code> <code><a href="#decode_nil">decode&#45;nil</a></code> <code><a href="#defsentinel">defsentinel</a></code> <code><a href="#distinct_QMARK_">distinct?</a></code> <code><a href="#encode_nil">encode&#45;nil</a></code> <code><a href="#identical_QMARK_">identical?</a></code> <code><a href="#nil_sentinel">nil&#45;sentinel</a></code> <code><a href="#nil_QMARK_">nil?</a></code> <code><a href="#not_EQ_">not&#61;</a></code> <code><a href="#sentinel">sentinel</a></code> <code><a href="#some_QMARK_">some?</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_EQ_"><a class="link" href="#_EQ_">=</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/=)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#61; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(&#61; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(&#61; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → true</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ (Va Any)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> equals <code><em>y</em></code>, otherwise returns
+<code>false</code>. Contrary to the <code>identical?</code>, <code>=</code> is an equivalence
+comparison based on values, not identities.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#not_EQ_">not&#61;</a></code>, <code><a href="#identical_QMARK_">identical?</a></code>, <code><a href="dunaj.math.api.html#_EQ__EQ_">dunaj.math/&#61;&#61;</a></code>, <code><a href="#hash">hash</a></code>, <code><a href="dunaj.compare.spi.html#IEquiv">IEquiv</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="decode_nil"><a class="link" href="#decode_nil">decode-nil</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L116">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(decode&#45;nil <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>nil</code> if <code><em>x</em></code> is the <code>nil-sentinel</code>,
+otherwise returns <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nil_QMARK_">nil?</a></code>, <code><a href="#some_QMARK_">some?</a></code>, <code><a href="#sentinel">sentinel</a></code>, <code><a href="#encode_nil">encode&#45;nil</a></code>, <code><a href="#nil_sentinel">nil&#45;sentinel</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="defsentinel"><a class="link" href="#defsentinel">defsentinel</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L67">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(defsentinel <em>sname</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Defines a private sentinel object named <code><em>sname</em></code> and
+a corresponding private predicate function.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#identical_QMARK_">identical?</a></code>, <code><a href="#sentinel">sentinel</a></code>, <code><a href="#nil_sentinel">nil&#45;sentinel</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="distinct_QMARK_"><a class="link" href="#distinct_QMARK_">distinct?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/distinct?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(distinct? <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(distinct? <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(distinct? <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → true</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ (Va Any)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if no two of given arguments are <code>=</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_EQ_">&#61;</a></code>, <code><a href="#not_EQ_">not&#61;</a></code>, <code><a href="dunaj.coll.recipe.api.html#distinct">dunaj.coll.recipe/distinct</a></code>, <code><a href="dunaj.coll.recipe.api.html#dedupe">dunaj.coll.recipe/dedupe</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="encode_nil"><a class="link" href="#encode_nil">encode-nil</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L108">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(encode&#45;nil <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>nil-sentinel</code> if <code><em>x</em></code> is <code>nil</code>, otherwise returns <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nil_QMARK_">nil?</a></code>, <code><a href="#some_QMARK_">some?</a></code>, <code><a href="#sentinel">sentinel</a></code>, <code><a href="#nil_sentinel">nil&#45;sentinel</a></code>, <code><a href="#decode_nil">decode&#45;nil</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="identical_QMARK_"><a class="link" href="#identical_QMARK_">identical?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/identical?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(identical? <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if both arguments are the same object
+(have the same identity), otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_EQ_">&#61;</a></code>, <code><a href="#distinct_QMARK_">distinct?</a></code>, <code><a href="dunaj.math.api.html#_EQ__EQ_">dunaj.math/&#61;&#61;</a></code>, <code><a href="dunaj.poly.api.html#identical_type_QMARK_">dunaj.poly/identical&#45;type?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="nil_sentinel"><a class="link" href="#nil_sentinel">nil-sentinel</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L99">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Unknown</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A sentinel value used for <code>nil</code> encoding/decoding.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nil_QMARK_">nil?</a></code>, <code><a href="#some_QMARK_">some?</a></code>, <code><a href="#sentinel">sentinel</a></code>, <code><a href="#encode_nil">encode&#45;nil</a></code>, <code><a href="#decode_nil">decode&#45;nil</a></code>, <code><a href="#defsentinel">defsentinel</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="nil_QMARK_"><a class="link" href="#nil_QMARK_">nil?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/nil?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(nil? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is <code>nil</code>, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#some_QMARK_">some?</a></code>, <code><a href="#nil_sentinel">nil&#45;sentinel</a></code>, <code><a href="#encode_nil">encode&#45;nil</a></code>, <code><a href="#decode_nil">decode&#45;nil</a></code>, <code><a href="dunaj.boolean.api.html#false_QMARK_">dunaj.boolean/false?</a></code>, <code><a href="dunaj.flow.api.html#if">dunaj.flow/if</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="not_EQ_"><a class="link" href="#not_EQ_">not=</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/not=)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(not&#61; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(not&#61; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(not&#61; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → false</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ (Va Any)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> does not equal <code><em>y</em></code>, otherwise
+returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_EQ_">&#61;</a></code>, <code><a href="#identical_QMARK_">identical?</a></code>, <code><a href="#hash">hash</a></code>, <code><a href="dunaj.boolean.api.html#not">dunaj.boolean/not</a></code>, <code><a href="dunaj.math.api.html#_EQ__EQ_">dunaj.math/&#61;&#61;</a></code>, <code><a href="dunaj.compare.spi.html#IEquiv">IEquiv</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sentinel"><a class="link" href="#sentinel">sentinel</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L55">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sentinel)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Unknown</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a unique object, of an unspecified type, for each call.
+The returned object is not equal (not <code>=</code> nor <code>identical?</code>) to
+any object other than itself. Is safe to put into channels or
+into functions that don&#8217;t accept <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#identical_QMARK_">identical?</a></code>, <code><a href="#_EQ_">&#61;</a></code>, <code><a href="#nil_sentinel">nil&#45;sentinel</a></code>, <code><a href="#encode_nil">encode&#45;nil</a></code>, <code><a href="#decode_nil">decode&#45;nil</a></code>, <code><a href="#defsentinel">defsentinel</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="some_QMARK_"><a class="link" href="#some_QMARK_">some?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/some?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(some? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is not <code>nil</code>,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nil_QMARK_">nil?</a></code>, <code><a href="#nil_sentinel">nil&#45;sentinel</a></code>, <code><a href="#encode_nil">encode&#45;nil</a></code>, <code><a href="#decode_nil">decode&#45;nil</a></code>, <code><a href="dunaj.boolean.api.html#true_QMARK_">dunaj.boolean/true?</a></code>, <code><a href="dunaj.flow.api.html#if">dunaj.flow/if</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Comparison"><a class="link" href="#Comparison">Comparison</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#comparable_QMARK_">comparable?</a></code> <code><a href="#compare">compare</a></code> <code><a href="#natural_comparator">natural&#45;comparator</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="comparable_QMARK_"><a class="link" href="#comparable_QMARK_">comparable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L127">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(comparable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IComparable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code>, <code><a href="#compare">compare</a></code>, <code><a href="#natural_comparator">natural&#45;comparator</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="compare"><a class="link" href="#compare">compare</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/compare)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(compare <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IComparable ⨯ Any) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a negative integer, zero, or a positive integer if
+<code><em>this</em></code> is less than, equal to, or greater than the
+<code><em>other</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code>, <code><a href="#comparable_QMARK_">comparable?</a></code>, <code><a href="#natural_comparator">natural&#45;comparator</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="natural_comparator"><a class="link" href="#natural_comparator">natural-comparator</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L152">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>(Fn [Integer Any Any])</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A comparator which uses object&#8217;s natural ordering
+(implemented with <code>IComparable</code>) for comparison.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#compare">compare</a></code>, <code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code>, <code><a href="#comparable_QMARK_">comparable?</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Hashing"><a class="link" href="#Hashing">Hashing</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#basis_seed">basis&#45;seed</a></code> <code><a href="#hash">hash</a></code> <code><a href="#hash_basis">hash&#45;basis</a></code> <code><a href="#hash_basis_QMARK_">hash&#45;basis?</a></code> <code><a href="#hash_from_basis">hash&#45;from&#45;basis</a></code> <code><a href="#next_basis">next&#45;basis</a></code> <code><a href="#ordered_hash_factory">ordered&#45;hash&#45;factory</a></code> <code><a href="#unordered_hash_factory">unordered&#45;hash&#45;factory</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="basis_seed"><a class="link" href="#basis_seed">basis-seed</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L204">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(basis&#45;seed <em>factory</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IIncrementalHashFactory) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the hash basis seed of a given <code><em>factory</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#next_basis">next&#45;basis</a></code>, <code><a href="#hash_basis">hash&#45;basis</a></code>, <code><a href="#hash_from_basis">hash&#45;from&#45;basis</a></code>, <code><a href="dunaj.compare.spi.html#IIncrementalHashFactory">IIncrementalHashFactory</a></code>, <code><a href="dunaj.compare.spi.html#IHashBasis">IHashBasis</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="hash"><a class="link" href="#hash">hash</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/hash)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(hash <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a hash code of <code><em>x</em></code> that is consistent with <code>=</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.compare.spi.html#IHash">IHash</a></code>, <code><a href="#_EQ_">&#61;</a></code>, <code><a href="#hash_from_basis">hash&#45;from&#45;basis</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="hash_basis"><a class="link" href="#hash_basis">hash-basis</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L267">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(hash&#45;basis <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IHashBasis) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the hash basis of <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#hash_from_basis">hash&#45;from&#45;basis</a></code>, <code><a href="#hash_basis_QMARK_">hash&#45;basis?</a></code>, <code><a href="#ordered_hash_factory">ordered&#45;hash&#45;factory</a></code>, <code><a href="#unordered_hash_factory">unordered&#45;hash&#45;factory</a></code>, <code><a href="#hash">hash</a></code>, <code><a href="dunaj.compare.spi.html#IHashBasis">IHashBasis</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="hash_basis_QMARK_"><a class="link" href="#hash_basis_QMARK_">hash-basis?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L256">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(hash&#45;basis? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IHashBasis</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.compare.spi.html#IHashBasis">IHashBasis</a></code>, <code><a href="#hash_basis">hash&#45;basis</a></code>, <code><a href="#hash_from_basis">hash&#45;from&#45;basis</a></code>, <code><a href="#ordered_hash_factory">ordered&#45;hash&#45;factory</a></code>, <code><a href="#unordered_hash_factory">unordered&#45;hash&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="hash_from_basis"><a class="link" href="#hash_from_basis">hash-from-basis</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L276">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(hash&#45;from&#45;basis <em>hash&#45;basis count</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int ⨯ Int) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the hash value from a given <code><em>hash-basis</em></code> and <code><em>count</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#hash">hash</a></code>, <code><a href="#hash_basis">hash&#45;basis</a></code>, <code><a href="#ordered_hash_factory">ordered&#45;hash&#45;factory</a></code>, <code><a href="#unordered_hash_factory">unordered&#45;hash&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="next_basis"><a class="link" href="#next_basis">next-basis</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L213">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(next&#45;basis <em>factory old val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IIncrementalHashFactory ⨯ Int ⨯ Any) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a new hash basis computed with a given <code><em>factory</em></code>,
+based on <code><em>old</em></code> basis and <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#basis_seed">basis&#45;seed</a></code>, <code><a href="#hash_basis">hash&#45;basis</a></code>, <code><a href="#hash_from_basis">hash&#45;from&#45;basis</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ordered_hash_factory"><a class="link" href="#ordered_hash_factory">ordered-hash-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L240">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>(R IIncrementalHashFactory)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An incremental hash factory for ordered collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#unordered_hash_factory">unordered&#45;hash&#45;factory</a></code>, <code><a href="#basis_seed">basis&#45;seed</a></code>, <code><a href="#next_basis">next&#45;basis</a></code>, <code><a href="dunaj.compare.spi.html#IIncrementalHashFactory">IIncrementalHashFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unordered_hash_factory"><a class="link" href="#unordered_hash_factory">unordered-hash-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/compare.clj#L248">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>(R IIncrementalHashFactory)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An incremental hash factory for unordered collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ordered_hash_factory">ordered&#45;hash&#45;factory</a></code>, <code><a href="#basis_seed">basis&#45;seed</a></code>, <code><a href="#next_basis">next&#45;basis</a></code>, <code><a href="dunaj.compare.spi.html#IIncrementalHashFactory">IIncrementalHashFactory</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:14:58 CET
+</div>
+</div>
+</body>
+</html>

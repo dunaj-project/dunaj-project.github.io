@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj  - Computer And Network Resources</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj  - Computer And Network Resources</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day5.html">Reducers First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day7.html">Data Formatters</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="day8.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day9.html">Improved Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day10.html">Documentation</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj  - Computer And Network Resources</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most applications perform some file and networking I/O.
+Clojure leaves this domain largerly uncovered and advises users to use
+host facilities instead. Dunaj attempts to cover this realm with
+an extensive and powerful set of features dedicated to computer and
+network resources.</p>
+</div>
+<div class="paragraph">
+<p>Goals of this experiment are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Design and implement the concept of resource scopes</p>
+</li>
+<li>
+<p>Develop facilities for implementers of computer and
+network resources</p>
+</li>
+<li>
+<p>Create abstractions for basic resource functionalities and
+integrate them with the rest of core API, mainly with collections
+and transducers</p>
+</li>
+<li>
+<p>Provide implementation for widely used resources</p>
+</li>
+<li>
+<p>Devise abstraction for composing resources into 'systems'</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A <strong>computer resource</strong>, or system resource, is resource of limited
+availability within a computer system. Computer resource and
+services it provides can be used by computer processes running
+in the respective computer system.
+Examples of computer resources include a file or a network socket.
+A <strong>network resource</strong> is a resource accessible within a computer
+network. Some network resources provide services that perform one
+or more functions as a result of a message received over the network
+from a service consumer.
+Examples of network resources include weather web service,
+database management system or a web page.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scopes">Scopes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Because resources are of limited availability, computer
+process needs to acquire resource before it can use it.
+More importantly, computer process have to release acquired
+resources as soon as they are no longer needed.</p>
+</div>
+<div class="paragraph">
+<p>Just like garbage collector automatically manages the contents of
+program&#8217;s allocated heap memory, <strong>scope manages the lifetime of
+resources</strong> acquired within that scope. User acquires resource
+explicitly by calling
+<code><a href="dunaj.resource.api.html#acquire_BANG_">acquire!</a></code> function, which
+accepts factory object that implements
+<code><a href="dunaj.resource.spi.html#IAcquirableFactory">IAcquirableFactory</a></code>
+protocol. An acquired resource is a stateful object that implements
+<code><a href="dunaj.resource.spi.html#IReleasable">IReleasable</a></code> protocol and is
+always acquired and released within a scope (there is no explicit
+resource release function in Dunaj!).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dunaj&#8217;s implementation is heavily inspired by Clojure&#8217;s
+<a href="http://dev.clojure.org/display/design/Resource+Scopes">feature page
+on resources and scopes</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Scopes are created explicitly with
+<code><a href="dunaj.resource.api.html#with_scope">with-scope</a></code> macro. Resources
+are automatically released at the end of the scope in which they were
+created. Additional scope features are provided for explicit scope
+management. This includes
+<code><a href="dunaj.resource.api.html#grab_scope">grab-scope</a></code>,
+<code><a href="dunaj.resource.api.html#scope_push_BANG_">scope-push!</a></code> and
+<code><a href="dunaj.resource.api.html#release_scope_BANG_">release-scope!</a></code>
+functions. Scopes can be merged, may reach into child threads
+and the release process can be configured to support timeouts and
+cancellation policies.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource <span class="symbol">:refer</span> [size]]))
+
+(with-scope
+  (size (acquire! (file <span class="string"><span class="delimiter">&quot;</span><span class="content">src/clj/dunaj/resource.clj</span><span class="delimiter">&quot;</span></span>))))
+<span class="comment">;;=&gt; 31800</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resource_operations">Resource operations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Primary operations that are supported by most resources are the
+operations for reading and writing.
+<code><a href="dunaj.resource.api.html#read_BANG_">read!</a></code> is a function that takes
+a resource and returns the collection recipe that reads data from
+resource when reduced. As the reduction of such collection recipe
+has side effects and will most likely produce different results each
+time <code>reduce</code> is called, <strong>code that performs such reduction
+must be called within an <code><a href="dunaj.state.api.html#io_BANG_">io!</a></code> block.</strong></p>
+</div>
+<div class="paragraph">
+<p>There are some resources, such as files, that can be read in an
+immutable fashion. These resources can be also read with a
+<code><a href="dunaj.resource.api.html#read">read</a></code> function,
+which guarantees that the returned collection recipe will behave as
+an immutable collection.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">def</span> <span class="function">v</span>
+  (with-scope
+    (<span class="keyword">vec</span> (<span class="keyword">read</span> (resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://md5.jsontest.com/?text=Dunaj</span><span class="delimiter">&quot;</span></span>)))))
+<span class="comment">;;=&gt; #'foo.baz/v</span>
+
+v
+<span class="comment">;;=&gt; [123 10 32 32 32 34 109 100 53 34 58 32 34 98 52 99 53 98 54 53 97 50 55 57 98 100 49 97 51 57 49 51 55 49 50 100 57 55 97 55 52 55 50 53 54 34 44 10 32 32 32 34 111 114 105 103 105 110 97 108 34 58 32 34 68 117 110 97 106 34 10 125 10]</span>
+
+(parse-whole json (parse utf-8 v))
+<span class="comment">;;=&gt; {&quot;md5&quot; &quot;b4c5b65a279bd1a3913712d97a747256&quot;, &quot;original&quot; &quot;Dunaj&quot;}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As reading of most resources produces a sequence of primitive
+bytes, collection recipe returned by <code>read!</code> or <code>read</code> will most
+likely support batched reduction and <strong>will offer performance on par
+with the host.</strong>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Writing to the resource is performed with a
+<code><a href="dunaj.resource.api.html#write_BANG_">write!</a></code> function, which takes
+a resource and a collection recipe that contains data to be written.
+Number of sucessfully written items is returned.
+For most resources, <code>write!</code> will perform a batched reduction
+to ensure the most effective writing. <code>write!</code> also take an optional
+transducer that can be used to process the data before is it written.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Depending on the resource&#8217;s configuration, reading or
+writing may block. Some resources support a non-blocking mode, where
+a postponed object is returned in case the reading/writing can not
+be immediatelly completed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Other functionalities available for resources include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.resource.api.html#control_BANG_">control!</a></code> for managing
+resource&#8217;s controllable state</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.api.html#status">status</a></code> for querying
+resource&#8217;s status</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.api.html#request_BANG_">request!</a></code> for resources
+that work in a request-response mode</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.api.html#flush_BANG_">flush!</a></code>,
+<code><a href="dunaj.resource.api.html#position">position</a></code>,
+<code><a href="dunaj.resource.api.html#size">size</a></code>,
+<code><a href="dunaj.resource.file.api.html#truncate_BANG_">truncate!</a></code> and
+others</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Resources with composite bands implement classic collection
+protocols (<code>IIndexed</code>, <code>ILookup</code>, <code>ICounted</code>). Resources where
+individuals items can be sent/received implement <code>ISourcePort</code>
+and <code>ITargetPort</code>. If resource contains a single value, it can
+implement <code>IReference</code> or <code>IBlockingReference</code>.
+Resources can also implement custom error handling.</p>
+</div>
+<div class="sect2">
+<h3 id="_convenience_functions">Convenience functions</h3>
+<div class="paragraph">
+<p>A number of convenience functions are provided for acquiring, reading
+and writing.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.resource.api.html#resource">resource</a></code> uses a list of
+registered resource types to determine correct type of resource
+based on its URI scheme</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.api.html#exchange_BANG_">exchange!</a></code>,
+<code><a href="dunaj.resource.api.html#slurp">slurp</a></code> and
+<code><a href="dunaj.resource.api.html#spit_BANG_">spit!</a></code> for streamlined
+reading/writing</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.api.html#format">format</a></code> and
+<code><a href="dunaj.resource.api.html#transform">transform</a></code> for the integration
+with transducers and data formatters</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre><span class="comment">;; matches uri scheme to the list of registered resource factories</span>
+(resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; #dunaj.resource.http.HttpResourceFactory{:uri &quot;http://example.com&quot;, :proxy nil, :secure? false, :allow-ui? nil, :timeout nil, :use-caches? nil, :follow? nil, :request-properties nil, :request-method nil, :chunked-streaming nil, :hostname-verifier nil, :ssl-context nil, :batch-size nil}</span>
+
+<span class="comment">;; file resource is used when no scheme is provided</span>
+(resource <span class="string"><span class="delimiter">&quot;</span><span class="content">file.txt</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; #dunaj.resource.file.FileResourceFactory{:uri &quot;file.txt&quot;, :mode [:read :write :create], :batch-size nil, :file-system nil, :working-directory nil}</span>
+
+<span class="comment">;; another example, a client tcp connection</span>
+(resource <span class="string"><span class="delimiter">&quot;</span><span class="content">tcp://localhost:8081</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; #dunaj.resource.tcp.TcpResourceFactory{:uri &quot;tcp://localhost:8081&quot;, :remote-address nil, :remote-port nil, :local-address nil, :local-port nil, :batch-size nil, :non-blocking? nil, :keep-alive? false, :in-buffer-size nil, :out-buffer-size nil, :linger nil, :no-delay? false, :reuse? nil, :selector-provider nil}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+</pre></td>
+  <td class="code"><pre>(with-io-scope
+  (<span class="keyword">-&gt;&gt;</span> (resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>)
+       acquire!
+       (<span class="keyword">format</span> utf-8)
+       read!
+       (<span class="keyword">take</span> <span class="integer">50</span>)
+       <span class="keyword">str</span>))
+<span class="comment">;;=&gt; &quot;&lt;!doctype html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Example D&quot;</span>
+
+<span class="comment">;; using slurp convenience function</span>
+(with-scope (<span class="keyword">str</span> (<span class="keyword">take</span> <span class="integer">50</span> (<span class="keyword">slurp</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>))))
+<span class="comment">;;=&gt; &quot;&lt;!doctype html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Example D&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_built_in_resources">Built-in resources</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_file">File</h3>
+<div class="paragraph">
+<p>Dunaj provides several built-in implementations for file related
+resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.resource.file.api.html#file">file</a></code> for classic files,
+registered under <code>file</code> scheme and also used when no scheme
+is provided. In addition to readable and writable, files are
+flushable, seekable and truncatable.</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.host.api.html#classpath">classpath</a></code> for classpath
+resources. Registered under <code>cp</code> scheme.</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.host.api.html#input_stream">input-stream</a></code> and
+<code><a href="dunaj.resource.host.api.html#output_stream">output-stream</a></code> for
+resources backed by host streams.</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.host.api.html#reader">reader</a></code> and
+<code><a href="dunaj.resource.host.api.html#writer">writer</a></code> for
+resources backed by host reader or writer.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_non_blocking_io">Non-blocking IO</h3>
+<div class="paragraph">
+<p>Several Dunaj&#8217;s resources support optional non-blocking mode, in which
+the reads and writes from a resource may return a postponed object
+when the operation cannot be completed immediatelly.</p>
+</div>
+<div class="paragraph">
+<p>A special resource called
+<code><a href="dunaj.resource.selector.api.html#selector">selector</a></code> is available
+for programs that want to wait for a non-blocking resource to be
+available for further writing or reading. Non-blocking resources may
+<code><a href="dunaj.resource.selector.api.html#register_BANG_">register!</a></code>
+themselves within a selector. Program can then wait for next available
+resource with
+<code><a href="dunaj.resource.selector.api.html#select">select</a></code> or
+<code><a href="dunaj.resource.selector.api.html#select_now">select-now</a></code> functions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+<strong>40</strong>
+41
+42
+43
+44
+45
+46
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource.pipe <span class="symbol">:refer</span> [pipe-factory]]
+            [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]))
+
+<span class="comment">;; non-blocking with selector</span>
+(with-io-scope
+  (<span class="keyword">let</span> [[sink1 source1] (acquire! pipe-factory <span class="symbol">:non-blocking?</span> <span class="predefined-constant">true</span>)
+        [sink2 source2] (acquire! pipe-factory <span class="symbol">:non-blocking?</span> <span class="predefined-constant">true</span>)
+        sel (acquire! (selector))
+        dumpf #(dored [x (read! (<span class="symbol">:resource</span> %))] (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">got</span><span class="delimiter">&quot;</span></span> x))
+        rf (<span class="keyword">fn</span> [ret <span class="keyword">val</span>] (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">resource is ready</span><span class="delimiter">&quot;</span></span> <span class="keyword">val</span>) (dumpf <span class="keyword">val</span>) ret)]
+    <span class="comment">;; register non-blocking resources</span>
+    (register! sel source1 <span class="symbol">:all</span>)
+    (register! sel source2 <span class="symbol">:all</span>)
+    <span class="comment">;; poll selector in a different thread</span>
+    (thread
+     (<span class="keyword">io!</span>
+      (<span class="keyword">loop</span> [x (<span class="keyword">reduce</span> rf <span class="predefined-constant">nil</span> (read! sel))]
+        (<span class="keyword">if</span> (postponed? x)
+          (<span class="keyword">do</span> (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">resources ready:</span><span class="delimiter">&quot;</span></span> (select sel))
+              (<span class="keyword">recur</span> (unsafe-advance! x)))
+          (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">end</span><span class="delimiter">&quot;</span></span>)))))
+    <span class="comment">;; send data to resources</span>
+    (write! sink1 [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span>])
+    (write! sink2 [<span class="integer">4</span> <span class="integer">5</span> <span class="integer">6</span>])
+    (sleep <span class="integer">1000</span>)
+    (write! sink2 [<span class="integer">7</span> <span class="integer">8</span> <span class="integer">9</span>])
+    (sleep <span class="integer">1000</span>)))
+<span class="comment">;; resources ready: 2</span>
+<span class="comment">;; resource is ready {:ready (:read) :resource #&lt;SourceResource dunaj.resource.pipe.SourceResource@7e9013ff&gt;}</span>
+<span class="comment">;; got 1</span>
+<span class="comment">;; got 2</span>
+<span class="comment">;; got 3</span>
+<span class="comment">;; resource is ready {:ready (:read) :resource #&lt;SourceResource dunaj.resource.pipe.SourceResource@3b928249&gt;}</span>
+<span class="comment">;; got 4</span>
+<span class="comment">;; got 5</span>
+<span class="comment">;; got 6</span>
+<span class="comment">;; resources ready: 1</span>
+<span class="comment">;; resource is ready {:ready (:read) :resource #&lt;SourceResource dunaj.resource.pipe.SourceResource@3b928249&gt;}</span>
+<span class="comment">;; got 7</span>
+<span class="comment">;; got 8</span>
+<span class="comment">;; got 9</span>
+<span class="comment">;; resources ready: 0</span>
+<span class="comment">;; end</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_networking">Networking</h3>
+<div class="paragraph">
+<p>Dunaj provides resource for sending and fetching data through
+<code><a href="dunaj.resource.http.api.html#http">http</a></code> (or
+<code><a href="dunaj.resource.http.api.html#https">https</a></code>) with very basic
+functionalities.</p>
+</div>
+<div class="listingblock">
+<div class="title">HTTP POST example, showing reading, writing and querying resource&#8217;s status</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+<strong>40</strong>
+41
+42
+43
+44
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource <span class="symbol">:refer</span> [status]]
+            [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]))
+
+(with-io-scope
+  (<span class="keyword">let</span> [r (http <span class="string"><span class="delimiter">&quot;</span><span class="content">http://httpbin.org/post</span><span class="delimiter">&quot;</span></span>)
+        c (acquire! (<span class="keyword">assoc</span> r <span class="symbol">:request-method</span> <span class="symbol">:post</span>))
+        fc (<span class="keyword">format</span> utf-8 c)]
+    (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">config</span><span class="delimiter">&quot;</span></span> (config c))
+    (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">sent</span><span class="delimiter">&quot;</span></span> (write! fc <span class="string"><span class="delimiter">&quot;</span><span class="content">key1=val1&amp;key2=val2&amp;key1=val3</span><span class="delimiter">&quot;</span></span>))
+    (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">response</span><span class="delimiter">&quot;</span></span> (<span class="keyword">str</span> (read! fc)))
+    (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">status</span><span class="delimiter">&quot;</span></span> @(status c))
+    (sleep <span class="integer">100</span>)))
+<span class="comment">;; config {:uri #uri &quot;http://httpbin.org/post&quot; :proxy nil :secure? false :allow-ui? nil :timeout nil :use-caches? nil :follow? nil :request-properties nil :request-method :post :chunked-streaming nil :hostname-verifier nil :ssl-context nil :batch-size nil}</span>
+<span class="comment">;; sent 29</span>
+<span class="comment">;; response {</span>
+<span class="comment">;;   &quot;args&quot;: {},</span>
+<span class="comment">;;   &quot;data&quot;: &quot;&quot;,</span>
+<span class="comment">;;   &quot;files&quot;: {},</span>
+<span class="comment">;;   &quot;form&quot;: {</span>
+<span class="comment">;;     &quot;key1&quot;: [</span>
+<span class="comment">;;       &quot;val1&quot;,</span>
+<span class="comment">;;       &quot;val3&quot;</span>
+<span class="comment">;;     ],</span>
+<span class="comment">;;     &quot;key2&quot;: &quot;val2&quot;</span>
+<span class="comment">;;   },</span>
+<span class="comment">;;   &quot;headers&quot;: {</span>
+<span class="comment">;;     &quot;Accept&quot;: &quot;text/html, image/gif, image/jpeg, *&quot;; q=.2, */*; q=.2&quot;,</span>
+<span class="comment">;;     Connect-Time&quot;: &quot;2&quot;,</span>
+<span class="comment">;;     &quot;Connection&quot;: &quot;close&quot;,</span>
+<span class="comment">;;     &quot;Content-Length&quot;: &quot;29&quot;,</span>
+<span class="comment">;;     &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;,</span>
+<span class="comment">;;     &quot;Host&quot;: &quot;httpbin.org&quot;,</span>
+<span class="comment">;;     &quot;Total-Route-Time&quot;: &quot;0&quot;,</span>
+<span class="comment">;;     &quot;User-Agent&quot;: &quot;Java/1.8.0_25&quot;,</span>
+<span class="comment">;;     &quot;Via&quot;: &quot;1.1 vegur&quot;,</span>
+<span class="comment">;;     &quot;X-Request-Id&quot;: &quot;c550e93d-a79d-47c2-aab9-d0f9c22c663d&quot;</span>
+<span class="comment">;;   },</span>
+<span class="comment">;;   &quot;json&quot;: null,</span>
+<span class="comment">;;   &quot;url&quot;: &quot;http://httpbin.org/post&quot;</span>
+<span class="comment">;; }</span>
+<span class="comment">;; status {:proxy? false :response-message OK :response-code 200 :request-method POST :headers {Content-Type application/json Via 1.1 vegur Date Wed, 03 Dec 2014 12:29:47 GMT Content-Length 627 Connection keep-alive Access-Control-Allow-Credentials true Access-Control-Allow-Origin * Server gunicorn/18.0 nil HTTP/1.1 200 OK}}</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition to <code>http</code>, Dunaj also implements basic low level
+networking protocols, which can be used in third party networking
+libraries or clients:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.resource.udp.api.html#udp">udp</a></code> resource, supporting
+connected and connectionless mode, broadcasting and multicasting</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.tcp.api.html#tcp">tcp</a></code> resource, supporting
+tcp clients and servers.</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.secure.api.html#secure">secure</a></code> resource,
+implementing TLS protocol. This resource wraps
+<code>javax.net.ssl.SSLEngine</code> and provides Dunaj&#8217;s semantics.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Using secure resource with tcp for communication</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+<strong>40</strong>
+41
+42
+43
+44
+45
+46
+47
+48
+49
+<strong>50</strong>
+51
+52
+53
+54
+55
+56
+57
+58
+59
+<strong>60</strong>
+61
+62
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.concurrent.thread <span class="symbol">:refer</span> [sleep]]
+            [dunaj.resource.tcp <span class="symbol">:refer</span> [tcp finish-connect!]]
+            [dunaj.resource.selector <span class="symbol">:refer</span> [selector register!]]
+            [dunaj.resource.secure <span class="symbol">:refer</span> [secure]]))
+
+<span class="comment">;; non-blocking</span>
+(with-io-scope
+  (<span class="keyword">let</span> [uri <span class="string"><span class="delimiter">&quot;</span><span class="content">tcp://gotofail.com:443</span><span class="delimiter">&quot;</span></span>
+        c (acquire! (tcp uri <span class="symbol">:non-blocking?</span> <span class="predefined-constant">true</span>))
+        s (acquire! (secure c))
+        gm <span class="string"><span class="delimiter">&quot;</span><span class="content">GET / HTTP/1.0</span><span class="content">\r</span><span class="content">\n</span><span class="content">From: example@example.com</span><span class="content">\r</span><span class="content">\n</span><span class="content">User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/36.0</span><span class="content">\r</span><span class="content">\n</span><span class="content">\r</span><span class="content">\n</span><span class="delimiter">&quot;</span></span>
+        rf #(println! <span class="string"><span class="delimiter">&quot;</span><span class="content">got</span><span class="delimiter">&quot;</span></span> (<span class="keyword">str</span> (<span class="keyword">take</span> <span class="integer">350</span> (parse utf-8 %2))))
+        sel (acquire! (selector))]
+    <span class="comment">;; wait until connection is established</span>
+    (register! sel c [<span class="symbol">:connect</span>])
+    (select sel)
+    (finish-connect! c)
+    <span class="comment">;; disable thread locality of a secure resource</span>
+    (pass! s <span class="predefined-constant">nil</span>)
+    <span class="comment">;; send GET request</span>
+    (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">writing</span><span class="delimiter">&quot;</span></span> (write! s (<span class="keyword">print</span> utf-8 gm)))
+    <span class="comment">;; handle selector and print response in a different thread</span>
+    (register! sel c [<span class="symbol">:read</span>])
+    (thread
+     (<span class="keyword">io!</span>
+      (<span class="keyword">try</span>
+        (<span class="keyword">loop</span> [r (reduce-batched <span class="predefined-constant">nil</span> <span class="predefined-constant">nil</span> rf <span class="predefined-constant">nil</span> (read! s))]
+          (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">.</span><span class="delimiter">&quot;</span></span>)
+          (<span class="keyword">when</span> (postponed? r)
+            (select sel <span class="integer">500</span>)
+            (<span class="keyword">recur</span> (unsafe-advance! r))))
+        (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">EOF</span><span class="delimiter">&quot;</span></span>)
+        (<span class="keyword">catch</span> java.lang.Exception e (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">R exception:</span><span class="delimiter">&quot;</span></span> e)))))
+    (sleep <span class="integer">5000</span>)))
+<span class="comment">;; writing #&lt;Postponed@16c42c7c: 98&gt;</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; .</span>
+<span class="comment">;; got HTTP/1.1 200 OK</span>
+<span class="comment">;; Server: nginx/1.4.6 (Ubuntu)</span>
+<span class="comment">;; Date: Mon, 08 Dec 2014 21:39:51 GMT</span>
+<span class="comment">;; Content-Type: text/html</span>
+<span class="comment">;; Content-Length: 8618</span>
+<span class="comment">;; Last-Modified: Mon, 20 Oct 2014 20:06:13 GMT</span>
+<span class="comment">;; Connection: close</span>
+<span class="comment">;; ETag: &quot;54456b35-21ab&quot;</span>
+<span class="comment">;; Accept-Ranges: bytes</span>
+<span class="comment">;;</span>
+<span class="comment">;; &lt;!DOCTYPE html&gt;</span>
+<span class="comment">;; &lt;html&gt;&lt;head&gt;&lt;meta charset=utf-8&gt;&lt;title&gt;goto fail;&lt;/title&gt;</span>
+<span class="comment">;; &lt;link rel=&quot;icon&quot; href=&quot;data:&quot;;base</span>
+<span class="comment">;; .</span>
+<span class="comment">;; EOF</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_system">System</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>System is a Dunaj&#8217;s replacement for Stuart Sierra&#8217;s
+<a href="https://github.com/stuartsierra/component">component library</a>.
+Utilizing scopes and resources, Dunaj&#8217;s system implementation focuses
+on managing dependencies and acquiring resources in correct order.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is Dunaj&#8217;s conscious decision to simplify the role of
+a system and to only support fail-fast mechanism. In Dunaj,
+exceptions and restarts have to be handled higher in the hierarchy.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Dunaj provides <code><a href="dunaj.resource.api.html#system">system</a></code>,
+<code><a href="dunaj.resource.api.html#start_BANG_">start!</a></code>,
+<code><a href="dunaj.resource.api.html#assoc_deps">assoc-deps</a></code> and
+<code><a href="dunaj.resource.api.html#deps">deps</a></code> functions for creating and
+starting systems.</p>
+</div>
+</div>
+</div><div id="disqus_thread"></div><script>var disqus_shortname = 'dunajproject'; var disqus_identifier = 'day8'; (function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname +
+                              '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] ||
+                     document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:20 CET
+</div>
+</div>
+</body>
+</html>

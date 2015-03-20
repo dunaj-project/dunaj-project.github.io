@@ -1,37 +1,88 @@
-<html><head><title>Dunaj</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="odd.css"><link rel="icon" type="image/png" href="favicon.png" /></head><body>
-<div id="fb">
-<div id="page">
-<div id="logo"><img src="dunaj.png">Dunaj</div>
-<div class="title">An alternative core API for Clojure</div>
-<div class="title stitle"><ul>
-<li><i class="fa fa-fw fa-info-circle"></i> <a href="pday0.html">Introduction</a></li>
-<li><i class="fa fa-fw fa-sitemap"></i> <a href="pday1.html">Deconstructing Core API</a></li>
-<li><i class="fa fa-fw fa-tags"></i> <a href="pday2.html">Optional Type Signatures</a></li>
-<li><i class="fa fa-fw fa-plug"></i> <a href="pday3.html">Protocols First</a></li>
-<li><i class="fa fa-fw fa-bars"></i> <a href="pday4.html">Towards Simpler API</a></li>
-<li><i class="fa fa-fw fa-puzzle-piece"></i> <a href="pday5.html">Reducers First</a></li>
-<li><i class="fa fa-fw fa-rocket"></i> <a href="pday6.html">Enabling Host Performance</a></li>
-<li><i class="fa fa-fw fa-file-archive-o"></i> <a href="pday7.html">Data Formatters</a></li>
-<li><i class="fa fa-fw fa-cubes"></i> <a href="pday8.html">Computer and Network Resources</a></li>
-<li><i class="fa fa-fw fa-plus"></i> <a href="pday9.html">Improved Math Facilities</a></li>
-<li><i class="fa fa-fw fa-birthday-cake"></i> Coming soon</li>
-</ul></div>
-<div class="title">Get in touch</div>
-<div class="title stitle"><ul>
-<li><i class="fa fa-fw fa-chevron-right"></i> Send your questions
-  to <a href="mailto:dunaj@dunaj.org">dunaj@dunaj.org</a></li>
-<li><i class="fa fa-fw fa-chevron-right"></i> Follow <a href="https://twitter.com/DunajProject">@DunajProject</a> for latest news</li>
-<li><i class="fa fa-fw fa-chevron-right"></i> <form action="https://dunaj.us9.list-manage.com/subscribe/post?u=7f359fbeb6d51d510e195730d&amp;id=da5a42bfa1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div class="mc-div">Receive announcements</div>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-    <div style="position: absolute; left: -5000px;"><input type="text" name="b_7f359fbeb6d51d510e195730d_da5a42bfa1" tabindex="-1" value=""></div>
-  </form></li>
-</ul></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article xmain">
+<div id="header">
+<h1>Dunaj</h1>
 </div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header>
+</div>
+<div id="xfb">
+<div id="xpage">
+<div id="xhead">
+<div id="xlogo"><img src="dunaj.png">Dunaj</div>
+<div class="xtitle">An alternative core API for Clojure</div>
+<div class="xtitle">
+<a href="day1.html"><i class="fa fa-sitemap fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day2.html"><i class="fa fa-tags fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day3.html"><i class="fa fa-plug fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day4.html"><i class="fa fa-bars fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day5.html"><i class="fa fa-puzzle-piece fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day6.html"><i class="fa fa-rocket fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day7.html"><i class="fa fa-file-archive-o fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day8.html"><i class="fa fa-cubes fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day9.html"><i class="fa fa-plus fa-fw dd-mmsh"></i></a>&nbsp;
+<a href="day10.html"><i class="fa fa-book fa-fw dd-mmsh"></i></a></div>
+</div>
+
+<div class="xp" style="text-align:justify">Dunaj <code>/ˈdunaɪ/</code>
+  is a set of core language experiments aimed to improve <a href="http://www.clojure.org">Clojure language</a> and its core API. It deals with language features
+  that require changes across different parts of Clojure and which
+  cannot be evaluated in isolation. Dunaj aims to bring 
+Clojure even more towards <b>simplicity</b>, <b>consistency</b> and <b>performance</b>. 
+Dunaj is not a library, but rather a fork of Clojure, as changes 
+to the Clojure itself were required. <a href="about.html">read more</a>
+</div>
+<div class="fc">
+
+<div class="lx">
+<h3>News</h3>
+<dl>
+<dt class="hdlist1">2015/03/20 </dt>
+<dd>
+<p>Dunaj v0.3.7 has been released</p>
+</dd>
+</dl>
+<a class="xsmall" href="news.html">more news</a>
+</div>
+
+<div>
+<div class="xp" style="text-align:justify">
+<i class="fa fa-chevron-right "></i> See <a href="start.html">Getting Started</a> for
+  information on how to download and start using Dunaj.
+</div>
+<div class="xp" style="text-align:justify"><i class="fa fa-chevron-right "></i> Read <a href="doc.html">Documentation</a>, including
+specification, crash course for Clojure
+  developers, <a href="api.html">API</a>
+  and <a href="spi.html">SPI</a>. See list
+  of <a href="dunaj.core.api.html">automatically referred vars</a>.
+</div>
+<div class="xp" style="text-align:justify"><i class="fa fa-chevron-right"></i> Dunaj is an Open
+  source software, released under Eclipse Public License 1.0, same
+as Clojure. Sources are
+  <a href="https://github.com/dunaj-project">available at Github.</a></div>
+<div class="xp" style="text-align:justify"><i class="fa fa-chevron-right"></i> Join the 
+<a href="https://groups.google.com/forum/#!forum/dunaj-project">discussion group.</a> Follow <a href="https://twitter.com/DunajProject">@DunajProject</a>
+  to receive latest updates. Send your questions to <a href="mailto:dunaj@dunaj.org">dunaj@dunaj.org</a>.
+</div>
+</div>
+
+</div>
+<div id="xfooter">Copyright © 2013, 2015, <a href="http://www.wagjo.com">Jozef Wagner</a></div>
 <div id="blo"></div>
-<div id="footer">Copyright © 2015, <a href="http://www.wagjo.com">Jozef Wagner</a></div>
+
 </div>
-<script>document.getElementById("bgvid").playbackRate = 0.5;</script>
-</body></html>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj  - Improving Math Facilities</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj  - Improving Math Facilities</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day5.html">Reducers First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day7.html">Data Formatters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day8.html">Resources</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="day9.html">Improved Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day10.html">Documentation</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj  - Improving Math Facilities</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj extends available math facilities with means to specify
+precision of arithmetic operations and to round numbers.
+A pluggable mechanism for using random number generators is
+introduced, and math related API was extended with functions of
+an angle, exponentiations and logarithms.</p>
+</div>
+<div class="paragraph">
+<p>Instead of using prefixes and suffixes like in Clojure, facilities
+for unchecked and precise math are in Dunaj specified in separate
+namespaces. Common arithmetic functions are provided in
+<a href="dunaj.math.api.html">dunaj.math</a> namespace, with unchecked functions
+and arithmetic functions with arbitrary precisions defined in
+<a href="dunaj.math.unchecked.api.html">dunaj.math.unchecked</a> and
+<a href="dunaj.math.precise.api.html">dunaj.math.precise</a> respectively.</p>
+</div>
+<div class="paragraph">
+<p>List of available math functions is extended with exponentiation,
+logarithms functions and several miscellaneous ones.
+A separate namespace called
+<a href="dunaj.math.angle.api.html">dunaj.math.angle</a> contains math functions
+of an angle, with floating point numbers. Precision of these functions
+is as implemented by host. Both circular and hyperbolic functions are
+available.</p>
+</div>
+<div class="paragraph">
+<p>For objects that have a canonical numeric representation,
+Dunaj provides a function called <code><a href="dunaj.math.api.html#num">num</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Data types that have a canonical numeric representation
+provide constructors that accept a numeric value as an argument.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">num</span> <span class="integer">10</span>)
+<span class="comment">;;=&gt; 10</span>
+
+(<span class="keyword">num</span> <span class="char">\\</span>Q)
+<span class="comment">;;=&gt; 81</span>
+
+(<span class="keyword">num</span> <span class="error">#</span>inst <span class="char">\&quot;</span><span class="integer">2013</span><span class="integer">-10</span><span class="integer">-20</span><span class="char">\&quot;</span>)
+<span class="comment">;;=&gt; 1382227200000</span>
+
+(instant <span class="integer">1382227200000</span>)
+<span class="comment">;;=&gt; #&lt;BasicInstant 2013-10-20T00:00:00.000000000-00:00&gt;</span>
+
+(<span class="keyword">num</span> <span class="error">#</span>uuid <span class="char">\&quot;</span><span class="float">462e019</span>f-e7f2-4971-8ba6-14150556f147<span class="char">\&quot;</span>)
+<span class="comment">;;=&gt; 93284838311908100738254531818413289799</span>
+
+(uuid <span class="integer">93284838311908100738254531818413289799</span>)
+<span class="comment">;;=&gt; #uuid \&quot;462e019f-e7f2-4971-8ba6-14150556f147\&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_precision_and_rounding">Precision and Rounding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Dunaj, a precision is defined as a map with following keys:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:precision</code> - Any integer. Nonnegative in case of <code>:significant</code>
+type. Defaults to <code>0</code>.</p>
+</li>
+<li>
+<p><code>:type</code> - <code>:significant</code> or <code>:decimal</code>. Defaults to <code>:significant</code>.</p>
+</li>
+<li>
+<p><code>:mode</code> - <code>:ceiling</code>, <code>:floor</code>, <code>:half-up</code>, <code>:half-down</code>,
+<code>:half-even</code>, <code>:up</code>, <code>:down</code> and <code>:unnecessary</code>.
+Defaults to <code>:half-up</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>0</code> precision with <code>:significant</code> type means that any number of
+significant digits is OK
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A precision config map can be used in rounding with
+<code><a href="dunaj.math.api.html#round">round</a></code> or used in
+<code><a href="dunaj.math.api.html#with_precision">with-precision</a></code> to set precision
+for BigDecimal operations. A convenience functions
+<code><a href="dunaj.math.api.html#floor">floor</a></code> and
+<code><a href="dunaj.math.api.html#ceil">ceil</a></code> are provided too.</p>
+</div>
+<div class="listingblock">
+<div class="title">Rounding</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+</pre></td>
+  <td class="code"><pre>(round <span class="float">123.456</span> {<span class="symbol">:precision</span> <span class="integer">5</span>})
+<span class="comment">;;=&gt; 123.46</span>
+
+(round <span class="float">123.456</span> <span class="symbol">:precision</span> <span class="integer">5</span> <span class="symbol">:mode</span> <span class="symbol">:down</span>)
+<span class="comment">;;=&gt; 123.45</span>
+
+<span class="comment">;; one arg round uses {:type :decimal :precision 0 :mode :half-up} precision</span>
+(round <span class="float">123.456</span>)
+<span class="comment">;;=&gt; 123.0</span>
+
+(round <span class="float">123.456</span> {})
+<span class="comment">;;=&gt; 123.456</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Setting precision</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">with-precision</span> {<span class="symbol">:precision</span> <span class="integer">10</span>}
+  (<span class="keyword">/</span> <span class="integer">1</span>M <span class="integer">3</span>))
+<span class="comment">;;=&gt; 0.3333333333M</span>
+
+(<span class="keyword">with-precision</span> {<span class="symbol">:precision</span> <span class="integer">5</span> <span class="symbol">:mode</span> <span class="symbol">:up</span>}
+  (<span class="keyword">/</span> <span class="integer">1</span>M <span class="integer">3</span>))
+<span class="comment">;;=&gt; 0.33334M</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_random_number_generators">Random Number Generators</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While convenience functions <code><a href="dunaj.math.random.api.html#rand">rand</a></code>,
+<code><a href="dunaj.math.random.api.html#rand_integer">rand-integer</a></code>
+and <code><a href="dunaj.math.random.api.html#rand_nth">rand-nth</a></code> are
+provided, Dunaj offers more powerful means to generate random numbers.</p>
+</div>
+<div class="paragraph">
+<p>Random numbers are generated by a <strong>random number generator</strong> (rng),
+which produces collection of random bytes. The random number generator
+is created with the <code><a href="dunaj.math.random.api.html#rng">rng</a></code> function.
+Dunaj provides four rng types, each having its own rng factory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.math.random.api.html#secure_rng">secure-rng</a></code> - A thread
+safe secure rng with host-specific algorithm and providers</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#seedable_rng">seedable-rng</a></code> - A thread
+safe rng with the ability to specify initial seed and with
+a guarantee that the same seed yields same sequence of items in
+the first reduction of the rng. Slower compared to other rngs.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#splittable_rng">splittable-rng</a></code> -
+A non thread safe rng which is however intended for fork-join tasks,
+as it is able to split into two separate rngs.
+Can be seeded with same guarantees as in seedable-rng.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#thread_local_rng">thread-local-rng</a></code> -
+A fast thread local rng.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code>
+protocol serves as an extension point for custom rngs.
+To generate numbers of other types, the
+<a href="dunaj.math.random.api.html">dunaj.math.random</a> namespace provides
+several transducers to convert a collection of bytes to the
+collection of <a href="dunaj.math.random.api.html#integers">integers</a>,
+<a href="dunaj.math.random.api.html#floats">floats</a>, etc.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+<strong>40</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.math.random <span class="symbol">:refer</span>
+             [rng secure-rng splittable-rng seedable-rng <span class="keyword">floats</span> integers]]))
+
+(<span class="keyword">defn</span> <span class="function">t5</span>
+  [x]
+  (<span class="keyword">seq</span> (<span class="keyword">take</span> <span class="integer">5</span> x)))
+<span class="error">#</span>'foo.bar/t5
+
+<span class="comment">;; default rng is thread-local-rng</span>
+(t5 (rng))
+<span class="comment">;;=&gt; (119 115 42 -52 -65)</span>
+
+(t5 (rng splittable-rng))
+<span class="comment">;;=&gt; (-87 68 95 -22 -67)</span>
+
+<span class="comment">;; different values for each call</span>
+(t5 (rng splittable-rng))
+<span class="comment">;;=&gt; (61 2 -5 -70 -58)</span>
+
+<span class="comment">;; same sequence of values if seed is given</span>
+(t5 (rng splittable-rng <span class="symbol">:seed</span> <span class="integer">37</span>))
+<span class="comment">;;=&gt; (77 -63 -96 60 -45)</span>
+
+(t5 (rng splittable-rng <span class="symbol">:seed</span> <span class="integer">37</span>))
+<span class="comment">;;=&gt; (77 -63 -96 60 -45)</span>
+
+<span class="comment">;; a specific rng algorithm</span>
+(t5 (rng secure-rng <span class="symbol">:algorithm</span> <span class="symbol">:SHA1PRNG</span>))
+<span class="comment">;;=&gt; (-5 20 -46 40 86)</span>
+
+(t5 (<span class="keyword">floats</span> (rng seedable-rng <span class="symbol">:seed</span> <span class="integer">37</span>)))
+<span class="comment">;;=&gt; (0.6213673786196462 0.11767774115427432 0.3057012221689267 0.2779979466319322 0.8238345844110927)</span>
+
+(t5 (integers (rng seedable-rng <span class="symbol">:seed</span> <span class="integer">37</span>)))
+<span class="comment">;;=&gt; (2484939960054915017 -1407233582011305665 -2505961012080803273 6132965348399674666 2831527535557967913)</span>
+
+(t5 (integers <span class="integer">900</span> <span class="integer">1000</span> (rng)))
+<span class="comment">;;=&gt; (952 997 998 970 977)</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div><div id="disqus_thread"></div><script>var disqus_shortname = 'dunajproject'; var disqus_identifier = 'day9'; (function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname +
+                              '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] ||
+                     document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:21 CET
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Comparison</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Comparison</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Comparison</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj, like Clojure, provides comparison facilities that use identity
+and value based comparison.</p>
+</div>
+<div class="paragraph">
+<p>Comparison and hashing facilities are defined in
+<a href="dunaj.compare.api.html">dunaj.compare</a> namespace.</p>
+</div>
+<div class="paragraph">
+<p>Every object has an identity, whether it is a value object, stateful
+reference or a primitive value. Dunaj provides
+<code><a href="dunaj.compare.api.html#identical_QMARK_">identical?</a></code>
+function for identity based comparison.</p>
+</div>
+<div class="paragraph">
+<p>There is usually a distinction between object&#8217;s identity and a
+value this object conveys. Comparison based on value is done with a
+<code><a href="dunaj.compare.api.html#_EQ_">&#61;</a></code>
+function. User defined types can provide a custom implementation for
+value comparison by extending an
+<code><a href="dunaj.compare.spi.html#IEquiv">IEquiv</a></code> protocol.
+If no implementation is provided, a comparison based on object&#8217;s
+identity is used.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When comparing numbers, a dedicated comparision function
+<code><a href="dunaj.math.api.html#_EQ__EQ_">&#61;&#61;</a></code>
+should be used instead of <code>=</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="dunaj.compare.api.html">dunaj.compare</a> namespace also provides
+facilities for creating sentinel objects and nil coding (e.g. for use
+in core.async channels).</p>
+</div>
+<div class="paragraph">
+<p>Some types also support natural total ordering. This feature is
+available in Dunaj through <code><a href="dunaj.compare.api.html#compare">compare</a></code>
+function and <code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code>
+protocol.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hash">Hash</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every object has a <code><a href="dunaj.compare.api.html#hash">hash</a></code> value,
+that can be used e.g. for a rapid data lookup in a hash map.
+As value objects that have a same value must also have a same hash,
+Dunaj provides <code><a href="dunaj.compare.spi.html#IHash">IHash</a></code> protocol for
+custom hash.</p>
+</div>
+<div class="paragraph">
+<p>For some types, such as sequences, the object&#8217;s hash can be computed
+incrementally. This property can be in certain cases further exploited
+to compute hash much faster (e.g. conjoining value to the list). An
+<code><a href="dunaj.compare.spi.html#IHashBasis">IHashBasis</a></code> protocol together
+with
+<code><a href="dunaj.compare.api.html#hash_basis">hash-basis</a></code> and
+<code><a href="dunaj.compare.api.html#hash_from_basis">hash-from-basis</a></code>
+functions can be used for incremental hashing. Moreover, dunaj
+provides
+<code><a href="dunaj.compare.api.html#unordered_hash_factory">unordered-hash-factory</a></code> and
+<code><a href="dunaj.compare.api.html#ordered_hash_factory">ordered-hash-factory</a></code>
+for the computation of collections in line with the way hash is
+computed in the built-in collection types.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The incremental hash feature is a very early experiment
+with rudimentary features and has currently a nearly
+non-existent support in Dunaj&#8217;s built-in collections.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:33 CET
+</div>
+</div>
+</body>
+</html>

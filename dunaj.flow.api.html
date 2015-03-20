@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.flow API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.flow API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.flow</a></div><div class="dd-nav-ns-var"><a href="#comment"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">comment</span></a></div><div class="dd-nav-ns-var"><a href="#do"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">do</span></a></div><div class="dd-nav-ns-var"><a href="#doto"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">doto</span></a></div><div class="dd-nav-ns-var"><a href="#let"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">let</span></a></div><div class="dd-nav-ns-var"><a href="#letfn"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">letfn</span></a></div><div class="dd-nav-ns-group"><a href="#Conditionals">Conditionals</a></div><div class="dd-nav-ns-var"><a href="#case"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">case</span></a></div><div class="dd-nav-ns-var"><a href="#cond"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">cond</span></a></div><div class="dd-nav-ns-var"><a href="#condp"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">condp</span></a></div><div class="dd-nav-ns-var"><a href="#if"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">if</span></a></div><div class="dd-nav-ns-var"><a href="#if_let"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">if-let</span></a></div><div class="dd-nav-ns-var"><a href="#if_not"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">if-not</span></a></div><div class="dd-nav-ns-var"><a href="#if_some"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">if-some</span></a></div><div class="dd-nav-ns-var"><a href="#when"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">when</span></a></div><div class="dd-nav-ns-var"><a href="#when_let"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">when-let</span></a></div><div class="dd-nav-ns-var"><a href="#when_not"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">when-not</span></a></div><div class="dd-nav-ns-var"><a href="#when_some"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">when-some</span></a></div><div class="dd-nav-ns-group"><a href="#Iteration">Iteration</a></div><div class="dd-nav-ns-var"><a href="#dotimes"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">dotimes</span></a></div><div class="dd-nav-ns-var"><a href="#loop"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">loop</span></a></div><div class="dd-nav-ns-var"><a href="#recur"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">recur</span></a></div><div class="dd-nav-ns-var"><a href="#while"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">while</span></a></div><div class="dd-nav-ns-group"><a href="#Evaluation">Evaluation</a></div><div class="dd-nav-ns-var"><a href="#delay"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">delay</span></a></div><div class="dd-nav-ns-var"><a href="#eval"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">eval</span></a></div><div class="dd-nav-ns-var"><a href="#force"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">force</span></a></div><div class="dd-nav-ns-var"><a href="#quote"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">quote</span></a></div><div class="dd-nav-ns-var"><a href="#retrying_delay"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">retrying-delay</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.flow API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.flow.spi.html">SPI documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Control Flow. Conditionals, loops, evaluation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#comment">comment</a></code> <code><a href="#do">do</a></code> <code><a href="#doto">doto</a></code> <code><a href="#let">let</a></code> <code><a href="#letfn">letfn</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="comment"><a class="link" href="#comment">comment</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/comment)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(comment <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Ignores body, yields <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.dev.api.html#scratch">dunaj.dev/scratch</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="do"><a class="link" href="#do">do</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L348">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(do <em>&amp; exprs</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates the <code><em>exprs</em></code> in order and returns the value of the
+last. If no expressions are supplied, returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#doto">doto</a></code>, <code><a href="#let">let</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="doto"><a class="link" href="#doto">doto</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/doto)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(doto <em>x &amp; forms</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates <code><em>x</em></code> then calls all of the methods and functions from
+<code><em>forms</em></code> with the value of <code><em>x</em></code> supplied at the front of the
+given arguments (as the second item in the form).
+The <code><em>forms</em></code> are evaluated in order. Returns <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#let">let</a></code>, <code><a href="#do">do</a></code>, <code><a href="#while">while</a></code>, <code><a href="#dotimes">dotimes</a></code>, <code><a href="#loop">loop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="let"><a class="link" href="#let">let</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.bootstrap/let)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(let <em>bindings &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates the <code><em>exprs</em></code> in a lexical context in which the symbols
+in the <code><em>binding-forms</em></code> are bound to their respective init-exprs
+or parts therein.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#letfn">letfn</a></code>, <code><a href="#do">do</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="letfn"><a class="link" href="#letfn">letfn</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/letfn)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(letfn <em>fnspecs &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>fnspec &#8658; <code>(fname [params*] exprs)</code> or <code>(fname ([params*] exprs)+)</code></p>
+</div>
+<div class="paragraph">
+<p>Takes a vector of function specs and a <code><em>body</em></code>, and generates a
+set of bindings of functions to their names. All of the names are
+available in all of the definitions of the functions, as well as
+the <code><em>body</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#let">let</a></code>, <code><a href="dunaj.function.api.html#fn">dunaj.function/fn</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Conditionals"><a class="link" href="#Conditionals">Conditionals</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#case">case</a></code> <code><a href="#cond">cond</a></code> <code><a href="#condp">condp</a></code> <code><a href="#if">if</a></code> <code><a href="#if_let">if&#45;let</a></code> <code><a href="#if_not">if&#45;not</a></code> <code><a href="#if_some">if&#45;some</a></code> <code><a href="#when">when</a></code> <code><a href="#when_let">when&#45;let</a></code> <code><a href="#when_not">when&#45;not</a></code> <code><a href="#when_some">when&#45;some</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="case"><a class="link" href="#case">case</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/case)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(case <em>e &amp; clauses</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Takes an expression <code><em>e</em></code>, and a set of <code><em>clauses</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Each clause can take the form of either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>test-constant result-expr</code></p>
+</li>
+<li>
+<p><code>(test-constant1 &#8230;&#8203;​ test-constantN) result-expr</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The test-constants are not evaluated. They must be compile-time
+literals, and need not be quoted. If the expression is equal to a
+test-constant, the corresponding result-expr is returned.
+A single default expression can follow the clauses, and its
+value will be returned if no clause matches. If no default
+expression is provided and no clause matches, an
+<code>IllegalArgumentException</code> is thrown.</p>
+</div>
+<div class="paragraph">
+<p>Unlike <code>cond</code> and <code>condp</code>, <code>case</code> does a constant-time dispatch,
+the clauses are not considered sequentially. All manner of constant
+expressions are acceptable in case, including numbers, strings,
+symbols, keywords, and composites thereof. Note that
+since lists are used to group multiple constants that map to the
+same expression, a vector can be used to match a list if needed.
+The test-constants need not be all of the same type.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#cond">cond</a></code>, <code><a href="#condp">condp</a></code>, <code><a href="#if">if</a></code>, <code><a href="#when">when</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="cond"><a class="link" href="#cond">cond</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/cond)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(cond <em>&amp; clauses</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Takes a set of test/expr pairs. It evaluates each test one at a
+time. If a test returns logical true, cond evaluates and returns
+the value of the corresponding expr and doesn’t evaluate any of
+the other tests or exprs. <code>(cond)</code> returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#condp">condp</a></code>, <code><a href="#case">case</a></code>, <code><a href="#if">if</a></code>, <code><a href="#when">when</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="condp"><a class="link" href="#condp">condp</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/condp)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(condp <em>pred expr &amp; clauses</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Takes a binary predicate <code><em>pred</em></code>, an expression <code><em>expr</em></code>,
+and a set of clauses. Each clause can take the form of either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>test-expr result-expr</code></p>
+</li>
+<li>
+<p><code>test-expr :&gt;&gt; result-fn</code> (Note :&gt;&gt; is an ordinary keyword.)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For each clause, <code>(<em>pred</em> test-expr expr)</code> is evaluated.
+If it returns logical true, the clause is a match.
+If a binary clause matches, the result-expr is returned,
+if a ternary clause matches, its result-fn, which must be a unary
+function, is called with the result of the predicate as its
+argument, the result of that call being the return value of
+condp.</p>
+</div>
+<div class="paragraph">
+<p>A single default expression can follow the clauses, and its
+value will be returned if no clause matches. If no default
+expression is provided and no clause matches, an
+<code>IllegalArgumentException</code> is thrown.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#cond">cond</a></code>, <code><a href="#if">if</a></code>, <code><a href="#when">when</a></code>, <code><a href="#case">case</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="if"><a class="link" href="#if">if</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L67">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(if <em>&amp; args</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates <code><em>test</em></code>. If not the singular values <code>nil</code> or <code>false</code>,
+evaluates and yields <code><em>then</em></code>, otherwise, evaluates and yields
+<code><em>else</em></code>. If <code><em>else</em></code> is not supplied it defaults to <code>nil</code>.
+All of the other conditionals in are based upon the same logic,
+that is, <code>nil</code> and <code>false</code> constitute logical falsity,
+and everything else constitutes logical truth, and those
+meanings apply throughout. If tests for primitive boolean values,
+not the boxed ones. If your host supports boxed booleans, do not
+use them in <code>if</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#when">when</a></code>, <code><a href="#cond">cond</a></code>, <code><a href="#if_let">if&#45;let</a></code>, <code><a href="#if_not">if&#45;not</a></code>, <code><a href="#if_some">if&#45;some</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="if_let"><a class="link" href="#if_let">if-let</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L95">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(if-let <em>bindings then</em>)</code>&#160;  <code>(if-let <em>bindings then else &amp; oldform</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>bindings &#8658; binding-form test</p>
+</div>
+<div class="paragraph">
+<p>If test is logical true, evaluates <code><em>then</em></code> with binding-form bound
+to the value of test, if not, yields <code><em>else</em></code></p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#when_let">when&#45;let</a></code>, <code><a href="#cond">cond</a></code>, <code><a href="#if">if</a></code>, <code><a href="#if_not">if&#45;not</a></code>, <code><a href="#if_some">if&#45;some</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="if_not"><a class="link" href="#if_not">if-not</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/if-not)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(if-not <em>test then</em>)</code>&#160;  <code>(if-not <em>test then else</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates <code><em>test</em></code>. If logical false, evaluates and returns
+<code><em>then</em></code> expr, otherwise <code><em>else</em></code> expr, if supplied, else <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#when_not">when&#45;not</a></code>, <code><a href="#cond">cond</a></code>, <code><a href="#if_let">if&#45;let</a></code>, <code><a href="#if">if</a></code>, <code><a href="#if_some">if&#45;some</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="if_some"><a class="link" href="#if_some">if-some</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/if-some)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(if-some <em>bindings then</em>)</code>&#160;  <code>(if-some <em>bindings then else &amp; oldform</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>bindings &#8658; binding-form test</p>
+</div>
+<div class="paragraph">
+<p>If <code><em>test</em></code> is not <code>nil</code>, evaluates <code><em>then</em></code> with binding-form
+bound to the value of test, if not, yields <code><em>else</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#when_some">when&#45;some</a></code>, <code><a href="#when">when</a></code>, <code><a href="#if">if</a></code>, <code><a href="#cond">cond</a></code>, <code><a href="#case">case</a></code>, <code><a href="dunaj.compare.api.html#some_QMARK_">dunaj.compare/some?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="when"><a class="link" href="#when">when</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/when)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(when <em>test &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates <code><em>test</em></code>. If logical true,
+evaluates <code><em>body</em></code> in an implicit <code>do</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#if">if</a></code>, <code><a href="#cond">cond</a></code>, <code><a href="#when_let">when&#45;let</a></code>, <code><a href="#when_not">when&#45;not</a></code>, <code><a href="#when_some">when&#45;some</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="when_let"><a class="link" href="#when_let">when-let</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/when-let)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(when-let <em>bindings &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>bindings &#8658; binding-form test</p>
+</div>
+<div class="paragraph">
+<p>When test is <code>true</code>, evaluates <code><em>body</em></code> with binding-form bound to
+the value of test.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#if_let">if&#45;let</a></code>, <code><a href="#when">when</a></code>, <code><a href="#if">if</a></code>, <code><a href="#cond">cond</a></code>, <code><a href="#case">case</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="when_not"><a class="link" href="#when_not">when-not</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/when-not)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(when-not <em>test &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates <code><em>test</em></code>. If logical false,
+evaluates <code><em>body</em></code> in an implicit <code>do</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#if_not">if&#45;not</a></code>, <code><a href="#when">when</a></code>, <code><a href="#if">if</a></code>, <code><a href="#cond">cond</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="when_some"><a class="link" href="#when_some">when-some</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/when-some)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(when-some <em>bindings &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>bindings &#8658; binding-form test</p>
+</div>
+<div class="paragraph">
+<p>When test is not <code>nil</code>, evaluates <code><em>body</em></code> with binding-form bound
+to the value of test.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#if_some">if&#45;some</a></code>, <code><a href="#when">when</a></code>, <code><a href="#if">if</a></code>, <code><a href="#cond">cond</a></code>, <code><a href="#case">case</a></code>, <code><a href="dunaj.compare.api.html#some_QMARK_">dunaj.compare/some?</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Iteration"><a class="link" href="#Iteration">Iteration</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#dotimes">dotimes</a></code> <code><a href="#loop">loop</a></code> <code><a href="#recur">recur</a></code> <code><a href="#while">while</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="dotimes"><a class="link" href="#dotimes">dotimes</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/dotimes)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(dotimes <em>bindings &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p><code><em>bindings</em></code> &#8658; name n</p>
+</div>
+<div class="paragraph">
+<p>Repeatedly executes <code><em>body</em></code> (presumably for side-effects) with
+<code><em>name</em></code> bound to integers from 0 through <code><em>n</em></code>-1.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#doto">doto</a></code>, <code><a href="#while">while</a></code>, <code><a href="#loop">loop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="loop"><a class="link" href="#loop">loop</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L279">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(loop <em>bindings &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates the <code><em>body</em></code> in a lexical context in which the symbols in
+the <code><em>bindings</em></code> are bound to their respective init-exprs or parts
+therein. Acts as a <code>recur</code> target.
+<code><em>bindings</em></code> vector supports type signatures.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#recur">recur</a></code>, <code><a href="#while">while</a></code>, <code><a href="#dotimes">dotimes</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="recur"><a class="link" href="#recur">recur</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L254">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(recur <em>&amp; args</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates the <code><em>args</em></code> in order, then, in parallel, rebinds the
+bindings of the recursion point to the values of the <code><em>args</em></code>.
+If the recursion point was a <code>fn</code> method, then it rebinds the
+params. If the recursion point was a <code>loop</code>, then it rebinds the
+loop bindings. Execution then jumps back to the recursion point.
+The recur expression must match the arity of the recursion point
+exactly. In particular, if the recursion point was the top of a
+variadic fn method, there is no gathering of rest args - a single
+seq (or null) should be passed. recur in other than a tail
+position is an error.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>recur</code> is the only non-stack-consuming looping construct
+in Clojure. There is no tail-call optimization and the use of
+self-calls for looping of unknown bounds is discouraged. <code>recur</code> is
+functional and its use in tail-position is verified by the
+compiler.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#loop">loop</a></code>, <code><a href="dunaj.function.api.html#fn">dunaj.function/fn</a></code>, <code><a href="dunaj.function.api.html#trampoline">dunaj.function/trampoline</a></code>, <code><a href="#dotimes">dotimes</a></code>, <code><a href="#while">while</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="while"><a class="link" href="#while">while</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/while)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(while <em>test &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Repeatedly executes <code><em>body</em></code> while <code><em>test</em></code> expression is <code>true</code>.
+Presumes some side-effect will cause <code><em>test</em></code> to become
+<code>false</code>/<code>nil</code>. Returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#loop">loop</a></code>, <code><a href="#doto">doto</a></code>, <code><a href="#dotimes">dotimes</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Evaluation"><a class="link" href="#Evaluation">Evaluation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#delay">delay</a></code> <code><a href="#eval">eval</a></code> <code><a href="#force">force</a></code> <code><a href="#quote">quote</a></code> <code><a href="#retrying_delay">retrying&#45;delay</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="delay"><a class="link" href="#delay">delay</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/delay)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(delay <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Takes a <code><em>body</em></code> of expressions and yields an <code>IDelay</code> object that
+will invoke the <code><em>body</em></code> only the first time it is forced
+(with <code>force</code> or <code>deref</code>/<code>@</code>), and will cache the result and
+return it on all subsequent <code>force</code> calls.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#force">force</a></code>, <code><a href="#retrying_delay">retrying&#45;delay</a></code>, <code><a href="dunaj.state.api.html#deref">dunaj.state/deref</a></code>, <code><a href="dunaj.flow.spi.html#IDelay">IDelay</a></code>, <code><a href="dunaj.state.api.html#realized_QMARK_">dunaj.state/realized?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="eval"><a class="link" href="#eval">eval</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/eval)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(eval <em>form</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates the <code><em>form</em></code> data structure (not text!) and returns
+the result.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#quote">quote</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="force"><a class="link" href="#force">force</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L420">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(force <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>If <code><em>x</em></code> is a <code>IDelay</code>, returns the (possibly cached) value of its
+expression, else returns <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#delay">delay</a></code>, <code><a href="#retrying_delay">retrying&#45;delay</a></code>, <code><a href="dunaj.state.api.html#deref">dunaj.state/deref</a></code>, <code><a href="dunaj.flow.spi.html#IDelay">IDelay</a></code>, <code><a href="dunaj.state.api.html#realize_QMARK_">dunaj.state/realize?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="quote"><a class="link" href="#quote">quote</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L339">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(quote <em>form</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns the unevaluated <code><em>form</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#eval">eval</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="retrying_delay"><a class="link" href="#retrying_delay">retrying-delay</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/flow.clj#L407">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(retrying-delay <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Takes a <code><em>body</em></code> of expressions and yields a <code>IDelay</code> object that
+will invoke the <code><em>body</em></code> only the first time it is forced
+(with <code>force</code> or <code>deref</code>/<code>@</code>), and will cache the result and
+return it on all subsequent force calls.
+Retries <code><em>body</em></code> on subsequent call if it throwed previously.
+Does not clear locals like normal <code>delay</code> does.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#force">force</a></code>, <code><a href="#delay">delay</a></code>, <code><a href="dunaj.state.api.html#deref">dunaj.state/deref</a></code>, <code><a href="dunaj.flow.spi.html#IDelay">IDelay</a></code>, <code><a href="dunaj.state.api.html#realized_QMARK_">dunaj.state/realized?</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:15:32 CET
+</div>
+</div>
+</body>
+</html>

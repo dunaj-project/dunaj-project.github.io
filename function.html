@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Functions</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Functions</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Functions</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Function is Dunaj&#8217;s primary building block and is a first class
+object. Function object can be passed as an argument or be used as a
+return value.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj provides <code><a href="dunaj.function.api.html#Function">Function</a></code> type
+for functions. Function type and other related functionalities are
+defined in <a href="dunaj.function.api.html">dunaj.function</a> namespace.</p>
+</div>
+<div class="paragraph">
+<p>Function object is created with <code><a href="dunaj.function.api.html#fn">fn</a></code> and
+<code><a href="dunaj.function.api.html#defn">defn</a></code> macros.
+A <code><a href="dunaj.function.api.html#fn_QMARK_">fn?</a></code> predicate is
+provided that tests whether an input argument is the instance of a
+<code>Function</code> type. Functions have following features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can be invoked, via <code><a href="dunaj.function.api.html#invoke">invoke</a></code>,
+<code><a href="dunaj.function.api.html#apply">apply</a></code> or simply by using special
+evaluation rules for lists in <code>CLJ</code> format.</p>
+</li>
+<li>
+<p>can have variable number of arguments</p>
+</li>
+<li>
+<p>support multiple arities</p>
+</li>
+<li>
+<p>any Function can be used as a comparator for sorting</p>
+</li>
+<li>
+<p>support for <code>IMeta</code></p>
+</li>
+<li>
+<p>Functions can be passed into <code>IExecutor</code> and <code>ITaskExecutor</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Function</strong> - takes arguments and computes result. May have side
+effects - may have 0 or more args, may be multiarity, may be vararg</p>
+</div>
+<div class="paragraph">
+<p><strong>Method</strong> - function with different behavior based on type of first
+argument - at least 1 arg, can have multiple arities, cannot be vararg</p>
+</div>
+<div class="paragraph">
+<p><strong>Multimethod</strong> - function with arbitrary dispatch based on arguments -
+may have 0 or more args, no multiple arities, may be vararg</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_invocation">Invocation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Primary purpose of a function is to be invoked. Nevertheless, it is
+important to distinguish between a function, represented by a
+<code>Function</code> type, and the ability to be invoked, that is represented
+by an <code><a href="dunaj.function.spi.html#IInvocable">IInvocable</a></code> protocol.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When documentation uses the name 'function', an invocable
+object is meant. In those rare cases when only objects
+of type <code>Function</code> are required, the 'fn' or 'Function'
+(with capital F) is used.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>An <code><a href="dunaj.function.api.html#invocable_QMARK_">invocable?</a></code>
+predicate is provided that tests whether input argument can be
+invoked.
+Many types other than functions support <code>IInvocable</code> protocol and can
+be invoked. Moreover, custom types can extend this protocol and be
+invoked like a function.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Type signatures <code>AnyFn</code> and <code>Fn</code>, found in
+<a href="dunaj.type.api.html">dunaj.type</a> namespace, represent any
+invocable object. Use <code><a href="dunaj.function.api.html#Function">Function</a></code>
+as a type signature to require Functions created with <code>defn</code> or <code>fn</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Invocable objects do not support variable number or arguments and
+cannot be passed to executors.
+List of built-in types that support <code>IInvocable</code> protocol includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>collections that support lookup or random access</p>
+</li>
+<li>
+<p>keywords and symbols, which perform respective key lookup
+in a given collection</p>
+</li>
+<li>
+<p>Vars and Refs</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_predicates">Predicates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A predicate is a function that usually takes 1 argument and returns
+a boolean value. In Dunaj, following conventions apply to predicates:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>predicate name ends with a question mark (e.g. <code>even?</code>,
+<code>counted?</code>, <code>homogeneous?</code>)</p>
+</li>
+<li>
+<p>return type is of type <code>Boolean</code>. Prefer explicit
+<code><a href="dunaj.type.api.html#Predicate">Predicate</a></code> type signature for one
+arg predicates.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj provides a convenience syntax for type and protocol predicates.
+Setting a <code>:predicate</code> metadata attribute to the (quoted) symbol will
+generate a correspondent type/protocol predicate with given name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defprotocol</span> <span class="class">IFoo</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">An IFoo protocol.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:predicate</span> 'foo?}
+  (-foo <span class="symbol">:-</span> Integer [this]))
+
+(<span class="keyword">deftype</span> Bar
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A Bar type.</span><span class="delimiter">&quot;</span></span>
+  {<span class="symbol">:predicate</span> 'bar?}
+  [bar <span class="symbol">:-</span> Integer]
+  IFoo
+  (-foo [this] bar))
+
+(<span class="keyword">defn</span> <span class="function">foo</span> <span class="symbol">:-</span> (Maybe Integer)
+  [x <span class="symbol">:-</span> Any]
+  (<span class="keyword">when</span> (foo? x) (-foo x)))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conventions">Conventions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are several conventions for functions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Function names are hyphen cased and lower cased.</p>
+</li>
+<li>
+<p>Functions that are not safe for ref transactions (or e.g. for use in
+<code><a href="dunaj.state.api.html#swap_BANG_">swap!</a></code>) have names
+that end with an exclamation mark <code>!</code>, also called as bang.
+This includes functions that perform I/O or change some observable
+state.</p>
+</li>
+</ul>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:32 CET
+</div>
+</div>
+</body>
+</html>

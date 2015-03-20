@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.math API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.math API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.math</a></div><div class="dd-nav-ns-var"><a href="#Decimal"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Decimal</span></a></div><div class="dd-nav-ns-var"><a href="#Float"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Float</span></a></div><div class="dd-nav-ns-var"><a href="#Integer"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Integer</span></a></div><div class="dd-nav-ns-var"><a href="#Number"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Number</span></a></div><div class="dd-nav-ns-var"><a href="#Rational"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Rational</span></a></div><div class="dd-nav-ns-var"><a href="#decimal_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">decimal?</span></a></div><div class="dd-nav-ns-var"><a href="#denominator"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">denominator</span></a></div><div class="dd-nav-ns-var"><a href="#float_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">float?</span></a></div><div class="dd-nav-ns-var"><a href="#integer_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">integer?</span></a></div><div class="dd-nav-ns-var"><a href="#num"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">num</span></a></div><div class="dd-nav-ns-var"><a href="#number_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">number?</span></a></div><div class="dd-nav-ns-var"><a href="#numerator"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">numerator</span></a></div><div class="dd-nav-ns-var"><a href="#numerical_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">numerical?</span></a></div><div class="dd-nav-ns-var"><a href="#rational_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">rational?</span></a></div><div class="dd-nav-ns-var"><a href="#rationalize"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">rationalize</span></a></div><div class="dd-nav-ns-group"><a href="#Comparison">Comparison</a></div><div class="dd-nav-ns-var"><a href="#_LT_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">&lt;</span></a></div><div class="dd-nav-ns-var"><a href="#_LT__EQ_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">&lt;=</span></a></div><div class="dd-nav-ns-var"><a href="#_EQ__EQ_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">==</span></a></div><div class="dd-nav-ns-var"><a href="#_GT_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">></span></a></div><div class="dd-nav-ns-var"><a href="#_GT__EQ_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">>=</span></a></div><div class="dd-nav-ns-var"><a href="#divisible_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">divisible?</span></a></div><div class="dd-nav-ns-var"><a href="#even_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">even?</span></a></div><div class="dd-nav-ns-var"><a href="#max"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">max</span></a></div><div class="dd-nav-ns-var"><a href="#min"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">min</span></a></div><div class="dd-nav-ns-var"><a href="#neg_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">neg?</span></a></div><div class="dd-nav-ns-var"><a href="#nneg_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">nneg?</span></a></div><div class="dd-nav-ns-var"><a href="#npos_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">npos?</span></a></div><div class="dd-nav-ns-var"><a href="#odd_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">odd?</span></a></div><div class="dd-nav-ns-var"><a href="#one_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">one?</span></a></div><div class="dd-nav-ns-var"><a href="#pos_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">pos?</span></a></div><div class="dd-nav-ns-var"><a href="#zero_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">zero?</span></a></div><div class="dd-nav-ns-group"><a href="#Operations">Operations</a></div><div class="dd-nav-ns-var"><a href="#_STAR_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">*</span></a></div><div class="dd-nav-ns-var"><a href="#_PLUS_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">+</span></a></div><div class="dd-nav-ns-var"><a href="#_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">-</span></a></div><div class="dd-nav-ns-var"><a href="#_SLASH_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">/</span></a></div><div class="dd-nav-ns-var"><a href="#abs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">abs</span></a></div><div class="dd-nav-ns-var"><a href="#add"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">add</span></a></div><div class="dd-nav-ns-var"><a href="#cbrt"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">cbrt</span></a></div><div class="dd-nav-ns-var"><a href="#dec"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">dec</span></a></div><div class="dd-nav-ns-var"><a href="#divide"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">divide</span></a></div><div class="dd-nav-ns-var"><a href="#exp"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">exp</span></a></div><div class="dd-nav-ns-var"><a href="#expm1"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">expm1</span></a></div><div class="dd-nav-ns-var"><a href="#gcd"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">gcd</span></a></div><div class="dd-nav-ns-var"><a href="#inc"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">inc</span></a></div><div class="dd-nav-ns-var"><a href="#lcm"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">lcm</span></a></div><div class="dd-nav-ns-var"><a href="#log"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">log</span></a></div><div class="dd-nav-ns-var"><a href="#log10"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">log10</span></a></div><div class="dd-nav-ns-var"><a href="#log1p"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">log1p</span></a></div><div class="dd-nav-ns-var"><a href="#mod"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">mod</span></a></div><div class="dd-nav-ns-var"><a href="#multiply"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">multiply</span></a></div><div class="dd-nav-ns-var"><a href="#negate"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">negate</span></a></div><div class="dd-nav-ns-var"><a href="#pow"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">pow</span></a></div><div class="dd-nav-ns-var"><a href="#quot"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">quot</span></a></div><div class="dd-nav-ns-var"><a href="#rem"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">rem</span></a></div><div class="dd-nav-ns-var"><a href="#sqrt"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">sqrt</span></a></div><div class="dd-nav-ns-var"><a href="#subtract"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">subtract</span></a></div><div class="dd-nav-ns-group"><a href="#Rounding">Rounding</a></div><div class="dd-nav-ns-var"><a href="#PrecisionConfig"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">PrecisionConfig</span></a></div><div class="dd-nav-ns-var"><a href="#ceil"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">ceil</span></a></div><div class="dd-nav-ns-var"><a href="#floor"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">floor</span></a></div><div class="dd-nav-ns-var"><a href="#round"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">round</span></a></div><div class="dd-nav-ns-var"><a href="#trunc"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">trunc</span></a></div><div class="dd-nav-ns-var"><a href="#with_precision"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">with-precision</span></a></div><div class="dd-nav-ns-group"><a href="#Other">Other</a></div><div class="dd-nav-ns-var"><a href="#e"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">e</span></a></div><div class="dd-nav-ns-var"><a href="#pi"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">pi</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.math API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.math.spi.html">SPI documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Basic math facilities.</p>
+</div>
+<div class="paragraph">
+<p>Operations throw on overflow and don&#8217;t auto-promote.
+Concrete number types are host specific and are specified in
+<a href="dunaj.host.number.api.html">dunaj.host.number</a>.</p>
+</div>
+<div class="paragraph">
+<p>Depending on the needs, there are several other namespaces with
+similar functionalities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.math.precise.api.html">dunaj.math.precise</a></code>
+slower but with arbitrary precision, auto-promoting when needed</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.unchecked.api.html">dunaj.math.unchecked</a></code>
+much faster but subject to overflow</p>
+</li>
+<li>
+<p><code><a href="dunaj.host.int.api.html">dunaj.host.int</a></code> host specific
+unchecked operations with fastest performance.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Design notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Number types are not extensible (there are no number protocols),
+due to host optimizations.</p>
+</li>
+<li>
+<p>No built-in number types. Utilizes host number types.</p>
+</li>
+<li>
+<p><code>clojure.core/*unchecked-math*</code> is omited by design.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#Decimal">Decimal</a></code> <code><a href="#Float">Float</a></code> <code><a href="#Integer">Integer</a></code> <code><a href="#Number">Number</a></code> <code><a href="#Rational">Rational</a></code> <code><a href="#decimal_QMARK_">decimal?</a></code> <code><a href="#denominator">denominator</a></code> <code><a href="#float_QMARK_">float?</a></code> <code><a href="#integer_QMARK_">integer?</a></code> <code><a href="#num">num</a></code> <code><a href="#number_QMARK_">number?</a></code> <code><a href="#numerator">numerator</a></code> <code><a href="#numerical_QMARK_">numerical?</a></code> <code><a href="#rational_QMARK_">rational?</a></code> <code><a href="#rationalize">rationalize</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Decimal"><a class="link" href="#Decimal">Decimal</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L129">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for decimal numbers.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#decimal_QMARK_">decimal?</a></code>, <code><a href="#Number">Number</a></code>, <code><a href="#Integer">Integer</a></code>, <code><a href="#Float">Float</a></code>, <code><a href="#Rational">Rational</a></code>, <code><a href="dunaj.host.number.api.html#bigdec">dunaj.host.number/bigdec</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Float"><a class="link" href="#Float">Float</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L107">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for floating point numbers.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This is not a host Float type, but rather a type
+signature for any floating point type (e.g. JVM Float, Double).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#integer_QMARK_">integer?</a></code>, <code><a href="#Number">Number</a></code>, <code><a href="#Float">Float</a></code>, <code><a href="#Decimal">Decimal</a></code>, <code><a href="#Rational">Rational</a></code>, <code><a href="dunaj.host.number.api.html#double">dunaj.host.number/double</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Integer"><a class="link" href="#Integer">Integer</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L79">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for integer numbers.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This is not a host Integer type, but rather a type
+signature for any integer type (e.g. JVM Integer, Byte, Short).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#integer_QMARK_">integer?</a></code>, <code><a href="#Number">Number</a></code>, <code><a href="#Float">Float</a></code>, <code><a href="#Decimal">Decimal</a></code>, <code><a href="#Rational">Rational</a></code>, <code><a href="dunaj.host.int.api.html#Int">dunaj.host.int/Int</a></code>, <code><a href="dunaj.host.number.api.html#long">dunaj.host.number/long</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Number"><a class="link" href="#Number">Number</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L62">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for numbers.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#number_QMARK_">number?</a></code>, <code><a href="#Integer">Integer</a></code>, <code><a href="#Float">Float</a></code>, <code><a href="#Decimal">Decimal</a></code>, <code><a href="#Rational">Rational</a></code>, <code><a href="dunaj.math.spi.html#INumerical">INumerical</a></code>, <code><a href="#num">num</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Rational"><a class="link" href="#Rational">Rational</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L146">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for rational numbers (not just Clojure ratios).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rational_QMARK_">rational?</a></code>, <code><a href="#Number">Number</a></code>, <code><a href="#Integer">Integer</a></code>, <code><a href="#Float">Float</a></code>, <code><a href="#Decimal">Decimal</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="decimal_QMARK_"><a class="link" href="#decimal_QMARK_">decimal?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L137">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(decimal? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a decimal number,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Decimal">Decimal</a></code>, <code><a href="#number_QMARK_">number?</a></code>, <code><a href="#integer_QMARK_">integer?</a></code>, <code><a href="#float_QMARK_">float?</a></code>, <code><a href="#rational_QMARK_">rational?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="denominator"><a class="link" href="#denominator">denominator</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L333">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(denominator <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Rational) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the denominator part of a given rational number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rationalize">rationalize</a></code>, <code><a href="#numerator">numerator</a></code>, <code><a href="#rational_QMARK_">rational?</a></code>, <code><a href="#trunc">trunc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="float_QMARK_"><a class="link" href="#float_QMARK_">float?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L118">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(float? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a floating point number,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Float">Float</a></code>, <code><a href="#number_QMARK_">number?</a></code>, <code><a href="#integer_QMARK_">integer?</a></code>, <code><a href="#decimal_QMARK_">decimal?</a></code>, <code><a href="#rational_QMARK_">rational?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="integer_QMARK_"><a class="link" href="#integer_QMARK_">integer?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L91">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(integer? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is an integer number,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Integer">Integer</a></code>, <code><a href="#number_QMARK_">number?</a></code>, <code><a href="#float_QMARK_">float?</a></code>, <code><a href="#decimal_QMARK_">decimal?</a></code>, <code><a href="#rational_QMARK_">rational?</a></code>, <code><a href="dunaj.host.int.api.html#iint">dunaj.host.int/iint</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="num"><a class="link" href="#num">num</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L187">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(num <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(nil) → nil</code></p>
+</li>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(INumerical) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a numerical value for <code><em>x</em></code>.
+Returns <code><em>x</em></code> if it is already a number.
+Returns <code>nil</code> if <code><em>x</em></code> is <code>nil</code>.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-50"><label class="dd-example-label" for="toggle-50">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">num</span> <span class="integer">10</span>)
+<span class="comment">;;=&gt; 10</span>
+
+(<span class="keyword">num</span> <span class="char">\Q</span>)
+<span class="comment">;;=&gt; 81</span>
+
+(<span class="keyword">char</span> <span class="integer">81</span>)
+<span class="comment">;;=&gt; \Q</span>
+
+(<span class="keyword">num</span> <span class="error">#</span>inst <span class="string"><span class="delimiter">&quot;</span><span class="content">2013-10-20</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; 1382227200000</span>
+
+(instant <span class="integer">1382227200000</span>)
+<span class="comment">;;=&gt; #&lt;BasicInstant 2013-10-20T00:00:00.000000000-00:00&gt;</span>
+
+(<span class="keyword">num</span> <span class="error">#</span>uuid <span class="string"><span class="delimiter">&quot;</span><span class="content">462e019f-e7f2-4971-8ba6-14150556f147</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; 93284838311908100738254531818413289799</span>
+
+(uuid <span class="integer">93284838311908100738254531818413289799</span>)
+<span class="comment">;;=&gt; #uuid &quot;462e019f-e7f2-4971-8ba6-14150556f147&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.math.spi.html#INumerical">INumerical</a></code>, <code><a href="#Number">Number</a></code>, <code><a href="#number_QMARK_">number?</a></code>, <code><a href="dunaj.host.number.api.html#number">dunaj.host.number/number</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="number_QMARK_"><a class="link" href="#number_QMARK_">number?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L69">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(number? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a number, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Number">Number</a></code>, <code><a href="#integer_QMARK_">integer?</a></code>, <code><a href="#float_QMARK_">float?</a></code>, <code><a href="#decimal_QMARK_">decimal?</a></code>, <code><a href="#rational_QMARK_">rational?</a></code>, <code><a href="#numerical_QMARK_">numerical?</a></code>, <code><a href="#num">num</a></code>, <code><a href="dunaj.host.number.api.html#number">dunaj.host.number/number</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="numerator"><a class="link" href="#numerator">numerator</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L322">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(numerator <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Rational) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the numerator part of a given rational number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rationalize">rationalize</a></code>, <code><a href="#denominator">denominator</a></code>, <code><a href="#rational_QMARK_">rational?</a></code>, <code><a href="#trunc">trunc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="numerical_QMARK_"><a class="link" href="#numerical_QMARK_">numerical?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L173">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(numerical? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>INumerical</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.math.spi.html#INumerical">INumerical</a></code>, <code><a href="#num">num</a></code>, <code><a href="#Number">Number</a></code>, <code><a href="#number_QMARK_">number?</a></code>, <code><a href="dunaj.host.number.api.html#number">dunaj.host.number/number</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rational_QMARK_"><a class="link" href="#rational_QMARK_">rational?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L155">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rational? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a rational number,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Rational">Rational</a></code>, <code><a href="#number_QMARK_">number?</a></code>, <code><a href="#integer_QMARK_">integer?</a></code>, <code><a href="#float_QMARK_">float?</a></code>, <code><a href="#decimal_QMARK_">decimal?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rationalize"><a class="link" href="#rationalize">rationalize</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/rationalize)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rationalize <em>num</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Rational</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the rational value of <code><em>num</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#numerator">numerator</a></code>, <code><a href="#denominator">denominator</a></code>, <code><a href="#rational_QMARK_">rational?</a></code>, <code><a href="#trunc">trunc</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Comparison"><a class="link" href="#Comparison">Comparison</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#_LT_">&#60;</a></code> <code><a href="#_LT__EQ_">&#60;&#61;</a></code> <code><a href="#_EQ__EQ_">&#61;&#61;</a></code> <code><a href="#_GT_">&#62;</a></code> <code><a href="#_GT__EQ_">&#62;&#61;</a></code> <code><a href="#divisible_QMARK_">divisible?</a></code> <code><a href="#even_QMARK_">even?</a></code> <code><a href="#max">max</a></code> <code><a href="#min">min</a></code> <code><a href="#neg_QMARK_">neg?</a></code> <code><a href="#nneg_QMARK_">nneg?</a></code> <code><a href="#npos_QMARK_">npos?</a></code> <code><a href="#odd_QMARK_">odd?</a></code> <code><a href="#one_QMARK_">one?</a></code> <code><a href="#pos_QMARK_">pos?</a></code> <code><a href="#zero_QMARK_">zero?</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_LT_"><a class="link" href="#_LT_">&lt;</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/&lt;)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#60; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(&#60; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(&#60; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if nums are in monotonically increasing order,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_LT__EQ_">&#60;&#61;</a></code>, <code><a href="#_EQ__EQ_">&#61;&#61;</a></code>, <code><a href="#_GT_">&#62;</a></code>, <code><a href="dunaj.host.int.api.html#i_LT_">dunaj.host.int/i&#60;</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_LT__EQ_"><a class="link" href="#_LT__EQ_">&lt;=</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/&#8656;)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#60;&#61; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(&#60;&#61; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(&#60;&#61; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if nums are in monotonically non-decreasing
+order, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_LT_">&#60;</a></code>, <code><a href="#_EQ__EQ_">&#61;&#61;</a></code>, <code><a href="#_GT__EQ_">&#62;&#61;</a></code>, <code><a href="dunaj.host.int.api.html#i_LT__EQ_">dunaj.host.int/i&#60;&#61;</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_EQ__EQ_"><a class="link" href="#_EQ__EQ_">==</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/==)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#61;&#61; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(&#61;&#61; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(&#61;&#61; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if nums all have the equivalent value
+(type-independent), otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_LT_">&#60;</a></code>, <code><a href="#_GT_">&#62;</a></code>, <code><a href="dunaj.host.int.api.html#i_EQ__EQ_">dunaj.host.int/i&#61;&#61;</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_GT_"><a class="link" href="#_GT_">&gt;</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/&gt;)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#62; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(&#62; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(&#62; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if nums are in monotonically decreasing
+order, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_LT_">&#60;</a></code>, <code><a href="#_EQ__EQ_">&#61;&#61;</a></code>, <code><a href="#_GT__EQ_">&#62;&#61;</a></code>, <code><a href="dunaj.host.int.api.html#i_GT_">dunaj.host.int/i&#62;</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_GT__EQ_"><a class="link" href="#_GT__EQ_">&gt;=</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/&gt;=)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#62;&#61; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(&#62;&#61; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(&#62;&#61; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if nums are in monotonically non-increasing
+order, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_LT__EQ_">&#60;&#61;</a></code>, <code><a href="#_EQ__EQ_">&#61;&#61;</a></code>, <code><a href="#_GT_">&#62;</a></code>, <code><a href="dunaj.host.int.api.html#i_GT__EQ_">dunaj.host.int/i&#62;&#61;</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="divisible_QMARK_"><a class="link" href="#divisible_QMARK_">divisible?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L534">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(divisible? <em>num div</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>num</em></code> is divisible by <code><em>div</em></code>,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#indivisible_QMARK_">indivisible?</a></code>, <code><a href="#gcd">gcd</a></code>, <code><a href="#lcm">lcm</a></code>, <code><a href="#mod">mod</a></code>, <code><a href="#rem">rem</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="even_QMARK_"><a class="link" href="#even_QMARK_">even?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/even?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(even? <em>n</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>n</em></code> is even, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#odd_QMARK_">odd?</a></code>, <code><a href="dunaj.host.int.api.html#ieven_QMARK_">dunaj.host.int/ieven?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="max"><a class="link" href="#max">max</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/max)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(max <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(max <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(max <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the greatest of the nums.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#min">min</a></code>, <code><a href="#_GT_">&#62;</a></code>, <code><a href="dunaj.host.int.api.html#imax">dunaj.host.int/imax</a></code>, <code><a href="dunaj.host.int.api.html#imax0">dunaj.host.int/imax0</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="min"><a class="link" href="#min">min</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/min)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(min <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(min <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(min <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the least of the nums.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#max">max</a></code>, <code><a href="#_LT_">&#60;</a></code>, <code><a href="dunaj.host.int.api.html#imin">dunaj.host.int/imin</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="neg_QMARK_"><a class="link" href="#neg_QMARK_">neg?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/neg?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(neg? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is less than zero,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nneg_QMARK_">nneg?</a></code>, <code><a href="#zero_QMARK_">zero?</a></code>, <code><a href="#pos_QMARK_">pos?</a></code>, <code><a href="#neg_QMARK_">neg?</a></code>, <code><a href="dunaj.host.int.api.html#ineg_QMARK_">dunaj.host.int/ineg?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="nneg_QMARK_"><a class="link" href="#nneg_QMARK_">nneg?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L241">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(nneg? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is not negative, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#neg_QMARK_">neg?</a></code>, <code><a href="#zero_QMARK_">zero?</a></code>, <code><a href="#pos_QMARK_">pos?</a></code>, <code><a href="dunaj.host.int.api.html#inneg_QMARK_">dunaj.host.int/inneg?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="npos_QMARK_"><a class="link" href="#npos_QMARK_">npos?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L233">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(npos? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is not positive, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pos_QMARK_">pos?</a></code>, <code><a href="#zero_QMARK_">zero?</a></code>, <code><a href="#neg_QMARK_">neg?</a></code>, <code><a href="dunaj.host.int.api.html#inpos_QMARK_">dunaj.host.int/inpos?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="odd_QMARK_"><a class="link" href="#odd_QMARK_">odd?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/odd?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(odd? <em>n</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>n</em></code> is odd, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#odd_QMARK_">odd?</a></code>, <code><a href="dunaj.host.int.api.html#iodd_QMARK_">dunaj.host.int/iodd?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="one_QMARK_"><a class="link" href="#one_QMARK_">one?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L209">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(one? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is equal to 1, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#zero_QMARK_">zero?</a></code>, <code><a href="#pos_QMARK_">pos?</a></code>, <code><a href="#neg_QMARK_">neg?</a></code>, <code><a href="dunaj.host.int.api.html#ione_QMARK_">dunaj.host.int/ione?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pos_QMARK_"><a class="link" href="#pos_QMARK_">pos?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/pos?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pos? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is greater than zero,
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#npos_QMARK_">npos?</a></code>, <code><a href="#zero_QMARK_">zero?</a></code>, <code><a href="#one_QMARK_">one?</a></code>, <code><a href="#neg_QMARK_">neg?</a></code>, <code><a href="dunaj.host.int.api.html#ipos_QMARK_">dunaj.host.int/ipos?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="zero_QMARK_"><a class="link" href="#zero_QMARK_">zero?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/zero?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(zero? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is zero, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#one_QMARK_">one?</a></code>, <code><a href="#pos_QMARK_">pos?</a></code>, <code><a href="#neg_QMARK_">neg?</a></code>, <code><a href="dunaj.host.int.api.html#izero_QMARK_">dunaj.host.int/izero?</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Operations"><a class="link" href="#Operations">Operations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#_STAR_">*</a></code> <code><a href="#_PLUS_">+</a></code> <code><a href="#_">&#45;</a></code> <code><a href="#_SLASH_">/</a></code> <code><a href="#abs">abs</a></code> <code><a href="#add">add</a></code> <code><a href="#cbrt">cbrt</a></code> <code><a href="#dec">dec</a></code> <code><a href="#divide">divide</a></code> <code><a href="#exp">exp</a></code> <code><a href="#expm1">expm1</a></code> <code><a href="#gcd">gcd</a></code> <code><a href="#inc">inc</a></code> <code><a href="#lcm">lcm</a></code> <code><a href="#log">log</a></code> <code><a href="#log10">log10</a></code> <code><a href="#log1p">log1p</a></code> <code><a href="#mod">mod</a></code> <code><a href="#multiply">multiply</a></code> <code><a href="#negate">negate</a></code> <code><a href="#pow">pow</a></code> <code><a href="#quot">quot</a></code> <code><a href="#rem">rem</a></code> <code><a href="#sqrt">sqrt</a></code> <code><a href="#subtract">subtract</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_STAR_"><a class="link" href="#_STAR_">*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/*)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(*)</code></p>
+</li>
+<li>
+<p><code>(* <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(* <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(* <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Number</code></p>
+</li>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the product of nums. <code>(*)</code> returns 1.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#multiply">multiply</a></code>, <code><a href="dunaj.math.precise.api.html#_STAR_">dunaj.math.precise/<strong></a></code>, <code><a href="dunaj.math.unchecked.api.html#_STAR_">dunaj.math.unchecked/</strong></a></code>, <code><a href="dunaj.host.int.api.html#imul">dunaj.host.int/imul</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_PLUS_"><a class="link" href="#_PLUS_">+</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/+)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(+)</code></p>
+</li>
+<li>
+<p><code>(+ <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(+ <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(+ <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Number</code></p>
+</li>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the sum of nums. <code>(+)</code> returns 0.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#add">add</a></code>, <code><a href="dunaj.math.precise.api.html#_PLUS_">dunaj.math.precise/+</a></code>, <code><a href="dunaj.math.unchecked.api.html#_PLUS_">dunaj.math.unchecked/+</a></code>, <code><a href="dunaj.host.int.api.html#iadd">dunaj.host.int/iadd</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_"><a class="link" href="#_">-</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/-)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45; <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45; <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45; <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>If no ys are supplied, returns the negation of <code><em>x</em></code>,
+else subtracts the ys from <code><em>x</em></code> and returns the result.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#negate">negate</a></code>, <code><a href="#subtract">subtract</a></code>, <code><a href="dunaj.math.precise.api.html#_">dunaj.math.precise/&#45;</a></code>, <code><a href="dunaj.math.unchecked.api.html#_">dunaj.math.unchecked/&#45;</a></code>, <code><a href="dunaj.host.int.api.html#isub">dunaj.host.int/isub</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_SLASH_"><a class="link" href="#_SLASH_">/</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core//)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(/ <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(/ <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(/ <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ Number ⨯ (Va Number)) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>If no denominators are supplied, returns 1/<code><em>x</em></code>,
+else returns <code><em>x</em></code> divided by all of the denominators.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#divide">divide</a></code>, <code><a href="dunaj.host.int.api.html#idiv">dunaj.host.int/idiv</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="abs"><a class="link" href="#abs">abs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L520">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(abs <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the absolute value of a number <code>x</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_STAR_">*</a></code>, <code><a href="dunaj.host.int.api.html#iabs">dunaj.host.int/iabs</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="add"><a class="link" href="#add">add</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L361">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(add <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the sum of <code><em>x</em></code> and <code><em>y</em></code>.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_PLUS_">+</a></code>, <code><a href="dunaj.math.precise.api.html#add">dunaj.math.precise/add</a></code>, <code><a href="dunaj.math.unchecked.api.html#add">dunaj.math.unchecked/add</a></code>, <code><a href="dunaj.host.int.api.html#iadd">dunaj.host.int/iadd</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="cbrt"><a class="link" href="#cbrt">cbrt</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L740">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(cbrt <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the cube root of a floating point number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#sqrt">sqrt</a></code>, <code><a href="#pow">pow</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="dec"><a class="link" href="#dec">dec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/dec)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(dec <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a number one less than <code><em>x</em></code>.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_">&#45;</a></code>, <code><a href="#inc">inc</a></code>, <code><a href="dunaj.math.precise.api.html#dec">dunaj.math.precise/dec</a></code>, <code><a href="dunaj.math.unchecked.api.html#dec">dunaj.math.unchecked/dec</a></code>, <code><a href="dunaj.host.int.api.html#idec">dunaj.host.int/idec</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="divide"><a class="link" href="#divide">divide</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L443">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(divide <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of division of <code><em>x</em></code> by <code><em>y</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_SLASH_">/</a></code>, <code><a href="dunaj.host.int.api.html#idiv">dunaj.host.int/idiv</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="exp"><a class="link" href="#exp">exp</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L749">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(exp <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>e<sup>x</sup></em></code>, the <code>e</code> raised to the power of a floating point
+number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#expm1">expm1</a></code>, <code><a href="#log">log</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="expm1"><a class="link" href="#expm1">expm1</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L759">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(expm1 <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>(dec (exp <em>x</em>))</code>, which yields more precise result.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#exp">exp</a></code>, <code><a href="#log1p">log1p</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="gcd"><a class="link" href="#gcd">gcd</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L543">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(gcd <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(gcd <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ Integer) → Integer</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ (Va Integer)) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the greatest common divisor of given integer numbers.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#lcm">lcm</a></code>, <code><a href="#divisible_QMARK_">divisible?</a></code>, <code><a href="#indivisible_QMARK_">indivisible?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="inc"><a class="link" href="#inc">inc</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/inc)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(inc <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a number one greater than <code><em>x</em></code>.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_PLUS_">+</a></code>, <code><a href="#dec">dec</a></code>, <code><a href="dunaj.math.precise.api.html#inc">dunaj.math.precise/inc</a></code>, <code><a href="dunaj.math.unchecked.api.html#inc">dunaj.math.unchecked/inc</a></code>, <code><a href="dunaj.host.int.api.html#iinc">dunaj.host.int/iinc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="lcm"><a class="link" href="#lcm">lcm</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L565">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(lcm <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(lcm <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ Integer) → Integer</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ (Va Integer)) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the least common multiple of given integer numbers.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#gcd">gcd</a></code>, <code><a href="#divisible_QMARK_">divisible?</a></code>, <code><a href="#indivisible_QMARK_">indivisible?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="log"><a class="link" href="#log">log</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L768">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(log <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the natural logarithm of a floating point number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#log1p">log1p</a></code>, <code><a href="#log10">log10</a></code>, <code><a href="#exp">exp</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="log10"><a class="link" href="#log10">log10</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L786">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(log10 <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the base 10 logarithm of a floating point number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#log">log</a></code>, <code><a href="#log1p">log1p</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="log1p"><a class="link" href="#log1p">log1p</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L777">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(log1p <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>(inc (exp <em>x</em>))</code>, which yields more precise result.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#log">log</a></code>, <code><a href="#log10">log10</a></code>, <code><a href="#expm1">expm1</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="mod"><a class="link" href="#mod">mod</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/mod)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(mod <em>num div</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the modulus of <code><em>num</em></code> and <code><em>div</em></code>.
+Truncates toward negative infinity.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rem">rem</a></code>, <code><a href="#quot">quot</a></code>, <code><a href="dunaj.host.int.api.html#irem">dunaj.host.int/irem</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="multiply"><a class="link" href="#multiply">multiply</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L420">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(multiply <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of multiplication of <code><em>x</em></code> and <code><em>y</em></code>.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_STAR_">*</a></code>, <code><a href="dunaj.math.precise.api.html#multiply">dunaj.math.precise/multiply</a></code>, <code><a href="dunaj.math.unchecked.api.html#multiply">dunaj.math.unchecked/multiply</a></code>, <code><a href="dunaj.host.int.api.html#imul">dunaj.host.int/imul</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="negate"><a class="link" href="#negate">negate</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L384">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(negate <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the negation of <code><em>x</em></code>.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#subtract">subtract</a></code>, <code><a href="#_">&#45;</a></code>, <code><a href="dunaj.math.precise.api.html#negate">dunaj.math.precise/negate</a></code>, <code><a href="dunaj.math.unchecked.api.html#negate">dunaj.math.unchecked/negate</a></code>, <code><a href="dunaj.host.int.api.html#ineg">dunaj.host.int/ineg</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pow"><a class="link" href="#pow">pow</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L715">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pow <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>x<sup>y</sup></em></code>, the <code><em>x</em></code> raised to power of <code><em>y</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#sqrt">sqrt</a></code>, <code><a href="#cbrt">cbrt</a></code>, <code><a href="#exp">exp</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="quot"><a class="link" href="#quot">quot</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/quot)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(quot <em>num div</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the quotient of dividing <code><em>num</em></code> by <code><em>div</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rem">rem</a></code>, <code><a href="#mod">mod</a></code>, <code><a href="dunaj.host.int.api.html#idiv">dunaj.host.int/idiv</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rem"><a class="link" href="#rem">rem</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/rem)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rem <em>num div</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the remainder of dividing <code><em>num</em></code> by <code><em>div</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mod">mod</a></code>, <code><a href="#quot">quot</a></code>, <code><a href="dunaj.host.int.api.html#irem">dunaj.host.int/irem</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sqrt"><a class="link" href="#sqrt">sqrt</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L731">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sqrt <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the square root of a floating point number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#cbrt">cbrt</a></code>, <code><a href="#pow">pow</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="subtract"><a class="link" href="#subtract">subtract</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L396">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(subtract <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number ⨯ Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of subtraction of <code><em>y</em></code> from <code><em>x</em></code>.
+Does not auto-promote, will throw on overflow.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#negate">negate</a></code>, <code><a href="#_">&#45;</a></code>, <code><a href="dunaj.math.precise.api.html#subtract">dunaj.math.precise/subtract</a></code>, <code><a href="dunaj.math.unchecked.api.html#subtract">dunaj.math.unchecked/subtract</a></code>, <code><a href="dunaj.host.int.api.html#isub">dunaj.host.int/isub</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Rounding"><a class="link" href="#Rounding">Rounding</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#PrecisionConfig">PrecisionConfig</a></code> <code><a href="#ceil">ceil</a></code> <code><a href="#floor">floor</a></code> <code><a href="#round">round</a></code> <code><a href="#trunc">trunc</a></code> <code><a href="#with_precision">with&#45;precision</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="PrecisionConfig"><a class="link" href="#PrecisionConfig">PrecisionConfig</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L600">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for precision config.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#round">round</a></code>, <code><a href="#with_precision">with&#45;precision</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ceil"><a class="link" href="#ceil">ceil</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L685">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ceil <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the ceiling of a given number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#round">round</a></code>, <code><a href="#floor">floor</a></code>, <code><a href="#trunc">trunc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="floor"><a class="link" href="#floor">floor</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L676">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(floor <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the floor of a given number <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#round">round</a></code>, <code><a href="#ceil">ceil</a></code>, <code><a href="#trunc">trunc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="round"><a class="link" href="#round">round</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L632">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(round <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(round <em>x config</em>)</code></p>
+</li>
+<li>
+<p><code>(round <em>x key val &amp; keyvals</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ PrecisionConfig) → Number</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ (U :precision :type :mode) ⨯ Any ⨯ (Va Any)) → Number</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns rounded number of same type according to given precision
+config.</p>
+</div>
+<div class="paragraph">
+<p>Precision <code><em>config</em></code> is a map with following keys:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:precision</code> - Any integer. Nonnegative in case of <code>:significant</code>
+type. Defaults to 0 (0 precision with significant type means
+that any number of significant digits is OK).</p>
+</li>
+<li>
+<p><code>:type</code> - <code>:significant</code> or <code>:decimal</code>.
+Defaults to <code>:significant</code>.</p>
+</li>
+<li>
+<p><code>:mode</code> - <code>:ceiling</code>, <code>:floor</code>, <code>:half-up</code>, <code>:half-down</code>,
+<code>:half-even</code>, <code>:up</code>, <code>:down</code> and <code>:unnecessary</code>.
+Defaults to <code>:half-up</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>(round <em>x</em>)</code> is equal to <code>(round <em>x</em> {:type :decimal})</code>. Note
+that this is different from <code>(round <em>x</em> {})</code>, which equals to
+<code>(round <em>x</em> {:precision 0 :type :significant :mode :half-up})</code></p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-51"><label class="dd-example-label" for="toggle-51">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(round <span class="float">123.456</span> {<span class="symbol">:precision</span> <span class="integer">5</span>})
+<span class="comment">;;=&gt; 123.46</span>
+
+(round <span class="float">123.456</span> <span class="symbol">:precision</span> <span class="integer">5</span> <span class="symbol">:mode</span> <span class="symbol">:down</span>)
+<span class="comment">;;=&gt; 123.45</span>
+
+(round <span class="float">123.456</span>)
+<span class="comment">;;=&gt; 123.0</span>
+
+(round <span class="float">123.456</span> {})
+<span class="comment">;;=&gt; 123.456</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#PrecisionConfig">PrecisionConfig</a></code>, <code><a href="#floor">floor</a></code>, <code><a href="#ceil">ceil</a></code>, <code><a href="#trunc">trunc</a></code>, <code><a href="#with_precision">with&#45;precision</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="trunc"><a class="link" href="#trunc">trunc</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L346">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(trunc <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Number) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an integer number created from given floating or decimal
+number <code><em>x</em></code> by truncating its decimal part. Returns unchanged if
+<code><em>x</em></code> is integer or rational.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#round">round</a></code>, <code><a href="#rationalize">rationalize</a></code>, <code><a href="#ceil">ceil</a></code>, <code><a href="#floor">floor</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="with_precision"><a class="link" href="#with_precision">with-precision</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L694">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(with-precision <em>config &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Sets the precision config to be used for BigDecimal operations.</p>
+</div>
+<div class="paragraph">
+<p>Precision <code><em>config</em></code> is a map with following keys:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:precision</code> - A nonnegative integer. Defaults to 0 (no changes)</p>
+</li>
+<li>
+<p><code>:mode</code> - One of <code>:ceiling</code>, <code>:floor</code>, <code>:half-up</code>,
+<code>:half-down</code>, <code>:half-even</code>, <code>:up</code>, <code>:down</code> and <code>:unnecessary</code>.
+Defaults to <code>:half-up</code>.</p>
+</li>
+</ul>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-52"><label class="dd-example-label" for="toggle-52">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">with-precision</span> {<span class="symbol">:precision</span> <span class="integer">10</span>}
+  (<span class="keyword">/</span> <span class="integer">1</span>M <span class="integer">3</span>))
+<span class="comment">;;=&gt; 0.3333333333M</span>
+
+(<span class="keyword">with-precision</span> {<span class="symbol">:precision</span> <span class="integer">5</span> <span class="symbol">:mode</span> <span class="symbol">:up</span>}
+  (<span class="keyword">/</span> <span class="integer">1</span>M <span class="integer">3</span>))
+<span class="comment">;;=&gt; 0.33334M</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#round">round</a></code>, <code><a href="#PrecisionConfig">PrecisionConfig</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Other"><a class="link" href="#Other">Other</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#e">e</a></code> <code><a href="#pi">pi</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="e"><a class="link" href="#e">e</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L803">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Float</code></p>
+</div>
+<div class="paragraph docstring">
+<p>The <code>e</code> constant as defined by the host.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pi">pi</a></code>, <code><a href="#exp">exp</a></code>, <code><a href="#expm1">expm1</a></code>, <code><a href="#log">log</a></code>, <code><a href="#log1p">log1p</a></code>, <code><a href="#log10">log10</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pi"><a class="link" href="#pi">pi</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math.clj#L797">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Float</code></p>
+</div>
+<div class="paragraph docstring">
+<p>The <code>PI</code> constant as defined by the host.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#e">e</a></code>, <code><a href="dunaj.math.angle.api.html#deg">dunaj.math.angle/deg</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:16:26 CET
+</div>
+</div>
+</body>
+</html>

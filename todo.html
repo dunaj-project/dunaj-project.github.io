@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Future Plans</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Future Plans</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="doc.html">Documentation</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="rationale.html">Rationale</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="todo.html">Future Plans</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Future Plans</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page lists future plans for Dunaj. Github pull requests are
+welcome, but all contributors must sign
+<a href="http://clojure.org/contributing">the Clojure CA</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_non_goals">Non goals</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Improve starting time, smaller .jar builds - Due to backwards
+compatibility with Clojure, Dunaj does not aim to provide fast
+starting times or optimize the resulting size of a binary
+distribution.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_tests">Add tests</h3>
+<div class="paragraph">
+<p>Currently, Dunaj contains no tests and no effort was made to support
+existing Clojure tests either. This is exclusively due to the lack
+of resources such as time. A facilities for generative testing should
+be added into Dunaj too.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_improve_or_add_new_features">Improve or add new features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Support for JVM 7</p>
+</li>
+<li>
+<p>Support more hosts (Javascript, .NET, &#8230;&#8203;)</p>
+</li>
+<li>
+<p>Support other OSs besides Linux</p>
+</li>
+<li>
+<p>Check binary compatibility with Clojure</p>
+</li>
+<li>
+<p>Reader conditionals for CLJ parser</p>
+</li>
+<li>
+<p>Type signatures support for CLJ pretty printer</p>
+</li>
+<li>
+<p>Helpful error messages</p>
+</li>
+<li>
+<p>More API presets (e.g. for unchecked or host int math)</p>
+</li>
+<li>
+<p>Add more data formatters (parsers/printers), including binary
+codecs. (e.g. XML, Transit, Fressian)</p>
+</li>
+<li>
+<p>Add more resource types, mainly for distributed queues, databases
+and network protocols.</p>
+</li>
+<li>
+<p>Add new collection types, mainly AVL trees, Ctries, Bags and
+Multimaps</p>
+</li>
+<li>
+<p>Review IDE-related metadata in vars (:indent, :highlight, etc.)</p>
+</li>
+<li>
+<p>Additional features are planned for following namespaces:
+<code><a href="dunaj.boolean.api.html">dunaj.boolean</a></code>,
+<code><a href="dunaj.coll.rbt-sorted-map.api.html">dunaj.coll.rbt-sorted-map</a></code>,
+<code><a href="dunaj.coll.rbt-sorted-set.api.html">dunaj.coll.rbt-sorted-set</a></code>,
+<code><a href="dunaj.coll.recipe.api.html">dunaj.coll.recipe</a></code>
+<code><a href="dunaj.compare.api.html">dunaj.compare</a></code>,
+<code><a href="dunaj.concurrent.port.api.html">dunaj.concurrent.port</a></code>,
+<code><a href="dunaj.error.api.html">dunaj.error</a></code>,
+<code><a href="dunaj.math.api.html">dunaj.math</a></code>,
+<code><a href="dunaj.time.api.html">dunaj.time</a></code>,
+<code><a href="dunaj.type.api.html">dunaj.type</a></code></p>
+</li>
+<li>
+<p>Review the implementation of
+<code><a href="dunaj.coll.recipe.api.html">dunaj.coll.recipe</a></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation_improvements">Documentation improvements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Dunaj specification needs significant improvements</p>
+</li>
+<li>
+<p>Existing documentation needs proofreading</p>
+</li>
+<li>
+<p>Following namespaces badly need to improve their documentation:
+<code><a href="dunaj.concurrent.port.api.api.html">dunaj.concurrent.port</a></code>,
+<code><a href="dunaj.function.api.html">dunaj.function</a></code>,
+<code><a href="dunaj.host.api.html">dunaj.host</a></code>,
+<code><a href="dunaj.lib.api.html">dunaj.lib</a></code>,
+<code><a href="dunaj.poly.api.html">dunaj.poly</a></code>,
+<code><a href="dunaj.state.api.html">dunaj.state</a></code>,
+<code><a href="dunaj.var.api.html">dunaj.var</a></code>,
+<code><a href="dunaj.threading.last.api.html">dunaj.threading.last</a></code>,
+<code><a href="dunaj.threading.second.api.html">dunaj.threading.second</a></code></p>
+</li>
+<li>
+<p>Less serious, but still in need of documentation improvement:
+<code><a href="dunaj.coll.util.api.html">dunaj.coll.util</a></code>,
+<code><a href="dunaj.error.api.html">dunaj.error</a></code>,
+<code><a href="dunaj.flow.api.html">dunaj.flow</a></code>,
+<code><a href="dunaj.format.parser.api.html">dunaj.format.parser</a></code>,
+<code><a href="dunaj.format.printer.api.html">dunaj.format.printer</a></code>,
+<code><a href="dunaj.math.api.html">dunaj.math</a></code>,
+<code><a href="dunaj.resource.api.html">dunaj.resource</a></code>,
+<code><a href="dunaj.resource.file.api.html">dunaj.resource.file</a></code>,
+<code><a href="dunaj.resource.helper.api.html">dunaj.resource.helper</a></code>,
+<code><a href="dunaj.resource.selector.api.html">dunaj.resource.selector</a></code>,
+<code><a href="dunaj.string.api.html">dunaj.string</a></code>,
+<code><a href="dunaj.type.api.html">dunaj.type</a></code></p>
+</li>
+<li>
+<p>Following namespaces need more examples in their documentation:
+<code><a href="dunaj.coll.util.api.html">dunaj.coll.util</a></code>,
+<code><a href="dunaj.compare.api.html">dunaj.compare</a></code>,
+<code><a href="dunaj.concurrent.api.html">dunaj.concurrent</a></code>,
+<code><a href="dunaj.concurrent.agent.api.html">dunaj.concurrent.agent</a></code>,
+<code><a href="dunaj.concurrent.forkjoin.api.html">dunaj.concurrent.forkjoin</a></code>,
+<code><a href="dunaj.resource.api.html">dunaj.resource</a></code>,
+<code><a href="dunaj.resource.file.api.html">dunaj.resource.file</a></code>,
+<code><a href="dunaj.resource.helper.api.html">dunaj.resource.helper</a></code>,
+<code><a href="dunaj.resource.selector.api.html">dunaj.resource.selector</a></code>,
+<code><a href="dunaj.type.api.html">dunaj.type</a></code></p>
+</li>
+</ul>
+</div>
+<div id="blo"></div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:08 CET
+</div>
+</div>
+</body>
+</html>

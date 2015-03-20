@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.format.parser SPI</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.format.parser SPI</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.format.parser</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ILazyParserMachine"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ILazyParserMachine</span></a></div><div class="dd-nav-ns-var"><a href="#_parse_seq"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-parse-seq</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ILazyParserMachineFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ILazyParserMachineFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_dispatch_lazy_parser"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dispatch-lazy-parser</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IParserMachine"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IParserMachine</span></a></div><div class="dd-nav-ns-var"><a href="#_parse_value_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-parse-value!</span></a></div><div class="dd-nav-ns-var"><a href="#_parse_eof_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-parse-eof!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IParserMachineFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IParserMachineFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_parser_config"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-parser-config</span></a></div><div class="dd-nav-ns-var"><a href="#_parser_from_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-parser-from-type</span></a></div><div class="dd-nav-ns-var"><a href="#_parser_to_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-parser-to-type</span></a></div><div class="dd-nav-ns-var"><a href="#_dispatch_tokenizer"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dispatch-tokenizer</span></a></div><div class="dd-nav-ns-var"><a href="#_dispatch_parser"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dispatch-parser</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ITokenizerMachine"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ITokenizerMachine</span></a></div><div class="dd-nav-ns-var"><a href="#_analyze_batch_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-analyze-batch!</span></a></div><div class="dd-nav-ns-var"><a href="#_analyze_eof_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-analyze-eof!</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.format.parser SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.format.parser.api.html">API documentation</a> for this namespace.</div></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fast parser engine with helper functions for tokenizer and parser
+machines.</p>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ILazyParserMachine"><a class="link" href="#ILazyParserMachine">ILazyParserMachine</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L133">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_parse_seq">-parse-seq</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A protocol for lazy parser machine. Is used in the lazy parser
+engine to process the sequence of tokens into the sequence of
+parsed values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.format.parser.api.html#lazy_parser_machine_QMARK_">lazy&#45;parser&#45;machine?</a></code>, <code><a href="#IParserMachine">IParserMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_parse_seq"><a class="link" href="#_parse_seq">-parse-seq</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L133">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;parse&#45;seq <em>this seq parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ ISeq ⨯ IPersistentList) → [Any ISeq&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the <code>[result rest-seq]</code> pair, a (mostly lazy) result of
+parsing input <code><em>seq</em></code> of values within <code><em>parents</em></code> context
+(which includes <code><em>this</em></code>), and a lazy seq of unparsed values.
+First item in the returned pair may be <code><em>this</em></code>,
+which signals that no value was produced.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ILazyParserMachine">ILazyParserMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ILazyParserMachineFactory"><a class="link" href="#ILazyParserMachineFactory">ILazyParserMachineFactory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L198">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_dispatch_lazy_parser">-dispatch-lazy-parser</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A factory protocol for lazy parser machines.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachineFactory">IParserMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dispatch_lazy_parser"><a class="link" href="#_dispatch_lazy_parser">-dispatch-lazy-parser</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L198">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dispatch&#45;lazy&#45;parser <em>this config state token parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ {} ⨯ IReference ⨯ Any ⨯ IPersistentList) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a lazy machine based on given <code><em>token</em></code>, in the context
+of <code><em>parents</em></code> list of parent machines and a shared state map in
+<code><em>state</em></code> reference, or returns a value if <code><em>token</em></code> processing
+didn&#8217;t require a dedicated machine.
+If the dispatcher wants to ignore a token, it should be done
+through a special parser machine <code>ignore-token</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ILazyParserMachineFactory">ILazyParserMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IParserMachine"><a class="link" href="#IParserMachine">IParserMachine</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L108">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_parse_value_BANG_">-parse-value!</a></code>, <code><a href="#_parse_eof_BANG_">-parse-eof!</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A protocol for parser machine. Is used in the parser engine to
+process tokens into parsed values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.format.parser.api.html#parser_machine_QMARK_">parser&#45;machine?</a></code>, <code><a href="#ILazyParserMachine">ILazyParserMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_parse_value_BANG_"><a class="link" href="#_parse_value_BANG_">-parse-value!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L108">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;parse&#45;value! <em>this value parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ IPersistentList) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of parsing <code><em>value</em></code> in the context of
+<code><em>parents</em></code> list of parent parser machines, including <code><em>this</em></code>.
+<code><em>value</em></code> may have been produced by a parser dispatcher
+or by a child parser machine. Result is a parser machine
+(if the parser machine has not yet finished) or a value if
+parsing has finished.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachine">IParserMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_parse_eof_BANG_"><a class="link" href="#_parse_eof_BANG_">-parse-eof!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L108">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;parse&#45;eof! <em>this parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IPersistentList) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of parser after the end of file has been
+reached, in the context of <code><em>parents</em></code> list of parent parser
+machines, including <code><em>this</em></code>. Result is either a <code><em>this</em></code> if no
+value is produced or a value, if parsing is finished.
+Throws if input is incomplete and parser is configured to throw
+on incomplete input.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachine">IParserMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IParserMachineFactory"><a class="link" href="#IParserMachineFactory">IParserMachineFactory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L150">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_parser_config">-parser-config</a></code>, <code><a href="#_parser_from_type">-parser-from-type</a></code>, <code><a href="#_parser_to_type">-parser-to-type</a></code>, <code><a href="#_dispatch_tokenizer">-dispatch-tokenizer</a></code>, <code><a href="#_dispatch_parser">-dispatch-parser</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A factory protocol for tokenizer and parser machines.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_parser_config"><a class="link" href="#_parser_config">-parser-config</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L150">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;parser&#45;config <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → {}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a configuration map that is passed into machines
+created directly or indirectly with this parser machine factory.
+Passing of configuration map is done by convention as a first
+argument of machine constructor, with folowing keys recognized
+by the parser engine and its helper fns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:incomplete-mode</code> - Controls how machine should behave if
+end of file is reached before machine is done. Valid values are
+<code>nil</code> (throws), <code>:keep</code> (returns result so far or most probable
+result) or <code>:ignore</code> (behave as if there was nothing to parse).</p>
+</li>
+<li>
+<p><code>:token-item-limit</code> - specifies maximum number of input items
+a token can have before triggering limit exception.</p>
+</li>
+<li>
+<p><code>:container-level-limit</code> - specifies maximum number of nesting
+levels a container can have before triggering limit exception.</p>
+</li>
+<li>
+<p><code>:container-item-limit</code> - specifies maximum number of items
+a container can have before triggering limit exception.</p>
+</li>
+<li>
+<p><code>:initial-state</code> - specifies an initial state of a parser
+machine. Can be <code>nil</code> or a map.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachineFactory">IParserMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_parser_from_type"><a class="link" href="#_parser_from_type">-parser-from-type</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L150">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;parser&#45;from&#45;type <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (U nil Class Type)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns type of items which are to be parsed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachineFactory">IParserMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_parser_to_type"><a class="link" href="#_parser_to_type">-parser-to-type</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L150">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;parser&#45;to&#45;type <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (U nil Class Type)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns type of parsed values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachineFactory">IParserMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dispatch_tokenizer"><a class="link" href="#_dispatch_tokenizer">-dispatch-tokenizer</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L150">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dispatch&#45;tokenizer <em>this config state item</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ {} ⨯ IReference ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a token or a tokenizer-machine as a result of dispatching
+on a given input <code><em>item</em></code> according to the <code><em>config</em></code>
+configuration and shared state map in <code><em>state</em></code> reference.
+Returns <code><em>this</em></code> if <code><em>item</em></code> should be ignored
+(e.g. whitespace).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachineFactory">IParserMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dispatch_parser"><a class="link" href="#_dispatch_parser">-dispatch-parser</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L150">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dispatch&#45;parser <em>this config state token parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ {} ⨯ IReference ⨯ Any ⨯ IPersistentList) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a machine based on given <code><em>token</em></code> according to the
+<code><em>config</em></code> configuration and a shared state map in <code><em>state</em></code>
+reference, in the context of <code><em>parents</em></code> list of parent machines,
+or returns a value if <code><em>token</em></code> processing didn&#8217;t require a
+dedicated machine.
+If the dispatcher wants to ignore a token, it should be done
+through a special parser machine called <code>ignore-token</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IParserMachineFactory">IParserMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ITokenizerMachine"><a class="link" href="#ITokenizerMachine">ITokenizerMachine</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L77">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_analyze_batch_BANG_">-analyze-batch!</a></code>, <code><a href="#_analyze_eof_BANG_">-analyze-eof!</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A protocol for tokenizer machine. Is used in a parser engine to
+perform a conversion of input collection (of e.g. chars, bytes),
+into the collection of tokens. Parsers should implement tokenizer
+machines for tokens consisting of multiple input values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.format.parser.api.html#tokenizer_machine_QMARK_">tokenizer&#45;machine?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_analyze_batch_BANG_"><a class="link" href="#_analyze_batch_BANG_">-analyze-batch!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L77">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;analyze&#45;batch! <em>this bm batch</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ BatchManager ⨯ AnyBatch) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of analyzing input <code><em>batch</em></code> managed by <code><em>bm</em></code>
+batch manager, setting the position of <code><em>batch</em></code> to the next
+not yet analyzed item, or to the batch&#8217;s current limit.
+Result is either a tokenizer machine (analysis not yet finished)
+or a token, if the analysis is finished.</p>
+</div>
+<div class="paragraph">
+<p>Use <code>leftover</code> function to return leftover batch alongside token,
+if items outside current batch were left not analyzed
+(backtracking across batches).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ITokenizerMachine">ITokenizerMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_analyze_eof_BANG_"><a class="link" href="#_analyze_eof_BANG_">-analyze-eof!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/parser.clj#L77">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;analyze&#45;eof! <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of tokenizer after the end of file has been
+reached. Result is either a <code><em>this</em></code> if no token is produced
+or a token, if the token could be produced.</p>
+</div>
+<div class="paragraph">
+<p>Use <code>leftover</code> function to return leftover batch alongside token,
+if items outside current batch were left not analyzed
+(backtracking across batches). Throws if input is incomplete and
+tokenizer is configured to throw on incomplete input.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ITokenizerMachine">ITokenizerMachine</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:21:47 CET
+</div>
+</div>
+</body>
+</html>

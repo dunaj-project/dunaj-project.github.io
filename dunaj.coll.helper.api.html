@@ -1,0 +1,3952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.coll.helper API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.coll.helper API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll.helper</a></div><div class="dd-nav-ns-var"><a href="#compare_ordered"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">compare-ordered</span></a></div><div class="dd-nav-ns-var"><a href="#defreducing"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">defreducing</span></a></div><div class="dd-nav-ns-var"><a href="#defxform"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">defxform</span></a></div><div class="dd-nav-ns-var"><a href="#equiv_ordered"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">equiv-ordered</span></a></div><div class="dd-nav-ns-var"><a href="#prepare_ordered_section"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">prepare-ordered-section</span></a></div><div class="dd-nav-ns-group"><a href="#Reducers">Reducers</a></div><div class="dd-nav-ns-var"><a href="#advance_fn"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">advance-fn</span></a></div><div class="dd-nav-ns-var"><a href="#cloned_advance_fn"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">cloned-advance-fn</span></a></div><div class="dd-nav-ns-var"><a href="#finish_advance"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">finish-advance</span></a></div><div class="dd-nav-ns-var"><a href="#provide_reduced"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">provide-reduced</span></a></div><div class="dd-nav-ns-var"><a href="#reduce_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reduce*</span></a></div><div class="dd-nav-ns-var"><a href="#reduce_augmented_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reduce-augmented*</span></a></div><div class="dd-nav-ns-var"><a href="#reduce_batched_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reduce-batched*</span></a></div><div class="dd-nav-ns-var"><a href="#reduce_unpacked_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reduce-unpacked*</span></a></div><div class="dd-nav-ns-var"><a href="#reduce_with_batched_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reduce-with-batched*</span></a></div><div class="dd-nav-ns-var"><a href="#reduced_advance"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reduced-advance</span></a></div><div class="dd-nav-ns-var"><a href="#reducing_function"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reducing-function</span></a></div><div class="dd-nav-ns-var"><a href="#strip_reduced"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">strip-reduced</span></a></div><div class="dd-nav-ns-var"><a href="#transduce_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">transduce*</span></a></div><div class="dd-nav-ns-group"><a href="#Folds">Folds</a></div><div class="dd-nav-ns-var"><a href="#fold_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">fold*</span></a></div><div class="dd-nav-ns-var"><a href="#fold_augmented_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">fold-augmented*</span></a></div><div class="dd-nav-ns-var"><a href="#fold_batched_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">fold-batched*</span></a></div><div class="dd-nav-ns-var"><a href="#fold_every"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">fold-every</span></a></div><div class="dd-nav-ns-var"><a href="#fold_sectionable"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">fold-sectionable</span></a></div><div class="dd-nav-ns-var"><a href="#fold_unpacked_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">fold-unpacked*</span></a></div><div class="dd-nav-ns-var"><a href="#split_adjust"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">split-adjust</span></a></div><div class="dd-nav-ns-var"><a href="#transfold_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">transfold*</span></a></div><div class="dd-nav-ns-group"><a href="#Interop">Interop</a></div><div class="dd-nav-ns-var"><a href="#coll__GT_iterator"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">coll->iterator</span></a></div><div class="dd-nav-ns-var"><a href="#coll__GT_list_iterator"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">coll->list-iterator</span></a></div><div class="dd-nav-ns-var"><a href="#equals_ordered"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">equals-ordered</span></a></div><div class="dd-nav-ns-var"><a href="#index_of"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">index-of</span></a></div><div class="dd-nav-ns-var"><a href="#ordered_hash_code"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">ordered-hash-code</span></a></div><div class="dd-nav-ns-var"><a href="#unordered_hash_code"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">unordered-hash-code</span></a></div><div class="dd-nav-ns-group"><a href="#Adapters">Adapters</a></div><div class="dd-nav-ns-var"><a href="#adapt"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adapt</span></a></div><div class="dd-nav-ns-var"><a href="#adapt_STAR_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adapt*</span></a></div><div class="dd-nav-ns-var"><a href="#adaptB"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptB</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptBus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptBus</span></a></div><div class="dd-nav-ns-var"><a href="#adaptC"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptC</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCB"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCB</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCBus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCBus</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCb"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCb</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCbus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCbus</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptCus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptCus</span></a></div><div class="dd-nav-ns-var"><a href="#adaptS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptb"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptb</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptbus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptbus</span></a></div><div class="dd-nav-ns-var"><a href="#adaptc"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptc</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcB"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcB</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcBus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcBus</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcb"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcb</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbU"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbU</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbUS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbUS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbUs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbUs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcbus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcbus</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcs</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptcus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptcus</span></a></div><div class="dd-nav-ns-var"><a href="#adapts"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adapts</span></a></div><div class="dd-nav-ns-var"><a href="#adaptu"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptu</span></a></div><div class="dd-nav-ns-var"><a href="#adaptuS"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptuS</span></a></div><div class="dd-nav-ns-var"><a href="#adaptus"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adaptus</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll.helper API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.coll.helper.spi.html">SPI documentation</a> for this namespace.</div></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Collection helpers for the implementation of new collection types.</p>
+</div>
+<div class="paragraph">
+<p>The best documentation for this namespace is to read <code>dunaj.coll.*</code>
+sources, as vars defined in this namespace are all heavily used
+there.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#compare_ordered">compare&#45;ordered</a></code> <code><a href="#defreducing">defreducing</a></code> <code><a href="#defxform">defxform</a></code> <code><a href="#equiv_ordered">equiv&#45;ordered</a></code> <code><a href="#prepare_ordered_section">prepare&#45;ordered&#45;section</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="compare_ordered"><a class="link" href="#compare_ordered">compare-ordered</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L730">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(compare&#45;ordered <em>coll other</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns -1, 0 or 1 as a result of comparing two ordered collections
+with default comparator.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#equiv_ordered">equiv&#45;ordered</a></code>, <code><a href="#equals_ordered">equals&#45;ordered</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="defreducing"><a class="link" href="#defreducing">defreducing</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L406">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(defreducing <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Defines a stateless augmented reducing function type which
+delegates all but stepping functionality to the underlying
+augmented reducing function, which must be stored under the
+first field in the created type.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-19"><label class="dd-example-label" for="toggle-19">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+    (<span class="symbol">:api</span> dunaj)
+    (<span class="symbol">:require</span> [dunaj.coll <span class="symbol">:refer</span> [IReducing -step]]
+              [dunaj.coll.helper <span class="symbol">:refer</span> [defreducing]]))
+
+(defreducing MapReducing
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Reducing type for map</span><span class="delimiter">&quot;</span></span>
+  [r <span class="symbol">:-</span> IReducing, mapf <span class="symbol">:-</span> AnyFn]
+  (-step [this ret <span class="keyword">val</span>] (-step r ret (mapf <span class="keyword">val</span>)))
+  (-step [this ret <span class="keyword">val</span> val2] (-step r ret (mapf <span class="keyword">val</span> val2)))
+  (-step [this ret <span class="keyword">val</span> val2 val3] (-step r ret (mapf <span class="keyword">val</span> val2 val3)))
+  (-step [this ret <span class="keyword">val</span> val2 val3 val4] (-step r ret (mapf <span class="keyword">val</span> val2 val3 val4)))
+  (-step [this ret <span class="keyword">val</span> val2 val3 val4 more] (-step r ret (<span class="keyword">apply</span> mapf <span class="keyword">val</span> val2 val3 val4 more))))
+
+  <span class="comment">;; see example on defxform for idiomatic use of types created with defreducing</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#defxform">defxform</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="defxform"><a class="link" href="#defxform">defxform</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L941">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(defxform <em>name &amp; keyvals</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Defines a transducer with a <code><em>name</em></code> and with contents created
+based on given <code><em>keyvals</em></code>. Supported keys are (<code>nil</code> means pass):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:xform</code> - one arg fn decl taking augmented recipe and returning
+augmented recipe</p>
+</li>
+<li>
+<p><code>:count</code> - <code>nil</code>/<code>false</code>/<code>one arg fn decl</code> taking nested count
+function and returning one arg function (or <code>nil</code>/<code>false</code>)</p>
+</li>
+<li>
+<p><code>:section</code> - <code>nil</code>/<code>false</code>/<code>one arg fn decl</code> taking nested
+section function and returning four arg function
+(or <code>nil</code>/<code>false</code>)</p>
+</li>
+<li>
+<p><code>:unpack</code> - <code>true</code>/<code>false</code>/<code>nil</code>/<code>one arg fn decl</code> taking nested
+unpack flag and returning boolean value (or <code>nil</code>)</p>
+</li>
+<li>
+<p><code>:fold</code> - (<code>true</code>)/<code>false</code>/<code>nil</code>/<code>one arg fn decl</code> taking nested
+fold flag and returning boolean value (or <code>nil</code>)</p>
+</li>
+</ul>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-20"><label class="dd-example-label" for="toggle-20">2 examples</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+    (<span class="symbol">:api</span> dunaj)
+    (<span class="symbol">:require</span> [dunaj.coll.helper <span class="symbol">:refer</span> [defxform]]))
+
+<span class="comment">;; using MapReducing from example on defreducing</span>
+
+(defxform my-map
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A transducer that applies `mapf` to each step value.</span><span class="delimiter">&quot;</span></span>
+  [mapf <span class="symbol">:-</span> AnyFn]
+  ([r] (-&gt;MapReducing r mapf))
+  <span class="symbol">:unpack</span> <span class="predefined-constant">false</span>)</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre><span class="comment">;; more complex example showing how custom sectioning is handled</span>
+
+(defxform take*
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">A transducer that passes at most `n` step values.</span><span class="delimiter">&quot;</span></span>
+  [n <span class="symbol">:-</span> Int]
+  ([r] (-&gt;TakeReducing r n)) <span class="comment">;; see dunaj.coll.recipe sources</span>
+  <span class="symbol">:count</span> ([tc-fn] #(tc-fn (imin n (iint %))))
+  <span class="symbol">:section</span> ([ts-fn]
+              (<span class="keyword">when</span> tc-fn
+                (<span class="keyword">let</span> [nu-section #(dunaj.coll/-section %1 %2 %3)]
+                  #(<span class="keyword">let</span> [l (tc-fn (<span class="keyword">count</span> %2))
+                         ne (prepare-ordered-section %3 %4 l)]
+                     (ts-fn nu-section %2 %3 ne)))))
+  <span class="symbol">:fold</span> <span class="predefined-constant">false</span>)</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#defreducing">defreducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="equiv_ordered"><a class="link" href="#equiv_ordered">equiv-ordered</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L681">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(equiv&#45;ordered <em>coll other</em>)</code></p>
+</li>
+<li>
+<p><code>(equiv&#45;ordered <em>coll other any&#45;immutable?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → Boolean</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93; ⨯ Boolean) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if given sequential collections are equivalent,
+returns <code>false</code> otherwise. If <code><em>any-immutable?</em></code> is <code>true</code>, accepts
+any ordered collection, not just sequential ones.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#equals_ordered">equals&#45;ordered</a></code>, <code><a href="#compare_ordered">compare&#45;ordered</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="prepare_ordered_section"><a class="link" href="#prepare_ordered_section">prepare-ordered-section</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L757">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(prepare&#45;ordered&#45;section <em>new&#45;begin new&#45;end length</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ (Maybe Integer) ⨯ Integer) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>new-end</em></code> or <code><em>length</em></code>, if <code><em>new-end</em></code> is <code>nil</code>.
+Throws if arguments are out of bounds of the interval
+<code>[new-begin, new-begin + length)</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#section">dunaj.coll/section</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Reducers"><a class="link" href="#Reducers">Reducers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#advance_fn">advance&#45;fn</a></code> <code><a href="#cloned_advance_fn">cloned&#45;advance&#45;fn</a></code> <code><a href="#finish_advance">finish&#45;advance</a></code> <code><a href="#provide_reduced">provide&#45;reduced</a></code> <code><a href="#reduce_STAR_">reduce*</a></code> <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code> <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code> <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code> <code><a href="#reduce_with_batched_STAR_">reduce&#45;with&#45;batched*</a></code> <code><a href="#reduced_advance">reduced&#45;advance</a></code> <code><a href="#reducing_function">reducing&#45;function</a></code> <code><a href="#strip_reduced">strip&#45;reduced</a></code> <code><a href="#transduce_STAR_">transduce*</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="advance_fn"><a class="link" href="#advance_fn">advance-fn</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L296">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(advance-fn <em>fname-or-params &amp; cond-body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Constructs a function which correctly handle reduced and
+postponed <code>ret</code>, a arg which must be the first argument in the
+arg vector. Other arguments are passed without any processing
+for both safe and unsafe advance.</p>
+</div>
+<div class="paragraph">
+<p><code>(advance-fn [ret param-1] (do-something))</code> is transformed into:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">fn</span> af [ret param-1]
+  (<span class="keyword">cond</span> (reduced? ret)
+        ret
+        (postponed? ret)
+        (postponed ret
+                   #(af (advance ret) param-1)
+                   #(af (unsafe-advance! ret) param-1))
+        <span class="symbol">:else</span>
+        (do-something)))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Multiple cond clauses may be passed into advance-fn.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#cloned_advance_fn">cloned&#45;advance&#45;fn</a></code>, <code><a href="#finish_advance">finish&#45;advance</a></code>, <code><a href="#reduced_advance">reduced&#45;advance</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="cloned_advance_fn"><a class="link" href="#cloned_advance_fn">cloned-advance-fn</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L346">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(cloned-advance-fn <em>fname-or-params &amp; cond-body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Constructs a function which correctly handle reduced and
+postponed <code>ret</code>, which must be the first argument in the
+params vector. Other arguments are cloned in safe advance and
+passed without processing for unsafe advance.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#advance_fn">advance&#45;fn</a></code>, <code><a href="#finish_advance">finish&#45;advance</a></code>, <code><a href="#reduced_advance">reduced&#45;advance</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="finish_advance"><a class="link" href="#finish_advance">finish-advance</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L380">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(finish&#45;advance <em>ret r</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IReducing) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of calling <code>-finish</code> on the augmented reducing
+function <code><em>r</em></code>, while correctly handling potentionally postponed
+result <code>ret</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By convention, <code>-finish</code> should be called also when <code>ret</code> is
+a reduced result.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#advance_fn">advance&#45;fn</a></code>, <code><a href="#cloned_advance_fn">cloned&#45;advance&#45;fn</a></code>, <code><a href="#reduced_advance">reduced&#45;advance</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="provide_reduced"><a class="link" href="#provide_reduced">provide-reduced</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L90">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(provide&#45;reduced <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Reduced</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns reduced reference to <code><em>x</em></code>, or returns <code><em>x</em></code> if it is
+already a reduced reference.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#strip_reduced">strip&#45;reduced</a></code>, <code><a href="dunaj.coll.api.html#reduced">dunaj.coll/reduced</a></code>, <code><a href="dunaj.coll.api.html#reduced_QMARK_">dunaj.coll/reduced?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reduce_STAR_"><a class="link" href="#reduce_STAR_">reduce*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L118">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reduce* <em>coll reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Any</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of reduction of <code><em>coll</em></code> with <code><em>reducef</em></code>,
+starting with <code><em>init</em></code>. Returns <code><em>init</em></code> if <code><em>coll</em></code> is <code>nil</code> or
+empty.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+May return reduced object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code>, <code><a href="#transduce_STAR_">transduce*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reduce_augmented_STAR_"><a class="link" href="#reduce_augmented_STAR_">reduce-augmented*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L178">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reduce&#45;augmented* <em>coll reduce&#45;fn r</em>)</code></p>
+</li>
+<li>
+<p><code>(reduce&#45;augmented* <em>coll reduce&#45;fn r init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Any</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns a result of the reduction of <code><em>coll</em></code> with <code><em>reduce-fn</em></code>
+function taking <code>coll</code> <code>reducef</code> <code>init</code> in that order
+(e.g. <code>reduce*</code>), and with the augmented reducing function <code><em>r</em></code>
+and with initial value <code><em>init</em></code>,
+which defaults to <code>(-init r)</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+May return reduced object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#transduce_STAR_">transduce*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reduce_batched_STAR_"><a class="link" href="#reduce_batched_STAR_">reduce-batched*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L148">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reduce&#45;batched* <em>coll reducef init</em>)</code></p>
+</li>
+<li>
+<p><code>(reduce&#45;batched* <em>item&#45;type size&#45;hint coll reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Any</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of batched reduction of <code><em>coll</em></code> with
+<code><em>reducef</em></code>, starting with <code><em>init</em></code>.
+Returns <code><em>init</em></code> if <code><em>coll</em></code> is <code>nil</code> or empty.
+May supply <code><em>item-type</em></code> and <code><em>size-hint</em></code> parameters for
+underlying batched reduction.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+May return reduced object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code>, <code><a href="#transduce_STAR_">transduce*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reduce_unpacked_STAR_"><a class="link" href="#reduce_unpacked_STAR_">reduce-unpacked*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L135">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reduce&#45;unpacked* <em>coll reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Any</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of unpacked reduction of <code><em>coll</em></code> with
+<code><em>reducef</em></code>, starting with <code><em>init</em></code>.
+Returns <code><em>init</em></code> if <code><em>coll</em></code> is <code>nil</code> or empty.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+May return reduced object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code>, <code><a href="#transduce_STAR_">transduce*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reduce_with_batched_STAR_"><a class="link" href="#reduce_with_batched_STAR_">reduce-with-batched*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L164">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reduce&#45;with&#45;batched* <em>coll reducef init</em>)</code></p>
+</li>
+<li>
+<p><code>(reduce&#45;with&#45;batched* <em>item&#45;type size&#45;hint coll reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of batched reduction of <code><em>coll</em></code> with
+<code><em>reducef</em></code> which takes item instead of batch of items.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+May return reduced object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reduced_advance"><a class="link" href="#reduced_advance">reduced-advance</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L394">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reduced&#45;advance <em>ret</em>)</code></p>
+</li>
+<li>
+<p><code>(reduced&#45;advance <em>ret was&#45;reduced?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Boolean) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the reduced result based on <code>ret</code>, which may also be
+a reduced value, while correctly handling potentionally postponed
+result. Can control whether the result should be reduced or not
+with <code><em>was-reduced?</em></code> flag.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#advance_fn">advance&#45;fn</a></code>, <code><a href="#cloned_advance_fn">cloned&#45;advance&#45;fn</a></code>, <code><a href="#finish_advance">finish&#45;advance</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reducing_function"><a class="link" href="#reducing_function">reducing-function</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L108">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reducing&#45;function <em>r</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IReducing) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a reducing function created from augmented reducing
+function <code><em>r</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reducing">dunaj.coll/reducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="strip_reduced"><a class="link" href="#strip_reduced">strip-reduced</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L99">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(strip&#45;reduced <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the underlying referenced object if <code><em>x</em></code> is reduced,
+otherwise returns <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#provide_reduced">provide&#45;reduced</a></code>, <code><a href="dunaj.coll.api.html#reduced">dunaj.coll/reduced</a></code>, <code><a href="dunaj.coll.api.html#reduced_QMARK_">dunaj.coll/reduced?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="transduce_STAR_"><a class="link" href="#transduce_STAR_">transduce*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L193">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(transduce* <em>coll reduce&#45;fn xform reducef</em>)</code></p>
+</li>
+<li>
+<p><code>(transduce* <em>coll reduce&#45;fn xform reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Any</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns a result of the reduction of <code><em>coll</em></code> with <code><em>reduce-fn</em></code>
+function and with the classic reducing function <code><em>reducef</em></code>,
+initial value <code><em>init</em></code> (which defaults to <code>(<em>reducef</em>)</code> if not
+provided), and transducer <code><em>xform</em></code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+May return reduced object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Folds"><a class="link" href="#Folds">Folds</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#fold_STAR_">fold*</a></code> <code><a href="#fold_augmented_STAR_">fold&#45;augmented*</a></code> <code><a href="#fold_batched_STAR_">fold&#45;batched*</a></code> <code><a href="#fold_every">fold&#45;every</a></code> <code><a href="#fold_sectionable">fold&#45;sectionable</a></code> <code><a href="#fold_unpacked_STAR_">fold&#45;unpacked*</a></code> <code><a href="#split_adjust">split&#45;adjust</a></code> <code><a href="#transfold_STAR_">transfold*</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fold_STAR_"><a class="link" href="#fold_STAR_">fold*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L208">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fold* <em>coll reduce&#45;fn pool n combinef reducef</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns result of performing fold on a collection
+<code><em>coll</em></code>, using forkjoin <code><em>pool</em></code> for executing tasks, dividing
+until collection length is equal or less than <code><em>n</em></code>. Uses
+<code><em>combinef</em></code> and <code><em>reducef</em></code> for reduction.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>reduce-fn</em></code> taking <code>coll</code> <code>reducef</code> and <code>init</code> in that
+order for performing actual reduction (put e.g. <code>reduce*</code> there).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#fold_augmented_STAR_">fold&#45;augmented*</a></code>, <code><a href="#fold_batched_STAR_">fold&#45;batched*</a></code>, <code><a href="#fold_unpacked_STAR_">fold&#45;unpacked*</a></code>, <code><a href="#transfold_STAR_">transfold*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fold_augmented_STAR_"><a class="link" href="#fold_augmented_STAR_">fold-augmented*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L224">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fold&#45;augmented* <em>coll reduce&#45;fn pool n r</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ IReducing) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns result of performing fold on a collection
+<code><em>coll</em></code>, using forkjoin <code><em>pool</em></code> for executing tasks, dividing
+until collection length is equal or less than <code><em>n</em></code>. Uses
+augmented reducing function <code><em>r</em></code> for reduction.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>reduce-fn</em></code> taking <code>coll</code> <code>reducef</code> and <code>init</code> in that
+order for performing actual reduction (put e.g. <code>reduce*</code> there).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#fold_STAR_">fold*</a></code>, <code><a href="#fold_batched_STAR_">fold&#45;batched*</a></code>, <code><a href="#fold_unpacked_STAR_">fold&#45;unpacked*</a></code>, <code><a href="#transfold_STAR_">transfold*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fold_batched_STAR_"><a class="link" href="#fold_batched_STAR_">fold-batched*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L240">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fold&#45;batched* <em>coll requested&#45;type size&#45;hint pool n combinef reducef</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ (U nil Class Type) ⨯ (Maybe Integer) ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns result of performing fold on a batchable collection
+<code><em>coll</em></code>, using forkjoin <code><em>pool</em></code> for executing tasks, dividing
+until collection length is equal or less than <code><em>n</em></code>. Uses
+<code><em>combinef</em></code> and <code><em>reducef</em></code> for reduction.</p>
+</div>
+<div class="paragraph">
+<p>Uses batched reduction, passing <code><em>requested-type</em></code> and
+<code><em>size-hint</em></code> arguments.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#fold_STAR_">fold*</a></code>, <code><a href="#fold_augmented_STAR_">fold&#45;augmented*</a></code>, <code><a href="#fold_unpacked_STAR_">fold&#45;unpacked*</a></code>, <code><a href="#transfold_STAR_">transfold*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fold_every"><a class="link" href="#fold_every">fold-every</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L832">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fold&#45;every <em>coll reduce&#45;fn pool n combinef reducef</em>)</code></p>
+</li>
+<li>
+<p><code>(fold&#45;every <em>coll reduce&#45;fn pool n combinef reducef section&#45;fn</em>)</code></p>
+</li>
+<li>
+<p><code>(fold&#45;every <em>coll reduce&#45;fn pool n combinef reducef section&#45;fn count&#45;fn</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(IRed ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(IRed ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns result of performing fold on every item in the collection
+<code><em>coll</em></code>, using forkjoin <code><em>pool</em></code> for executing tasks, dividing
+each item until collection length is equal or less than <code><em>n</em></code>. Uses
+<code><em>combinef</em></code> and <code><em>reducef</em></code> for reduction.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>reduce-fn</em></code> taking <code>coll</code> <code>reducef</code> and <code>init</code> in that
+order for performing actual reduction (put e.g. <code>reduce*</code> there).</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>section-fn</em></code>, which defaults to
+<code><a href="dunaj.coll.api.html#section">section</a></code>, for sectioning items in a
+collection.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>count-fn</em></code>, which defaults to
+<code><a href="dunaj.coll.api.html#count">count</a></code>, for counting items in a
+collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#split_adjust">split&#45;adjust</a></code>, <code><a href="#fold_every">fold&#45;every</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fold_sectionable"><a class="link" href="#fold_sectionable">fold-sectionable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L791">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fold&#45;sectionable <em>coll reduce&#45;fn pool n combinef reducef</em>)</code></p>
+</li>
+<li>
+<p><code>(fold&#45;sectionable <em>coll reduce&#45;fn pool n combinef reducef section&#45;fn</em>)</code></p>
+</li>
+<li>
+<p><code>(fold&#45;sectionable <em>coll reduce&#45;fn pool n combinef reducef section&#45;fn count&#45;fn</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(IRed ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(IRed ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns result of performing fold on a sectionable collection
+<code><em>coll</em></code>, using forkjoin <code><em>pool</em></code> for executing tasks, dividing
+until collection length is equal or less than <code><em>n</em></code>. Uses
+<code><em>combinef</em></code> and <code><em>reducef</em></code> for reduction.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>reduce-fn</em></code> taking <code>coll</code> <code>reducef</code> and <code>init</code> in that
+order for performing actual reduction (put e.g. <code>reduce*</code> there).</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>section-fn</em></code>, which defaults to
+<code><a href="dunaj.coll.api.html#section">section</a></code>, for sectioning collection.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>count-fn</em></code>, which defaults to
+<code><a href="dunaj.coll.api.html#count">count</a></code>, for counting collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#split_adjust">split&#45;adjust</a></code>, <code><a href="#fold_every">fold&#45;every</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fold_unpacked_STAR_"><a class="link" href="#fold_unpacked_STAR_">fold-unpacked*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L262">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fold&#45;unpacked* <em>coll pool n combinef reducef</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns result of performing fold on a batchable collection
+<code><em>coll</em></code>, using forkjoin <code><em>pool</em></code> for executing tasks, dividing
+until collection length is equal or less than <code><em>n</em></code>. Uses
+<code><em>combinef</em></code> and <code><em>reducef</em></code> for reduction.</p>
+</div>
+<div class="paragraph">
+<p>Uses unpacked reduction, faking it for collection that do not
+implement <code><a href="dunaj.coll.spi.html#IUnpackedRed">IUnpackedRed</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#fold_STAR_">fold*</a></code>, <code><a href="#fold_batched_STAR_">fold&#45;batched*</a></code>, <code><a href="#fold_augmented_STAR_">fold&#45;augmented*</a></code>, <code><a href="#transfold_STAR_">transfold*</a></code>, <code><a href="#reduce_augmented_STAR_">reduce&#45;augmented*</a></code>, <code><a href="#reduce_STAR_">reduce*</a></code>, <code><a href="#reduce_batched_STAR_">reduce&#45;batched*</a></code>, <code><a href="#reduce_unpacked_STAR_">reduce&#45;unpacked*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="split_adjust"><a class="link" href="#split_adjust">split-adjust</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L776">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(split&#45;adjust <em>f start end</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ Int ⨯ Int) → (Maybe Int)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Adjusts place where split should happen. Stops at position at
+which <code><em>f</em></code> returns a different result from one returned at
+<code><em>start</em></code> position. Returns <code>nil</code> if <code><em>end</em></code> has been reached and
+no such position was found.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#fold_sectionable">fold&#45;sectionable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="transfold_STAR_"><a class="link" href="#transfold_STAR_">transfold*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L280">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(transfold* <em>coll reduce&#45;fn pool n xform reducef</em>)</code></p>
+</li>
+<li>
+<p><code>(transfold* <em>coll reduce&#45;fn pool n xform combinef reducef</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed ⨯ AnyFn ⨯ ForkJoinPool ⨯ Integer ⨯ AnyFn ⨯ AnyFn) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns result of performing fold on a collection
+<code><em>coll</em></code>, using forkjoin <code><em>pool</em></code> for executing tasks, dividing
+until collection length is equal or less than <code><em>n</em></code>. Uses
+transducer <code><em>xform</em></code>, <code><em>combinef</em></code> and <code><em>reducef</em></code> for reduction.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><em>reduce-fn</em></code> taking <code>coll</code> <code>reducef</code> and <code>init</code> in that
+order for performing actual reduction (put e.g. <code>reduce*</code> there).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Interop"><a class="link" href="#Interop">Interop</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Functions that ease implementing host interoperability for
+     custom collection types.</p>
+</div>
+<div class="paragraph">
+<p>In this section: <code><a href="#coll__GT_iterator">coll&#45;&#62;iterator</a></code> <code><a href="#coll__GT_list_iterator">coll&#45;&#62;list&#45;iterator</a></code> <code><a href="#equals_ordered">equals&#45;ordered</a></code> <code><a href="#index_of">index&#45;of</a></code> <code><a href="#ordered_hash_code">ordered&#45;hash&#45;code</a></code> <code><a href="#unordered_hash_code">unordered&#45;hash&#45;code</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="coll__GT_iterator"><a class="link" href="#coll__GT_iterator">coll&#8594;iterator</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L648">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(coll&#45;&#62;iterator <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → java.util.Iterator</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns
+<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html">Iterator</a>
+for a given <code><em>coll</em></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This function is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#coll__GT_list_iterator">coll&#45;&#62;list&#45;iterator</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="coll__GT_list_iterator"><a class="link" href="#coll__GT_list_iterator">coll&#8594;list-iterator</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L662">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(coll&#45;&#62;list&#45;iterator <em>coll</em>)</code></p>
+</li>
+<li>
+<p><code>(coll&#45;&#62;list&#45;iterator <em>coll i</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → java.util.ListIterator</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ Int) → java.util.ListIterator</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns
+<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html">ListIterator</a>
+for a given <code><em>coll</em></code> starting at <code><em>i</em></code> position, which defaults
+to 0.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This function is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#coll__GT_iterator">coll&#45;&#62;iterator</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="equals_ordered"><a class="link" href="#equals_ordered">equals-ordered</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L705">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(equals&#45;ordered <em>coll other</em>)</code></p>
+</li>
+<li>
+<p><code>(equals&#45;ordered <em>coll other any&#45;immutable?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → Boolean</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93; ⨯ Boolean) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if given sequential collections are equivalent
+according to host equality criteria, otherwise returns
+<code>false</code>. If <code><em>any-immutable?</em></code> is <code>true</code>, accepts any ordered
+collection, not just sequential one.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#equiv_ordered">equiv&#45;ordered</a></code>, <code><a href="#ordered_hash_code">ordered&#45;hash&#45;code</a></code>, <code><a href="#compare_ordered">compare&#45;ordered</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="index_of"><a class="link" href="#index_of">index-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L613">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(index&#45;of <em>coll x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed ⨯ Any) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns index of <code><em>x</em></code> in <code><em>coll</em></code> computed by reducing,
+using <code><a href="dunaj.compare.api.html#_EQ_">&#61;</a></code>
+for equality comparison.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ordered_hash_code"><a class="link" href="#ordered_hash_code">ordered-hash-code</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L624">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ordered&#45;hash&#45;code <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns host hash code for an ordered collection <code><em>coll</em></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This function is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#unordered_hash_code">unordered&#45;hash&#45;code</a></code>, <code><a href="#equals_ordered">equals&#45;ordered</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unordered_hash_code"><a class="link" href="#unordered_hash_code">unordered-hash-code</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L636">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(unordered&#45;hash&#45;code <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns host hash code for an unordered collection <code><em>coll</em></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This function is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ordered_hash_code">ordered&#45;hash&#45;code</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Adapters"><a class="link" href="#Adapters">Adapters</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Adapters are used to limit, in runtime, the functionality of a
+     collection (usually a collection recipe), so that it mimics
+     characteristics of original collection. That way Dunaj can
+     provide more features for processed collections apart from
+     <code>IRed</code>.</p>
+</div>
+<div class="paragraph">
+<p>In this section: <code><a href="#adapt">adapt</a></code> <code><a href="#adapt_STAR_">adapt*</a></code> <code><a href="#adaptB">adaptB</a></code> <code><a href="#adaptBS">adaptBS</a></code> <code><a href="#adaptBU">adaptBU</a></code> <code><a href="#adaptBUS">adaptBUS</a></code> <code><a href="#adaptBUs">adaptBUs</a></code> <code><a href="#adaptBs">adaptBs</a></code> <code><a href="#adaptBu">adaptBu</a></code> <code><a href="#adaptBuS">adaptBuS</a></code> <code><a href="#adaptBus">adaptBus</a></code> <code><a href="#adaptC">adaptC</a></code> <code><a href="#adaptCB">adaptCB</a></code> <code><a href="#adaptCBS">adaptCBS</a></code> <code><a href="#adaptCBU">adaptCBU</a></code> <code><a href="#adaptCBUS">adaptCBUS</a></code> <code><a href="#adaptCBUs">adaptCBUs</a></code> <code><a href="#adaptCBs">adaptCBs</a></code> <code><a href="#adaptCBu">adaptCBu</a></code> <code><a href="#adaptCBuS">adaptCBuS</a></code> <code><a href="#adaptCBus">adaptCBus</a></code> <code><a href="#adaptCS">adaptCS</a></code> <code><a href="#adaptCU">adaptCU</a></code> <code><a href="#adaptCUS">adaptCUS</a></code> <code><a href="#adaptCUs">adaptCUs</a></code> <code><a href="#adaptCb">adaptCb</a></code> <code><a href="#adaptCbS">adaptCbS</a></code> <code><a href="#adaptCbU">adaptCbU</a></code> <code><a href="#adaptCbUS">adaptCbUS</a></code> <code><a href="#adaptCbUs">adaptCbUs</a></code> <code><a href="#adaptCbs">adaptCbs</a></code> <code><a href="#adaptCbu">adaptCbu</a></code> <code><a href="#adaptCbuS">adaptCbuS</a></code> <code><a href="#adaptCbus">adaptCbus</a></code> <code><a href="#adaptCs">adaptCs</a></code> <code><a href="#adaptCu">adaptCu</a></code> <code><a href="#adaptCuS">adaptCuS</a></code> <code><a href="#adaptCus">adaptCus</a></code> <code><a href="#adaptS">adaptS</a></code> <code><a href="#adaptU">adaptU</a></code> <code><a href="#adaptUS">adaptUS</a></code> <code><a href="#adaptUs">adaptUs</a></code> <code><a href="#adaptb">adaptb</a></code> <code><a href="#adaptbS">adaptbS</a></code> <code><a href="#adaptbU">adaptbU</a></code> <code><a href="#adaptbUS">adaptbUS</a></code> <code><a href="#adaptbUs">adaptbUs</a></code> <code><a href="#adaptbs">adaptbs</a></code> <code><a href="#adaptbu">adaptbu</a></code> <code><a href="#adaptbuS">adaptbuS</a></code> <code><a href="#adaptbus">adaptbus</a></code> <code><a href="#adaptc">adaptc</a></code> <code><a href="#adaptcB">adaptcB</a></code> <code><a href="#adaptcBS">adaptcBS</a></code> <code><a href="#adaptcBU">adaptcBU</a></code> <code><a href="#adaptcBUS">adaptcBUS</a></code> <code><a href="#adaptcBUs">adaptcBUs</a></code> <code><a href="#adaptcBs">adaptcBs</a></code> <code><a href="#adaptcBu">adaptcBu</a></code> <code><a href="#adaptcBuS">adaptcBuS</a></code> <code><a href="#adaptcBus">adaptcBus</a></code> <code><a href="#adaptcS">adaptcS</a></code> <code><a href="#adaptcU">adaptcU</a></code> <code><a href="#adaptcUS">adaptcUS</a></code> <code><a href="#adaptcUs">adaptcUs</a></code> <code><a href="#adaptcb">adaptcb</a></code> <code><a href="#adaptcbS">adaptcbS</a></code> <code><a href="#adaptcbU">adaptcbU</a></code> <code><a href="#adaptcbUS">adaptcbUS</a></code> <code><a href="#adaptcbUs">adaptcbUs</a></code> <code><a href="#adaptcbs">adaptcbs</a></code> <code><a href="#adaptcbu">adaptcbu</a></code> <code><a href="#adaptcbuS">adaptcbuS</a></code> <code><a href="#adaptcbus">adaptcbus</a></code> <code><a href="#adaptcs">adaptcs</a></code> <code><a href="#adaptcu">adaptcu</a></code> <code><a href="#adaptcuS">adaptcuS</a></code> <code><a href="#adaptcus">adaptcus</a></code> <code><a href="#adapts">adapts</a></code> <code><a href="#adaptu">adaptu</a></code> <code><a href="#adaptuS">adaptuS</a></code> <code><a href="#adaptus">adaptus</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adapt"><a class="link" href="#adapt">adapt</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adapt <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adapt_STAR_"><a class="link" href="#adapt_STAR_">adapt*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L558">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adapt* <em>coll to oc ob ou os</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ [&#93; ⨯ (Maybe Boolean) ⨯ (Maybe Boolean) ⨯ (Maybe Boolean) ⨯ (Maybe Boolean)) → IRedAdapter</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an adapted <code><em>coll</em></code> with protocol support based on whether
+<code><em>coll</em></code> and <code><em>to</em></code> supports them and whether given argument is
+<code>true</code> (support), <code>nil</code> (depends on <code><em>to</em></code>) or <code>false</code>
+(do not support). Returned collection always supports
+<code><a href="dunaj.coll.spi.html#IRed">IRed</a></code> and
+<code><a href="dunaj.concurrent.forkjoin.spi.html#IFoldable">IFoldable</a></code></p>
+</div>
+<div class="paragraph">
+<p>Following functionalities are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>oc</em></code> - <code><a href="dunaj.coll.spi.html#ICounted">ICounted</a></code></p>
+</li>
+<li>
+<p><code><em>ob</em></code> - <code><a href="dunaj.coll.spi.html#IBatchedRed">IBatchedRed</a></code> and
+<code><a href="dunaj.coll.spi.html#IHomogeneous">IHomogeneous</a></code></p>
+</li>
+<li>
+<p><code><em>ou</em></code> - <code><a href="dunaj.coll.spi.html#IUnpackedRed">IUnpackedRed</a></code></p>
+</li>
+<li>
+<p><code><em>os</em></code> - <code><a href="dunaj.coll.spi.html#ISectionable">ISectionable</a></code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Special functions beginning with <code>adapt</code> are autogenerated for
+cases where some desired features are known at compile-time.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptB"><a class="link" href="#adaptB">adaptB</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptB <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBS"><a class="link" href="#adaptBS">adaptBS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBU"><a class="link" href="#adaptBU">adaptBU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBUS"><a class="link" href="#adaptBUS">adaptBUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBUS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBUs"><a class="link" href="#adaptBUs">adaptBUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBUs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBs"><a class="link" href="#adaptBs">adaptBs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBu"><a class="link" href="#adaptBu">adaptBu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBuS"><a class="link" href="#adaptBuS">adaptBuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBuS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptBus"><a class="link" href="#adaptBus">adaptBus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptBus <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptC"><a class="link" href="#adaptC">adaptC</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptC <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCB"><a class="link" href="#adaptCB">adaptCB</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCB <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBS"><a class="link" href="#adaptCBS">adaptCBS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBU"><a class="link" href="#adaptCBU">adaptCBU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBUS"><a class="link" href="#adaptCBUS">adaptCBUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBUS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBUs"><a class="link" href="#adaptCBUs">adaptCBUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBUs <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBs"><a class="link" href="#adaptCBs">adaptCBs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBu"><a class="link" href="#adaptCBu">adaptCBu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBuS"><a class="link" href="#adaptCBuS">adaptCBuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBuS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCBus"><a class="link" href="#adaptCBus">adaptCBus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCBus <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCS"><a class="link" href="#adaptCS">adaptCS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCU"><a class="link" href="#adaptCU">adaptCU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCUS"><a class="link" href="#adaptCUS">adaptCUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCUS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCUs"><a class="link" href="#adaptCUs">adaptCUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCUs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCb"><a class="link" href="#adaptCb">adaptCb</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCb <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbS"><a class="link" href="#adaptCbS">adaptCbS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbU"><a class="link" href="#adaptCbU">adaptCbU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbUS"><a class="link" href="#adaptCbUS">adaptCbUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbUS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbUs"><a class="link" href="#adaptCbUs">adaptCbUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbUs <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbs"><a class="link" href="#adaptCbs">adaptCbs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbu"><a class="link" href="#adaptCbu">adaptCbu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbuS"><a class="link" href="#adaptCbuS">adaptCbuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbuS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCbus"><a class="link" href="#adaptCbus">adaptCbus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCbus <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCs"><a class="link" href="#adaptCs">adaptCs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCu"><a class="link" href="#adaptCu">adaptCu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCuS"><a class="link" href="#adaptCuS">adaptCuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCuS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptCus"><a class="link" href="#adaptCus">adaptCus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptCus <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptS"><a class="link" href="#adaptS">adaptS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptU"><a class="link" href="#adaptU">adaptU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptUS"><a class="link" href="#adaptUS">adaptUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptUS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptUs"><a class="link" href="#adaptUs">adaptUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptUs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptb"><a class="link" href="#adaptb">adaptb</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptb <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbS"><a class="link" href="#adaptbS">adaptbS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbU"><a class="link" href="#adaptbU">adaptbU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbUS"><a class="link" href="#adaptbUS">adaptbUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbUS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbUs"><a class="link" href="#adaptbUs">adaptbUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbUs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbs"><a class="link" href="#adaptbs">adaptbs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbu"><a class="link" href="#adaptbu">adaptbu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbuS"><a class="link" href="#adaptbuS">adaptbuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbuS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptbus"><a class="link" href="#adaptbus">adaptbus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptbus <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptc"><a class="link" href="#adaptc">adaptc</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptc <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcB"><a class="link" href="#adaptcB">adaptcB</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcB <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBS"><a class="link" href="#adaptcBS">adaptcBS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBU"><a class="link" href="#adaptcBU">adaptcBU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBUS"><a class="link" href="#adaptcBUS">adaptcBUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBUS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBUs"><a class="link" href="#adaptcBUs">adaptcBUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBUs <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBs"><a class="link" href="#adaptcBs">adaptcBs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBu"><a class="link" href="#adaptcBu">adaptcBu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBuS"><a class="link" href="#adaptcBuS">adaptcBuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBuS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcBus"><a class="link" href="#adaptcBus">adaptcBus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcBus <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcS"><a class="link" href="#adaptcS">adaptcS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcU"><a class="link" href="#adaptcU">adaptcU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcUS"><a class="link" href="#adaptcUS">adaptcUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcUS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcUs"><a class="link" href="#adaptcUs">adaptcUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcUs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcb"><a class="link" href="#adaptcb">adaptcb</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcb <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbS"><a class="link" href="#adaptcbS">adaptcbS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbU"><a class="link" href="#adaptcbU">adaptcbU</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbU <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbUS"><a class="link" href="#adaptcbUS">adaptcbUS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbUS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbUs"><a class="link" href="#adaptcbUs">adaptcbUs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbUs <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbs"><a class="link" href="#adaptcbs">adaptcbs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbu"><a class="link" href="#adaptcbu">adaptcbu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbuS"><a class="link" href="#adaptcbuS">adaptcbuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbuS <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcbus"><a class="link" href="#adaptcbus">adaptcbus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcbus <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcs"><a class="link" href="#adaptcs">adaptcs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcs <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcu"><a class="link" href="#adaptcu">adaptcu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcuS"><a class="link" href="#adaptcuS">adaptcuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcuS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptcus"><a class="link" href="#adaptcus">adaptcus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptcus <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adapts"><a class="link" href="#adapts">adapts</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adapts <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptu"><a class="link" href="#adaptu">adaptu</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptu <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptuS"><a class="link" href="#adaptuS">adaptuS</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptuS <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adaptus"><a class="link" href="#adaptus">adaptus</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/helper.clj#L556">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adaptus <em>coll to</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#adapt_STAR_">adapt*</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:11:26 CET
+</div>
+</div>
+</body>
+</html>

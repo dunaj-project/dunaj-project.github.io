@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.host.array API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.host.array API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.host.array</a></div><div class="dd-nav-ns-var"><a href="#aclone"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aclone</span></a></div><div class="dd-nav-ns-var"><a href="#acount"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">acount</span></a></div><div class="dd-nav-ns-var"><a href="#adapt"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">adapt</span></a></div><div class="dd-nav-ns-var"><a href="#aget"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aget</span></a></div><div class="dd-nav-ns-var"><a href="#amap"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">amap</span></a></div><div class="dd-nav-ns-var"><a href="#areduce"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">areduce</span></a></div><div class="dd-nav-ns-var"><a href="#array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">array</span></a></div><div class="dd-nav-ns-var"><a href="#array_item_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">array-item-type</span></a></div><div class="dd-nav-ns-var"><a href="#array_manager"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">array-manager</span></a></div><div class="dd-nav-ns-var"><a href="#array_manager_from"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">array-manager-from</span></a></div><div class="dd-nav-ns-var"><a href="#array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">array?</span></a></div><div class="dd-nav-ns-var"><a href="#aset_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset!</span></a></div><div class="dd-nav-ns-var"><a href="#make_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">make-array</span></a></div><div class="dd-nav-ns-var"><a href="#object_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">object-array</span></a></div><div class="dd-nav-ns-var"><a href="#object_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">object-array?</span></a></div><div class="dd-nav-ns-var"><a href="#to_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">to-array</span></a></div><div class="dd-nav-ns-var"><a href="#to_array_2d"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">to-array-2d</span></a></div><div class="dd-nav-ns-group"><a href="#Primitives">Primitives</a></div><div class="dd-nav-ns-var"><a href="#aset_boolean_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-boolean!</span></a></div><div class="dd-nav-ns-var"><a href="#aset_byte_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-byte!</span></a></div><div class="dd-nav-ns-var"><a href="#aset_char_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-char!</span></a></div><div class="dd-nav-ns-var"><a href="#aset_double_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-double!</span></a></div><div class="dd-nav-ns-var"><a href="#aset_float_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-float!</span></a></div><div class="dd-nav-ns-var"><a href="#aset_int_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-int!</span></a></div><div class="dd-nav-ns-var"><a href="#aset_long_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-long!</span></a></div><div class="dd-nav-ns-var"><a href="#aset_short_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">aset-short!</span></a></div><div class="dd-nav-ns-var"><a href="#boolean_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">boolean-array</span></a></div><div class="dd-nav-ns-var"><a href="#boolean_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">boolean-array?</span></a></div><div class="dd-nav-ns-var"><a href="#booleans"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">booleans</span></a></div><div class="dd-nav-ns-var"><a href="#byte_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">byte-array</span></a></div><div class="dd-nav-ns-var"><a href="#byte_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">byte-array?</span></a></div><div class="dd-nav-ns-var"><a href="#bytes"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">bytes</span></a></div><div class="dd-nav-ns-var"><a href="#char_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">char-array</span></a></div><div class="dd-nav-ns-var"><a href="#char_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">char-array?</span></a></div><div class="dd-nav-ns-var"><a href="#chars"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">chars</span></a></div><div class="dd-nav-ns-var"><a href="#double_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">double-array</span></a></div><div class="dd-nav-ns-var"><a href="#double_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">double-array?</span></a></div><div class="dd-nav-ns-var"><a href="#doubles"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">doubles</span></a></div><div class="dd-nav-ns-var"><a href="#float_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">float-array</span></a></div><div class="dd-nav-ns-var"><a href="#float_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">float-array?</span></a></div><div class="dd-nav-ns-var"><a href="#floats"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">floats</span></a></div><div class="dd-nav-ns-var"><a href="#int_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">int-array</span></a></div><div class="dd-nav-ns-var"><a href="#int_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">int-array?</span></a></div><div class="dd-nav-ns-var"><a href="#ints"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">ints</span></a></div><div class="dd-nav-ns-var"><a href="#long_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">long-array</span></a></div><div class="dd-nav-ns-var"><a href="#long_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">long-array?</span></a></div><div class="dd-nav-ns-var"><a href="#longs"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">longs</span></a></div><div class="dd-nav-ns-var"><a href="#short_array"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">short-array</span></a></div><div class="dd-nav-ns-var"><a href="#short_array_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">short-array?</span></a></div><div class="dd-nav-ns-var"><a href="#shorts"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">shorts</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.host.array API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Host arrays. Arrays do not follow classic collection API in order
+to enable their performance.</p>
+</div>
+<div class="paragraph">
+<p>Array is an abstraction for host array, a low level host specific
+container of objects. Depending on the use case, you
+can work directly with array, utilizing array manager, or wrap
+it into a reducible collection.</p>
+</div>
+<div class="paragraph">
+<p>Simplest way is to wrap array into the <code>ArrayColl</code> by calling
+<code>adapt</code>. In cases where this is not possible or you may want
+better performance, you have following options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>aXXX</code> functions provide inline variants that get rid of boxing
+and also reflection, if you provide a proper type signature,
+or choose function with right suffix.</p>
+</li>
+<li>
+<p>If you do not know the type of array but have array&#8217;s manager,
+use it. It is fast but there will be some boxing.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#aclone">aclone</a></code> <code><a href="#acount">acount</a></code> <code><a href="#adapt">adapt</a></code> <code><a href="#aget">aget</a></code> <code><a href="#amap">amap</a></code> <code><a href="#areduce">areduce</a></code> <code><a href="#array">array</a></code> <code><a href="#array_item_type">array&#45;item&#45;type</a></code> <code><a href="#array_manager">array&#45;manager</a></code> <code><a href="#array_manager_from">array&#45;manager&#45;from</a></code> <code><a href="#array_QMARK_">array?</a></code> <code><a href="#aset_BANG_">aset!</a></code> <code><a href="#make_array">make&#45;array</a></code> <code><a href="#object_array">object&#45;array</a></code> <code><a href="#object_array_QMARK_">object&#45;array?</a></code> <code><a href="#to_array">to&#45;array</a></code> <code><a href="#to_array_2d">to&#45;array&#45;2d</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aclone"><a class="link" href="#aclone">aclone</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aclone)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aclone <em>array</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray) → AnyArray</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a clone of the host array. Works on arrays of known types.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.state.api.html#clone">dunaj.state/clone</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="acount"><a class="link" href="#acount">acount</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/alength)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(acount <em>array</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray) → Int</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the length of the host array.
+Works on arrays of all types.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#aget">aget</a></code>, <code><a href="dunaj.coll.api.html#count">dunaj.coll/count</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="adapt"><a class="link" href="#adapt">adapt</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L925">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(adapt <em>arr</em>)</code></p>
+</li>
+<li>
+<p><code>(adapt <em>am arr</em>)</code></p>
+</li>
+<li>
+<p><code>(adapt <em>arr begin end</em>)</code></p>
+</li>
+<li>
+<p><code>(adapt <em>am arr begin end</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray) → (U ArrayColl BatchableArrayColl)</code></p>
+</li>
+<li>
+<p><code>(ArrayManager ⨯ AnyArray) → (U ArrayColl BatchableArrayColl)</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Int ⨯ Int) → (U ArrayColl BatchableArrayColl)</code></p>
+</li>
+<li>
+<p><code>(ArrayManager ⨯ AnyArray ⨯ Int ⨯ Int) → (U ArrayColl BatchableArrayColl)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an immutable collection which wraps part of a
+given <code><em>arr</em></code>-ay. Does not copy array. Assumes user has
+control over the array and its contents won&#8217;t change.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#areduce">areduce</a></code>, <code><a href="#amap">amap</a></code>, <code><a href="#acount">acount</a></code>, <code><a href="#aget">aget</a></code>, <code><a href="#aset_BANG_">aset!</a></code>, <code><a href="#array_manager">array&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aget"><a class="link" href="#aget">aget</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aget)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aget <em>array idx</em>)</code></p>
+</li>
+<li>
+<p><code>(aget <em>array idx &amp; idxs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Int) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Int ⨯ (Va Int)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the value at the index/indices.
+Works on host arrays of all types.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#aset_BANG_">aset!</a></code>, <code><a href="#acount">acount</a></code>, <code><a href="dunaj.coll.api.html#get">dunaj.coll/get</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="amap"><a class="link" href="#amap">amap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/amap)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(amap <em>a idx ret expr</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Maps an expression <code><em>expr</em></code> across an array <code><em>a</em></code>, using an index
+named <code><em>idx</em></code>, and return value named <code><em>ret</em></code>, initialized to a
+clone of <code><em>a</em></code>, then setting each item of <code><em>ret</em></code> to the
+evaluation of <code><em>expr</em></code>, returning the new array <code><em>ret</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#areduce">areduce</a></code>, <code><a href="#aget">aget</a></code>, <code><a href="#acount">acount</a></code>, <code><a href="dunaj.coll.recipe.api.html#map">dunaj.coll.recipe/map</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="areduce"><a class="link" href="#areduce">areduce</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/areduce)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(areduce <em>a idx ret init expr</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Reduces an expression across an array <code><em>a</em></code>, using an index named
+<code><em>idx</em></code>, and return value named <code><em>ret</em></code>, initialized to <code><em>init</em></code>,
+setting <code><em>ret</em></code> to the evaluation of <code><em>expr</em></code> at each step,
+returning <code><em>ret</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#amap">amap</a></code>, <code><a href="#aget">aget</a></code>, <code><a href="#acount">acount</a></code>, <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="array"><a class="link" href="#array">array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/into-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(array <em>aseq</em>)</code></p>
+</li>
+<li>
+<p><code>(array <em>type aseq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed) → AnyArray</code></p>
+</li>
+<li>
+<p><code>(Class ⨯ IRed) → AnyArray</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an array with components set to the values in <code><em>aseq</em></code>.
+The array&#8217;s component type is <code><em>type</em></code> if provided, or the type
+of the first value in <code><em>aseq</em></code> if present, or <code>Object</code>.
+All values in <code><em>aseq</em></code> must be compatible with the component type.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#make_array">make&#45;array</a></code>, <code><a href="#to_array">to&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="array_item_type"><a class="link" href="#array_item_type">array-item-type</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L487">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(array&#45;item&#45;type <em>arr</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray) → Class</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns array&#8217;s item type.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#item_type">dunaj.coll/item&#45;type</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="array_manager"><a class="link" href="#array_manager">array-manager</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L497">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(array&#45;manager <em>item&#45;type</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil Class Type)) → (Maybe ArrayManager)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns array manager for a given type, or <code>nil</code>
+if given type is not supported.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#array_manager_from">array&#45;manager&#45;from</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="array_manager_from"><a class="link" href="#array_manager_from">array-manager-from</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L506">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(array&#45;manager&#45;from <em>arr</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray) → (Maybe ArrayManager)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns array manager from an existing array <code>arr</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#array_manager">array&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="array_QMARK_"><a class="link" href="#array_QMARK_">array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L256">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is an array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#object_array_QMARK_">object&#45;array?</a></code>, <code><a href="#byte_array_QMARK_">byte&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_BANG_"><a class="link" href="#aset_BANG_">aset!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset! <em>array idx idx2 &amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on host arrays of reference types. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#object_array_QMARK_">object&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="make_array"><a class="link" href="#make_array">make-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/make-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(make&#45;array <em>type len</em>)</code></p>
+</li>
+<li>
+<p><code>(make&#45;array <em>type dim &amp; more&#45;dims</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Class ⨯ Integer) → AnyArray</code></p>
+</li>
+<li>
+<p><code>(Class ⨯ Integer ⨯ (Va Integer)) → AnyArray</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a nil/zero-filled host array of specified <code><em>type</em></code> Class
+and either <code><em>len</em></code> length, or given dimensions.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#to_array">to&#45;array</a></code>, <code><a href="#array">array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="object_array"><a class="link" href="#object_array">object-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/object-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(object&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Object)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of objects.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#object_array_QMARK_">object&#45;array?</a></code>, <code><a href="#to_array">to&#45;array</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="object_array_QMARK_"><a class="link" href="#object_array_QMARK_">object-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L328">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(object&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is an object array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#object_array">object&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="to_array"><a class="link" href="#to_array">to-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/to-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(to&#45;array <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed) → AnyArray</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns host object array and fills it with contents of <code><em>coll</em></code>,
+which must be an immutable collection, array or a host collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#to_array_2d">to&#45;array&#45;2d</a></code>, <code><a href="#make_array">make&#45;array</a></code>, <code><a href="#array">array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="to_array_2d"><a class="link" href="#to_array_2d">to-array-2d</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/to-array-2d)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(to&#45;array&#45;2d <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed) → AnyArray</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns host object array and fills it with object arrays created
+from items of <code><em>coll</em></code>. The items in <code><em>coll</em></code> must be immutable
+collections, arrays or a host collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#to_array">to&#45;array</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primitives"><a class="link" href="#Primitives">Primitives</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Functions specific to host primitive types.</p>
+</div>
+<div class="paragraph">
+<p>In this section: <code><a href="#aset_boolean_BANG_">aset&#45;boolean!</a></code> <code><a href="#aset_byte_BANG_">aset&#45;byte!</a></code> <code><a href="#aset_char_BANG_">aset&#45;char!</a></code> <code><a href="#aset_double_BANG_">aset&#45;double!</a></code> <code><a href="#aset_float_BANG_">aset&#45;float!</a></code> <code><a href="#aset_int_BANG_">aset&#45;int!</a></code> <code><a href="#aset_long_BANG_">aset&#45;long!</a></code> <code><a href="#aset_short_BANG_">aset&#45;short!</a></code> <code><a href="#boolean_array">boolean&#45;array</a></code> <code><a href="#boolean_array_QMARK_">boolean&#45;array?</a></code> <code><a href="#booleans">booleans</a></code> <code><a href="#byte_array">byte&#45;array</a></code> <code><a href="#byte_array_QMARK_">byte&#45;array?</a></code> <code><a href="#bytes">bytes</a></code> <code><a href="#char_array">char&#45;array</a></code> <code><a href="#char_array_QMARK_">char&#45;array?</a></code> <code><a href="#chars">chars</a></code> <code><a href="#double_array">double&#45;array</a></code> <code><a href="#double_array_QMARK_">double&#45;array?</a></code> <code><a href="#doubles">doubles</a></code> <code><a href="#float_array">float&#45;array</a></code> <code><a href="#float_array_QMARK_">float&#45;array?</a></code> <code><a href="#floats">floats</a></code> <code><a href="#int_array">int&#45;array</a></code> <code><a href="#int_array_QMARK_">int&#45;array?</a></code> <code><a href="#ints">ints</a></code> <code><a href="#long_array">long&#45;array</a></code> <code><a href="#long_array_QMARK_">long&#45;array?</a></code> <code><a href="#longs">longs</a></code> <code><a href="#short_array">short&#45;array</a></code> <code><a href="#short_array_QMARK_">short&#45;array?</a></code> <code><a href="#shorts">shorts</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_boolean_BANG_"><a class="link" href="#aset_boolean_BANG_">aset-boolean!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-boolean)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;boolean! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;boolean! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of boolean. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#boolean_array_QMARK_">boolean&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_byte_BANG_"><a class="link" href="#aset_byte_BANG_">aset-byte!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-byte)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;byte! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;byte! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of byte. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#byte_array_QMARK_">byte&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_char_BANG_"><a class="link" href="#aset_char_BANG_">aset-char!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-char)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;char! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;char! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of char. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#char_array_QMARK_">char&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_double_BANG_"><a class="link" href="#aset_double_BANG_">aset-double!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-double)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;double! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;double! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of double. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#double_array_QMARK_">double&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_float_BANG_"><a class="link" href="#aset_float_BANG_">aset-float!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-float)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;float! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;float! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of float. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#float_array_QMARK_">float&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_int_BANG_"><a class="link" href="#aset_int_BANG_">aset-int!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-int)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;int! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;int! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of int. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#int_array_QMARK_">int&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_long_BANG_"><a class="link" href="#aset_long_BANG_">aset-long!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-long)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;long! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;long! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of long. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#long_array_QMARK_">long&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="aset_short_BANG_"><a class="link" href="#aset_short_BANG_">aset-short!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/aset-short)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(aset&#45;short! <em>array idx val</em>)</code></p>
+</li>
+<li>
+<p><code>(aset&#45;short! <em>array idx idx2 clojure.core/&amp; idxv</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyArray ⨯ Integer ⨯ Integer ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Sets the value <code><em>val</em></code> at the index/indices.
+Works on arrays of short. Returns <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#short_array_QMARK_">short&#45;array?</a></code>, <code><a href="#aget">aget</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="boolean_array"><a class="link" href="#boolean_array">boolean-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/boolean-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(boolean&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(boolean&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array Boolean)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array Boolean)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of booleans.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#booleans">booleans</a></code>, <code><a href="#boolean_array_QMARK_">boolean&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="boolean_array_QMARK_"><a class="link" href="#boolean_array_QMARK_">boolean-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L312">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(boolean&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a boolean array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#booleans">booleans</a></code>, <code><a href="#boolean_array">boolean&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="booleans"><a class="link" href="#booleans">booleans</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/booleans)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(booleans <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array Boolean)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to boolean[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#boolean_array">boolean&#45;array</a></code>, <code><a href="#boolean_array_QMARK_">boolean&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="byte_array"><a class="link" href="#byte_array">byte-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/byte-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(byte&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(byte&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Byte)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array java.lang.Byte)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of bytes.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bytes">bytes</a></code>, <code><a href="#byte_array_QMARK_">byte&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="byte_array_QMARK_"><a class="link" href="#byte_array_QMARK_">byte-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L264">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(byte&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a byte array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bytes">bytes</a></code>, <code><a href="#byte_array">byte&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="bytes"><a class="link" href="#bytes">bytes</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/bytes)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(bytes <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array java.lang.Byte)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to byte[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#byte_array">byte&#45;array</a></code>, <code><a href="#byte_array_QMARK_">byte&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="char_array"><a class="link" href="#char_array">char-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/char-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(char&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(char&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Character)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array java.lang.Character)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of chars.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#chars">chars</a></code>, <code><a href="#char_array_QMARK_">char&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="char_array_QMARK_"><a class="link" href="#char_array_QMARK_">char-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L320">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(char&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a char array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#chars">chars</a></code>, <code><a href="#char_array">char&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="chars"><a class="link" href="#chars">chars</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/chars)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(chars <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array java.lang.Character)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to char[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#char_array">char&#45;array</a></code>, <code><a href="#char_array_QMARK_">char&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="double_array"><a class="link" href="#double_array">double-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/double-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(double&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(double&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Double)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array java.lang.Double)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of doubles.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#doubles">doubles</a></code>, <code><a href="#double_array_QMARK_">double&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="double_array_QMARK_"><a class="link" href="#double_array_QMARK_">double-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L304">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(double&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a double array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#doubles">doubles</a></code>, <code><a href="#double_array">double&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="doubles"><a class="link" href="#doubles">doubles</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/doubles)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(doubles <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array java.lang.Double)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to double[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#double_array">double&#45;array</a></code>, <code><a href="#double_array_QMARK_">double&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="float_array"><a class="link" href="#float_array">float-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/float-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(float&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(float&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Float)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array java.lang.Float)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of floats.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#floats">floats</a></code>, <code><a href="#float_array_QMARK_">float&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="float_array_QMARK_"><a class="link" href="#float_array_QMARK_">float-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L296">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(float&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a float array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#floats">floats</a></code>, <code><a href="#float_array">float&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="floats"><a class="link" href="#floats">floats</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/floats)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(floats <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array java.lang.Float)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to float[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#float_array">float&#45;array</a></code>, <code><a href="#float_array_QMARK_">float&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="int_array"><a class="link" href="#int_array">int-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/int-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(int&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(int&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Integer)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array java.lang.Integer)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of ints.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ints">ints</a></code>, <code><a href="#int_array_QMARK_">int&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="int_array_QMARK_"><a class="link" href="#int_array_QMARK_">int-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L280">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(int&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is an array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ints">ints</a></code>, <code><a href="#int_array">int&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ints"><a class="link" href="#ints">ints</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/ints)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ints <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array java.lang.Integer)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to int[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#int_array">int&#45;array</a></code>, <code><a href="#int_array_QMARK_">int&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="long_array"><a class="link" href="#long_array">long-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/long-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(long&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(long&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Long)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array java.lang.Long)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of longs.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#longs">longs</a></code>, <code><a href="#long_array_QMARK_">long&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="long_array_QMARK_"><a class="link" href="#long_array_QMARK_">long-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L288">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(long&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a long array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#longs">longs</a></code>, <code><a href="#long_array">long&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="longs"><a class="link" href="#longs">longs</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/longs)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(longs <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array java.lang.Long)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to long[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#long_array">long&#45;array</a></code>, <code><a href="#long_array_QMARK_">long&#45;array?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="short_array"><a class="link" href="#short_array">short-array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/short-array)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(short&#45;array <em>size&#45;or&#45;seq</em>)</code></p>
+</li>
+<li>
+<p><code>(short&#45;array <em>size init&#45;val&#45;or&#45;seq</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IRed)) → (Array java.lang.Short)</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Any) → (Array java.lang.Short)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates an array of shorts.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#shorts">shorts</a></code>, <code><a href="#short_array_QMARK_">short&#45;array?</a></code>, <code><a href="#array">array</a></code>, <code><a href="#make_array">make&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="short_array_QMARK_"><a class="link" href="#short_array_QMARK_">short-array?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host/array.clj#L272">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(short&#45;array? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a short array, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#shorts">shorts</a></code>, <code><a href="#short_array">short&#45;array</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="shorts"><a class="link" href="#shorts">shorts</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/shorts)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(shorts <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Array java.lang.Short)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Cast to short[]</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#short_array">short&#45;array</a></code>, <code><a href="#short_array_QMARK_">short&#45;array?</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:16:13 CET
+</div>
+</div>
+</body>
+</html>

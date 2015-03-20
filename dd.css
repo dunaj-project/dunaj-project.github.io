@@ -841,6 +841,8 @@ a.link { padding-top: 1em; }
 
 .dd-mmlink:hover { color: #1d4b8f !important; }
 
+.dd-mmsh:hover { color: #1d4b8f; }
+
 #dd-logo { font-family: 'Amaranth', sans-serif; font-weight: 400; font-size: 28px; margin-top: auto; margin-bottom: auto; letter-spacing: 3px; }
 
 #dd-logo img { height: 25px; margin-left: 0.3em; margin-right: 0.3em; margin-top: 0px; margin-bottom: 3px; }
@@ -881,7 +883,7 @@ table.CodeRay pre span.keyword, table pre.CodeRay span.keyword { color: #0b6e0b;
 
 table.CodeRay pre span.comment, table pre.CodeRay span.comment { color: #ba3925; }
 
-#blo { background-repeat: repeat-x; background: url("wave.png"); background-size: 500px, 250px; background-position: 0px 0px; width: 100%; height: 250px; position: absolute; bottom: 20px; left: 0px; opacity: 0.1; z-index: -1; }
+#blo { background-repeat: repeat-x; background: url("wave.png"); background-size: 500px, 250px; background-position: 0px 0px; width: 100%; height: 250px; position: fixed; bottom: 20px; left: 0px; opacity: 0.1; z-index: -1; }
 
 #video-bg { opacity: 0.3; position: fixed; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; z-index: -1; }
 
@@ -926,10 +928,12 @@ table.CodeRay pre span.comment, table pre.CodeRay span.comment { color: #ba3925;
 
 #mce-EMAIL { font-size: 18px; padding: 5px; }
 
-#xfooter { opacity: 0.9; font-family: 'Noto Serif', 'DejaVu Serif', serif; font-size: 18px; color: #235; text-align: center; padding: 0.5em; margin-top: 1em; bottom: 0px; left: 0; width: 100%; }
+#xfooter { opacity: 0.9; font-family: 'Noto Serif', 'DejaVu Serif', serif; font-size: 20px; color: #235; text-align: center; padding: 0.5em; margin-top: 1em; margin-bottom: 1em; bottom: 0px; left: 0; width: 100%; }
 
 div:focus { outline: none; }
 
 @media (max-width: 768px) { #dd-flex { flex-wrap: wrap; }
   #dd-side-nav { flex: 0 1 20%; }
   #dd-content { max-width: 100%; } }
+@media (max-width: 830px) { .dd-mmlink .dd-mmsh { color: #1d4b8f; }
+  .dd-mmlink span { display: none; } }

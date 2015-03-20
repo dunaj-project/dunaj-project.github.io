@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Conventions</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Conventions</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Conventions</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div class="sect1">
+<h2 id="_api_spi">API/SPI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>API includes vars that refer to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>functions</p>
+</li>
+<li>
+<p>macros</p>
+</li>
+<li>
+<p>types, type signatures</p>
+</li>
+<li>
+<p>constants, dynamic vars or other values</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>API must not contain:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>special symbols</p>
+</li>
+<li>
+<p>dynamic vars</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>dunaj.repl</code> is a small exception from this rule</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>host classes or interfaces</p>
+</li>
+<li>
+<p>generated deftypes constructors (positional or named)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>SPI includes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>protocols</p>
+</li>
+<li>
+<p>protocol methods</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Only vars that have <code>:added</code> metadata and are not private are
+included in the API</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docstring_conventions">Docstring conventions</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>defprotocol: "This is" &#8230;&#8203;</p>
+</li>
+<li>
+<p>deftype: "This is" &#8230;&#8203;</p>
+</li>
+<li>
+<p>defn: "This is a function that" &#8230;&#8203;</p>
+</li>
+<li>
+<p>def: "This is a Var that holds" &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_naming_conventions">Naming conventions</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>protocols, types and type signatures are camel cased</p>
+</li>
+<li>
+<p>host names are host specific</p>
+</li>
+<li>
+<p>all other names are hyphenated and in lower case</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Overly long names (like <code>unsynchronized-reference</code>) denote functions
+that are less often needed, or they represent a very specific
+functionality that requires an experienced programmer.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>protocol name starts with big letter 'I'</p>
+</li>
+<li>
+<p>name of an abstract type protocol is a noun
+(e.g. IPersistentVector)</p>
+</li>
+<li>
+<p>name of a feature protocol is an adjective (e.g. ICounted)</p>
+</li>
+<li>
+<p>name of a factory protocol is an adjective which ends with
+'Factory' (e.g. ICollectionFactory)</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_prefixes">Prefixes</h3>
+<div class="paragraph">
+<p>Functions with same prefixes usually provide a similar kind of
+functionality.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-*</code> names a protocol method</p>
+</li>
+<li>
+<p><code>default-*</code> holds a dynamic var</p>
+</li>
+<li>
+<p><code>empty-*</code> holds an empty object of a specific type</p>
+</li>
+<li>
+<p><code>ensure-*</code> throws if a specific requirement is not met</p>
+</li>
+<li>
+<p><code>provide-*</code> returns its argument, adjusted if needed
+(casting, enlarging, etc.)</p>
+</li>
+<li>
+<p><code>&#8594;*</code> names a positional constructor</p>
+</li>
+<li>
+<p><code>with-*</code> names a macro that takes an optional map as its first
+argument</p>
+</li>
+<li>
+<p><code>def*</code> names a macro that interns a var in a namespace.
+Such macros should only be used as top level forms.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_suffixes">Suffixes</h3>
+<div class="paragraph">
+<p>Functions with suffixes often have a variant without one that is
+related to the suffixed function.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>!</code> names a function with side effects, which is usually not safe
+(or possible) to call within a ref transaction</p>
+</li>
+<li>
+<p><code>?</code> names a predicate function that returns a primitive boolean
+value</p>
+</li>
+<li>
+<p><code>*</code> names a supplementary function</p>
+</li>
+<li>
+<p><code>-factory</code> names a factory var</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_collections">Collections</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>collection has items, not elements</p>
+</li>
+<li>
+<p>collection - Implements IRed, can call reduce or seq on it.
+There are no other requirements for a collection.</p>
+</li>
+<li>
+<p>collection recipe - collection that recomputes each time it is
+reduced or converted to seq.</p>
+</li>
+<li>
+<p>immutable/persistent - already computed collection or computes at
+most once</p>
+</li>
+<li>
+<p>seq - persistent collection that implements ISeq</p>
+</li>
+<li>
+<p>mutable collection - transients</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mutable_objects">Mutable objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mutable protocols define methods with specific requirement that after
+the method finishes and returns the result, the mutable
+object which was the input into the method is rendered unusable.
+It must not be used further in any way and produces an undefined
+result when passed to any function.
+This includes functions like <code>identical?</code> or <code>type</code>.
+The returned object should be used instead.</p>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:36 CET
+</div>
+</div>
+</body>
+</html>

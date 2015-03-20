@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.concurrent.thread API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.concurrent.thread API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.concurrent.thread</a></div><div class="dd-nav-ns-var"><a href="#Thread"><i class="dd-referred fa fa-fw fa-archive dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Thread</span></a></div><div class="dd-nav-ns-var"><a href="#current_thread"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">current-thread</span></a></div><div class="dd-nav-ns-var"><a href="#daemon"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">daemon</span></a></div><div class="dd-nav-ns-var"><a href="#daemon_call"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">daemon-call</span></a></div><div class="dd-nav-ns-var"><a href="#default_priority"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">default-priority</span></a></div><div class="dd-nav-ns-var"><a href="#ensure_thread_local"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">ensure-thread-local</span></a></div><div class="dd-nav-ns-var"><a href="#interrupt_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">interrupt!</span></a></div><div class="dd-nav-ns-var"><a href="#interrupted_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">interrupted?</span></a></div><div class="dd-nav-ns-var"><a href="#join"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">join</span></a></div><div class="dd-nav-ns-var"><a href="#max_priority"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">max-priority</span></a></div><div class="dd-nav-ns-var"><a href="#min_priority"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">min-priority</span></a></div><div class="dd-nav-ns-var"><a href="#pass_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">pass!</span></a></div><div class="dd-nav-ns-var"><a href="#passable_thread_local_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">passable-thread-local?</span></a></div><div class="dd-nav-ns-var"><a href="#sleep"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">sleep</span></a></div><div class="dd-nav-ns-var"><a href="#status"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">status</span></a></div><div class="dd-nav-ns-var"><a href="#thread"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">thread</span></a></div><div class="dd-nav-ns-var"><a href="#thread_call"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">thread-call</span></a></div><div class="dd-nav-ns-var"><a href="#thread_local_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">thread-local?</span></a></div><div class="dd-nav-ns-var"><a href="#thread_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">thread?</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.concurrent.thread API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.concurrent.thread.spi.html">SPI documentation</a> for this namespace.</div></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Concurrency primitives for creating and managing threads.</p>
+</div>
+<div class="paragraph">
+<p>Besides normal (user) threads, this namespace provides facilities
+for creating daemon threads, which are threads on which JVM doesn&#8217;t
+wait when exiting.</p>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Thread"><a class="link" href="#Thread">Thread</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L110">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-archive" title="Type"></i></span> TYPE</code></p>
+</div>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-plug" title="Extends"></i></span> Extends: <code><a href="dunaj.feature.spi.html#IConfig">IConfig</a></code>, <code><a href="dunaj.feature.spi.html#IMutableConfig">IMutableConfig</a></code>, <code><a href="dunaj.state.spi.html#IOpenAware">IOpenAware</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type for thread.</p>
+</div>
+<div class="paragraph">
+<p>Thread priority and name can be controlled with mutable and
+ajustable configuration, which is attached to the thread object.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#thread_QMARK_">thread?</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#current_thread">current&#45;thread</a></code>, <code><a href="#daemon">daemon</a></code>, <code><a href="dunaj.concurrent.port.api.html#thread">dunaj.concurrent.port/thread</a></code>, <code><a href="dunaj.concurrent.api.html#future">dunaj.concurrent/future</a></code>, <code><a href="dunaj.feature.api.html#config_ref">dunaj.feature/config&#45;ref</a></code>, <code><a href="dunaj.concurrent.agent.api.html#agent">dunaj.concurrent.agent/agent</a></code>, <code><a href="dunaj.state.api.html#adjust_BANG_">dunaj.state/adjust!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="current_thread"><a class="link" href="#current_thread">current-thread</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L172">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(current&#45;thread)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Thread</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns current thread.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ensure_thread_local">ensure&#45;thread&#45;local</a></code>, <code><a href="#thread">thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="daemon"><a class="link" href="#daemon">daemon</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L294">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(daemon <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Executes <code><em>body</em></code> in a new daemon thread, returning
+immediately to the calling thread. Returns daemon thread.
+First form in <code><em>body</em></code> may be a thread name or options map with
+<code>:name</code> and <code>:priority</code> as allowed keys.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#daemon_call">daemon&#45;call</a></code>, <code><a href="#thread">thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="daemon_call"><a class="link" href="#daemon_call">daemon-call</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L281">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(daemon&#45;call <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(daemon&#45;call <em>f name&#45;or&#45;opts</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Thread</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ (U String KeywordMap)) → Thread</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Executes <code><em>f</em></code> in new daemon thread returning immediately to the
+calling thread. May supply thread name or options map with <code>:name</code>
+and <code>:priority</code> as allowed keys. Returns deamon thread.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#daemon">daemon</a></code>, <code><a href="#thread_call">thread&#45;call</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="default_priority"><a class="link" href="#default_priority">default-priority</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L77">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Integer</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A thread default priority constant.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#min_priority">min&#45;priority</a></code>, <code><a href="#max_priority">max&#45;priority</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#Thread">Thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ensure_thread_local"><a class="link" href="#ensure_thread_local">ensure-thread-local</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L179">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ensure&#45;thread&#45;local <em>thread</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Thread) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Throws if <code><em>thread</em></code> is not current thread. Returns <code>nil</code>.
+Is used to assert that operation is run only in a given <code><em>thread</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#current_thread">current&#45;thread</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#pass_BANG_">pass!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="interrupt_BANG_"><a class="link" href="#interrupt_BANG_">interrupt!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L190">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(interrupt! <em>thread</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Thread) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Interrupts <code><em>thread</em></code>. Returns <code>nil</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Code running in <code><em>thread</em></code> must support the interuption
+logic, which is that <code>interrupted?</code> predicate returns <code>true</code> inside
+interrupted threads and all blocking operations on interrupted
+thread throw interruption related exception.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#interrupted_QMARK_">interrupted?</a></code>, <code><a href="#thread">thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="interrupted_QMARK_"><a class="link" href="#interrupted_QMARK_">interrupted?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L202">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(interrupted?)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if current thread was interrupted, otherwise returns
+<code>false</code>. Thread can be interrupted e.g. by cancelling a future.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+JVM host specific: Interruption may also manifest itself as
+<code>InterruptedException</code> when e.g. thread is waiting or sleeping.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#interrupt_BANG_">interrupt!</a></code>, <code><a href="#current_thread">current&#45;thread</a></code>, <code><a href="#sleep">sleep</a></code>, <code><a href="#join">join</a></code>, <code><a href="#status">status</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="join"><a class="link" href="#join">join</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L221">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(join <em>thread</em>)</code></p>
+</li>
+<li>
+<p><code>(join <em>thread timeout</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Thread) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Thread ⨯ (U IDuration Integer)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Waits for a <code><em>thread</em></code> to die. Optional <code><em>timeout</em></code> can be
+specified. Returns <code>false</code> if returning due to <code><em>timeout</em></code>,
+<code>true</code> otherwise. Throws if interrupted.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#thread">thread</a></code>, <code><a href="#sleep">sleep</a></code>, <code><a href="#daemon">daemon</a></code>, <code><a href="#interrupt_BANG_">interrupt!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="max_priority"><a class="link" href="#max_priority">max-priority</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L65">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Integer</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A thread maximum priority constant.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#min_priority">min&#45;priority</a></code>, <code><a href="#default_priority">default&#45;priority</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#Thread">Thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="min_priority"><a class="link" href="#min_priority">min-priority</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L71">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Integer</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A thread minimum priority constant.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#max_priority">max&#45;priority</a></code>, <code><a href="#default_priority">default&#45;priority</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#Thread">Thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pass_BANG_"><a class="link" href="#pass_BANG_">pass!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L158">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pass! <em>x new&#45;thread</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IPassableThreadLocal ⨯ (Maybe Thread)) → IPassableThreadLocal</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a new object similar to <code><em>x</em></code> that has changed
+its thread ownership to the <code><em>new-thread</em></code>. Must be called in the
+thread that owns the <code><em>x</em></code> object. Throws if not called in the
+owning thread. If the <code><em>new-thread</em></code> is <code>nil</code>, object won&#8217;t be
+owned and can be accessed from any thread.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<code><em>x</em></code> object must not be used again in any way after
+this method, returned one should be used instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ensure_thread_local">ensure&#45;thread&#45;local</a></code>, <code><a href="#current_thread">current&#45;thread</a></code>, <code><a href="#thread">thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="passable_thread_local_QMARK_"><a class="link" href="#passable_thread_local_QMARK_">passable-thread-local?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L139">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(passable&#45;thread&#45;local? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IPassableThreadLocal</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.concurrent.thread.spi.html#IPassableThreadLocal">IPassableThreadLocal</a></code>, <code><a href="dunaj.concurrent.thread.spi.html#IThreadLocal">IThreadLocal</a></code>, <code><a href="#pass_BANG_">pass!</a></code>, <code><a href="#ensure_thread_local">ensure&#45;thread&#45;local</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sleep"><a class="link" href="#sleep">sleep</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L237">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sleep <em>duration</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U IDuration Integer)) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Waits for a specified <code><em>duration</em></code>. Returns <code>nil</code>.
+Throws if interrupted.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#interrupt_BANG_">interrupt!</a></code>, <code><a href="#join">join</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#daemon">daemon</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="status"><a class="link" href="#status">status</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L213">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(status <em>thread</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Thread) → Keyword</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the thread status. Possible values are <code>:new</code>, <code>:blocked</code>,
+<code>:runnable</code>, <code>:terminated</code>, <code>:timed-waiting</code> and <code>:waiting</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#interrupt_BANG_">interrupt!</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#daemon">daemon</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="thread"><a class="link" href="#thread">thread</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L270">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(thread <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Executes <code><em>body</em></code> in another thread, returning immediately to the
+calling thread. Returns thread. First form in <code><em>body</em></code> may be a
+thread name or options map with <code>:name</code>, <code>:priority</code> and <code>:daemon</code>
+as allowed keys.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#thread_call">thread&#45;call</a></code>, <code><a href="#daemon">daemon</a></code>, <code><a href="dunaj.concurrent.port.api.html#thread">dunaj.concurrent.port/thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="thread_call"><a class="link" href="#thread_call">thread-call</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L247">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(thread&#45;call <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(thread&#45;call <em>f name&#45;or&#45;opts</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Thread</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ (U String KeywordMap)) → Thread</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Executes <code><em>f</em></code> in another thread, returning immediately to the
+calling thread. Returns thread. May supply thread name or options
+map with <code>:name</code>, <code>:priority</code> and <code>:daemon</code> as allowed keys.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#thread">thread</a></code>, <code><a href="#daemon_call">daemon&#45;call</a></code>, <code><a href="dunaj.concurrent.port.api.html#thread_call">dunaj.concurrent.port/thread&#45;call</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="thread_local_QMARK_"><a class="link" href="#thread_local_QMARK_">thread-local?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L131">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(thread&#45;local? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IThreadLocal</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.concurrent.thread.spi.html#IThreadLocal">IThreadLocal</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="dunaj.concurrent.thread.spi.html#IPassableThreadLocal">IPassableThreadLocal</a></code>, <code><a href="#pass_BANG_">pass!</a></code>, <code><a href="#ensure_thread_local">ensure&#45;thread&#45;local</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="thread_QMARK_"><a class="link" href="#thread_QMARK_">thread?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/thread.clj#L110">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(thread? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> is an instance of <code>Thread</code> type, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Thread">Thread</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#current_thread">current&#45;thread</a></code>, <code><a href="#daemon">daemon</a></code>, <code><a href="dunaj.concurrent.port.api.html#thread">dunaj.concurrent.port/thread</a></code>, <code><a href="dunaj.concurrent.api.html#future">dunaj.concurrent/future</a></code>, <code><a href="dunaj.feature.api.html#config_ref">dunaj.feature/config&#45;ref</a></code>, <code><a href="dunaj.concurrent.agent.api.html#agent">dunaj.concurrent.agent/agent</a></code>, <code><a href="dunaj.state.api.html#adjust_BANG_">dunaj.state/adjust!</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:15:17 CET
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Data types</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Data types</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Data types</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Protocol - Type - Object ruminations.</p>
+</div>
+<div class="paragraph">
+<p>DRAFT</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_protocol">Protocol</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>One of two ways to represent a concept.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Protocol is computer manifestation of concept</p>
+</li>
+<li>
+<p>Optionally, protocol specifies a set of methods</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The method specification is in terms of namespace qualified
+method name and one or more signatures.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Marker protocol - for grouping objects without any requirements</p>
+</li>
+<li>
+<p>Regular protocol - groups objects and gives a requirement for set
+of methods which they must
+implement if they wish to satisfy this protocol. Method is declared
+by its namespace qualified name and a one or more signatures.</p>
+</li>
+<li>
+<p>Method - A function which dispatches (has different implementation)
+on a type of the object passed as a first argument.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Objects belonging to a given protocol P are said to <strong>satisfy protocol
+P</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_type">Type</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>At least, type can be used in a type annotation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Type has a type and identity.</p>
+</li>
+<li>
+<p>Name of type is not its identity.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>abstract data type - a class of concrete data types. Represented by
+an Abstract type protocol</p>
+</li>
+<li>
+<p>concrete data type - a class of concrete objects. Is created with
+deftype</p>
+</li>
+<li>
+<p>data type - a concrete data type</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_object">Object</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>First class abstraction</p>
+</li>
+<li>
+<p>Object not in sense of OO programming.</p>
+</li>
+<li>
+<p>Object is an instance of a type.</p>
+</li>
+<li>
+<p>Other name for an object - entity.</p>
+</li>
+<li>
+<p>a stable logical entity</p>
+</li>
+<li>
+<p>exists as long as some other object relates to it through its state</p>
+</li>
+<li>
+<p>have a corresponding host representation</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Regarding primitive values:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>If anyone wants to drivel about these supposed distinctions that
+values are not objects etc. please correct yourself. They don&#8217;t have
+to have state. Whether they have identity, yes, 3 has an identity.
+It just happens to be the same identity everywhere. But none of this
+stops it being an object.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Gilad Bracha
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Value object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>conveys an immutable value</p>
+</li>
+<li>
+<p>represented as a distinct object or as a primitive value</p>
+</li>
+<li>
+<p>has identity, in case of primitive values, the value is the
+identity</p>
+</li>
+<li>
+<p>includes Numbers, immutable collections, and primitive numbers,
+if hosts supports it</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Reference object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>has state</p>
+</li>
+<li>
+<p>time model defined by reference type</p>
+</li>
+<li>
+<p>includes Var, Ref, Atom, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Resource object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Computer or network resource</p>
+</li>
+<li>
+<p>Of limited availability</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Async object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>models asynchronous computation</p>
+</li>
+<li>
+<p>future, promise, agent, channel</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Macro object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>immutable</p>
+</li>
+<li>
+<p>not first class</p>
+</li>
+<li>
+<p>can be hold only by Var</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Protocol/Type object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>map-like</p>
+</li>
+<li>
+<p>is first class</p>
+</li>
+<li>
+<p>represents a protocol/type</p>
+</li>
+<li>
+<p>immutable</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Function object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>immutable</p>
+</li>
+<li>
+<p>represents a function</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Object has following observable parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>required:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>identity (in general you cannot get its value, just compare two
+identities together)</p>
+</li>
+<li>
+<p>you cannot ask "what&#8217;s the value of this object&#8217;s identity?",
+or "give me the identity of this object". Identity of object
+cannot be separated from object itself. It is not some
+independent value. All you can do with identity is to compare two
+object based on their identity.</p>
+</li>
+<li>
+<p>identity is the relation each thing bears just to itself (WP).
+This relation is exposed in identical? predicate.</p>
+</li>
+<li>
+<p>type name (nominal type system)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>optional and mutually exclusive:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>value (immutable)</p>
+</li>
+<li>
+<p>state</p>
+<div class="ulist">
+<ul>
+<li>
+<p>object can relate to different object in different points of time</p>
+</li>
+<li>
+<p>controlled mutable relation between object and another object</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>optional:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>auxiliary states - does not affect value, if the object is the
+value object</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Observable means that there exists a function or a method for this
+type of the object, such as the output of this method is dependent
+on given part of the object.</p>
+</div>
+<div class="paragraph">
+<p>What you can do with object is determined by protocols which the
+object&#8217;s type implement. The only guaranteed things you can do with
+every object are getting its type and perform identity comparison.</p>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:40 CET
+</div>
+</div>
+</body>
+</html>

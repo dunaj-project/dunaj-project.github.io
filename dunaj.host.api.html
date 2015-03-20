@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.host API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.host API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.host</a></div><div class="dd-nav-ns-var"><a href="#."><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">.</span></a></div><div class="dd-nav-ns-var"><a href="#.."><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">..</span></a></div><div class="dd-nav-ns-var"><a href="#AnyArray"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">AnyArray</span></a></div><div class="dd-nav-ns-var"><a href="#AnyBatch"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">AnyBatch</span></a></div><div class="dd-nav-ns-var"><a href="#Array"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">Array</span></a></div><div class="dd-nav-ns-var"><a href="#ArrayManager"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">ArrayManager</span></a></div><div class="dd-nav-ns-var"><a href="#Batch"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">Batch</span></a></div><div class="dd-nav-ns-var"><a href="#BatchManager"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">BatchManager</span></a></div><div class="dd-nav-ns-var"><a href="#Class"><i class="dd-referred fa fa-fw fa-archive dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Class</span></a></div><div class="dd-nav-ns-var"><a href="#bases"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">bases</span></a></div><div class="dd-nav-ns-var"><a href="#bean__GT_map"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">bean->map</span></a></div><div class="dd-nav-ns-var"><a href="#class"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">class</span></a></div><div class="dd-nav-ns-var"><a href="#class_instance_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">class-instance?</span></a></div><div class="dd-nav-ns-var"><a href="#class_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">class?</span></a></div><div class="dd-nav-ns-var"><a href="#definterface"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">definterface</span></a></div><div class="dd-nav-ns-var"><a href="#ensure_class_instance"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">ensure-class-instance</span></a></div><div class="dd-nav-ns-var"><a href="#gen_class"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">gen-class</span></a></div><div class="dd-nav-ns-var"><a href="#gen_interface"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">gen-interface</span></a></div><div class="dd-nav-ns-var"><a href="#keyword__GT_class"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">keyword->class</span></a></div><div class="dd-nav-ns-var"><a href="#new"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">new</span></a></div><div class="dd-nav-ns-var"><a href="#provide_class"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">provide-class</span></a></div><div class="dd-nav-ns-var"><a href="#proxy"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">proxy</span></a></div><div class="dd-nav-ns-var"><a href="#proxy_super"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">proxy-super</span></a></div><div class="dd-nav-ns-var"><a href="#set_BANG_"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">set!</span></a></div><div class="dd-nav-ns-var"><a href="#supers"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">supers</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.host API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Host interoperability.</p>
+</div>
+<div class="paragraph">
+<p>Arrays and batches have more functionalities defined in separate
+namespaces,
+<a href="dunaj.host.array.api.html#dunaj.host.array">dunaj.host.array</a> and
+<a href="dunaj.host.batch.api.html#dunaj.host.batch">dunaj.host.batch</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Documentation needs more work.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="."><a class="link" href="#.">.</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L64">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(. <em>&amp; args</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>The '.' macro is the basis for access to host.
+It can be considered a member-access operator, and/or read
+as 'in the scope of'.</p>
+</div>
+<div class="paragraph">
+<p>If the first operand is a symbol that resolves to a class name,
+the access is considered to be to a static member of the named
+class. Note that nested classes are named
+<code>EnclosingClass$NestedClass</code>, if supported by host. Otherwise it
+is presumed to be an instance member and the first argument is
+evaluated to produce the target object.</p>
+</div>
+<div class="paragraph">
+<p>If the second operand is a symbol and no args are supplied it
+is taken to be a field access - the name of the field is the
+name of the symbol, and the value of the expression is the
+value of the field, unless there is no argument public method
+of the same name, in which case it resolves to a call to the
+method.</p>
+</div>
+<div class="paragraph">
+<p>If the second operand is a list, or args are supplied, it is
+taken to be a method call. The first item of the list must
+be a simple symbol, and the name of the method is the name of
+the symbol. The args, if any, are evaluated from left to right,
+and passed to the matching method, which is called, and its value
+returned. If the method has a void return type, the value of the
+expression will be nil. Note that placing the method name in a
+list with any args is optional in the canonic form, but can be
+useful to gather args in macros built upon the form.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.host.api.html#..">dunaj.host/..</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id=".."><a class="link" href="#..">..</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/..)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(.. <em>x form</em>)</code>&#160;  <code>(.. <em>x form &amp; more</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Expands into a member access <code>(.)</code> of the first member on the
+first argument, followed by the next member on the result, etc.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.host.api.html#.">dunaj.host/.</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="AnyArray"><a class="link" href="#AnyArray">AnyArray</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L547">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ArraySignature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for heterogeneous host arrays or host arrays
+with unspecified item type.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Array">Array</a></code>, <code><a href="#ArrayManager">ArrayManager</a></code>, <code><a href="dunaj.host.array.api.html#array_manager">dunaj.host.array/array&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="AnyBatch"><a class="link" href="#AnyBatch">AnyBatch</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L414">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature representing batch.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Batch">Batch</a></code>, <code><a href="#BatchManager">BatchManager</a></code>, <code><a href="dunaj.host.batch.api.html#batch_manager">dunaj.host.batch/batch&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Array"><a class="link" href="#Array">Array</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L554">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Array <em>sig</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Signature) → ArraySignature</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a type signature for a host array that has items
+satisfying type signature <code><em>sig</em></code>, or returns AnyArray.</p>
+</div>
+<div class="paragraph">
+<p>Assumes that host supports arrays with unspecified type
+and that host arrays are hinted through non-primitive type hints.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#AnyArray">AnyArray</a></code>, <code><a href="#ArrayManager">ArrayManager</a></code>, <code><a href="dunaj.host.array.api.html#array_manager">dunaj.host.array/array&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ArrayManager"><a class="link" href="#ArrayManager">ArrayManager</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L567">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature representing array manager.</p>
+</div>
+<div class="paragraph">
+<p>Array manager provides following host methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(^java.lang.Class itemType [])</code> - returns item type</p>
+</li>
+<li>
+<p><code>(allocate [^int size])</code> - returns new array of given size</p>
+</li>
+<li>
+<p><code>(duplicate [arr])</code> - returns new array with content copied
+from arr</p>
+</li>
+<li>
+<p><code>(duplicate [arr ^int begin ^int end])</code> - returns new array
+with content copied from array section arr</p>
+</li>
+<li>
+<p><code>(^int count [arr])</code> - returns number of items in the array</p>
+</li>
+<li>
+<p><code>(get [arr ^int index])</code> - returns item at given position</p>
+</li>
+<li>
+<p><code>(set [arr ^int index val])</code> - sets item at given position</p>
+</li>
+<li>
+<p><code>(copyToBatch [arr ^java.nio.Buffer buf ^int offset ^int
+length])</code> - copies contents from arr into batch buf</p>
+</li>
+<li>
+<p><code>(sort [arr])</code> - sorts the array in place with natural ordering.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Array">Array</a></code>, <code><a href="#AnyArray">AnyArray</a></code>, <code><a href="dunaj.host.array.api.html#array_manager">dunaj.host.array/array&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Batch"><a class="link" href="#Batch">Batch</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L430">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Batch <em>sig</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Signature) → Signature</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a type signature for a host batch that has items
+satisfying type signature <code><em>sig</em></code>, or returns <code>AnyBatch</code> if
+signature is not supported by host.</p>
+</div>
+<div class="paragraph">
+<p>Assumes that host supports generic batches and that host batches
+are hinted through non-primitive type hints.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#AnyBatch">AnyBatch</a></code>, <code><a href="#BatchManager">BatchManager</a></code>, <code><a href="dunaj.host.batch.api.html#batch_manager">dunaj.host.batch/batch&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="BatchManager"><a class="link" href="#BatchManager">BatchManager</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L442">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature representing batch manager.</p>
+</div>
+<div class="paragraph">
+<p>Batch manager provides following host methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(^java.lang.Class itemType [])</code> - returns item type</p>
+</li>
+<li>
+<p><code>(^java.nio.Buffer wrap [arr ^int offset ^int length])</code> -
+returns new batch which wraps given array section</p>
+</li>
+<li>
+<p><code>(^java.nio.Buffer allocate [^int size])</code> - returns new batch
+with given size</p>
+</li>
+<li>
+<p><code>(^java.nio.Buffer readOnly [^java.nio.Buffer buf])</code> - returns
+new batch which shares data but is read only</p>
+</li>
+<li>
+<p><code>(get [^java.nio.Buffer buf])</code> - returns item at current position
+and increases position</p>
+</li>
+<li>
+<p><code>(get [^java.nio.Buffer buf ^int index])</code> - returns item at
+given position</p>
+</li>
+<li>
+<p><code>(^java.nio.Buffer put [^java.nio.Buffer buf val])</code> - puts
+item and increases posision</p>
+</li>
+<li>
+<p><code>(^java.nio.Buffer put [^java.nio.Buffer buf ^int index val])</code> -
+puts item at given position</p>
+</li>
+<li>
+<p><code>(^java.nio.Buffer copy [^java.nio.Buffer src ^java.nio.Buffer
+dst])</code> - copy contents from src batch to dst batch</p>
+</li>
+<li>
+<p><code>(^java.nio.Buffer copy [^java.nio.Buffer src arr ^int offset
+^int length])</code> - copy content from src batch to arr array.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Batch">Batch</a></code>, <code><a href="#AnyBatch">AnyBatch</a></code>, <code><a href="dunaj.host.batch.api.html#batch_manager">dunaj.host.batch/batch&#45;manager</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Class"><a class="link" href="#Class">Class</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L146">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-archive" title="Type"></i></span> TYPE</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A host class type.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#class_QMARK_">class?</a></code>, <code><a href="#class">class</a></code>, <code><a href="#class_instance_QMARK_">class&#45;instance?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="bases"><a class="link" href="#bases">bases</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/bases)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(bases <em>c</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Class) → [Class&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the immediate superclass and direct interfaces of
+<code><em>c</em></code>, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#supers">supers</a></code>, <code><a href="#class_instance_QMARK_">class&#45;instance?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="bean__GT_map"><a class="link" href="#bean__GT_map">bean&#8594;map</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/bean)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(bean&#45;&#62;map <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → {clojure.lang.Keyword Any}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a Java object and returns a read-only implementation of the
+map abstraction based upon its JavaBean properties.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="class"><a class="link" href="#class">class</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/class)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(class <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Class</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the Class of <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Class">Class</a></code>, <code><a href="#class_instance_QMARK_">class&#45;instance?</a></code>, <code><a href="#ensure_class_instance">ensure&#45;class&#45;instance</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="class_instance_QMARK_"><a class="link" href="#class_instance_QMARK_">class-instance?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/instance?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(class&#45;instance? <em>c x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Class ⨯ Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> is <code><em>x</em></code> is an instance of the class <code><em>c</em></code>,
+otherwise returns <code>true</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#class">class</a></code>, <code><a href="#ensure_class_instance_QMARK_">ensure&#45;class&#45;instance?</a></code>, <code><a href="dunaj.poly.api.html#instance_QMARK_">dunaj.poly/instance?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="class_QMARK_"><a class="link" href="#class_QMARK_">class?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L146">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(class? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> is an instance of <code>Class</code> type, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Class">Class</a></code>, <code><a href="#class">class</a></code>, <code><a href="#class_instance_QMARK_">class&#45;instance?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="definterface"><a class="link" href="#definterface">definterface</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/definterface2)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(definterface <em>name &amp; sigs</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Creates a new Java interface with the given name and method sigs.
+The method return types and parameter types may be specified
+with type hints, defaulting to Object if omitted.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure">(definterface MyInterface
+  (^<span class="keyword">int</span> method1 [x])
+  (^Bar method2 [^Baz b ^Quux q]))</code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.poly.api.html#defprotocol">dunaj.poly/defprotocol</a></code>, <code><a href="#gen_class">gen&#45;class</a></code>, <code><a href="#gen_interface">gen&#45;interface</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ensure_class_instance"><a class="link" href="#ensure_class_instance">ensure-class-instance</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/cast)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ensure&#45;class&#45;instance <em>c x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Class ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>x</em></code>, throwing if <code><em>x</em></code> cannot be cast to class <code><em>c</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#class">class</a></code>, <code><a href="#class_instance_QMARK_">class&#45;instance?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="gen_class"><a class="link" href="#gen_class">gen-class</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/gen-class)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(gen-class <em>&amp; options</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>When compiling, generates compiled bytecode for a class with the
+given package-qualified <code>:name</code> (which, as all names in these
+parameters, can be a string or symbol), and writes the .class
+file to the ompile-path directory. When not compiling, does
+nothing. The gen-class construct contains no implementation, as
+the implementation will be dynamically sought by the generated
+class in functions in an implementing Clojure namespace.
+Given a generated class <code>org.mydomain.MyClass</code> with a method
+named mymethod, gen-class will generate an implementation that
+looks for a function named by <code>(str prefix mymethod)</code>
+(default prefix: '-') in a Clojure namespace specified by
+<code>:impl-ns</code> (defaults to the current namespace). All inherited
+methods, generated methods, and init and main functions
+(see <code>:methods</code>, <code>:init</code>, and <code>:main</code> below) will be found
+similarly prefixed. By default, the static initializer for the
+generated class will attempt to load the Clojure support code for
+the class as a resource from the classpath, e.g. in the example
+case, <code>org/mydomain/MyClass__init.class</code>.
+This behavior can be controlled by <code>:load-impl-ns</code></p>
+</div>
+<div class="paragraph">
+<p>Note that methods with a maximum of 18 parameters are supported.</p>
+</div>
+<div class="paragraph">
+<p>In all subsequent sections taking types, the primitive types can
+be referred to by their Java names (int, float etc), and classes
+in the java.lang package can be used without a package qualifier.
+All other classes must be fully qualified.</p>
+</div>
+<div class="paragraph">
+<p>Options should be a set of key/value pairs, all except for
+<code>:name</code> are optional:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:name aname</code> - The package-qualified name of the class to be
+generated</p>
+</li>
+<li>
+<p><code>:extends aclass</code> - Specifies the superclass, the non-private
+methods of which will be overridden by the class. If not
+provided, defaults to Object.</p>
+</li>
+<li>
+<p><code>:implements [interface &#8230;&#8203;]</code> - One or more interfaces,
+the methods of which will be implemented by the class.</p>
+</li>
+<li>
+<p><code>:init name</code> - If supplied, names a function that will be
+called with the arguments to the constructor. Must return
+<code>[ [superclass-constructor-args] state]</code> If not supplied,
+the constructor args are passed directly to the superclass
+constructor and the state will be <code>nil</code></p>
+</li>
+<li>
+<p><code>:constructors {[param-types] [super-param-types], &#8230;&#8203;}</code> -
+By default, constructors are created for the generated class
+which match the signature(s) of the constructors for the
+superclass. This parameter may be used to explicitly specify
+constructors, each entry providing a mapping from a constructor
+signature to a superclass constructor signature. When you supply
+this, you must supply an :init specifier.</p>
+</li>
+<li>
+<p><code>:post-init name</code> - If supplied, names a function that will be
+called with the object as the first argument, followed by the
+arguments to the constructor. It will be called every time an
+object of this class is created, immediately after all the
+inherited constructors have completed. Its return value is
+ignored.</p>
+</li>
+<li>
+<p><code>:methods [ [name [param-types] return-type], &#8230;&#8203;]</code> - The
+generated class automatically defines all of the non-private
+methods of its superclasses/interfaces. This parameter can be
+used to specify the signatures of additional methods of the
+generated class. Static methods can be specified with
+<code>^{:static true}</code> in the signature’s metadata.
+Do not repeat superclass/interface signatures here.</p>
+</li>
+<li>
+<p><code>:main boolean</code> - If supplied and true, a static public main
+function will be generated. It will pass each string of the
+<code>String[]</code> argument as a separate argument to a function called
+<code>(str prefix main)</code>.</p>
+</li>
+<li>
+<p><code>:factory name</code> - If supplied, a (set of) public static factory
+function(s) will be created with the given name, and the same
+signature(s) as the constructor(s).</p>
+</li>
+<li>
+<p><code>:state name</code> - If supplied, a public final instance field with
+the given name will be created. You must supply an <code>:init</code>
+function in order to provide a value for the state. Note that,
+though final, the state can be a ref or agent, supporting the
+creation of Java objects with transactional or asynchronous
+mutation semantics.</p>
+</li>
+<li>
+<p><code>:exposes {protected-field-name {:get name :set name}, &#8230;&#8203;}</code> -
+Since the implementations of the methods of the generated class
+occur in Clojure functions, they have no access to the inherited
+protected fields of the superclass. This parameter can be used
+to generate public getter/setter methods exposing the protected
+field(s) for use in the implementation.</p>
+</li>
+<li>
+<p><code>:exposes-methods {super-method-name exposed-name, &#8230;&#8203;}</code> - It is
+sometimes necessary to call the superclass' implementation of an
+overridden method. Those methods may be exposed and referred in
+the new method implementation by a local name.</p>
+</li>
+<li>
+<p><code>:prefix string</code> - Default: '-'. Methods called e.g. Foo will be
+looked up in vars called prefixFoo in the implementing ns.</p>
+</li>
+<li>
+<p><code>:impl-ns name</code> - Default: the name of the current ns.
+Implementations of methods will be looked up in this namespace.</p>
+</li>
+<li>
+<p><code>:load-impl-ns boolean</code> - Default: <code>true</code>. Causes the static
+initializer for the generated class to reference the load code
+for the implementing namespace. Should be <code>true</code> when
+implementing-ns is the default, <code>false</code> if you intend to load
+the code via some other method.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#gen_interface">gen&#45;interface</a></code>, <code><a href="dunaj.lib.api.html#ns">dunaj.lib/ns</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="gen_interface"><a class="link" href="#gen_interface">gen-interface</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/gen-interface)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(gen-interface <em>&amp; options</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>When compiling, generates compiled bytecode for an interface with
+the given package-qualified <code>:name</code> (which, as all names in these
+parameters, can be a string or symbol), and writes the .class
+file to the compile-path directory. When not compiling, does
+nothing.</p>
+</div>
+<div class="paragraph">
+<p>In all subsequent sections taking types, the primitive types can
+be referred to by their Java names (int, float etc), and classes
+in the java.lang package can be used without a package qualifier.
+All other classes must be fully qualified.</p>
+</div>
+<div class="paragraph">
+<p>Options should be a set of key/value pairs, all except for <code>:name</code>
+are optional:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:name aname</code> - The package-qualified name of the class to be
+generated</p>
+</li>
+<li>
+<p><code>:extends [interface &#8230;&#8203;]</code> - One or more interfaces, which will
+be extended by this interface.</p>
+</li>
+<li>
+<p><code>:methods [ [name [param-types] return-type], &#8230;&#8203;]</code> - This
+parameter is used to specify the signatures of the methods of
+the generated interface. Do not repeat superinterface signatures
+here.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#gen_class">gen&#45;class</a></code>, <code><a href="dunaj.lib.api.html#ns">dunaj.lib/ns</a></code>, <code><a href="#definterface">definterface</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="keyword__GT_class"><a class="link" href="#keyword__GT_class">keyword&#8594;class</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L193">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(keyword->class <em>k</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns class from a given keyword <code><em>k</em></code> or <code>nil</code> if keyword is
+not recognized.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#provide_class">provide&#45;class</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="new"><a class="link" href="#new">new</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L42">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(new <em>classname &amp; args</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns a new object constructed by calling constructor of the
+class named by <code><em>classname</em></code>, passing <code><em>args</em></code> evaluated from
+left to right into the constructor.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#class_instance_QMARK_">class&#45;instance?</a></code>, <code><a href="dunaj.host.api.html#.">dunaj.host/.</a></code>, <code><a href="dunaj.host.api.html#..">dunaj.host/..</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="provide_class"><a class="link" href="#provide_class">provide-class</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L212">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(provide-class <em>x</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns class from a given keyword, type or class, or returns <code>nil</code>
+if <code><em>x</em></code> is not recognized.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#keyword__GT_class">keyword&#45;&#62;class</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="proxy"><a class="link" href="#proxy">proxy</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/proxy)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(proxy <em>class-and-interfaces args &amp; fs</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Where</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>class-and-interfaces</code> - a vector of class names</p>
+</li>
+<li>
+<p><code>args</code> - a (possibly empty) vector of arguments to the
+superclass constructor.</p>
+</li>
+<li>
+<p><code>f</code> - <code>(name [params*] body)</code> or
+<code>(name ([params*] body) ([params+] body) &#8230;&#8203;​)</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Expands to code which creates a instance of a proxy class that
+implements the named class/interface(s) by calling the supplied
+fns. A single class, if provided, must be first. If not provided
+it defaults to Object.</p>
+</div>
+<div class="paragraph">
+<p>The interfaces names must be valid interface types. If a method
+fn is not provided for a class method, the superclass methd will
+be called. If a method fn is not provided for an interface method,
+an UnsupportedOperationException will be thrown should it be
+called. Method fns are closures and can capture the environment
+in which proxy is called. Each method fn takes an additional
+implicit first arg, which is bound to <code>this</code>. Note that while
+method fns can be provided to override protected methods, they
+have no other access to protected members, nor to super, as
+these capabilities cannot be proxied.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#proxy_super">proxy&#45;super</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="proxy_super"><a class="link" href="#proxy_super">proxy-super</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/proxy-super)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(proxy-super <em>meth &amp; args</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Use to call a superclass method in the body of a proxy method.
+Note that expansion captures <code>this</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#proxy">proxy</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="set_BANG_"><a class="link" href="#set_BANG_">set!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/host.clj#L52">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(set! <em>field-access-form expr</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Assigns evaluated <code><em>expr</em></code> to the field identified by
+<code><em>field-access-form</em></code>. Returns <code>nil</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Returning <code>nil</code> is a change from Clojure, as <code>set!</code> special
+form autoboxes returned value and it is preferred for mutating fns
+to return <code>nil</code> anyway.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="supers"><a class="link" href="#supers">supers</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/supers)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(supers <em>c</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Class) → [Class&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the immediate and indirect superclasses and interfaces
+of <code><em>c</em></code>, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bases">bases</a></code>, <code><a href="#class_instance_QMARK_">class&#45;instance?</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:16:11 CET
+</div>
+</div>
+</body>
+</html>

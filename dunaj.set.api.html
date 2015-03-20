@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.set API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.set API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.set</a></div><div class="dd-nav-ns-var"><a href="#ComplementSet"><i class="fa fa-fw fa-archive dd-mmsh"></i><span class="dd-nav-ns-var-text">ComplementSet</span></a></div><div class="dd-nav-ns-var"><a href="#U"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">U</span></a></div><div class="dd-nav-ns-var"><a href="#UniversalSet"><i class="fa fa-fw fa-archive dd-mmsh"></i><span class="dd-nav-ns-var-text">UniversalSet</span></a></div><div class="dd-nav-ns-var"><a href="#complement_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">complement?</span></a></div><div class="dd-nav-ns-var"><a href="#finite_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">finite?</span></a></div><div class="dd-nav-ns-var"><a href="#universal_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">universal?</span></a></div><div class="dd-nav-ns-group"><a href="#Operations">Operations</a></div><div class="dd-nav-ns-var"><a href="#difference"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">difference</span></a></div><div class="dd-nav-ns-var"><a href="#index"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">index</span></a></div><div class="dd-nav-ns-var"><a href="#intersection"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">intersection</span></a></div><div class="dd-nav-ns-var"><a href="#join"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">join</span></a></div><div class="dd-nav-ns-var"><a href="#project"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">project</span></a></div><div class="dd-nav-ns-var"><a href="#rename"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">rename</span></a></div><div class="dd-nav-ns-var"><a href="#select"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">select</span></a></div><div class="dd-nav-ns-var"><a href="#set_complement"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">set-complement</span></a></div><div class="dd-nav-ns-var"><a href="#subset_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">subset?</span></a></div><div class="dd-nav-ns-var"><a href="#superset_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">superset?</span></a></div><div class="dd-nav-ns-var"><a href="#union"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">union</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.set API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Universal and complement sets, set operations.</p>
+</div>
+<div class="paragraph">
+<p>Universal sets are useful as identity elements for reductions
+and folding, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure">(<span class="keyword">reduce</span> intersection [#{<span class="integer">0</span> <span class="integer">1</span> <span class="integer">2</span>} #{<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span>} #{<span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span>}])
+<span class="comment">;;=&gt; #{2}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Prefer aliasing this namespace (as shown in the usage
+example) to refering its functions.
+</td>
+</tr>
+</table>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-74"><label class="dd-example-label" for="toggle-74">1 usage example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.set <span class="symbol">:as</span> ds]))
+
+(ds/set-complement #{})
+<span class="comment">;;=&gt; 𝕌</span>
+
+(ds/difference ds/U #{<span class="integer">1</span> <span class="integer">2</span>})
+<span class="comment">;;=&gt; #{1 2}ᶜ</span>
+
+(ds/union #{<span class="integer">1</span>} (<span class="keyword">disj</span> ds/U <span class="integer">3</span>) (<span class="keyword">disj</span> ds/U <span class="integer">4</span> <span class="integer">3</span>) #{<span class="integer">4</span>})
+<span class="comment">;;=&gt; #{3}ᶜ</span>
+
+(ds/union (<span class="keyword">disj</span> ds/U <span class="integer">3</span> <span class="integer">4</span>) (<span class="keyword">disj</span> ds/U <span class="integer">4</span>) #{<span class="integer">4</span>})
+<span class="comment">;;=&gt; 𝕌</span>
+
+(ds/intersection (<span class="keyword">disj</span> ds/U <span class="integer">3</span>) (<span class="keyword">disj</span> ds/U <span class="integer">4</span> <span class="integer">3</span>))
+<span class="comment">;;=&gt; #{4 3}ᶜ</span>
+
+(ds/intersection #{<span class="integer">4</span> <span class="integer">5</span>} (<span class="keyword">disj</span> ds/U <span class="integer">3</span> <span class="integer">5</span>) #{<span class="integer">3</span> <span class="integer">4</span>})
+<span class="comment">;;=&gt; #{4}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#ComplementSet">ComplementSet</a></code> <code><a href="#U">U</a></code> <code><a href="#UniversalSet">UniversalSet</a></code> <code><a href="#complement_QMARK_">complement?</a></code> <code><a href="#finite_QMARK_">finite?</a></code> <code><a href="#universal_QMARK_">universal?</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ComplementSet"><a class="link" href="#ComplementSet">ComplementSet</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L63">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-archive" title="Type"></i></span> TYPE</code></p>
+</div>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-plug" title="Extends"></i></span> Extends: <code><a href="dunaj.coll.spi.html#ICatenable">ICatenable</a></code>, <code><a href="dunaj.coll.spi.html#ICounted">ICounted</a></code>, <code><a href="dunaj.coll.spi.html#IEmptyAware">IEmptyAware</a></code>, <code><a href="dunaj.coll.spi.html#IEmptyable">IEmptyable</a></code>, <code><a href="dunaj.coll.spi.html#IInvertible">IInvertible</a></code>, <code><a href="dunaj.function.spi.html#IInvocable">IInvocable</a></code>, <code><a href="dunaj.coll.spi.html#ILookup">ILookup</a></code>, <code><a href="dunaj.feature.spi.html#IMeta">IMeta</a></code>, <code><a href="dunaj.coll.spi.html#IPersistentCollection">IPersistentCollection</a></code>, <code><a href="dunaj.feature.spi.html#IPersistentMeta">IPersistentMeta</a></code>, <code><a href="dunaj.coll.spi.html#IPersistentSet">IPersistentSet</a></code>, <code><a href="dunaj.coll.spi.html#IRed">IRed</a></code>, <code><a href="dunaj.coll.spi.html#ISeqable">ISeqable</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type for absolute complement set.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#complement_QMARK_">complement?</a></code>, <code><a href="#set_complement">set&#45;complement</a></code>, <code><a href="#U">U</a></code>, <code><a href="#finite_QMARK_">finite?</a></code>, <code><a href="dunaj.coll.api.html#invert">dunaj.coll/invert</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="U"><a class="link" href="#U">U</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L233">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>UniversalSet</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Universal set 𝕌.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#set_complement">set&#45;complement</a></code>, <code><a href="#finite_QMARK_">finite?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="UniversalSet"><a class="link" href="#UniversalSet">UniversalSet</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L125">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-archive" title="Type"></i></span> TYPE</code></p>
+</div>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-plug" title="Extends"></i></span> Extends: <code><a href="dunaj.coll.spi.html#ICatenable">ICatenable</a></code>, <code><a href="dunaj.coll.spi.html#ICounted">ICounted</a></code>, <code><a href="dunaj.coll.spi.html#IEmptyAware">IEmptyAware</a></code>, <code><a href="dunaj.coll.spi.html#IEmptyable">IEmptyable</a></code>, <code><a href="dunaj.coll.spi.html#IInvertible">IInvertible</a></code>, <code><a href="dunaj.function.spi.html#IInvocable">IInvocable</a></code>, <code><a href="dunaj.coll.spi.html#ILookup">ILookup</a></code>, <code><a href="dunaj.feature.spi.html#IMeta">IMeta</a></code>, <code><a href="dunaj.coll.spi.html#IPersistentCollection">IPersistentCollection</a></code>, <code><a href="dunaj.feature.spi.html#IPersistentMeta">IPersistentMeta</a></code>, <code><a href="dunaj.coll.spi.html#IPersistentSet">IPersistentSet</a></code>, <code><a href="dunaj.coll.spi.html#IRed">IRed</a></code>, <code><a href="dunaj.coll.spi.html#ISeqable">ISeqable</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type for universal set.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#universal_QMARK_">universal?</a></code>, <code><a href="#U">U</a></code>, <code><a href="#set_complement">set&#45;complement</a></code>, <code><a href="#finite_QMARK_">finite?</a></code>, <code><a href="dunaj.coll.api.html#invert">dunaj.coll/invert</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="complement_QMARK_"><a class="link" href="#complement_QMARK_">complement?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L63">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(complement? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> is an instance of <code>ComplementSet</code> type, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ComplementSet">ComplementSet</a></code>, <code><a href="#set_complement">set&#45;complement</a></code>, <code><a href="#U">U</a></code>, <code><a href="#finite_QMARK_">finite?</a></code>, <code><a href="dunaj.coll.api.html#invert">dunaj.coll/invert</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="finite_QMARK_"><a class="link" href="#finite_QMARK_">finite?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L251">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(finite? <em>set</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{}) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> is <code><em>set</em></code> is finite, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#set_complement">set&#45;complement</a></code>, <code><a href="#U">U</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="universal_QMARK_"><a class="link" href="#universal_QMARK_">universal?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L125">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(universal? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> is an instance of <code>UniversalSet</code> type, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#UniversalSet">UniversalSet</a></code>, <code><a href="#U">U</a></code>, <code><a href="#set_complement">set&#45;complement</a></code>, <code><a href="#finite_QMARK_">finite?</a></code>, <code><a href="dunaj.coll.api.html#invert">dunaj.coll/invert</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Operations"><a class="link" href="#Operations">Operations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#difference">difference</a></code> <code><a href="#index">index</a></code> <code><a href="#intersection">intersection</a></code> <code><a href="#join">join</a></code> <code><a href="#project">project</a></code> <code><a href="#rename">rename</a></code> <code><a href="#select">select</a></code> <code><a href="#set_complement">set&#45;complement</a></code> <code><a href="#subset_QMARK_">subset?</a></code> <code><a href="#superset_QMARK_">superset?</a></code> <code><a href="#union">union</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="difference"><a class="link" href="#difference">difference</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L372">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(difference <em>s1</em>)</code></p>
+</li>
+<li>
+<p><code>(difference <em>s1 s2</em>)</code></p>
+</li>
+<li>
+<p><code>(difference <em>s1 s2 &amp; sets</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{}) → #{}</code></p>
+</li>
+<li>
+<p><code>(#{} ⨯ #{}) → #{}</code></p>
+</li>
+<li>
+<p><code>(#{} ⨯ #{} ⨯ (Va #{})) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a set that is the first set without items of the
+remaining sets.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#union">union</a></code>, <code><a href="#intersection">intersection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="index"><a class="link" href="#index">index</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L343">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(index <em>xrel ks</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{} ⨯ [Any&#93;) → {}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a map of the distinct values of <code><em>ks</em></code> in the <code><em>xrel</em></code>
+mapped to a set of the maps in <code><em>xrel</em></code> with the corresponding
+values of <code><em>ks</em></code>.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="intersection"><a class="link" href="#intersection">intersection</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L281">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(intersection)</code></p>
+</li>
+<li>
+<p><code>(intersection <em>s1</em>)</code></p>
+</li>
+<li>
+<p><code>(intersection <em>s1 s2</em>)</code></p>
+</li>
+<li>
+<p><code>(intersection <em>s1 s2 &amp; sets</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → #{}</code></p>
+</li>
+<li>
+<p><code>(#{}) → #{}</code></p>
+</li>
+<li>
+<p><code>(#{} ⨯ #{}) → #{}</code></p>
+</li>
+<li>
+<p><code>(#{} ⨯ #{} ⨯ (Va #{})) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Return a set that is the intersection of the input sets.
+<code>(intersection)</code> returns <code>𝕌</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#union">union</a></code>, <code><a href="#difference">difference</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="join"><a class="link" href="#join">join</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L355">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(join <em>xrel yrel</em>)</code></p>
+</li>
+<li>
+<p><code>(join <em>xrel yrel km</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{} ⨯ #{}) → #{}</code></p>
+</li>
+<li>
+<p><code>(#{} ⨯ #{} ⨯ {}) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>When passed 2 rels, returns the rel corresponding to the natural
+join. When passed an additional keymap <code><em>km</em></code>,
+joins on the corresponding keys.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="project"><a class="link" href="#project">project</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L320">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(project <em>xrel ks</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{} ⨯ [Any&#93;) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a rel of the items of <code><em>xrel</em></code> with only the keys in
+<code><em>ks</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#select">select</a></code>, <code><a href="#rename">rename</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rename"><a class="link" href="#rename">rename</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L332">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rename <em>xrel kmap</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{} ⨯ {}) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a rel of the maps in <code><em>xrel</em></code> with the keys in <code><em>kmap`</em>
+renamed to the vals in `<em>kmap</em></code>.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="select"><a class="link" href="#select">select</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L308">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(select <em>pred xset</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Predicate ⨯ #{}) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a set of the items from <code><em>xset</em></code> for which <code><em>pred</em></code>
+is logically true.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#project">project</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="set_complement"><a class="link" href="#set_complement">set-complement</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L240">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(set&#45;complement <em>set</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{}) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>setᶜ</em></code>, a complement of <code><em>set</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#U">U</a></code>, <code><a href="#finite_QMARK_">finite?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="subset_QMARK_"><a class="link" href="#subset_QMARK_">subset?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L394">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(subset? <em>s1 s2</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{} ⨯ #{}) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>s1</em></code> is a subset of <code><em>s2</em></code>, otherwise
+returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#superset_QMARK_">superset?</a></code>, <code><a href="dunaj.coll.api.html#contains_QMARK_">dunaj.coll/contains?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="superset_QMARK_"><a class="link" href="#superset_QMARK_">superset?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L412">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(superset? <em>s1 s2</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(#{} ⨯ #{}) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>s1</em></code> is a superset of <code><em>s2</em></code>, otherwise
+returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#subset_QMARK_">subset?</a></code>, <code><a href="dunaj.coll.api.html#contains_QMARK_">dunaj.coll/contains?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="union"><a class="link" href="#union">union</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/set.clj#L260">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(union)</code></p>
+</li>
+<li>
+<p><code>(union <em>s1</em>)</code></p>
+</li>
+<li>
+<p><code>(union <em>s1 s2</em>)</code></p>
+</li>
+<li>
+<p><code>(union <em>s1 s2 &amp; sets</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → #{}</code></p>
+</li>
+<li>
+<p><code>(#{}) → #{}</code></p>
+</li>
+<li>
+<p><code>(#{} ⨯ #{}) → #{}</code></p>
+</li>
+<li>
+<p><code>(#{} ⨯ #{} ⨯ (Va #{})) → #{}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Return a set that is the union of the input sets.
+<code>(union)</code> returns <code>#{}</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#intersection">intersection</a></code>, <code><a href="#difference">difference</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:19:52 CET
+</div>
+</div>
+</body>
+</html>

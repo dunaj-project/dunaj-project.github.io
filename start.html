@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Getting Started</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Getting Started</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink dd-mmcur" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Getting Started</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can start using Dunaj just like any other Clojure library,
+but with a small exception. As Dunaj is a fork of Clojure,
+you must exclude original Clojure from your dependency tree.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj tries hard to be backwards compatible with existing Clojure
+libraries. As Dunaj introduces qualified special symbols, some
+problems may arise in libraries that perform code analysis or eval
+code in other namespaces.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Dunaj requires Oracle JDK 8. Also note that so far Dunaj
+has only been tested under Linux.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_leiningen">Using Leiningen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To start using Dunaj, include following dependency in your leiningen project:</p>
+</div>
+<div class="paragraph">
+<p><code><strong>[org.dunaj/dunaj "0.3.7"]</strong></code></p>
+</div>
+<div class="paragraph">
+<p>Use leiningen&#8217;s <code>:exclusions</code> to exclude any Clojure dependency:</p>
+</div>
+<div class="paragraph">
+<p><code>[com.example/foo "1.2.3" :exclusions [org.clojure/clojure]]</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also start using Dunaj with a
+<a href="https://github.com/dunaj-project/dunaj-starter">dunaj-starter</a>
+leiningen project. Clone starter repository with
+<code>git clone <a href="https://github.com/dunaj-project/dunaj-starter.git" class="bare">https://github.com/dunaj-project/dunaj-starter.git</a></code>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_repl">REPL</h3>
+<div class="paragraph">
+<p>After starting REPL (e.g. with <code>lein repl</code>), eval <code>(dunaj!)</code> form
+to start working with Dunaj:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>user=&gt; (dunaj!)
+<span class="error">#</span>object[clojure.lang.Namespace <span class="integer">0</span>x2fe126bf <span class="string"><span class="delimiter">&quot;</span><span class="content">dunaj.user</span><span class="delimiter">&quot;</span></span>]
+dunaj.user=&gt; (println! (<span class="keyword">str</span> (<span class="keyword">print</span> json [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span>] {<span class="symbol">:a</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>})))
+[<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>] {<span class="string"><span class="delimiter">&quot;</span><span class="content">a</span><span class="delimiter">&quot;</span></span><span class="error">:</span><span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>}
+<span class="predefined-constant">nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_in_sources">Use in sources</h3>
+<div class="paragraph">
+<p>To use Dunaj in your sources, use <code>:api</code> ns declaration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj))
+
+(<span class="keyword">defn</span> <span class="function">bar</span> <span class="symbol">:-</span> String
+  [s <span class="symbol">:-</span> String]
+  (<span class="keyword">str</span> (<span class="keyword">print</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello %s!</span><span class="delimiter">&quot;</span></span> s)))
+
+(<span class="keyword">defn</span> <span class="function">foo</span> <span class="symbol">:-</span> <span class="predefined-constant">nil</span>
+  [s <span class="symbol">:-</span> String]
+  (println! (bar s))
+  <span class="predefined-constant">nil</span>)
+
+(foo <span class="string"><span class="delimiter">&quot;</span><span class="content">World</span><span class="delimiter">&quot;</span></span>)</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_standalone_repl">Standalone REPL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Other method to start Dunaj REPL is to use a standalone .jar file.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download <a href="release/dunaj-latest.jar">latest standalone binary</a></p>
+</li>
+<li>
+<p>Start with <code>java -cp dunaj-latest.jar dunaj.main</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Alternatively, you can start a clojure REPL with
+<code>java -cp dunaj-latest.jar clojure.main</code> and then use
+<code>(dunaj!)</code> to switch to Dunaj.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:01 CET
+</div>
+</div>
+</body>
+</html>

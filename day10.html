@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj  - Captivating Documentation</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj  - Captivating Documentation</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day5.html">Reducers First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day7.html">Data Formatters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day8.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day9.html">Improved Math</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="day10.html">Documentation</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj  - Captivating Documentation</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Last Dunaj experiment aims to improve API&#8217;s primary documentation and
+documentation generation facilities.</p>
+</div>
+<div class="paragraph">
+<p>Current documentation is available at project&#8217;s homepage at
+<a href="http://dunaj.org">dunaj.org</a>. API and SPI documentation is
+automatically generated from Dunaj sources. Other parts of
+the documentation are written in AsciiDoc format and are available in
+project&#8217;s repository alongside other sources.
+Everything is released under the same license as Clojure.</p>
+</div>
+<div class="paragraph">
+<p>Library used for the actual documentation generation can be used
+to generate documentation of any Clojure project, and will be released
+soon.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_annotated_documentation">Annotated documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>API documentation is presented in a clear and user friendly way.
+Vars in a given namespace are grouped by their purpose into
+several categories. In addition to Var&#8217;s docstring, type signatures,
+examples and see also references are provided.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ide_support">IDE Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj defines special Var metadata that provide additional information
+to IDEs. With these metadata, editors can offer improved and more
+precise highlighting and indentation. IDE related metadata are as
+follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:indent</code> - <code>nil</code>/integer/<code>:all</code> - Indent style, number of
+arguments treated as function arguments</p>
+</li>
+<li>
+<p><code>:indent-group</code> - <code>nil</code>/integer - cond-like grouping of arguments
+per line</p>
+</li>
+<li>
+<p><code>:highlight</code> - keyword - optional highlight group. Dunaj uses
+<code>:def</code>, <code>:host</code>, <code>:flow</code> and <code>:warn</code>.</p>
+</li>
+<li>
+<p><code>:named</code> - <code>true</code>/<code>false</code>/<code>:optional</code> -
+form&#8217;s second argument is (an optional) a symbol name</p>
+</li>
+<li>
+<p><code>:let-bindings</code> - <code>true</code>/<code>false</code> -
+form&#8217;s second argument is a let-like binding vector</p>
+</li>
+<li>
+<p><code>:fn-params</code> - <code>true</code>/<code>false</code> -
+form&#8217;s second argument is a fn-like params vector</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj&#8217;s CLJ pretty printer uses above metadata to improve
+highlighting and indentation too.</p>
+</div>
+</div>
+</div><div id="disqus_thread"></div><script>var disqus_shortname = 'dunajproject'; var disqus_identifier = 'day10'; (function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname +
+                              '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] ||
+                     document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:22 CET
+</div>
+</div>
+</body>
+</html>

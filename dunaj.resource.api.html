@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.resource API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.resource API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.resource</a></div><div class="dd-nav-ns-var"><a href="#acquire_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">acquire!</span></a></div><div class="dd-nav-ns-var"><a href="#exchange_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">exchange!</span></a></div><div class="dd-nav-ns-var"><a href="#format"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">format</span></a></div><div class="dd-nav-ns-var"><a href="#read"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">read</span></a></div><div class="dd-nav-ns-var"><a href="#read_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">read!</span></a></div><div class="dd-nav-ns-var"><a href="#read_one_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">read-one!</span></a></div><div class="dd-nav-ns-var"><a href="#readable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">readable?</span></a></div><div class="dd-nav-ns-var"><a href="#resource"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">resource</span></a></div><div class="dd-nav-ns-var"><a href="#slurp"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">slurp</span></a></div><div class="dd-nav-ns-var"><a href="#spit_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">spit!</span></a></div><div class="dd-nav-ns-var"><a href="#spit_with_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">spit-with!</span></a></div><div class="dd-nav-ns-var"><a href="#transform"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">transform</span></a></div><div class="dd-nav-ns-var"><a href="#writable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">writable?</span></a></div><div class="dd-nav-ns-var"><a href="#write_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">write!</span></a></div><div class="dd-nav-ns-var"><a href="#write_one_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">write-one!</span></a></div><div class="dd-nav-ns-group"><a href="#Scope">Scope</a></div><div class="dd-nav-ns-var"><a href="#grab_scope"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">grab-scope</span></a></div><div class="dd-nav-ns-var"><a href="#in_scope_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">in-scope?</span></a></div><div class="dd-nav-ns-var"><a href="#releasable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">releasable?</span></a></div><div class="dd-nav-ns-var"><a href="#release_scope_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">release-scope!</span></a></div><div class="dd-nav-ns-var"><a href="#scope_push_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">scope-push!</span></a></div><div class="dd-nav-ns-var"><a href="#with_io_scope"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">with-io-scope</span></a></div><div class="dd-nav-ns-var"><a href="#with_scope"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">with-scope</span></a></div><div class="dd-nav-ns-group"><a href="#System">System</a></div><div class="dd-nav-ns-var"><a href="#assoc_deps"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">assoc-deps</span></a></div><div class="dd-nav-ns-var"><a href="#deps"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">deps</span></a></div><div class="dd-nav-ns-var"><a href="#start_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">start!</span></a></div><div class="dd-nav-ns-var"><a href="#system"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">system</span></a></div><div class="dd-nav-ns-var"><a href="#system_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">system?</span></a></div><div class="dd-nav-ns-group"><a href="#Other">Other</a></div><div class="dd-nav-ns-var"><a href="#control_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">control!</span></a></div><div class="dd-nav-ns-var"><a href="#controllable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">controllable?</span></a></div><div class="dd-nav-ns-var"><a href="#controller"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">controller</span></a></div><div class="dd-nav-ns-var"><a href="#flush_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">flush!</span></a></div><div class="dd-nav-ns-var"><a href="#flushable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">flushable?</span></a></div><div class="dd-nav-ns-var"><a href="#position"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">position</span></a></div><div class="dd-nav-ns-var"><a href="#request_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">request!</span></a></div><div class="dd-nav-ns-var"><a href="#requestable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">requestable?</span></a></div><div class="dd-nav-ns-var"><a href="#seekable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">seekable?</span></a></div><div class="dd-nav-ns-var"><a href="#size"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">size</span></a></div><div class="dd-nav-ns-var"><a href="#status"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">status</span></a></div><div class="dd-nav-ns-var"><a href="#status_of"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">status-of</span></a></div><div class="dd-nav-ns-var"><a href="#statusable_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">statusable?</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.resource API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.resource.spi.html">SPI documentation</a> for this namespace.</div></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Computer and network resources, systems, scopes.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+dunaj.resource API is a very early experiment with
+         incomplete functionality. Expect rough edges.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Basic characteristics of a resource is its limited availability
+within a computer system. Additional informations are available in
+the <a href="resources.html">resource specification</a>.</p>
+</div>
+<div class="paragraph">
+<p>User acquires a resource with acquire! function. Resource
+is a stateful object and is released within a given scope.
+Resource can be in one of following states:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>OPEN (dunaj.state/open?)</p>
+</li>
+<li>
+<p>FAILED (dunaj.error/error)</p>
+</li>
+<li>
+<p>CANCELLED (dunaj.state/cancelled?)</p>
+</li>
+<li>
+<p>CLOSED (not observable)</p>
+</li>
+<li>
+<p>RELEASING (not observable)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>State transitions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>after acquiring: OPEN or FAILED</p>
+</li>
+<li>
+<p>when working with resource: OPEN &#8594; OPEN, OPEN &#8594; FAILED</p>
+</li>
+<li>
+<p>evaluation hits end of scope: OPEN &#8594; RELEASING</p>
+</li>
+<li>
+<p>after release is done: RELEASING &#8594; CLOSED, RELEASING &#8594; FAILED</p>
+</li>
+<li>
+<p>cancelling the release process: RELEASING &#8594; CANCELLED.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Resources with composite bands implement classic collection
+protocols (IIndexed, ILookup, ICounted). Resources where
+individuals items can be sent/received implement ISourcePort
+and ITargetPort. If resource contains single value, it can
+implement IReference or IBlockingReference.
+Resources can implement custom error handling.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#acquire_BANG_">acquire!</a></code> <code><a href="#exchange_BANG_">exchange!</a></code> <code><a href="#format">format</a></code> <code><a href="#read">read</a></code> <code><a href="#read_BANG_">read!</a></code> <code><a href="#read_one_BANG_">read&#45;one!</a></code> <code><a href="#readable_QMARK_">readable?</a></code> <code><a href="#resource">resource</a></code> <code><a href="#slurp">slurp</a></code> <code><a href="#spit_BANG_">spit!</a></code> <code><a href="#spit_with_BANG_">spit&#45;with!</a></code> <code><a href="#transform">transform</a></code> <code><a href="#writable_QMARK_">writable?</a></code> <code><a href="#write_BANG_">write!</a></code> <code><a href="#write_one_BANG_">write&#45;one!</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="acquire_BANG_"><a class="link" href="#acquire_BANG_">acquire!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L407">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(acquire! <em>factory</em>)</code></p>
+</li>
+<li>
+<p><code>(acquire! <em>factory uri&#45;or&#45;map &amp; options</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IAcquirableFactory) → Any</code></p>
+</li>
+<li>
+<p><code>(IAcquirableFactory ⨯ Any ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Acquires object from a given <code><em>factory</em></code>, pushes it
+into current scope if it is releasable and returns it.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code>:scope</code> entry in <code><em>factory</em></code> to customize scope pushing
+process. Classic scope keys are <code>:timeout</code>, <code>:timeout-mode</code> and
+<code>:mode</code>.</p>
+</div>
+<div class="paragraph">
+<p>Special <code>:scope</code> option called <code>:release-fn</code> overrides releasing.
+If set, it must contain two args fn accepting weak reference to
+acquired object and scope options. This custom function will then
+be called when releasing instead of standard release process, and
+it can return <code>nil</code> or other releasable object (or reference to
+one), which will then be released.</p>
+</div>
+<div class="paragraph">
+<p>Throws if object cannot be acquired.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-56"><label class="dd-example-label" for="toggle-56">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource <span class="symbol">:refer</span> [size]]))
+
+(with-scope
+  (size (acquire! (file <span class="string"><span class="delimiter">&quot;</span><span class="content">src/clj/dunaj/resource.clj</span><span class="delimiter">&quot;</span></span>))))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#with_scope">with&#45;scope</a></code>, <code><a href="#resource">resource</a></code>, <code><a href="dunaj.resource.spi.html#IAcquirableFactory">IAcquirableFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="exchange_BANG_"><a class="link" href="#exchange_BANG_">exchange!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L730">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(exchange! <em>resource coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IWritable ⨯ IRed) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Writes <code><em>coll</em></code> into <code><em>resource</em></code>. Without waiting for <code>write!</code> to
+finish, returns result of <code>read!</code>-ing the <code><em>resource</em></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While the <code>write!</code> exception is eaten, the write error
+results in the resource going into failed state with exception
+retrievable with <code>error</code> fn and returned reducible throwing when
+reduced.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Should not be used for non-blocking resource, as the write could
+postpone without a possibility to advance.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#spit_BANG_">spit!</a></code>, <code><a href="#slurp">slurp</a></code>, <code><a href="#write_BANG_">write!</a></code>, <code><a href="#read_BANG_">read!</a></code>, <code><a href="#format">format</a></code>, <code><a href="#transform">transform</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="format"><a class="link" href="#format">format</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L748">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(format <em>formatter&#45;factory resource</em>)</code></p>
+</li>
+<li>
+<p><code>(format <em>parser&#45;factory printer&#45;factory resource</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((I IParserFactory IPrinterFactory) ⨯ (I IReadable IWritable)) → (I IReadable IWritable)</code></p>
+</li>
+<li>
+<p><code>(IParserFactory ⨯ IPrinterFactory ⨯ (I IReadable IWritable)) → (I IReadable IWritable)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a readable and writable <code><em>resource</em></code> formatted with a given
+<code><em>formatter</em></code> factory for both reading and writing. May also supply
+parser and printer factories separately.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-57"><label class="dd-example-label" for="toggle-57">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+</pre></td>
+  <td class="code"><pre>(with-io-scope
+  (<span class="keyword">-&gt;&gt;</span> (resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>)
+       acquire!
+       (<span class="keyword">format</span> utf-8)
+       read!
+       (<span class="keyword">take</span> <span class="integer">50</span>)
+       <span class="keyword">str</span>))
+<span class="comment">;;=&gt; &quot;&lt;!doctype html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Example D&quot;</span>
+
+<span class="comment">;; using slurp convenience function</span>
+(with-scope (<span class="keyword">str</span> (<span class="keyword">take</span> <span class="integer">50</span> (<span class="keyword">slurp</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>))))
+<span class="comment">;;=&gt; &quot;&lt;!doctype html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Example D&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#exchange">exchange</a></code>, <code><a href="#transform">transform</a></code>, <code><a href="#read_BANG_">read!</a></code>, <code><a href="#write_BANG_">write!</a></code>, <code><a href="#slurp">slurp</a></code>, <code><a href="#spit_BANG_">spit!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="read"><a class="link" href="#read">read</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L459">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(read <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U String Uri IImmutableReadable)) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns finite collection recipe attached to the object <code><em>x</em></code>.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-58"><label class="dd-example-label" for="toggle-58">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">def</span> <span class="function">v</span>
+  (with-io-scope
+    (<span class="keyword">vec</span> (<span class="keyword">read</span> (resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://md5.jsontest.com/?text=Dunaj</span><span class="delimiter">&quot;</span></span>)))))
+<span class="comment">;;=&gt; #'foo.baz/v</span>
+
+v
+<span class="comment">;;=&gt; [123 10 32 32 32 34 109 100 53 34 58 32 34 98 52 99 53 98 54 53 97 50 55 57 98 100 49 97 51 57 49 51 55 49 50 100 57 55 97 55 52 55 50 53 54 34 44 10 32 32 32 34 111 114 105 103 105 110 97 108 34 58 32 34 68 117 110 97 106 34 10 125 10]</span>
+
+(parse-whole json (parse utf-8 v))
+<span class="comment">;;=&gt; {&quot;md5&quot; &quot;b4c5b65a279bd1a3913712d97a747256&quot;, &quot;original&quot; &quot;Dunaj&quot;}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#read_BANG_">read!</a></code>, <code><a href="#readable_QMARK_">readable?</a></code>, <code><a href="#slurp">slurp</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="read_BANG_"><a class="link" href="#read_BANG_">read!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L491">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(read! <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IReadable) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns collection recipe attached to the object <code><em>x</em></code>.
+Returned collection recipe must be reduced inside <code>io!</code> block.
+The returned collection recipe may be infinite and may block.</p>
+</div>
+<div class="paragraph">
+<p>If the resource is seekable, the position after reducing collection
+recipe from <code>read!</code> is undefined.</p>
+</div>
+<div class="paragraph">
+<p>Reducing collection while it is being released may end by reducing
+ending or by I/O exception. It is thus advised to either expect an
+exception or to stop reducing before releasing the resource.
+May return postponed object if <code><em>x</em></code> is in a non-blocking mode.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-59"><label class="dd-example-label" for="toggle-59">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource.loopback <span class="symbol">:refer</span> [loopback]]))
+
+(<span class="keyword">def</span> <span class="function">p</span> (grab-scope (acquire! (loopback))))
+<span class="comment">;;=&gt; #'foo.baz/p</span>
+
+(<span class="keyword">def</span> <span class="function">res</span> (<span class="keyword">key</span> p))
+<span class="comment">;;=&gt; #'foo.baz/res</span>
+
+(<span class="keyword">def</span> <span class="function">scope</span> (<span class="keyword">val</span> p))
+<span class="comment">;;=&gt; #'foo.baz/scope</span>
+
+(thread (<span class="keyword">io!</span> (dored [x (lines (parse utf-8 (read! res)))]
+                    (println! x)))
+        (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">done</span><span class="delimiter">&quot;</span></span>))
+<span class="comment">;;=&gt; #&lt;ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@3b93ef2a&gt;</span>
+
+(write! res (<span class="keyword">print</span> utf-8 <span class="string"><span class="delimiter">&quot;</span><span class="content">lorem ipsum dolor</span><span class="content">\n</span><span class="content">sit amet</span><span class="content">\n</span><span class="delimiter">&quot;</span></span>))
+<span class="comment">;;=&gt; 27</span>
+
+(write! res (<span class="keyword">print</span> utf-8 <span class="string"><span class="delimiter">&quot;</span><span class="content">consectetur adipiscing elit</span><span class="content">\n</span><span class="delimiter">&quot;</span></span>))
+<span class="comment">;; lorem ipsum dolor</span>
+<span class="comment">;; sit amet</span>
+<span class="comment">;;=&gt; 28</span>
+
+(release-scope! scope)
+<span class="comment">;; consectetur adipiscing elit</span>
+<span class="comment">;; done</span>
+<span class="comment">;;=&gt; {:items ({:value #&lt;WeakReference java.lang.ref.WeakReference@4788ef0&gt;})}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#readable_QMARK_">readable?</a></code>, <code><a href="#read_one_BANG_">read&#45;one!</a></code>, <code><a href="#read">read</a></code>, <code><a href="#slurp">slurp</a></code>, <code><a href="#exchange_BANG_">exchange!</a></code>, <code><a href="#transform">transform</a></code>, <code><a href="#format">format</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="read_one_BANG_"><a class="link" href="#read_one_BANG_">read-one!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L510">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(read&#45;one! <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IReadable) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns first read item from <code><em>x</em></code>, potentionally discarding
+other items. If the <code><em>x</em></code> is seekable,
+the position after <code>read-one!</code> is undefined.
+May return postponed object if <code><em>x</em></code> is in non-blocking mode.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#read_BANG_">read!</a></code>, <code><a href="#readable_QMARK_">readable?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="readable_QMARK_"><a class="link" href="#readable_QMARK_">readable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(readable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> directly implements <code>IReadable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#IReadable">IReadable</a></code>, <code><a href="#read_BANG_">read!</a></code>, <code><a href="#read">read</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="resource"><a class="link" href="#resource">resource</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L391">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(resource <em>x &amp; {:as opts}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → (Maybe IAcquirableFactory)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an acquirable factory based on given <code><em>x</em></code>, passing
+<code><em>opts</em></code> into it. Uses uri scheme to map resource type from
+currently registered resource providers.
+Returns <code>nil</code> if resource type cannot be found.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-60"><label class="dd-example-label" for="toggle-60">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.baz</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.resource.loopback <span class="symbol">:refer</span> [loopback]]))
+
+<span class="comment">;; matches uri scheme to the list of registered resource factories</span>
+(resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; #dunaj.resource.http.HttpResourceFactory{:uri &quot;http://example.com&quot;, :proxy nil, :secure? false, :allow-ui? nil, :timeout nil, :use-caches? nil, :follow? nil, :request-properties nil, :request-method nil, :chunked-streaming nil, :hostname-verifier nil, :ssl-context nil, :batch-size nil}</span>
+
+<span class="comment">;; no scheme means file resource</span>
+(resource <span class="string"><span class="delimiter">&quot;</span><span class="content">file.txt</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; #dunaj.resource.file.FileResourceFactory{:uri &quot;file.txt&quot;, :mode [:read :write :create], :batch-size nil, :file-system nil, :working-directory nil}</span>
+
+<span class="comment">;; another example, a client tcp connection</span>
+(resource <span class="string"><span class="delimiter">&quot;</span><span class="content">tcp://localhost:8081</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; #dunaj.resource.tcp.TcpResourceFactory{:uri &quot;tcp://localhost:8081&quot;, :remote-address nil, :remote-port nil, :local-address nil, :local-port nil, :batch-size nil, :non-blocking? nil, :keep-alive? false, :in-buffer-size nil, :out-buffer-size nil, :linger nil, :no-delay? false, :reuse? nil, :selector-provider nil}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.helper.api.html#register_factory_BANG_">dunaj.resource.helper/register&#45;factory!</a></code>, <code><a href="#acquire_BANG_">acquire!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="slurp"><a class="link" href="#slurp">slurp</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L692">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(slurp <em>res</em>)</code></p>
+</li>
+<li>
+<p><code>(slurp <em>res parser</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IImmutableReadable) → IRed</code></p>
+</li>
+<li>
+<p><code>(IImmutableReadable ⨯ IParserFactory) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a utf-8 collection recipe of data read from resource
+factory <code><em>res</em></code>, which was opened for immutable reading. May
+supply custom <code><em>parser</em></code> if encoding other than utf-8 is needed.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-61"><label class="dd-example-label" for="toggle-61">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre>(with-scope (<span class="keyword">str</span> (<span class="keyword">take</span> <span class="integer">50</span> (<span class="keyword">slurp</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>))))
+<span class="comment">;;=&gt; &quot;&lt;!doctype html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Example D&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#read">read</a></code>, <code><a href="#read_BANG_">read!</a></code>, <code><a href="#spit_BANG_">spit!</a></code>, <code><a href="#exchange">exchange</a></code>, <code><a href="#format">format</a></code>, <code><a href="#transform">transform</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="spit_BANG_"><a class="link" href="#spit_BANG_">spit!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L719">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(spit! <em>res coll</em>)</code></p>
+</li>
+<li>
+<p><code>(spit! <em>res coll mode</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IRed) → Integer</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ IRed ⨯ Any) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Writes <code><em>coll</em></code> to the <code><em>res</em></code>, returning number of bytes written.
+Uses utf-8 printer. Default <code><em>mode</em></code> is <code>:append</code>.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-62"><label class="dd-example-label" for="toggle-62">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre><span class="comment">;; append by default</span>
+(with-scope (spit! <span class="string"><span class="delimiter">&quot;</span><span class="content">out.txt</span><span class="delimiter">&quot;</span></span> <span class="string"><span class="delimiter">&quot;</span><span class="content">lorem ipsum</span><span class="delimiter">&quot;</span></span>))
+<span class="comment">;;=&gt; 11</span>
+
+<span class="comment">;; custom mode</span>
+(with-scope (spit! <span class="string"><span class="delimiter">&quot;</span><span class="content">out.txt</span><span class="delimiter">&quot;</span></span> <span class="string"><span class="delimiter">&quot;</span><span class="content">lorem ipsum</span><span class="delimiter">&quot;</span></span> <span class="symbol">:truncate</span>))
+<span class="comment">;;=&gt; 11</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#spit_with_BANG_">spit&#45;with!</a></code>, <code><a href="#write_BANG_">write!</a></code>, <code><a href="#exchange">exchange</a></code>, <code><a href="#format">format</a></code>, <code><a href="#transform">transform</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="spit_with_BANG_"><a class="link" href="#spit_with_BANG_">spit-with!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L704">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(spit&#45;with! <em>res printer coll</em>)</code></p>
+</li>
+<li>
+<p><code>(spit&#45;with! <em>res printer coll mode</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IPrinterFactory ⨯ IRed) → Integer</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ IPrinterFactory ⨯ IRed ⨯ Any) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Writes <code><em>coll</em></code> to the <code><em>res</em></code> using <code><em>printer</em></code> for printing,
+returning number of bytes written. Default mode is <code>:append</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#spit_BANG_">spit!</a></code>, <code><a href="#write_BANG_">write!</a></code>, <code><a href="#exchange">exchange</a></code>, <code><a href="#format">format</a></code>, <code><a href="#transform">transform</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="transform"><a class="link" href="#transform">transform</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L768">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(transform <em>xform resource</em>)</code></p>
+</li>
+<li>
+<p><code>(transform <em>read&#45;xform write&#45;xform resource</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ (I IReadable IWritable)) → (I IReadable IWritable)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ (I IReadable IWritable)) → (I IReadable IWritable)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a readable and writable <code><em>resource</em></code> transformed with given
+transducer <code><em>xform</em></code> for both reading and writing. May also supply
+reading and writing transducer separately.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#format">format</a></code>, <code><a href="#exchange">exchange</a></code>, <code><a href="#read_BANG_">read!</a></code>, <code><a href="#write_BANG_">write!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="writable_QMARK_"><a class="link" href="#writable_QMARK_">writable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L521">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(writable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> directly implements <code>IWritable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#IWritable">IWritable</a></code>, <code><a href="#write_BANG_">write!</a></code>, <code><a href="#write_one_BANG_">write&#45;one!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="write_BANG_"><a class="link" href="#write_BANG_">write!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L536">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(write! <em>x coll</em>)</code></p>
+</li>
+<li>
+<p><code>(write! <em>x xform coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IRed) → (U Integer Postponed)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ IRed) → (U Integer Postponed)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Writes <code><em>coll</em></code> into object <code><em>x</em></code> and returns number of items
+written. Takes an optional transducer <code><em>xf</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Blocks or returns postponed object if in non-blocking mode.
+Throws if I/O error occurs. Writing while the resource is being
+released ends by I/O exception too. It is thus advised to expect
+an exception or to finish writing before releasing the resource.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#writable_QMARK_">writable?</a></code>, <code><a href="#write_one_BANG_">write&#45;one!</a></code>, <code><a href="#spit_BANG_">spit!</a></code>, <code><a href="#exchange_BANG_">exchange!</a></code>, <code><a href="#transform">transform</a></code>, <code><a href="#format">format</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="write_one_BANG_"><a class="link" href="#write_one_BANG_">write-one!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L553">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(write&#45;one! <em>x val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → (U Integer Postponed)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Writes <code><em>val</em></code> into object <code><em>x</em></code> and returns number of items
+written. Takes an optional transducer <code><em>xf</em></code>.
+Blocks or returns postponed object if in non-blocking mode.</p>
+</div>
+<div class="paragraph">
+<p>Throws if I/O error occurs. Writing while the resource is being
+released ends by I/O exception too. It is thus advised to expect
+an exception or to finish writing before releasing the resource.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#writable_QMARK_">writable?</a></code>, <code><a href="#write_BANG_">write!</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Scope"><a class="link" href="#Scope">Scope</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#grab_scope">grab&#45;scope</a></code> <code><a href="#in_scope_QMARK_">in&#45;scope?</a></code> <code><a href="#releasable_QMARK_">releasable?</a></code> <code><a href="#release_scope_BANG_">release&#45;scope!</a></code> <code><a href="#scope_push_BANG_">scope&#45;push!</a></code> <code><a href="#with_io_scope">with&#45;io&#45;scope</a></code> <code><a href="#with_scope">with&#45;scope</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="grab_scope"><a class="link" href="#grab_scope">grab-scope</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L283">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(grab-scope <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Executes <code><em>body</em></code> in a new scope. Returns pair <code>[ret scope-atom]</code>.
+Takes an optional existing scope map or scope atom
+or defaults map as first arg. Following keys are valid:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:pervasive</code> - Boolean, defaults to <code>nil</code></p>
+</li>
+<li>
+<p><code>:timeout</code> - <code>nil</code> (blocks, default)/<code>IDuration</code></p>
+</li>
+<li>
+<p><code>:timeout-mode</code> - <code>nil</code> (ignore, default)/<code>:cancel</code>/<code>:throw</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note if pervasive is enabled, the returned atom can be updated
+by child threads even after <code>grab-scope</code> finishes.
+Mutates first arg if it is atom and there are more than one args.
+Throws when <code><em>body</em></code> throws, releasing scope with <code>:fail</code> mode.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#with_scope">with&#45;scope</a></code>, <code><a href="#release_scope_BANG_">release&#45;scope!</a></code>, <code><a href="#scope_push_BANG_">scope&#45;push!</a></code>, <code><a href="#in_scope_QMARK_">in&#45;scope?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="in_scope_QMARK_"><a class="link" href="#in_scope_QMARK_">in-scope?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L201">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(in&#45;scope?)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if there is a current scope present,
+<code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#with_scope">with&#45;scope</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="releasable_QMARK_"><a class="link" href="#releasable_QMARK_">releasable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L118">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(releasable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IReleasable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#IReleasable">IReleasable</a></code>, <code><a href="#release_scope_BANG_">release&#45;scope!</a></code>, <code><a href="#with_scope">with&#45;scope</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="release_scope_BANG_"><a class="link" href="#release_scope_BANG_">release-scope!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L210">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(release&#45;scope! <em>scope</em>)</code></p>
+</li>
+<li>
+<p><code>(release&#45;scope! <em>scope mode</em>)</code></p>
+</li>
+<li>
+<p><code>(release&#45;scope! <em>scope mode ex</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U {} IAtomic)) → {}</code></p>
+</li>
+<li>
+<p><code>((U {} IAtomic) ⨯ Keyword) → {}</code></p>
+</li>
+<li>
+<p><code>((U {} IAtomic) ⨯ Keyword ⨯ (Maybe java.lang.Throwable)) → {}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Releases <code><em>scope</em></code> based on <code><em>mode</em></code> and returns scope map.
+<code><em>scope</em></code> can either be a normal scope (map), or an atom holding
+scope map. <code><em>mode</em></code> is one of <code>:exit</code>, <code>:success</code>, <code>:fail</code> and
+defaults to <code>:exit</code>.</p>
+</div>
+<div class="paragraph">
+<p>Throws if releasing has failed. Puts additional exceptions as
+supressed into throwed one, if multiple items have throwed.
+For failed release, initial exception may be provided in <code><em>ex</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Mutates <code><em>scope</em></code> if it was an atom.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#grab_scope">grab&#45;scope</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="scope_push_BANG_"><a class="link" href="#scope_push_BANG_">scope-push!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L242">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(scope&#45;push! <em>value&#45;or&#45;map &amp; options</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → {}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Pushes item or scope into current scope. Returns scope map.
+Item is a map with following keys:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:value</code> - fn or releasable or weak reference to the releasable</p>
+</li>
+<li>
+<p><code>:mode</code> - optional - <code>:exit</code>/<code>:success</code>/<code>:fail</code></p>
+</li>
+<li>
+<p><code>:timeout</code> - optional - <code>nil</code> (blocks)/<code>IDuration</code></p>
+</li>
+<li>
+<p><code>:timeout-mode</code> - optional - <code>nil</code> (ignore)/<code>:cancel</code>/<code>:throw</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Scope defaults (see docs for <code>with-scope</code>) are used when some
+optional entries are not specified.
+If <code><em>value-or-map</em></code> is a scope, all its options, including those
+passed as additional args, are ignored.
+Mutates <code><em>value-or-map</em></code> if it was an atom.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#grab_scope">grab&#45;scope</a></code>, <code><a href="#with_scope">with&#45;scope</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="with_io_scope"><a class="link" href="#with_io_scope">with-io-scope</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L363">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(with-io-scope <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Like <code>with-scope</code>, but additionally puts body inside <code>io!</code> block.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#with_scope">with&#45;scope</a></code>, <code><a href="#in_scope_QMARK_">in&#45;scope?</a></code>, <code><a href="dunaj.state.api.html#io_BANG_">dunaj.state/io!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="with_scope"><a class="link" href="#with_scope">with-scope</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L320">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(with-scope <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Executes <code><em>body</em></code> in a new scope. Returns result from evaluating
+<code><em>body</em></code>. Takes an optional existing scope map or scope atom
+or defaults map as first arg. Following keys are valid:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:pervasive</code> - Boolean, defaults to <code>nil</code></p>
+</li>
+<li>
+<p><code>:timeout</code> - <code>nil</code> (blocks, default)/<code>IDuration</code></p>
+</li>
+<li>
+<p><code>:timeout-mode</code> - <code>nil</code> (ignore, default)/<code>:cancel</code>/<code>:throw</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note if pervasive is enabled, user must manually handle waiting
+for child threads or else scoped items used in child threads gets
+released too early.</p>
+</div>
+<div class="paragraph">
+<p>Mutates first arg if it is atom and there are more than one args.
+Automatically releases scope after <code><em>body</em></code> is evaluated, with
+<code>:success</code> mode, throwing if release fails.
+Throws when <code><em>body</em></code> throws, releasing scope with <code>:fail</code> mode.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#with_io_scope">with&#45;io&#45;scope</a></code>, <code><a href="#grab_scope">grab&#45;scope</a></code>, <code><a href="#scope_push_BANG_">scope&#45;push!</a></code>, <code><a href="#release_scope_BANG_">release&#45;scope!</a></code>, <code><a href="#in_scope_QMARK_">in&#45;scope?</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="System"><a class="link" href="#System">System</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#assoc_deps">assoc&#45;deps</a></code> <code><a href="#deps">deps</a></code> <code><a href="#start_BANG_">start!</a></code> <code><a href="#system">system</a></code> <code><a href="#system_QMARK_">system?</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="assoc_deps"><a class="link" href="#assoc_deps">assoc-deps</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L802">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(assoc&#45;deps <em>factory deps</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Record ⨯ {}) → Record</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>factory</em></code> with <code><em>deps</em></code> associated as its
+dependency map.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#deps">deps</a></code>, <code><a href="#system">system</a></code>, <code><a href="#start_BANG_">start!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="deps"><a class="link" href="#deps">deps</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L792">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(deps <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Record) → {}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a dependency map for a given object <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#assoc_deps">assoc&#45;deps</a></code>, <code><a href="#system">system</a></code>, <code><a href="#start_BANG_">start!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="start_BANG_"><a class="link" href="#start_BANG_">start!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L831">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(start! <em>system</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(System) → {}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Starts the <code><em>system</em></code> and returns map of started components.
+If the system object is also an acquirable factory, performs
+<code>acquire!</code> and returns a resource object.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#acquire_BANG_">acquire!</a></code>, <code><a href="#deps">deps</a></code>, <code><a href="#assoc_deps">assoc&#45;deps</a></code>, <code><a href="#system">system</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="system"><a class="link" href="#system">system</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L823">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(system <em>&amp; {:as keyvals}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → System</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a system map.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#start_BANG_">start!</a></code>, <code><a href="#deps">deps</a></code>, <code><a href="#assoc_deps">assoc&#45;deps</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="system_QMARK_"><a class="link" href="#system_QMARK_">system?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L811">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(system? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>ISystem</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#ISystem">ISystem</a></code>, <code><a href="#start_BANG_">start!</a></code>, <code><a href="#acquire_BANG_">acquire!</a></code>, <code><a href="#system">system</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Other"><a class="link" href="#Other">Other</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#control_BANG_">control!</a></code> <code><a href="#controllable_QMARK_">controllable?</a></code> <code><a href="#controller">controller</a></code> <code><a href="#flush_BANG_">flush!</a></code> <code><a href="#flushable_QMARK_">flushable?</a></code> <code><a href="#position">position</a></code> <code><a href="#request_BANG_">request!</a></code> <code><a href="#requestable_QMARK_">requestable?</a></code> <code><a href="#seekable_QMARK_">seekable?</a></code> <code><a href="#size">size</a></code> <code><a href="#status">status</a></code> <code><a href="#status_of">status&#45;of</a></code> <code><a href="#statusable_QMARK_">statusable?</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="control_BANG_"><a class="link" href="#control_BANG_">control!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L586">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(control! <em>x k v</em>)</code></p>
+</li>
+<li>
+<p><code>(control! <em>x k v &amp; keyvals</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IControllable ⨯ Any ⨯ Any) → IAdjustable</code></p>
+</li>
+<li>
+<p><code>(IControllable ⨯ Any ⨯ Any ⨯ (Va Any)) → IAdjustable</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Adjusts the part of the controller and returns it (the controller
+for <code><em>x</em></code>).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#controller">controller</a></code>, <code><a href="#controllable_QMARK_">controllable?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="controllable_QMARK_"><a class="link" href="#controllable_QMARK_">controllable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L569">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(controllable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IControllable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#IControllable">IControllable</a></code>, <code><a href="#controller">controller</a></code>, <code><a href="#control_BANG_">control!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="controller"><a class="link" href="#controller">controller</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L578">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(controller <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IControllable) → IAdjustable</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a controller for <code><em>x</em></code>, a mutable reference to the map-like
+structure containing resource controls.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#control_BANG_">control!</a></code>, <code><a href="#controllable_QMARK_">controllable?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="flush_BANG_"><a class="link" href="#flush_BANG_">flush!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L658">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(flush! <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IFlushable) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Flushes any pending operations and returns <code>nil</code>. May block.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#flushable_QMARK_">flushable?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="flushable_QMARK_"><a class="link" href="#flushable_QMARK_">flushable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L649">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(flushable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IFlushable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#IFlushable">IFlushable</a></code>, <code><a href="#flush">flush</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="position"><a class="link" href="#position">position</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L642">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(position <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISeekable) → IMutable</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns mutable reference to the current position.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#seekable_QMARK_">seekable?</a></code>, <code><a href="#size">size</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="request_BANG_"><a class="link" href="#request_BANG_">request!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L676">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(request! <em>x request</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRequestable ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a response to the <code><em>request</em></code>. Blocks.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+experimental, subject to change.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#requestable_QMARK_">requestable?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="requestable_QMARK_"><a class="link" href="#requestable_QMARK_">requestable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L665">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(requestable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IRequestable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#IRequestable">IRequestable</a></code>, <code><a href="#request_BANG_">request!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="seekable_QMARK_"><a class="link" href="#seekable_QMARK_">seekable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L622">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(seekable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>ISeekable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#ISeekable">ISeekable</a></code>, <code><a href="#size">size</a></code>, <code><a href="#position">position</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="size"><a class="link" href="#size">size</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L634">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(size <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISeekable) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the current size of a seekable resource <code><em>x</em></code>,
+in resource specific units.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#position">position</a></code>, <code><a href="#seekable_QMARK_">seekable?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="status"><a class="link" href="#status">status</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L606">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(status <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IStatusable) → IReference</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an immutable reference to a the status map.
+Returned reference usually also behaves as a Mult.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#statusable_QMARK_">statusable?</a></code>, <code><a href="#status_of">status&#45;of</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="status_of"><a class="link" href="#status_of">status-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L614">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(status&#45;of <em>x k</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IStatusable ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns current value of a status property under the key <code><em>k</em></code>
+for the object <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#status">status</a></code>, <code><a href="#statusable_QMARK_">statusable?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="statusable_QMARK_"><a class="link" href="#statusable_QMARK_">statusable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/resource.clj#L596">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(statusable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IStatusable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.resource.spi.html#IStatusable">IStatusable</a></code>, <code><a href="#status">status</a></code>, <code><a href="#status_of">status&#45;of</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:18:05 CET
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.function API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.function API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.function</a></div><div class="dd-nav-ns-var"><a href="#Function"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">Function</span></a></div><div class="dd-nav-ns-var"><a href="#apply"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">apply</span></a></div><div class="dd-nav-ns-var"><a href="#bound_fn"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">bound-fn</span></a></div><div class="dd-nav-ns-var"><a href="#constantly"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">constantly</span></a></div><div class="dd-nav-ns-var"><a href="#defn"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">defn</span></a></div><div class="dd-nav-ns-var"><a href="#fn"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">fn</span></a></div><div class="dd-nav-ns-var"><a href="#fn_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">fn?</span></a></div><div class="dd-nav-ns-var"><a href="#identity"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">identity</span></a></div><div class="dd-nav-ns-var"><a href="#invocable_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">invocable?</span></a></div><div class="dd-nav-ns-var"><a href="#invoke"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">invoke</span></a></div><div class="dd-nav-ns-var"><a href="#nop"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">nop</span></a></div><div class="dd-nav-ns-group"><a href="#Transformations">Transformations</a></div><div class="dd-nav-ns-var"><a href="#bounded"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">bounded</span></a></div><div class="dd-nav-ns-var"><a href="#comp"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">comp</span></a></div><div class="dd-nav-ns-var"><a href="#complement"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">complement</span></a></div><div class="dd-nav-ns-var"><a href="#every_pred"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">every-pred</span></a></div><div class="dd-nav-ns-var"><a href="#fnil"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">fnil</span></a></div><div class="dd-nav-ns-var"><a href="#juxt"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">juxt</span></a></div><div class="dd-nav-ns-var"><a href="#monoid"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">monoid</span></a></div><div class="dd-nav-ns-var"><a href="#partial"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">partial</span></a></div><div class="dd-nav-ns-var"><a href="#some_fn"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">some-fn</span></a></div><div class="dd-nav-ns-var"><a href="#trampoline"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">trampoline</span></a></div><div class="dd-nav-ns-group"><a href="#Memoization">Memoization</a></div><div class="dd-nav-ns-var"><a href="#default_memoization_factory"><i class="fa fa-fw fa-inbox dd-mmsh"></i><span class="dd-nav-ns-var-text">default-memoization-factory</span></a></div><div class="dd-nav-ns-var"><a href="#memoize"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">memoize</span></a></div><div class="dd-nav-ns-var"><a href="#memoized_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">memoized?</span></a></div><div class="dd-nav-ns-var"><a href="#unmemoize"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">unmemoize</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.function API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.function.spi.html">SPI documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Function definition, transformation and memoization facilities.</p>
+</div>
+<div class="paragraph">
+<p>While types other than <code>Function</code> may extend
+<code><a href="dunaj.function.spi.html#IInvocable">IInvocable</a></code> protocol and be
+invoked in a same way as function is, the <code>Function</code> type provides
+additional functionalities besides ability to be invoked:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>any Function can be used as a comparator for sorting</p>
+</li>
+<li>
+<p>support for <code>IMeta</code></p>
+</li>
+<li>
+<p>only Functions can be passed into <code>IExecutor</code> and <code>ITaskExecutor</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Type signatures <code>AnyFn</code> and <code>Fn</code>, found in
+<a href="dunaj.type.api.html">dunaj.type</a> namespace, represent any
+invocable object. Use <code>Function</code> type signature to require
+Functions created with <code>defn</code> or <code>fn</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When documentation uses the name 'function', an invocable
+object is meant. In those rare cases when only objects of type
+<code>Function</code> are required, the 'fn' or 'Function' (with capital F)
+is used.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Documentation needs more work.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#Function">Function</a></code> <code><a href="#apply">apply</a></code> <code><a href="#bound_fn">bound&#45;fn</a></code> <code><a href="#constantly">constantly</a></code> <code><a href="#defn">defn</a></code> <code><a href="#fn">fn</a></code> <code><a href="#fn_QMARK_">fn?</a></code> <code><a href="#identity">identity</a></code> <code><a href="#invocable_QMARK_">invocable?</a></code> <code><a href="#invoke">invoke</a></code> <code><a href="#nop">nop</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Function"><a class="link" href="#Function">Function</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L208">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for Function.</p>
+</div>
+<div class="paragraph">
+<p>Functions provide following functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can be invoked</p>
+</li>
+<li>
+<p>can be used as a comparator for sorting</p>
+</li>
+<li>
+<p>can have metadata</p>
+</li>
+<li>
+<p>can be passed into <code>IExecutor</code> and <code>ITaskExecutor</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.type.api.html#AnyFn">dunaj.type/AnyFn</a></code>, <code><a href="dunaj.type.api.html#Fn">dunaj.type/Fn</a></code>, <code><a href="#fn">fn</a></code>, <code><a href="#defn">defn</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="apply"><a class="link" href="#apply">apply</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/apply)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(apply <em>f args</em>)</code></p>
+</li>
+<li>
+<p><code>(apply <em>f x args</em>)</code></p>
+</li>
+<li>
+<p><code>(apply <em>f x y args</em>)</code></p>
+</li>
+<li>
+<p><code>(apply <em>f x y z args</em>)</code></p>
+</li>
+<li>
+<p><code>(apply <em>f a b c d &amp; args</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ [Any&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ [Any&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any ⨯ [Any&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any ⨯ Any ⨯ [Any&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of applying function <code><em>f</em></code> to the argument list
+formed by prepending intervening arguments to <code><em>args</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#invocable_QMARK_">invocable?</a></code>, <code><a href="#invoke">invoke</a></code>, <code><a href="#fn">fn</a></code>, <code><a href="#partial">partial</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="bound_fn"><a class="link" href="#bound_fn">bound-fn</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/bound-fn)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(bound-fn <em>&amp; fntail</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns a fn defined by the given <code><em>fntail</em></code>, which will install
+the same bindings in effect as in the thread at the time bound-fn
+was called. This may be used to define a helper function which runs
+on a different thread, but needs the same bindings in place.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bounded">bounded</a></code>, <code><a href="#defn">defn</a></code>, <code><a href="#fn">fn</a></code>, <code><a href="#fn_QMARK_">fn?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="constantly"><a class="link" href="#constantly">constantly</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/constantly)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(constantly <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a fn that takes any number of arguments and
+returns <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#identity">identity</a></code>, <code><a href="#nop">nop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="defn"><a class="link" href="#defn">defn</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.bootstrap/defn)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(defn <em>name def-arguments params body</em>)</code>&#160;  <code>(defn <em>name def-arguments params-w-body &amp; more-params-w-body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Defines a var with newly created fn set as a root binding
+and returns that var.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#fn">fn</a></code>, <code><a href="#fn_QMARK_">fn?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fn"><a class="link" href="#fn">fn</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.bootstrap/fn)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(fn <em>optional-name def-arguments params body</em>)</code>&#160;  <code>(fn <em>optional-name def-arguments params-w-body &amp; more-params-w-body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns new fn created from given args.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#defn">defn</a></code>, <code><a href="#bound_fn">bound&#45;fn</a></code>, <code><a href="#fn_QMARK_">fn?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fn_QMARK_"><a class="link" href="#fn_QMARK_">fn?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/fn?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fn? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is a <code>Function</code> (not just invocable),
+otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#invocable_QMARK_">invocable?</a></code>, <code><a href="#defn">defn</a></code>, <code><a href="#fn">fn</a></code>, <code><a href="#bound_fn">bound&#45;fn</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="identity"><a class="link" href="#identity">identity</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/identity)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(identity <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>x</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#constantly">constantly</a></code>, <code><a href="#nop">nop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="invocable_QMARK_"><a class="link" href="#invocable_QMARK_">invocable?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L62">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(invocable? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IInvocable</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.function.spi.html#IInvocable">IInvocable</a></code>, <code><a href="#invoke">invoke</a></code>, <code><a href="#apply">apply</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="invoke"><a class="link" href="#invoke">invoke</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L124">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(invoke <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14 a15</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14 a15 a16</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14 a15 a16 a17</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14 a15 a16 a17 a18</em>)</code></p>
+</li>
+<li>
+<p><code>(invoke <em>f a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14 a15 a16 a17 a18 a19</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IInvocable) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(IInvocable ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of invocation of <code>f</code> with supplied arguments.
+The use of CLJ syntax <code>(f a1 a2 &#8230;&#8203;)</code> is preferred to using this
+function.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#invocable">invocable</a></code>, <code><a href="#apply">apply</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="nop"><a class="link" href="#nop">nop</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L428">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(nop)</code></p>
+</li>
+<li>
+<p><code>(nop <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(nop <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(nop <em>x y z</em>)</code></p>
+</li>
+<li>
+<p><code>(nop <em>x y z &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → nil</code></p>
+</li>
+<li>
+<p><code>(Any) → nil</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → nil</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → nil</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ (Va Any)) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes any number of arguments and returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#identity">identity</a></code>, <code><a href="#constantly">constantly</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Transformations"><a class="link" href="#Transformations">Transformations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#bounded">bounded</a></code> <code><a href="#comp">comp</a></code> <code><a href="#complement">complement</a></code> <code><a href="#every_pred">every&#45;pred</a></code> <code><a href="#fnil">fnil</a></code> <code><a href="#juxt">juxt</a></code> <code><a href="#monoid">monoid</a></code> <code><a href="#partial">partial</a></code> <code><a href="#some_fn">some&#45;fn</a></code> <code><a href="#trampoline">trampoline</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="bounded"><a class="link" href="#bounded">bounded</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/bound-fn*)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(bounded <em>f</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a fn, which will install the same bindings in
+effect as in the thread at the time bounded was called and
+then call <code><em>f</em></code> with any given arguments. This may be used to
+define a helper function which runs on a different thread,
+but needs the same bindings in place.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#bound_fn">bound&#45;fn</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="comp"><a class="link" href="#comp">comp</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/comp)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(comp)</code></p>
+</li>
+<li>
+<p><code>(comp <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(comp <em>f g</em>)</code></p>
+</li>
+<li>
+<p><code>(comp <em>f g &amp; fs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn ⨯ (Va AnyFn)) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a set of functions and returns a fn that is the composition
+of those fns. The returned fn takes a variable number of args,
+applies the rightmost of fns to the args, the next fn
+(right-to-left) to the result, etc.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#juxt">juxt</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="complement"><a class="link" href="#complement">complement</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/complement)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(complement <em>f</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a fn <code><em>f</em></code> and returns a fn that takes the same arguments
+as <code><em>f</em></code>, has the same effects, if any, and returns the opposite
+truth value.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="every_pred"><a class="link" href="#every_pred">every-pred</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/every-pred)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(every&#45;pred <em>p</em>)</code></p>
+</li>
+<li>
+<p><code>(every&#45;pred <em>p1 p2</em>)</code></p>
+</li>
+<li>
+<p><code>(every&#45;pred <em>p1 p2 p3</em>)</code></p>
+</li>
+<li>
+<p><code>(every&#45;pred <em>p1 p2 p3 &amp; ps</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn ⨯ (Va AnyFn)) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a set of predicates and returns a fn that
+returns <code>true</code> if all of its composing predicates return a logical
+true value against all of its arguments, else it returns <code>false</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+fn is short-circuiting in that it will stop execution on
+the first argument that triggers a logical false result against
+the original predicates.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#some_fn">some&#45;fn</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fnil"><a class="link" href="#fnil">fnil</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/fnil)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fnil <em>f x</em>)</code></p>
+</li>
+<li>
+<p><code>(fnil <em>f x y</em>)</code></p>
+</li>
+<li>
+<p><code>(fnil <em>f x y z</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ Any) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any ⨯ Any) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a function <code><em>f</em></code>, and returns a fn that calls <code><em>f</em></code>,
+replacing a <code>nil</code> first argument to <code><em>f</em></code> with the supplied value
+<code><em>x</em></code>. Higher arity versions can replace arguments in the second
+and third positions (<code><em>y</em></code>, <code><em>z</em></code>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The function <code><em>f</em></code> can take any number of arguments,
+not just the one(s) being nil-patched.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="juxt"><a class="link" href="#juxt">juxt</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/juxt)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(juxt <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(juxt <em>f g</em>)</code></p>
+</li>
+<li>
+<p><code>(juxt <em>f g h</em>)</code></p>
+</li>
+<li>
+<p><code>(juxt <em>f g h &amp; fs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn ⨯ (Va AnyFn)) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a set of functions and returns a fn that is the
+juxtaposition of those fns.</p>
+</div>
+<div class="paragraph">
+<p>The returned fn takes a variable number of args, and returns a
+vector containing the result of applying each fn to the args
+(left-to-right).</p>
+</div>
+<div class="paragraph">
+<p><code>((juxt a b c) x)</code> = <code>[(a x) (b x) (c x)]</code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="monoid"><a class="link" href="#monoid">monoid</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L400">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(monoid <em>f init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ Any) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a fn that returns <code><em>init</em></code> when no args are given and calls
+<code><em>f</em></code> with provided arguments if more than one argument is given.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="partial"><a class="link" href="#partial">partial</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/partial)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(partial <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(partial <em>f arg1</em>)</code></p>
+</li>
+<li>
+<p><code>(partial <em>f arg1 arg2</em>)</code></p>
+</li>
+<li>
+<p><code>(partial <em>f arg1 arg2 arg3</em>)</code></p>
+</li>
+<li>
+<p><code>(partial <em>f arg1 arg2 arg3 &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any ⨯ Any) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a function <code><em>f</em></code> and fewer than the normal arguments to
+<code><em>f</em></code>, and returns a fn that takes a variable number of additional
+args. When called, the returned function calls <code><em>f</em></code> with args
++ additional args.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#fn">fn</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="some_fn"><a class="link" href="#some_fn">some-fn</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/some-fn)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(some&#45;fn <em>p</em>)</code></p>
+</li>
+<li>
+<p><code>(some&#45;fn <em>p1 p2</em>)</code></p>
+</li>
+<li>
+<p><code>(some&#45;fn <em>p1 p2 p3</em>)</code></p>
+</li>
+<li>
+<p><code>(some&#45;fn <em>p1 p2 p3 &amp; ps</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn ⨯ (Va AnyFn)) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a set of predicates and returns a fn that
+returns the first logical true value returned by one of its
+composing predicates against any of its arguments, else it returns
+logical false.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+fn is short-circuiting in that it will stop execution on
+the first argument that triggers a logical true result against
+the original predicates.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#every_pred">every&#45;pred</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="trampoline"><a class="link" href="#trampoline">trampoline</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/trampoline)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(trampoline <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(trampoline <em>f &amp; args</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Calls <code><em>f</em></code> with supplied <code><em>args</em></code>, if any. If <code><em>f</em></code> returns a fn,
+calls that fn with no arguments, and continues to repeat, until
+the return value is not a fn, then returns that non-fn value.</p>
+</div>
+<div class="paragraph">
+<p>trampoline can be used to convert algorithms requiring mutual
+recursion without stack consumption.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to return a fn as a final value, you must wrap
+it in some data structure and unpack it after trampoline returns.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.flow.api.html#loop">dunaj.flow/loop</a></code>, <code><a href="dunaj.flow.api.html#recur">dunaj.flow/recur</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Memoization"><a class="link" href="#Memoization">Memoization</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#default_memoization_factory">default&#45;memoization&#45;factory</a></code> <code><a href="#memoize">memoize</a></code> <code><a href="#memoized_QMARK_">memoized?</a></code> <code><a href="#unmemoize">unmemoize</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="default_memoization_factory"><a class="link" href="#default_memoization_factory">default-memoization-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L450">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-inbox" title="Var"></i></span> VAR</code> of type <code>clojure.lang.Var</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A dynamic var holding default memoization factory.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#memoize">memoize</a></code>, <code><a href="dunaj.function.spi.html#IMemoizationFactory">IMemoizationFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="memoize"><a class="link" href="#memoize">memoize</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L457">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(memoize <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(memoize <em>factory f</em>)</code></p>
+</li>
+<li>
+<p><code>(memoize <em>memoization&#45;factory f &amp; {:as opts}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>((U IMemoizationFactory (I IConvolutionFactory ICollectionFactory)) ⨯ AnyFn) → AnyFn</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a memoized version of a referentially transparent function
+<code><em>f</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>The memoized version of the function keeps a cache of the mapping
+from arguments to results and, when calls with the same arguments
+are repeated often, has higher performance at the expense of
+higher memory use.</p>
+</div>
+<div class="paragraph">
+<p>Takes optional <code><em>factory</em></code> parameter. Factory may be
+an implementation of a memoization factory or a collection &amp;
+convolution factory. In later case the factory is assumed to be a
+cache factory and it will be used for a value of cache-factory
+field in the default memoization factory.</p>
+</div>
+<div class="paragraph">
+<p>Additional factory optional parameter can be specified at the end
+of the argument list. Default memoization factory is stored in
+<code>default-memoization-factory</code> var. Default implementaton of
+memoization factory uses <code>=</code> for comparison of args and it
+recognizes optional paramer <code>:seed</code> which takes a collection
+of initial cached args-value pairs (a map).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Custom memoization factories are needed if more control
+is needed (e.g. cache snapshots, clearing, swaping, &#8230;&#8203;).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#default_memoization_factory">default&#45;memoization&#45;factory</a></code>, <code><a href="#memoized_QMARK_">memoized?</a></code>, <code><a href="#unmemoize">unmemoize</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="memoized_QMARK_"><a class="link" href="#memoized_QMARK_">memoized?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L505">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(memoized? <em>f</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>f</em></code> is memoized, otherwise returns <code>false</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#memoize">memoize</a></code>, <code><a href="#unmemoize">unmemoize</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unmemoize"><a class="link" href="#unmemoize">unmemoize</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/function.clj#L513">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(unmemoize <em>f</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → AnyFn</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns original unmemoized function from <code><em>f</em></code>.
+Returns <code><em>f</em></code> if it is not memoized.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#memoize">memoize</a></code>, <code><a href="#memoized_QMARK_">memoized?</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:16:09 CET
+</div>
+</div>
+</body>
+</html>

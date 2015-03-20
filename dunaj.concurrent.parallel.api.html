@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.concurrent.parallel API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.concurrent.parallel API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.concurrent.parallel</a></div><div class="dd-nav-ns-var"><a href="#pcalls"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">pcalls</span></a></div><div class="dd-nav-ns-var"><a href="#pmap"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">pmap</span></a></div><div class="dd-nav-ns-var"><a href="#pmap_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">pmap*</span></a></div><div class="dd-nav-ns-var"><a href="#pvalues"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">pvalues</span></a></div><div class="dd-nav-ns-group"><a href="#Unordered">Unordered</a></div><div class="dd-nav-ns-var"><a href="#pcalls_unordered"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">pcalls-unordered</span></a></div><div class="dd-nav-ns-var"><a href="#pmap_unordered"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">pmap-unordered</span></a></div><div class="dd-nav-ns-var"><a href="#pmap_unordered_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">pmap-unordered*</span></a></div><div class="dd-nav-ns-var"><a href="#pvalues_unordered"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">pvalues-unordered</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.concurrent.parallel API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Parallel computations based on thread pools.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="dunaj.concurrent.forkjoin.api.html">dunaj.concurrent.forkjoin</a>
+for parallel computations based on a Fork–join model.
+See <a href="dunaj.concurrent.port.api.html#pipeline_BANG_">pipeline!</a>
+if you want to work with channels.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See <a href="#Unordered">unordered section</a> for faster
+     but unordered version of functions for parallel computation.</p>
+</div>
+<div class="paragraph">
+<p>In this section: <code><a href="#pcalls">pcalls</a></code> <code><a href="#pmap">pmap</a></code> <code><a href="#pmap_STAR_">pmap*</a></code> <code><a href="#pvalues">pvalues</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pcalls"><a class="link" href="#pcalls">pcalls</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L331">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pcalls <em>&amp; fns</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Va AnyFn)) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Executes the no-arg <code><em>fns</em></code> in parallel,
+returning collection recipe of their values, in the same order.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+for the execution of <code><em>fns</em></code> and twice the available processors.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pvalues">pvalues</a></code>, <code><a href="#pcalls_unordered">pcalls&#45;unordered</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pmap"><a class="link" href="#pmap">pmap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L284">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pmap <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap <em>f coll</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap <em>n f coll</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap <em>pool n f coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ [&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>((Maybe Integer) ⨯ AnyFn ⨯ [&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>((Maybe ITaskExecutor) ⨯ (Maybe Integer) ⨯ AnyFn ⨯ [&#93;) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that applies <code><em>f</em></code> at step items at parallel,
+<code><em>n</em></code> threads at most, using <code><em>pool</em></code> for executing tasks.
+Order of items is preserved.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+if <code><em>pool</em></code> is not specified.</p>
+</div>
+<div class="paragraph">
+<p>Uses twice the available processors if <code><em>n</em></code> is not specified.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-40"><label class="dd-example-label" for="toggle-40">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">pct</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Waits a bit and prints current thread.</span><span class="delimiter">&quot;</span></span>
+  [_]
+  (java.lang.Thread/sleep <span class="integer">500</span>)
+  (<span class="keyword">.</span>getId (current-thread)))
+<span class="comment">;;=&gt; #'foo.bar/pct</span>
+
+(<span class="keyword">time</span> (<span class="keyword">doall</span> (<span class="keyword">map</span> pct (<span class="keyword">range</span> <span class="integer">10</span>))))
+<span class="comment">;; Elapsed time: 5002.361514 msecs</span>
+<span class="comment">;;=&gt; (30 30 30 30 30 30 30 30 30 30)</span>
+
+(<span class="keyword">time</span> (<span class="keyword">doall</span> (<span class="keyword">pmap</span> <span class="integer">5</span> pct (<span class="keyword">range</span> <span class="integer">10</span>))))
+<span class="comment">;; Elapsed time: 1004.471406 msecs</span>
+<span class="comment">;;=&gt; (29 31 32 33 34 34 33 32 31 29)</span>
+
+(<span class="keyword">time</span> (<span class="keyword">doall</span> (<span class="keyword">pmap</span> <span class="integer">10</span> pct (<span class="keyword">range</span> <span class="integer">10</span>))))
+<span class="comment">;; Elapsed time: 501.328778 msecs</span>
+<span class="comment">;;=&gt; (34 31 29 32 33 35 36 37 38 39)</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pmap_STAR_">pmap*</a></code>, <code><a href="#pmap_unordered">pmap&#45;unordered</a></code>, <code><a href="dunaj.concurrent.forkjoin.api.html#fold">dunaj.concurrent.forkjoin/fold</a></code>, <code><a href="dunaj.concurrent.port.api.html#pipeline_BANG_">dunaj.concurrent.port/pipeline!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pmap_STAR_"><a class="link" href="#pmap_STAR_">pmap*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L245">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pmap* <em>pool n f</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap* <em>pool n f coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Maybe ITaskExecutor) ⨯ (Maybe Integer) ⨯ AnyFn) → Transducer</code></p>
+</li>
+<li>
+<p><code>((Maybe ITaskExecutor) ⨯ (Maybe Integer) ⨯ AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that applies <code><em>f</em></code> at step items at parallel,
+<code><em>n</em></code> threads at most, using <code><em>pool</em></code> for executing tasks.
+Order of items is preserved.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+if <code><em>pool</em></code> is <code>nil</code>.</p>
+</div>
+<div class="paragraph">
+<p>Uses twice the available processors if <code><em>n</em></code> is <code>nil</code>.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-41"><label class="dd-example-label" for="toggle-41">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.concurrent.parallel <span class="symbol">:refer</span> [pmap-unordered* pmap*]]
+            [dunaj.concurrent <span class="symbol">:refer</span> [default-future-executor]]))
+
+(<span class="keyword">defn</span> <span class="function">f</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Waits a random bit and returns x.</span><span class="delimiter">&quot;</span></span>
+  [x]
+  (java.lang.Thread/sleep (rand-integer <span class="integer">100</span>))
+  x)
+<span class="comment">;;=&gt; #'foo.bar/f</span>
+
+(<span class="keyword">defn</span> <span class="function">test-xf</span>
+  [xf]
+  (<span class="keyword">time</span> (<span class="keyword">doall</span> (<span class="keyword">sequence</span> xf (<span class="keyword">range</span> <span class="integer">100</span>)))))
+<span class="comment">;;=&gt; #'foo.bar/test-xf</span>
+
+(test-xf (pmap* @default-future-executor <span class="integer">10</span> f))
+<span class="comment">;; Elapsed time: 767.947816 msecs</span>
+<span class="comment">;;=&gt; (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99)</span>
+
+(test-xf (pmap-unordered* @default-future-executor <span class="integer">10</span> f))
+<span class="comment">;; Elapsed time: 567.478483 msecs</span>
+<span class="comment">;;=&gt; (2 3 4 11 5 7 1 6 15 9 8 14 19 0 18 12 13 10 27 26 21 17 25 22 16 20 28 23 29 36 31 35 24 37 32 30 41 33 40 43 34 45 39 42 38 52 47 48 46 50 49 56 58 44 54 51 53 66 57 63 59 55 67 64 60 61 71 62 65 70 74 68 77 82 72 79 69 78 73 83 87 88 76 75 80 85 84 86 92 94 81 91 99 93 95 89 90 98 96 97)&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pmap">pmap</a></code>, <code><a href="dunaj.concurrent.forkjoin.api.html#transfold">dunaj.concurrent.forkjoin/transfold</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pvalues"><a class="link" href="#pvalues">pvalues</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L353">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(pvalues <em>&amp; exprs</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection recipe of the values of the <code><em>exprs</em></code>,
+which are evaluated in parallel. The values are in the same order
+as their <code><em>exprs</em></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+for the execution of <code><em>exprs</em></code> and twice the available processors.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pcalls">pcalls</a></code>, <code><a href="#pvalues_unordered">pvalues&#45;unordered</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Unordered"><a class="link" href="#Unordered">Unordered</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See <a href="#Primary">ordered section</a> for slower
+     but ordered version of functions for parallel computation.</p>
+</div>
+<div class="paragraph">
+<p>In this section: <code><a href="#pcalls_unordered">pcalls&#45;unordered</a></code> <code><a href="#pmap_unordered">pmap&#45;unordered</a></code> <code><a href="#pmap_unordered_STAR_">pmap&#45;unordered*</a></code> <code><a href="#pvalues_unordered">pvalues&#45;unordered</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pcalls_unordered"><a class="link" href="#pcalls_unordered">pcalls-unordered</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L342">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pcalls&#45;unordered <em>&amp; fns</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Va AnyFn)) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Executes the no-arg <code><em>fns</em></code> in parallel,
+returning collection recipe of their values, in any order.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+for the execution of <code><em>fns</em></code> and twice the available processors.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pvalues_unordered">pvalues&#45;unordered</a></code>, <code><a href="#pcalls">pcalls</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pmap_unordered"><a class="link" href="#pmap_unordered">pmap-unordered</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L308">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pmap&#45;unordered <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap&#45;unordered <em>f coll</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap&#45;unordered <em>n f coll</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap&#45;unordered <em>pool n f coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ [&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>((Maybe Integer) ⨯ AnyFn ⨯ [&#93;) → Any</code></p>
+</li>
+<li>
+<p><code>((Maybe ITaskExecutor) ⨯ (Maybe Integer) ⨯ AnyFn ⨯ [&#93;) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that applies <code><em>f</em></code> at step items at parallel,
+<code><em>n</em></code> threads at most, using <code><em>pool</em></code> for executing tasks.
+Order of items is not preserved.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+if <code><em>pool</em></code> is not specified.</p>
+</div>
+<div class="paragraph">
+<p>Uses twice the available processors if <code><em>n</em></code> is not specified.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-42"><label class="dd-example-label" for="toggle-42">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">f</span>
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Waits a random bit and returns x.</span><span class="delimiter">&quot;</span></span>
+  [x]
+  (java.lang.Thread/sleep (rand-integer <span class="integer">100</span>))
+  x)
+<span class="comment">;;=&gt; #'foo.bar/f</span>
+
+(<span class="keyword">time</span> (<span class="keyword">reduce</span> <span class="keyword">+</span> (<span class="keyword">pmap</span> <span class="integer">50</span> f (<span class="keyword">range</span> <span class="integer">1000</span>))))
+<span class="comment">;; Elapsed time: 1822.661065 msecs</span>
+<span class="comment">;;=&gt; 499500</span>
+
+(<span class="keyword">time</span> (<span class="keyword">reduce</span> <span class="keyword">+</span> (pmap-unordered <span class="integer">50</span> f (<span class="keyword">range</span> <span class="integer">1000</span>))))
+<span class="comment">;; Elapsed time: 1027.149603 msecs</span>
+<span class="comment">;;=&gt; 499500</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pmap_unordered_STAR_">pmap&#45;unordered*</a></code>, <code><a href="#pmap">pmap</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pmap_unordered_STAR_"><a class="link" href="#pmap_unordered_STAR_">pmap-unordered*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L264">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pmap&#45;unordered* <em>pool n f</em>)</code></p>
+</li>
+<li>
+<p><code>(pmap&#45;unordered* <em>pool n f coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Maybe ITaskExecutor) ⨯ (Maybe Integer) ⨯ AnyFn) → Transducer</code></p>
+</li>
+<li>
+<p><code>((Maybe ITaskExecutor) ⨯ (Maybe Integer) ⨯ AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that applies <code><em>f</em></code> at step items at parallel,
+<code><em>n</em></code> threads at most, using <code><em>pool</em></code> for executing tasks.
+Order of items is not preserved.</p>
+</div>
+<div class="paragraph">
+<p>Uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+if <code><em>pool</em></code> is <code>nil</code>.</p>
+</div>
+<div class="paragraph">
+<p>Uses twice the available processors if <code><em>n</em></code> is <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pmap_unordered">pmap&#45;unordered</a></code>, <code><a href="dunaj.concurrent.forkjoin.api.html#transfold">dunaj.concurrent.forkjoin/transfold</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pvalues_unordered"><a class="link" href="#pvalues_unordered">pvalues-unordered</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/parallel.clj#L366">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(pvalues-unordered <em>&amp; exprs</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection recipe of the values of the exprs, which are
+evaluated in parallel. The values may not be in the same order
+as their <code><em>exprs</em></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+uses <code><a href="dunaj.concurrent.api.html#default_future_executor">default-future-executor</a></code>
+for the execution of <code><em>exprs</em></code> and twice the available processors.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pcalls_unordered">pcalls&#45;unordered</a></code>, <code><a href="#pvalues">pvalues</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:15:14 CET
+</div>
+</div>
+</body>
+</html>

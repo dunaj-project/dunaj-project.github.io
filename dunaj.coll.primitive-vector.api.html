@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.coll.primitive-vector API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.coll.primitive-vector API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll.primitive-vector</a></div><div class="dd-nav-ns-var"><a href="#empty_byte_vec"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-byte-vec</span></a></div><div class="dd-nav-ns-var"><a href="#empty_char_vec"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-char-vec</span></a></div><div class="dd-nav-ns-var"><a href="#empty_double_vec"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-double-vec</span></a></div><div class="dd-nav-ns-var"><a href="#empty_float_vec"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-float-vec</span></a></div><div class="dd-nav-ns-var"><a href="#empty_int_vec"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-int-vec</span></a></div><div class="dd-nav-ns-var"><a href="#empty_long_vec"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-long-vec</span></a></div><div class="dd-nav-ns-var"><a href="#empty_primitive_vector_of"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">empty-primitive-vector-of</span></a></div><div class="dd-nav-ns-var"><a href="#empty_short_vec"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-short-vec</span></a></div><div class="dd-nav-ns-group"><a href="#Factories">Factories</a></div><div class="dd-nav-ns-var"><a href="#byte_vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">byte-vec-factory</span></a></div><div class="dd-nav-ns-var"><a href="#char_vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">char-vec-factory</span></a></div><div class="dd-nav-ns-var"><a href="#double_vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">double-vec-factory</span></a></div><div class="dd-nav-ns-var"><a href="#float_vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">float-vec-factory</span></a></div><div class="dd-nav-ns-var"><a href="#int_vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">int-vec-factory</span></a></div><div class="dd-nav-ns-var"><a href="#long_vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">long-vec-factory</span></a></div><div class="dd-nav-ns-var"><a href="#primitive_vector_factory_of"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">primitive-vector-factory-of</span></a></div><div class="dd-nav-ns-var"><a href="#short_vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">short-vec-factory</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll.primitive-vector API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2012, 2015, Michał Marczyk, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A vector holding primitive values. A sequential persistent
+collection.</p>
+</div>
+<div class="paragraph">
+<p>This collection type stores unboxed primitive items, while
+preserving all characteristics of persistent vectors.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Current implementation is based on RRB-Tree vectors.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Current API is tied to the JVM host and its primitive data
+types.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Primitive vectors have support for transients, folding, batched
+reduce, efficient reversion, sectioning and slicing.
+Besides primitive vector type, Dunaj offers following persistent
+vector types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dunaj.coll.bvt-vector.api.html">BVT vectors</a> for efficient
+representation of medium to large vectors</p>
+</li>
+<li>
+<p><a href="dunaj.coll.tuple.api.html">tuples</a> for efficient representation
+of small vectors</p>
+</li>
+<li>
+<p><a href="dunaj.coll.rrbt-vector.api.html">RRB-Tree vectors</a> for efficient
+catenation or insertion/removal of items in the middle of a
+vector.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Just like all vector types, primitive vectors add/remove items
+to/from the rear of the collection.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Except for very special cases, it is idiomatic to use
+functions defined in <code><a href="dunaj.coll.default.api.html">coll.default</a></code>
+rather than ones in this namespace.
+</td>
+</tr>
+</table>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-29"><label class="dd-example-label" for="toggle-29">1 usage example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">def</span> <span class="function">v</span> (<span class="keyword">take</span> <span class="integer">1000000</span> (<span class="keyword">cycle</span> (<span class="keyword">vec</span> (<span class="keyword">range</span> <span class="integer">-100</span> <span class="integer">100</span>)))))
+<span class="comment">;;=&gt; #'foo.bar/v</span>
+
+(<span class="keyword">def</span> <span class="function">vp</span> (vec-of <span class="symbol">:byte</span> v))
+<span class="comment">;;=&gt; #'foo.bar/vp</span>
+
+<span class="comment">;; primitive vectors support batched reduce and they internally store data in primitive arrays. All this can speed up collection operations.</span>
+
+(<span class="keyword">time</span> (with-scope (write! <span class="string"><span class="delimiter">&quot;</span><span class="content">out.bin</span><span class="delimiter">&quot;</span></span> v)))
+<span class="comment">;; Elapsed time: 215.490853 msecs</span>
+<span class="comment">;;=&gt; 1000000</span>
+
+(<span class="keyword">time</span> (with-scope (write! <span class="string"><span class="delimiter">&quot;</span><span class="content">out.bin</span><span class="delimiter">&quot;</span></span> vp)))
+<span class="comment">;; Elapsed time: 70.27703 msecs</span>
+<span class="comment">;;=&gt; 1000000</span>
+
+(<span class="keyword">time</span> (<span class="keyword">take</span> <span class="integer">10</span> (<span class="keyword">sort</span> v)))
+<span class="comment">;; Elapsed time: Elapsed time: 1887.72503 msecs</span>
+<span class="comment">;;=&gt; (-100 -100 -100 -100 -100 -100 -100 -100 -100 -100)</span>
+
+(<span class="keyword">time</span> (<span class="keyword">take</span> <span class="integer">10</span> (<span class="keyword">sort</span> vp)))
+<span class="comment">;; Elapsed time: 261.35322 msecs</span>
+<span class="comment">;;=&gt; (-100 -100 -100 -100 -100 -100 -100 -100 -100 -100)</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#empty_byte_vec">empty&#45;byte&#45;vec</a></code> <code><a href="#empty_char_vec">empty&#45;char&#45;vec</a></code> <code><a href="#empty_double_vec">empty&#45;double&#45;vec</a></code> <code><a href="#empty_float_vec">empty&#45;float&#45;vec</a></code> <code><a href="#empty_int_vec">empty&#45;int&#45;vec</a></code> <code><a href="#empty_long_vec">empty&#45;long&#45;vec</a></code> <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code> <code><a href="#empty_short_vec">empty&#45;short&#45;vec</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_byte_vec"><a class="link" href="#empty_byte_vec">empty-byte-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L587">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>PrimitiveVector</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty primitive byte vector.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_char_vec"><a class="link" href="#empty_char_vec">empty-char-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L615">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>PrimitiveVector</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty primitive char vector.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_double_vec"><a class="link" href="#empty_double_vec">empty-double-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L573">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>PrimitiveVector</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty primitive double vector.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_float_vec"><a class="link" href="#empty_float_vec">empty-float-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L559">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>PrimitiveVector</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty primitive float vector.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_int_vec"><a class="link" href="#empty_int_vec">empty-int-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L531">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>PrimitiveVector</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty primitive int vector.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_long_vec"><a class="link" href="#empty_long_vec">empty-long-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L545">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>PrimitiveVector</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty primitive long vector.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_primitive_vector_of"><a class="link" href="#empty_primitive_vector_of">empty-primitive-vector-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L509">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(empty&#45;primitive&#45;vector&#45;of <em>t</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil Class Type)) → IPersistentVector</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an empty primitive vector of given type <code><em>t</em></code>, which can be
+a host class, a type or a keyword. See
+<code><a href="dunaj.host.api.html#keyword__GT_class">keyword&#8594;class</a></code> for the
+list of valid keywords.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_int_vec">empty&#45;int&#45;vec</a></code>, <code><a href="#empty_long_vec">empty&#45;long&#45;vec</a></code>, <code><a href="#empty_float_vec">empty&#45;float&#45;vec</a></code>, <code><a href="#empty_double_vec">empty&#45;double&#45;vec</a></code>, <code><a href="#empty_byte_vec">empty&#45;byte&#45;vec</a></code>, <code><a href="#empty_short_vec">empty&#45;short&#45;vec</a></code>, <code><a href="#empty_char_vec">empty&#45;char&#45;vec</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_short_vec"><a class="link" href="#empty_short_vec">empty-short-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L601">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>PrimitiveVector</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty primitive short vector.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_primitive_vector_of">empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.tuple.api.html#empty_tuple">dunaj.coll.tuple/empty&#45;tuple</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Factories"><a class="link" href="#Factories">Factories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Note that there is no primitive vector factory for
+                 booleans, as there is no batch support for them.</p>
+</div>
+<div class="paragraph">
+<p>In this section: <code><a href="#byte_vec_factory">byte&#45;vec&#45;factory</a></code> <code><a href="#char_vec_factory">char&#45;vec&#45;factory</a></code> <code><a href="#double_vec_factory">double&#45;vec&#45;factory</a></code> <code><a href="#float_vec_factory">float&#45;vec&#45;factory</a></code> <code><a href="#int_vec_factory">int&#45;vec&#45;factory</a></code> <code><a href="#long_vec_factory">long&#45;vec&#45;factory</a></code> <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code> <code><a href="#short_vec_factory">short&#45;vec&#45;factory</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="byte_vec_factory"><a class="link" href="#byte_vec_factory">byte-vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L782">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A primitive byte vector factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="char_vec_factory"><a class="link" href="#char_vec_factory">char-vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L832">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A primitive char vector factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="double_vec_factory"><a class="link" href="#double_vec_factory">double-vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L757">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A primitive double vector factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="float_vec_factory"><a class="link" href="#float_vec_factory">float-vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L732">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A primitive float vector factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="int_vec_factory"><a class="link" href="#int_vec_factory">int-vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L679">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A primitive int vector factory instance.
+Currently there are no options.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+More <code>Int</code> related functions can be found in
+<code><a href="dunaj.host.int.api.html">dunaj.host.int</a></code> namespace.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="long_vec_factory"><a class="link" href="#long_vec_factory">long-vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L707">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A primitive long vector factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="primitive_vector_factory_of"><a class="link" href="#primitive_vector_factory_of">primitive-vector-factory-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L651">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(primitive&#45;vector&#45;factory&#45;of <em>t</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil Class Type)) → ICollectionFactory</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a primitive vector factory for type <code><em>t</em></code>, which can be
+a host class, a type or a keyword. See
+<code><a href="dunaj.host.api.html#keyword__GT_class">keyword&#8594;class</a></code> for the
+list of valid keywords.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#int_vec_factory">int&#45;vec&#45;factory</a></code>, <code><a href="#long_vec_factory">long&#45;vec&#45;factory</a></code>, <code><a href="#float_vec_factory">float&#45;vec&#45;factory</a></code>, <code><a href="#double_vec_factory">double&#45;vec&#45;factory</a></code>, <code><a href="#byte_vec_factory">byte&#45;vec&#45;factory</a></code>, <code><a href="#short_vec_factory">short&#45;vec&#45;factory</a></code>, <code><a href="#char_vec_factory">char&#45;vec&#45;factory</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="short_vec_factory"><a class="link" href="#short_vec_factory">short-vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L807">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A primitive short vector factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This var is specific to JVM host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#primitive_vector_factory_of">primitive&#45;vector&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.tuple.api.html#tuple_factory">dunaj.coll.tuple/tuple&#45;factory</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#bvt_vector_factory">dunaj.coll.bvt&#45;vector/bvt&#45;vector&#45;factory</a></code>, <code><a href="dunaj.coll.default.api.html#vec_factory_of">dunaj.coll.default/vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec_of">dunaj.coll.default/&#45;&#62;vec&#45;of</a></code>, <code><a href="dunaj.coll.default.api.html#vec_of">dunaj.coll.default/vec&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:14:10 CET
+</div>
+</div>
+</body>
+</html>

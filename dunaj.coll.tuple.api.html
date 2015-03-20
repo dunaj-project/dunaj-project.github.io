@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner, Zachary Tellman">
+<title>dunaj.coll.tuple API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.coll.tuple API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="author2" class="author">Zachary Tellman</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll.tuple</a></div><div class="dd-nav-ns-var"><a href="#empty_tuple"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-tuple</span></a></div><div class="dd-nav-ns-var"><a href="#tuple"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">tuple</span></a></div><div class="dd-nav-ns-var"><a href="#tuple_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">tuple-factory</span></a></div><div class="dd-nav-ns-group"><a href="#Pairs">Pairs</a></div><div class="dd-nav-ns-var"><a href="#key"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">key</span></a></div><div class="dd-nav-ns-var"><a href="#pair"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">pair</span></a></div><div class="dd-nav-ns-var"><a href="#val"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">val</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll.tuple API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span class="author">Zachary Tellman</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A set of tuple types, a sequential persistent collection efficient
+for small vectors.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Taken and adapted from
+<a href="https://github.com/ztellman/clj-tuple">clj-tuple</a>
+by <a href="http://ideolalia.com/">Zachary Tellman</a>, MIT license.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This namespace provides number of tuple types for small
+vectors. Tuples have a constant time access to their items and
+efficient memory use. There is no structural sharing between
+tuples, which if efficient only for small vectors.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Current implementation switches to the <code>bvt-vector</code>
+when number of items exceeds <strong>6</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Tuples have support for transients, folding,
+efficient reversion and flipping, sectioning, slicing and
+catenation. Tuples with 2 items also implement a host MapEntry
+interface, which makes them an ideal type for map <code>[key value]</code>
+entries.</p>
+</div>
+<div class="paragraph">
+<p>Besides tuples, Dunaj offers following persistent vector
+types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dunaj.coll.bvt-vector.api.html">BVT vectors</a> for efficient
+representation of medium to large vectors</p>
+</li>
+<li>
+<p><a href="dunaj.coll.rrbt-vector.api.html">RRB-Tree vectors</a> for efficient
+catenation or insertion/removal of items in the middle of a
+vector.</p>
+</li>
+<li>
+<p><a href="dunaj.coll.primitive-vector.api.html">primitive vectors</a>
+for efficient storage of host primitive data types.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Just like all vector types, tuples add/remove items to/from the
+rear of the collection.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#empty_tuple">empty&#45;tuple</a></code> <code><a href="#tuple">tuple</a></code> <code><a href="#tuple_factory">tuple&#45;factory</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_tuple"><a class="link" href="#empty_tuple">empty-tuple</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L427">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Tuple0</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty tuple.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#tuple_factory">tuple&#45;factory</a></code>, <code><a href="dunaj.coll.primitive-vector.api.html#empty_primitive_vector_of">dunaj.coll.primitive&#45;vector/empty&#45;primitive&#45;vector&#45;of</a></code>, <code><a href="dunaj.coll.bvt-vector.api.html#empty_bvt_vector">dunaj.coll.bvt&#45;vector/empty&#45;bvt&#45;vector</a></code>, <code><a href="dunaj.coll.default.api.html#empty_vec">dunaj.coll.default/empty&#45;vec</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="tuple"><a class="link" href="#tuple">tuple</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L438">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(tuple)</code></p>
+</li>
+<li>
+<p><code>(tuple <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(tuple <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(tuple <em>x y z</em>)</code></p>
+</li>
+<li>
+<p><code>(tuple <em>x y z w</em>)</code></p>
+</li>
+<li>
+<p><code>(tuple <em>x y z w u</em>)</code></p>
+</li>
+<li>
+<p><code>(tuple <em>x y z w u v</em>)</code></p>
+</li>
+<li>
+<p><code>(tuple <em>x y z w u v &amp; rst</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a tuple which behaves like a vector, but is highly
+efficient for index lookups, hash calculations, equality checks,
+and reduction. If there are more than six items, returns a
+normal vector.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-33"><label class="dd-example-label" for="toggle-33">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>(tuple <span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>)
+<span class="comment">;;=&gt; [1 2 3 4 5]</span>
+
+(flip (tuple <span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>))
+<span class="comment">;;=&gt; [5 4 3 2 1]</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pair">pair</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec">dunaj.coll.default/&#45;&#62;vec</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="tuple_factory"><a class="link" href="#tuple_factory">tuple-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L498">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A tuple factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of tuple can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#tuple">tuple</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Pairs"><a class="link" href="#Pairs">Pairs</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#key">key</a></code> <code><a href="#pair">pair</a></code> <code><a href="#val">val</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="key"><a class="link" href="#key">key</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L464">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(key <em>pair</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(java.util.Map$Entry) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns key of a given <code><em>pair</em></code> tuple. More efficient than <code>first</code>.
+Also works with host pairs, e.g. map entry in JVM.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-34"><label class="dd-example-label" for="toggle-34">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">seq</span> (<span class="keyword">map</span> <span class="keyword">key</span> {<span class="symbol">:a</span> <span class="integer">1</span> <span class="symbol">:b</span> <span class="integer">2</span>}))
+<span class="comment">;;=&gt; (:b :a)</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#tuple">tuple</a></code>, <code><a href="#pair">pair</a></code>, <code><a href="#val">val</a></code>, <code><a href="dunaj.coll.api.html#first">dunaj.coll/first</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pair"><a class="link" href="#pair">pair</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L456">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pair <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Tuple2</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a pair tuple containing <code><em>x</em></code> and <code><em>y</em></code>.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-35"><label class="dd-example-label" for="toggle-35">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+</pre></td>
+  <td class="code"><pre><span class="comment">;; pair is faster than destructuring but more verbose</span>
+(<span class="keyword">defn</span> <span class="function">foo</span> [[k v]]
+    (<span class="keyword">+</span> k v))
+<span class="comment">;;=&gt; #'foo.bar/foo</span>
+
+(<span class="keyword">defn</span> <span class="function">foo-pair</span> [p]
+  (<span class="keyword">let</span> [k (<span class="keyword">key</span> p)
+        v (<span class="keyword">val</span> p)]
+    (<span class="keyword">+</span> k v)))
+<span class="comment">;;=&gt; #'foo.bar/foo-pair</span>
+
+(<span class="keyword">time</span> (<span class="keyword">dotimes</span> [x <span class="integer">1000000</span>] (foo [x x])))
+<span class="comment">;; Elapsed time: 400.177109 msecs</span>
+<span class="comment">;;=&gt; nil</span>
+
+(<span class="keyword">time</span> (<span class="keyword">dotimes</span> [x <span class="integer">1000000</span>] (foo (pair x x))))
+<span class="comment">;; Elapsed time: 300.855405 msecs</span>
+<span class="comment">;;=&gt; nil</span>
+
+(<span class="keyword">time</span> (<span class="keyword">dotimes</span> [x <span class="integer">1000000</span>] (foo-pair (pair x x))))
+<span class="comment">;; Elapsed time: 264.42369 msecs</span>
+<span class="comment">;;=&gt; nil</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#tuple">tuple</a></code>, <code><a href="#key">key</a></code>, <code><a href="#val">val</a></code>, <code><a href="dunaj.coll.default.api.html#__GT_vec">dunaj.coll.default/&#45;&#62;vec</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="val"><a class="link" href="#val">val</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L473">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(val <em>pair</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(java.util.Map$Entry) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns value of a given <code><em>pair</em></code> tuple. More efficient than
+<code>second</code>. Also works with host pairs, e.g. map entry in JVM.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-36"><label class="dd-example-label" for="toggle-36">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">seq</span> (<span class="keyword">map</span> <span class="keyword">val</span> {<span class="symbol">:a</span> <span class="integer">1</span> <span class="symbol">:b</span> <span class="integer">2</span>}))
+<span class="comment">;;=&gt; (2 1)</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#tuple">tuple</a></code>, <code><a href="#pair">pair</a></code>, <code><a href="#key">key</a></code>, <code><a href="dunaj.coll.api.html#second">dunaj.coll/second</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:14:31 CET
+</div>
+</div>
+</body>
+</html>

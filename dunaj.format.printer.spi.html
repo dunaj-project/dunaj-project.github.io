@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.format.printer SPI</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.format.printer SPI</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.format.printer</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IContainerPrinterMachine"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IContainerPrinterMachine</span></a></div><div class="dd-nav-ns-var"><a href="#_children"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-children</span></a></div><div class="dd-nav-ns-var"><a href="#_print_before_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-print-before!</span></a></div><div class="dd-nav-ns-var"><a href="#_print_after_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-print-after!</span></a></div><div class="dd-nav-ns-var"><a href="#_print_between_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-print-between!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IIndentedMachine"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IIndentedMachine</span></a></div><div class="dd-nav-ns-var"><a href="#_indent"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-indent</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPrinterMachineFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPrinterMachineFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_printer_config"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-printer-config</span></a></div><div class="dd-nav-ns-var"><a href="#_printer_from_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-printer-from-type</span></a></div><div class="dd-nav-ns-var"><a href="#_printer_to_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-printer-to-type</span></a></div><div class="dd-nav-ns-var"><a href="#_top_container"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-top-container</span></a></div><div class="dd-nav-ns-var"><a href="#_dispatch_printer"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dispatch-printer</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.format.printer SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.format.printer.api.html">API documentation</a> for this namespace.</div></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fast printer engine with helper functions.</p>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IContainerPrinterMachine"><a class="link" href="#IContainerPrinterMachine">IContainerPrinterMachine</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L72">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_children">-children</a></code>, <code><a href="#_print_before_BANG_">-print-before!</a></code>, <code><a href="#_print_after_BANG_">-print-after!</a></code>, <code><a href="#_print_between_BANG_">-print-between!</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A protocol for container printer machine. Is used in the printer
+engine to process potentionally nested data containers.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.format.printer.api.html#container_printer_machine_QMARK_">container&#45;printer&#45;machine?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_children"><a class="link" href="#_children">-children</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L72">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;children <em>this parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IPersistentList) → [&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the collection of child items which should be printed
+before <code><em>this</em></code> printer machine can complete. <code><em>parents</em></code> contains
+list of parent machines, including <code><em>this</em></code> and top container.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IContainerPrinterMachine">IContainerPrinterMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_print_before_BANG_"><a class="link" href="#_print_before_BANG_">-print-before!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L72">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;print&#45;before! <em>this bm batch parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ BatchManager ⨯ AnyBatch ⨯ IPersistentList) → (Maybe AnyBatch)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the batch of printed values which should be put before
+child items. Returns <code>nil</code> if printed values were instead put
+into <code><em>batch</em></code> or if no prefix was needed. <code><em>parents</em></code> contains
+list of parent machines, including <code><em>this</em></code> and top container.
+Batch manager <code><em>bm</em></code> should be used for all batch related things.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IContainerPrinterMachine">IContainerPrinterMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_print_after_BANG_"><a class="link" href="#_print_after_BANG_">-print-after!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L72">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;print&#45;after! <em>this bm batch parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ BatchManager ⨯ AnyBatch ⨯ IPersistentList) → (Maybe AnyBatch)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the batch of printed values which should be put after
+child items. Returns <code>nil</code> if printed values were instead put
+into <code><em>batch</em></code> or if no postfix was needed. <code><em>parents</em></code> contains
+list of parent machines, including <code><em>this</em></code> and top container.
+Batch manager <code><em>bm</em></code> should be used for all batch related things.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IContainerPrinterMachine">IContainerPrinterMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_print_between_BANG_"><a class="link" href="#_print_between_BANG_">-print-between!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L72">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;print&#45;between! <em>this bm batch parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ BatchManager ⨯ AnyBatch ⨯ IPersistentList) → (Maybe AnyBatch)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the separator which should be added between two child
+items. As the printer machine may keep an internal state, the
+result from <code><em>this</em></code> method is not cached but is called
+repeatedly between child items.</p>
+</div>
+<div class="paragraph">
+<p>Returns <code>nil</code> if printed values were put into <code><em>batch</em></code> instead
+or if no separator was needed. <code><em>parents</em></code> contains list of parent
+machines, including <code><em>this</em></code> and top container. Batch manager
+<code><em>bm</em></code> should be used for all batch related things.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IContainerPrinterMachine">IContainerPrinterMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IIndentedMachine"><a class="link" href="#IIndentedMachine">IIndentedMachine</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L168">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_indent">-indent</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A protocol for basic indentation mechanism in printer machines.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.format.printer.api.html#base_indent">base&#45;indent</a></code>, <code><a href="dunaj.format.printer.api.html#next_indent">next&#45;indent</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_indent"><a class="link" href="#_indent">-indent</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L168">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;indent <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns indent amount for <code><em>this</em></code> machine.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IIndentedMachine">IIndentedMachine</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPrinterMachineFactory"><a class="link" href="#IPrinterMachineFactory">IPrinterMachineFactory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L113">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_printer_config">-printer-config</a></code>, <code><a href="#_printer_from_type">-printer-from-type</a></code>, <code><a href="#_printer_to_type">-printer-to-type</a></code>, <code><a href="#_top_container">-top-container</a></code>, <code><a href="#_dispatch_printer">-dispatch-printer</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A factory protocol for the execution of a printer engine.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_printer_config"><a class="link" href="#_printer_config">-printer-config</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L113">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;printer&#45;config <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → {}</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a configuration map that is passed into machines
+created directly or indirectly with <code><em>this</em></code> printer machine
+factory. Passing of configuration map is done by convention as a
+first argument of machine constructor, with folowing keys
+recognized by the printer engine and its helper fns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:invalid-item</code> - Controls how machine should behave if
+unprintable items is passed into the printer. Valid values are
+<code>nil</code> (throws), <code>:ignore</code> (behave as if there was no such item)
+or a function which is called with the current config, invalid
+item, parents and result of which is used for printing instead.</p>
+</li>
+<li>
+<p><code>:initial-state</code> - specifies an initial state of a printer
+machine. Can be <code>nil</code> or map</p>
+</li>
+<li>
+<p><code>:indent-offset</code> - number representing indent offset</p>
+</li>
+<li>
+<p><code>:indent-size</code> - number representing indent size</p>
+</li>
+<li>
+<p><code>:color?</code> - boolean flag whether output should be in color</p>
+</li>
+<li>
+<p><code>:color-fn</code> - fn taking key and returning colorizer batch</p>
+</li>
+<li>
+<p><code>:string-limit</code> - number representing string character limit</p>
+</li>
+<li>
+<p><code>:item-limit</code> - number representing item limit</p>
+</li>
+<li>
+<p><code>:item-limit-batch</code> - batch which should be printed if item
+limit is reached</p>
+</li>
+<li>
+<p><code>:level-limit-pred</code> - fn taking list of parents and returns
+<code>true</code> if level limit has been reached.</p>
+</li>
+<li>
+<p><code>:level-limit-print-fn</code> - fn taking batch, bm and state, and
+prints limit batch to <code>batch</code> or returns limit batch.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPrinterMachineFactory">IPrinterMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_printer_from_type"><a class="link" href="#_printer_from_type">-printer-from-type</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L113">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;printer&#45;from&#45;type <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (U nil Class Type)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns type of items which are to be printed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPrinterMachineFactory">IPrinterMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_printer_to_type"><a class="link" href="#_printer_to_type">-printer-to-type</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L113">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;printer&#45;to&#45;type <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (U nil Class Type)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns type of printed values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPrinterMachineFactory">IPrinterMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_top_container"><a class="link" href="#_top_container">-top-container</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L113">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;top&#45;container <em>this config state coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ {} ⨯ IReference ⨯ (Maybe IRed)) → IContainerPrinterMachine</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the top level container printing machine used in
+the printing engine to process top level items.
+<code><em>coll</em></code> may be <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPrinterMachineFactory">IPrinterMachineFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dispatch_printer"><a class="link" href="#_dispatch_printer">-dispatch-printer</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/format/printer.clj#L113">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dispatch&#45;printer <em>this config state item bm batch parents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ {} ⨯ IReference ⨯ Any ⨯ BatchManager ⨯ AnyBatch ⨯ IReference) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a batch of printed values or a container printer machine
+for printing nested data containers, as a result of printing on a
+given input <code><em>item</em></code> according to the <code><em>config</em></code> configuration.
+<code><em>parents</em></code> contains list of parent machines, including top
+container. Returns <code>nil</code> if printed values were put into <code><em>batch</em></code>
+instead. Dispatcher should use given <code><em>bm</em></code> batch manager for all
+batch related things.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPrinterMachineFactory">IPrinterMachineFactory</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:21:54 CET
+</div>
+</div>
+</body>
+</html>

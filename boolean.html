@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Booleans</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Booleans</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Booleans</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div class="paragraph">
+<p>A <code><a href="dunaj.boolean.api.html#Boolean">Boolean</a></code> is a concrete type that
+has two values, called <code>true</code> and <code>false</code>. These values represent
+logical truth values and are used in conditionals.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj (and Clojure) performs an automatic coercion to <code>Boolean</code>
+when e.g. calling a function that expects a boolean argument.
+By definition, <code>nil</code> and <code>false</code> coerce to <code>false</code>, any other
+value coerces to <code>true</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+JVM host specific: Dunaj supports primitive booleans as
+function arguments and return values (subject to the number of
+arguments and combination of argument types).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>JVM host specific: <code>false</code> is identical to <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html#FALSE"><code>Boolean/FALSE</code></a>, so
+using other instances of <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html"><code>java.lang.Boolean</code></a> may lead to surprising
+results. In such cases, you may want to use
+<code><a href="dunaj.boolean.api.html#boolean">boolean</a></code> function,
+which coerces into correct boolean value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">if</span> (java.lang.Boolean. <span class="predefined-constant">false</span>) <span class="symbol">:is-true</span> <span class="symbol">:is-false</span>)
+<span class="comment">;;=&gt; :is-true</span>
+
+(<span class="keyword">if</span> (<span class="keyword">boolean</span> (java.lang.Boolean. <span class="predefined-constant">false</span>)) <span class="symbol">:is-true</span> <span class="symbol">:is-false</span>)
+<span class="comment">;;=&gt; :is-false</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Boolean type, constructor, predicates and other related
+functionalities are defined in <a href="dunaj.boolean.api.html">dunaj.boolean</a>
+namespace.</p>
+</div>
+<div class="paragraph">
+<p>Boolean has a dedicated syntax in <code>CLJ</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top">JSON</th>
+<th class="tableblock halign-center valign-top">EDN</th>
+<th class="tableblock halign-center valign-top">CLJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true literal</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false literal</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+</tbody>
+</table></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:26 CET
+</div>
+</div>
+</body>
+</html>

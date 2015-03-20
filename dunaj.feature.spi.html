@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.feature SPI</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.feature SPI</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.feature</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IConfig"><i class="dd-referred fa fa-fw fa-plug dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">IConfig</span></a></div><div class="dd-nav-ns-var"><a href="#_config"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-config</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMeta"><i class="dd-referred fa fa-fw fa-plug dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">IMeta</span></a></div><div class="dd-nav-ns-var"><a href="#_meta"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-meta</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableConfig"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableConfig</span></a></div><div class="dd-nav-ns-var"><a href="#_config_ref"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-config-ref</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableMeta"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableMeta</span></a></div><div class="dd-nav-ns-var"><a href="#_meta_ref"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-meta-ref</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentConfig"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentConfig</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc_config"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc-config</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentMeta"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentMeta</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc_meta"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc-meta</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IValidator"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IValidator</span></a></div><div class="dd-nav-ns-var"><a href="#_validator"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-validator</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.feature SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.feature.api.html">API documentation</a> for this namespace.</div></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Feature protocols for metadata, configuration and validation.</p>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IConfig"><a class="link" href="#IConfig">IConfig</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L138">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_config">-config</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A feature protocol for configured objects.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.feature.api.html#config">config</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_config"><a class="link" href="#_config">-config</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L138">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;config <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → KeywordMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a configuration attached to <code><em>this</em></code> object.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IConfig">IConfig</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMeta"><a class="link" href="#IMeta">IMeta</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L59">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_meta">-meta</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A feature protocol for objects carying metadata.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.feature.api.html#meta">meta</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_meta"><a class="link" href="#_meta">-meta</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L59">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;meta <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → KeywordMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns metadata map attached to <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMeta">IMeta</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableConfig"><a class="link" href="#IMutableConfig">IMutableConfig</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L175">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_config_ref">-config-ref</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A feature protocol for mutable configuration.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IConfig">IConfig</a></code>, <code><a href="#IPersistentConfig">IPersistentConfig</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_config_ref"><a class="link" href="#_config_ref">-config-ref</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L175">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;config&#45;ref <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (I IMutable IReference)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns mutable reference to object&#8217;s configuration.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableConfig">IMutableConfig</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableMeta"><a class="link" href="#IMutableMeta">IMutableMeta</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L101">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_meta_ref">-meta-ref</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A feature protocol for objects with mutable metadata.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMeta">IMeta</a></code>, <code><a href="#IPersistentMeta">IPersistentMeta</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_meta_ref"><a class="link" href="#_meta_ref">-meta-ref</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L101">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;meta&#45;ref <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (I IMutable IReference)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns mutable reference to object&#8217;s metadata.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableMeta">IMutableMeta</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentConfig"><a class="link" href="#IPersistentConfig">IPersistentConfig</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L156">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_assoc_config">-assoc-config</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A feature protocol for objects with persistent configuration.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IConfig">IConfig</a></code>, <code><a href="#IMutableConfig">IMutableConfig</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_assoc_config"><a class="link" href="#_assoc_config">-assoc-config</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L156">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;assoc&#45;config <em>this conf</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ KeywordMap) → IPersistentConfig</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>this</em></code> with <code><em>conf</em></code> object associated as its
+configuration.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPersistentConfig">IPersistentConfig</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentMeta"><a class="link" href="#IPersistentMeta">IPersistentMeta</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L80">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_assoc_meta">-assoc-meta</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A feature protocol for objects with persistent metadata.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMeta">IMeta</a></code>, <code><a href="#IMutableMeta">IMutableMeta</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_assoc_meta"><a class="link" href="#_assoc_meta">-assoc-meta</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L80">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;assoc&#45;meta <em>this m</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ KeywordMap) → IPersistentMeta</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>this</em></code> with <code><em>m</em></code> associated as object&#8217;s metadata.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPersistentMeta">IPersistentMeta</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IValidator"><a class="link" href="#IValidator">IValidator</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L30">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_validator">-validator</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A feature protocol for objects that can be validated.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.feature.api.html#validable_QMARK_">validable?</a></code>, <code><a href="dunaj.feature.api.html#validator">validator</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_validator"><a class="link" href="#_validator">-validator</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/feature.clj#L30">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;validator <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (I IMutable IReference)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns mutable reference to the current validator fn.
+Referenced value is <code>nil</code> if no validator is set.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IValidator">IValidator</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:21:32 CET
+</div>
+</div>
+</body>
+</html>

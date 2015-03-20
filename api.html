@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj API</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="doc.html">Documentation</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="rationale.html">Rationale</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="todo.html">Future Plans</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div class="paragraph">
+<p>Dunaj API comprises following namespaces:</p>
+</div>
+<div class="paragraph">
+<p><code><a href="bare.core.api.html">bare.core</a></code> An entry point to the <code>bare API</code>.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.bit.api.html">dunaj.bit</a></code> Functions for bitwise manipulation.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.boolean.api.html">dunaj.boolean</a></code> Boolean type and related logic operations.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.buffer.api.html">dunaj.buffer</a></code> Unsynchronized mutable collections with predefined capacity.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.char.api.html">dunaj.char</a></code> Character type, predicates and operations.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.api.html">dunaj.coll</a></code> Immutable, mutable and persistent collections.
+Reducers and transducers <span class="icon"><i class="fa fa-puzzle-piece"></i></span>.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.array-map.api.html">dunaj.coll.array-map</a></code> Array map, a persistent collection for small maps.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.batched-queue.api.html">dunaj.coll.batched-queue</a></code> Batched queue, a sequential FIFO persistent collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.bvt-vector.api.html">dunaj.coll.bvt-vector</a></code> Bitmapped Vector Trie vector, a sequential persistent collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.cons-seq.api.html">dunaj.coll.cons-seq</a></code> Cons seq, a basic seq type.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.default.api.html">dunaj.coll.default</a></code> Default implementations for basic collection types.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.empty-list.api.html">dunaj.coll.empty-list</a></code> Empty list, a seq type.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.hamt-map.api.html">dunaj.coll.hamt-map</a></code> Hash Array Mapped Trie map, a persistent collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.hamt-set.api.html">dunaj.coll.hamt-set</a></code> Hash Array Mapped Trie set, a persistent collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.helper.api.html">dunaj.coll.helper</a></code> Collection helpers for the implementation of new collection types.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.lazy-seq.api.html">dunaj.coll.lazy-seq</a></code> A Lazy seq type.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.lazy-seq-map.api.html">dunaj.coll.lazy-seq-map</a></code> A lazy map type which is backed by a lazy seq containing
+interleaved keys and values.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.lazy-seq-set.api.html">dunaj.coll.lazy-seq-set</a></code> A lazy set type which is backed by a lazy seq containing
+set items.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.linked-list.api.html">dunaj.coll.linked-list</a></code> Linked list, a sequential LIFO seq type.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.primitive-vector.api.html">dunaj.coll.primitive-vector</a></code> A vector holding primitive values. A sequential persistent
+collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.rbt-sorted-map.api.html">dunaj.coll.rbt-sorted-map</a></code> Red black tree based map, a sorted persistent collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.rbt-sorted-set.api.html">dunaj.coll.rbt-sorted-set</a></code> Red black tree based set, a sorted persistent collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.recipe.api.html">dunaj.coll.recipe</a></code> Collection utilities that return transducers or collection
+recipes.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.tuple.api.html">dunaj.coll.tuple</a></code> A set of tuple types, a sequential persistent collection efficient
+for small vectors.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.util.api.html">dunaj.coll.util</a></code> Various collection utilities, mainly those returning either a
+non-collection result or a non-recipe collection.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.compare.api.html">dunaj.compare</a></code> Comparison, hashing and equality.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.api.html">dunaj.concurrent</a></code> General concurrency facilities, futures, promises.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.agent.api.html">dunaj.concurrent.agent</a></code> Agents, a reference object to the result of an asynchronous
+computation, with additional distinctive features.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.forkjoin.api.html">dunaj.concurrent.forkjoin</a></code> Parallel computations based on a Fork-join model.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.parallel.api.html">dunaj.concurrent.parallel</a></code> Parallel computations based on thread pools.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.port.api.html">dunaj.concurrent.port</a></code> Asynchronous programming through ports and channels.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.thread.api.html">dunaj.concurrent.thread</a></code> Concurrency primitives for creating and managing threads.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.core.api.html">dunaj.core</a></code> An entry point to the <code>dunaj API</code>.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.dev.api.html">dunaj.dev</a></code> Helpers for developers.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.env.api.html">dunaj.env</a></code> Run-time environment vars, facilities for printing to console.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.error.api.html">dunaj.error</a></code> Error handling, exceptions.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.feature.api.html">dunaj.feature</a></code> Feature protocols for metadata, configuration and validation.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.flow.api.html">dunaj.flow</a></code> Control Flow. Conditionals, loops, evaluation.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.api.html">dunaj.format</a></code> Generic formatter (parser/printer).</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.charset.api.html">dunaj.format.charset</a></code> Charset formatter.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.clj.api.html">dunaj.format.clj</a></code> CLJ formatter.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.edn.api.html">dunaj.format.edn</a></code> EDN liberal formatter with optional lazy support.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.helper.api.html">dunaj.format.helper</a></code> Helper fns for formatter implementations.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.html.api.html">dunaj.format.html</a></code> A very basic Hiccup like HTML printer.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.json.api.html">dunaj.format.json</a></code> JSON liberal formatter with support for lazy parsing and pretty
+printing.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.parser.api.html">dunaj.format.parser</a></code> Fast parser engine with helper functions for tokenizer and parser
+machines.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.printer.api.html">dunaj.format.printer</a></code> Fast printer engine with helper functions.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.function.api.html">dunaj.function</a></code> Function definition, transformation and memoization facilities.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.host.api.html">dunaj.host</a></code> Host interoperability.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.host.array.api.html">dunaj.host.array</a></code> Host arrays. Arrays do not follow classic collection API in order
+to enable their performance.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.host.batch.api.html">dunaj.host.batch</a></code> Batches, a wrapped host collections of primitive data, providing
+fast data processing.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.host.int.api.html">dunaj.host.int</a></code> Fast unchecked primitive <code>int</code> operations and constants
+for performance critical loops.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.host.number.api.html">dunaj.host.number</a></code> Coercions to host number types.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.identifier.api.html">dunaj.identifier</a></code> Symbolic identifiers and related protocols.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.lib.api.html">dunaj.lib</a></code> Facilities for loading and compiling libs.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.macro.api.html">dunaj.macro</a></code> Macros. &nbsp; <span class="icon"><i class="fa fa-magic"></i></span></p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.math.api.html">dunaj.math</a></code> Basic math facilities.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.math.angle.api.html">dunaj.math.angle</a></code> Math functions of an angle, with floating point numbers.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.math.precise.api.html">dunaj.math.precise</a></code> Precise math with an arbitrary precision.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.math.random.api.html">dunaj.math.random</a></code> Random number generators.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.math.unchecked.api.html">dunaj.math.unchecked</a></code> Unchecked math where operations are fast but prone to overflow.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.namespace.api.html">dunaj.namespace</a></code> Creating, setting and inspecting namespaces.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.poly.api.html">dunaj.poly</a></code> Polymorphism. Types <span class="icon"><i class="fa fa-archive"></i></span>, records <span class="icon"><i class="fa fa-th-list"></i></span>,
+protocols <span class="icon"><i class="fa fa-plug"></i></span>, multimethods, tag hierarchy.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.regex.api.html">dunaj.regex</a></code> Regular expressions.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.repl.api.html">dunaj.repl</a></code> REPL tools.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.api.html">dunaj.resource</a></code> Computer and network resources, systems, scopes.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.file.api.html">dunaj.resource.file</a></code> Host filesystem resources.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.helper.api.html">dunaj.resource.helper</a></code> Resource helpers.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.host.api.html">dunaj.resource.host</a></code> Classpath and stream backed host resources.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.http.api.html">dunaj.resource.http</a></code> Resource for fetching data through http with very basic
+functionalities.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.loopback.api.html">dunaj.resource.loopback</a></code> Basic loopback resource.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.pipe.api.html">dunaj.resource.pipe</a></code> Pipe resources. Works across threads, not processes nor over the
+network.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.secure.api.html">dunaj.resource.secure</a></code> A resource for communication using TLS protocol.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.selector.api.html">dunaj.resource.selector</a></code> Selector resources.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.tcp.api.html">dunaj.resource.tcp</a></code> TCP sockets.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.udp.api.html">dunaj.resource.udp</a></code> UDP sockets.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.set.api.html">dunaj.set</a></code> Universal and complement sets, set operations.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.state.api.html">dunaj.state</a></code> Stateful objects. References, mutation, cloning, etc.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.state.basic.api.html">dunaj.state.basic</a></code> Atom, Box, Local and other basic reference types.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.state.ref.api.html">dunaj.state.ref</a></code> Refs, a transactional references that use software transactional
+memory (STM) for safe shared use of mutable references.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.state.var.api.html">dunaj.state.var</a></code> Vars <span class="icon"><i class="fa fa-inbox"></i></span>, references with mutable root binding and thread
+local bindings that can be rebound dynamically.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.state.weak.api.html">dunaj.state.weak</a></code> Weak and soft references.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.string.api.html">dunaj.string</a></code> Characters and character sequences.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.threading.api.html">dunaj.threading</a></code> Syntax threading macros.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.threading.last.api.html">dunaj.threading.last</a></code> Macros for syntax threading into last item in forms.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.threading.second.api.html">dunaj.threading.second</a></code> Macros for syntax threading into second item in forms.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.time.api.html">dunaj.time</a></code> Instants (RFC 3339) and duration protocol.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.type.api.html">dunaj.type</a></code> Type signatures. Provides basic facilities for declaring data
+types for vars, function arguments and return values.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.uri.api.html">dunaj.uri</a></code> RFC 3986 URI type.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.uuid.api.html">dunaj.uuid</a></code> RFC 4122 UUID type.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.version.api.html">dunaj.version</a></code> A type for representing software versions.</p>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:44 CET
+</div>
+</div>
+</body>
+</html>

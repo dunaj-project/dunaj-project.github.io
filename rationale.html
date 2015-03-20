@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj Design and Rationale</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj Design and Rationale</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="doc.html">Documentation</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="rationale.html">Rationale</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="todo.html">Future Plans</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj Design and Rationale</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div class="paragraph">
+<p>Dunaj was created as an attempt to realize several ideas that
+require significant upfront coding and which diverge from Clojure&#8217;s
+current approach and status quo. Questioning some of design decisions
+made in Clojure, Dunaj tries to achieve same goals with a slightly
+different approach.</p>
+</div>
+<div class="paragraph">
+<p>Having modern Clojure features at hand, and free from having to
+support old versions and existing application code, Dunaj has more
+freedom to test new things and can take a more liberal and fresh
+approach.</p>
+</div>
+<div class="paragraph">
+<p>Most of Dunaj is implemented as a library, with changes to Clojure
+made only when there are no other options. Dunaj&#8217;s goal is to
+maintain backwards compatibility with existing Clojure code,
+libraries and tooling.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj also tries to be more host agnostic. Host classes are less
+visible and less used in Dunaj, host specific functionalities are
+in separate namespaces, and new features provided by Dunaj allow to
+achieve performance more on par with host, so that there is less need
+to jump into the host language.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj <strong>pursue simplicity</strong> by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>splitting core functionalities into multiple namespaces and
+cleaning public API from bootstraping and low level stuff</p>
+</li>
+<li>
+<p>using protocols for all built-in abstractions and having core
+functions work on top of protocols instead of concrete types</p>
+</li>
+<li>
+<p>formalizing concepts of factories, data formatters and resources</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj aims to <strong>improve consistency</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>with more consistent naming and syntax</p>
+</li>
+<li>
+<p>by providing syntax and basic support for type signatures
+independent on any concrete data validation and type checking tool</p>
+</li>
+<li>
+<p>by enriching vars with documentation and IDE specific metadata</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj <strong>enables host performance</strong> with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>reducers first approach with source-aware collection recipes</p>
+</li>
+<li>
+<p>batched reductions that allow to pass and manipulate low level
+data containers for bulk data processing</p>
+</li>
+<li>
+<p>more primitive types for function arguments and return value</p>
+</li>
+<li>
+<p>host array and int manipulation facilities</p>
+</li>
+</ul>
+</div>
+<div id="blo"></div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:05 CET
+</div>
+</div>
+</body>
+</html>

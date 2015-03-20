@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.coll.default API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.coll.default API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll.default</a></div><div class="dd-nav-ns-var"><a href="#__GT_lst"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->lst</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_map"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->map</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_que"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->que</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_set"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->set</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_sorted_map"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->sorted-map</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_sorted_map_by"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->sorted-map-by</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_sorted_set"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->sorted-set</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_sorted_set_by"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->sorted-set-by</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_vec"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->vec</span></a></div><div class="dd-nav-ns-var"><a href="#__GT_vec_of"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">->vec-of</span></a></div><div class="dd-nav-ns-var"><a href="#lst"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">lst</span></a></div><div class="dd-nav-ns-var"><a href="#que"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">que</span></a></div><div class="dd-nav-ns-var"><a href="#set"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">set</span></a></div><div class="dd-nav-ns-var"><a href="#sorted_set"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">sorted-set</span></a></div><div class="dd-nav-ns-var"><a href="#sorted_set_by"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">sorted-set-by</span></a></div><div class="dd-nav-ns-var"><a href="#sorted_zipmap"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">sorted-zipmap</span></a></div><div class="dd-nav-ns-var"><a href="#sorted_zipmap_by"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">sorted-zipmap-by</span></a></div><div class="dd-nav-ns-var"><a href="#vec"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">vec</span></a></div><div class="dd-nav-ns-var"><a href="#vec_of"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">vec-of</span></a></div><div class="dd-nav-ns-var"><a href="#zipmap"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">zipmap</span></a></div><div class="dd-nav-ns-group"><a href="#Empty collections">Empty collections</a></div><div class="dd-nav-ns-var"><a href="#empty_lst"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">empty-lst</span></a></div><div class="dd-nav-ns-var"><a href="#empty_map"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">empty-map</span></a></div><div class="dd-nav-ns-var"><a href="#empty_que"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">empty-que</span></a></div><div class="dd-nav-ns-var"><a href="#empty_seq"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">empty-seq</span></a></div><div class="dd-nav-ns-var"><a href="#empty_set"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">empty-set</span></a></div><div class="dd-nav-ns-var"><a href="#empty_sorted_map"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">empty-sorted-map</span></a></div><div class="dd-nav-ns-var"><a href="#empty_sorted_set"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">empty-sorted-set</span></a></div><div class="dd-nav-ns-var"><a href="#empty_vec"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">empty-vec</span></a></div><div class="dd-nav-ns-var"><a href="#empty_vec_of"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">empty-vec-of</span></a></div><div class="dd-nav-ns-group"><a href="#Factories">Factories</a></div><div class="dd-nav-ns-var"><a href="#lst_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">lst-factory</span></a></div><div class="dd-nav-ns-var"><a href="#map_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">map-factory</span></a></div><div class="dd-nav-ns-var"><a href="#que_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">que-factory</span></a></div><div class="dd-nav-ns-var"><a href="#seq_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">seq-factory</span></a></div><div class="dd-nav-ns-var"><a href="#set_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">set-factory</span></a></div><div class="dd-nav-ns-var"><a href="#sorted_map_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">sorted-map-factory</span></a></div><div class="dd-nav-ns-var"><a href="#sorted_set_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">sorted-set-factory</span></a></div><div class="dd-nav-ns-var"><a href="#vec_factory"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">vec-factory</span></a></div><div class="dd-nav-ns-var"><a href="#vec_factory_of"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">vec-factory-of</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll.default API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Default implementations for basic collection types.</p>
+</div>
+<div class="paragraph">
+<p>This namespace assigns default implementations for commonly used
+collection types.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-13"><label class="dd-example-label" for="toggle-13">1 usage example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+<strong>40</strong>
+41
+42
+43
+44
+45
+46
+47
+48
+49
+<strong>50</strong>
+51
+52
+53
+54
+55
+56
+57
+58
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.coll <span class="symbol">:refer</span> [-&gt;collection collection -&gt;convolution convolution]]
+            [dunaj.string <span class="symbol">:refer</span> [lower-case]]
+            [dunaj.coll.default <span class="symbol">:refer</span> [map-factory lst-factory sorted-map-factory]]))
+
+<span class="comment">;;; constructors</span>
+
+(-&gt;vec <span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>)
+<span class="comment">;;=&gt; [1 2 3 4 5]</span>
+
+(lst [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>])
+<span class="comment">;;=&gt; (1 2 3 4 5)</span>
+
+(-&gt;vec-of <span class="symbol">:byte</span> <span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>)
+<span class="comment">;;=&gt; [1 2 3 4 5]</span>
+
+(<span class="keyword">sorted-set</span> [<span class="symbol">:c</span> <span class="symbol">:a</span> <span class="symbol">:b</span>])
+<span class="comment">;;=&gt; #{:a :b :c}</span>
+
+(<span class="keyword">defn</span> <span class="function">custom-comparator</span> <span class="symbol">:-</span> Integer
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns a case insensitive comparator for named objects.</span><span class="delimiter">&quot;</span></span>
+  [x <span class="symbol">:-</span> INamed, y <span class="symbol">:-</span> INamed]
+  (<span class="keyword">compare</span> (lower-case (<span class="keyword">name</span> x)) (lower-case (<span class="keyword">name</span> y))))
+<span class="comment">;;=&gt; #'foo.bar/custom-comparator</span>
+
+(-&gt;sorted-map <span class="symbol">:b</span> <span class="integer">1</span> <span class="symbol">:a</span> <span class="integer">2</span> <span class="symbol">:C</span> <span class="integer">3</span>)
+<span class="comment">;;=&gt; {:C 3, :a 2, :b 1}</span>
+
+(-&gt;sorted-map-by custom-comparator <span class="symbol">:b</span> <span class="integer">1</span> <span class="symbol">:a</span> <span class="integer">2</span> <span class="symbol">:C</span> <span class="integer">3</span>)
+<span class="comment">;;=&gt; {:a 2, :b 1, :C 3}</span>
+
+
+<span class="comment">;;; using empty collections</span>
+
+(<span class="keyword">conj</span> empty-set <span class="symbol">:a</span> <span class="symbol">:b</span> <span class="symbol">:c</span>)
+<span class="comment">;;=&gt; #{:c :b :a}</span>
+
+(<span class="keyword">into</span> empty-que [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>])
+<span class="comment">;;=&gt; #&lt;PersistentQueue clojure.lang.PersistentQueue@1c3e4a2&gt;</span>
+
+(<span class="keyword">assoc</span> (empty-sorted-map) <span class="symbol">:a</span> <span class="integer">1</span> <span class="symbol">:b</span> <span class="integer">2</span> <span class="symbol">:C</span> <span class="integer">3</span>)
+<span class="comment">;;=&gt; {:C 3, :a 1, :b 2}</span>
+
+
+<span class="comment">;;; using factories</span>
+
+(-&gt;collection map-factory [<span class="symbol">:a</span> <span class="integer">1</span>] [<span class="symbol">:b</span> <span class="integer">2</span>] [<span class="symbol">:c</span> <span class="integer">3</span>])
+<span class="comment">;;=&gt; {:c 3, :b 2, :a 1}</span>
+
+(collection lst-factory [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span>])
+<span class="comment">;;=&gt; (1 2 3 4 5)</span>
+
+(-&gt;convolution (<span class="keyword">assoc</span> sorted-map-factory <span class="symbol">:comparator</span> custom-comparator) <span class="symbol">:a</span> <span class="integer">1</span> <span class="symbol">:b</span> <span class="integer">2</span> <span class="symbol">:C</span> <span class="integer">3</span>)
+<span class="comment">;;=&gt; {:a 1, :b 2, :C 3}</span>
+
+(convolution sorted-map-factory [<span class="symbol">:a</span> <span class="symbol">:b</span> <span class="symbol">:C</span>] [<span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span>])
+<span class="comment">;;=&gt; {:C 3, :a 1, :b 2}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#__GT_lst">&#45;&#62;lst</a></code> <code><a href="#__GT_map">&#45;&#62;map</a></code> <code><a href="#__GT_que">&#45;&#62;que</a></code> <code><a href="#__GT_set">&#45;&#62;set</a></code> <code><a href="#__GT_sorted_map">&#45;&#62;sorted&#45;map</a></code> <code><a href="#__GT_sorted_map_by">&#45;&#62;sorted&#45;map&#45;by</a></code> <code><a href="#__GT_sorted_set">&#45;&#62;sorted&#45;set</a></code> <code><a href="#__GT_sorted_set_by">&#45;&#62;sorted&#45;set&#45;by</a></code> <code><a href="#__GT_vec">&#45;&#62;vec</a></code> <code><a href="#__GT_vec_of">&#45;&#62;vec&#45;of</a></code> <code><a href="#lst">lst</a></code> <code><a href="#que">que</a></code> <code><a href="#set">set</a></code> <code><a href="#sorted_set">sorted&#45;set</a></code> <code><a href="#sorted_set_by">sorted&#45;set&#45;by</a></code> <code><a href="#sorted_zipmap">sorted&#45;zipmap</a></code> <code><a href="#sorted_zipmap_by">sorted&#45;zipmap&#45;by</a></code> <code><a href="#vec">vec</a></code> <code><a href="#vec_of">vec&#45;of</a></code> <code><a href="#zipmap">zipmap</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_lst"><a class="link" href="#__GT_lst">&#8594;lst</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L238">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;lst)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;lst <em>a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;lst <em>a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;lst <em>a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;lst <em>a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;lst <em>a b c d &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → IPersistentList</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a list containing given items, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#lst">lst</a></code>, <code><a href="#empty_lst">empty&#45;lst</a></code>, <code><a href="#lst_factory">lst&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_map"><a class="link" href="#__GT_map">&#8594;map</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L414">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;map)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;map <em>key val</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;map <em>key1 val1 key2 val2</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;map <em>key1 val1 key2 val2 key3 val3</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;map <em>key1 val1 key2 val2 key3 val3 key4 val4</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;map <em>key1 val1 key2 val2 key3 val3 key4 val4 &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IPersistentMap</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentMap</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentMap</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentMap</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentMap</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → IPersistentMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a map containing given keyvals, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#zipmap">zipmap</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_que"><a class="link" href="#__GT_que">&#8594;que</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L260">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;que)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;que <em>a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;que <em>a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;que <em>a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;que <em>a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;que <em>a b c d &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentList</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → IPersistentList</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a queue containing given items, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#que">que</a></code>, <code><a href="#empty_que">empty&#45;que</a></code>, <code><a href="#que_factory">que&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_set"><a class="link" href="#__GT_set">&#8594;set</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L333">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;set)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;set <em>a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;set <em>a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;set <em>a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;set <em>a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;set <em>a b c d &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IPersistentSet</code></p>
+</li>
+<li>
+<p><code>(Any) → IPersistentSet</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentSet</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IPersistentSet</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentSet</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → IPersistentSet</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a set containing given items, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#set">set</a></code>, <code><a href="#empty_set">empty&#45;set</a></code>, <code><a href="#set_factory">set&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_sorted_map"><a class="link" href="#__GT_sorted_map">&#8594;sorted-map</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L444">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map <em>key val</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map <em>key1 val1 key2 val2</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map <em>key1 val1 key2 val2 key3 val3</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map <em>key1 val1 key2 val2 key3 val3 key4 val4</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map <em>key1 val1 key2 val2 key3 val3 key4 val4 &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → (I ISorted IPersistentMap)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a sorted map containing given keyvals, if any,
+using default item ordering.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#sorted_zipmap">sorted&#45;zipmap</a></code>, <code><a href="#__GT_sorted_map_by">&#45;&#62;sorted&#45;map&#45;by</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_sorted_map_by"><a class="link" href="#__GT_sorted_map_by">&#8594;sorted-map-by</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L478">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map&#45;by <em>comparator</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map&#45;by <em>comparator key val</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map&#45;by <em>comparator key1 val1 key2 val2</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map&#45;by <em>comparator key1 val1 key2 val2 key3 val3</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map&#45;by <em>comparator key1 val1 key2 val2 key3 val3 key4 val4</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;map&#45;by <em>comparator key1 val1 key2 val2 key3 val3 key4 val4 &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Function) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentMap)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → (I ISorted IPersistentMap)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the sorted map containing given keyvals, if any,
+sorted with <code><em>comparator</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#sorted_zipmap_by">sorted&#45;zipmap&#45;by</a></code>, <code><a href="#__GT_sorted_map">&#45;&#62;sorted&#45;map</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_sorted_set"><a class="link" href="#__GT_sorted_set">&#8594;sorted-set</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L356">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set <em>a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set <em>a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set <em>a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set <em>a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set <em>a b c d &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → (I ISorted IPersistentSet)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a sorted set containing given items, if any,
+using default item ordering.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#sorted_set">sorted&#45;set</a></code>, <code><a href="#empty_sorted_set">empty&#45;sorted&#45;set</a></code>, <code><a href="#sorted_set_factory">sorted&#45;set&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_sorted_set_by"><a class="link" href="#__GT_sorted_set_by">&#8594;sorted-set-by</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L381">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set&#45;by <em>comparator</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set&#45;by <em>comparator a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set&#45;by <em>comparator a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set&#45;by <em>comparator a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set&#45;by <em>comparator a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;sorted&#45;set&#45;by <em>comparator a b c d &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Function) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → (I ISorted IPersistentSet)</code></p>
+</li>
+<li>
+<p><code>(Function ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → (I ISorted IPersistentSet)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a sorted set with custom <code><em>comparator</em></code> containing given
+items, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#sorted_set_by">sorted&#45;set&#45;by</a></code>, <code><a href="#empty_sorted_set">empty&#45;sorted&#45;set</a></code>, <code><a href="#sorted_set_factory">sorted&#45;set&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_vec"><a class="link" href="#__GT_vec">&#8594;vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L282">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;vec)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec <em>a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec <em>a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec <em>a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec <em>a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec <em>a b c d &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IPersistentVector</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → IPersistentVector</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a vector containing given items, if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#vec">vec</a></code>, <code><a href="#empty_vec">empty&#45;vec</a></code>, <code><a href="#vec_factory">vec&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="__GT_vec_of"><a class="link" href="#__GT_vec_of">&#8594;vec-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L304">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;&#62;vec&#45;of <em>t</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec&#45;of <em>t a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec&#45;of <em>t a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec&#45;of <em>t a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec&#45;of <em>t a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;&#62;vec&#45;of <em>t a b c d &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil Class Type Keyword)) → (I IHomogeneous IPersistentVector)</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type Keyword) ⨯ Any) → (I IHomogeneous IPersistentVector)</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type Keyword) ⨯ Any ⨯ Any) → (I IHomogeneous IPersistentVector)</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type Keyword) ⨯ Any ⨯ Any ⨯ Any) → (I IHomogeneous IPersistentVector)</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type Keyword) ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → (I IHomogeneous IPersistentVector)</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type Keyword) ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ (Va Any)) → (I IHomogeneous IPersistentVector)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a primitive vector of type <code><em>t</em></code> containing given items,
+if any.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#vec_of">vec&#45;of</a></code>, <code><a href="#empty_vec_of">empty&#45;vec&#45;of</a></code>, <code><a href="#vec_factory_of">vec&#45;factory&#45;of</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="lst"><a class="link" href="#lst">lst</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L230">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(lst <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → IPersistentList</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a list with contents of <code><em>coll</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_lst">&#45;&#62;lst</a></code>, <code><a href="#empty_lst">empty&#45;lst</a></code>, <code><a href="#lst_factory">lst&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="que"><a class="link" href="#que">que</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L252">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(que <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → IPersistentList</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a queue with contents of <code><em>coll</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_que">&#45;&#62;que</a></code>, <code><a href="#empty_que">empty&#45;que</a></code>, <code><a href="#que_factory">que&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="set"><a class="link" href="#set">set</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L325">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(set <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → IPersistentSet</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a set with contents of <code><em>coll</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_set">&#45;&#62;set</a></code>, <code><a href="#empty_set">empty&#45;set</a></code>, <code><a href="#set_factory">set&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sorted_set"><a class="link" href="#sorted_set">sorted-set</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L347">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sorted&#45;set <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → (I ISorted IPersistentSet)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a sorted set with contents of <code><em>coll</em></code>,
+using default item ordering.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_sorted_set">&#45;&#62;sorted&#45;set</a></code>, <code><a href="#empty_sorted_set">empty&#45;sorted&#45;set</a></code>, <code><a href="#sorted_set_factory">sorted&#45;set&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sorted_set_by"><a class="link" href="#sorted_set_by">sorted-set-by</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L372">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sorted&#45;set&#45;by <em>comparator coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Function ⨯ [&#93;) → (I ISorted IPersistentSet)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a sorted set with contents of <code><em>coll</em></code> and a custom
+<code><em>comparator</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_sorted_set_by">&#45;&#62;sorted&#45;set&#45;by</a></code>, <code><a href="#empty_sorted_set">empty&#45;sorted&#45;set</a></code>, <code><a href="#sorted_set_factory">sorted&#45;set&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sorted_zipmap"><a class="link" href="#sorted_zipmap">sorted-zipmap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L435">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sorted&#45;zipmap <em>keys vals</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → (I ISorted IPersistentMap)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a sorted map with convoluted contents of
+<code><em>keys</em></code> and <code><em>vals</em></code>, using default item ordering.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_sorted_map">&#45;&#62;sorted&#45;map</a></code>, <code><a href="#sorted_zipmap_by">sorted&#45;zipmap&#45;by</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sorted_zipmap_by"><a class="link" href="#sorted_zipmap_by">sorted-zipmap-by</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L468">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sorted&#45;zipmap&#45;by <em>comparator keys vals</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Function ⨯ [&#93; ⨯ [&#93;) → (I ISorted IPersistentMap)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a sorted map with convoluted contents of
+<code><em>keys</em></code> and <code><em>vals</em></code>, sorted with <code><em>comparator</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_sorted_map_by">&#45;&#62;sorted&#45;map&#45;by</a></code>, <code><a href="#sorted_zipmap">sorted&#45;zipmap</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="vec"><a class="link" href="#vec">vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L274">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(vec <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → IPersistentVector</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a vector with contents of <code><em>coll</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_vec">&#45;&#62;vec</a></code>, <code><a href="#empty_vec">empty&#45;vec</a></code>, <code><a href="#vec_factory">vec&#45;factory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="vec_of"><a class="link" href="#vec_of">vec-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L296">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(vec&#45;of <em>t coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil Class Type Keyword) ⨯ [&#93;) → (I IHomogeneous IPersistentVector)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a primitive vector of type <code><em>t</em></code> with contents <code><em>coll</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_vec_of">&#45;&#62;vec&#45;of</a></code>, <code><a href="#empty_vec_of">empty&#45;vec&#45;of</a></code>, <code><a href="#vec_factory_of">vec&#45;factory&#45;of</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="zipmap"><a class="link" href="#zipmap">zipmap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L406">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(zipmap <em>keys vals</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → IPersistentMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a map with convoluted contents of <code><em>keys</em></code> and <code><em>vals</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_map">&#45;&#62;map</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Empty collections"><a class="link" href="#Empty collections">Empty collections</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#empty_lst">empty&#45;lst</a></code> <code><a href="#empty_map">empty&#45;map</a></code> <code><a href="#empty_que">empty&#45;que</a></code> <code><a href="#empty_seq">empty&#45;seq</a></code> <code><a href="#empty_set">empty&#45;set</a></code> <code><a href="#empty_sorted_map">empty&#45;sorted&#45;map</a></code> <code><a href="#empty_sorted_set">empty&#45;sorted&#45;set</a></code> <code><a href="#empty_vec">empty&#45;vec</a></code> <code><a href="#empty_vec_of">empty&#45;vec&#45;of</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_lst"><a class="link" href="#empty_lst">empty-lst</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/empty_list.clj#L68">dunaj.coll.empty-list/empty-list</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>EmptyList</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty list. Same as <code>()</code>.
+Note that if is often more idiomatic to use <code>nil</code> instead of
+(any form of) empty list or collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_seq">empty&#45;seq</a></code>, <code><a href="#empty_que">empty&#45;que</a></code>, <code><a href="#lst_factory">lst&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#peek">dunaj.coll/peek</a></code>, <code><a href="dunaj.coll.api.html#pop">dunaj.coll/pop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_map"><a class="link" href="#empty_map">empty-map</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/array_map.clj#L199">dunaj.coll.array-map/empty-array-map</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ArrayMap</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty array map.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_sorted_map">empty&#45;sorted&#45;map</a></code>, <code><a href="#map_factory">map&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#assoc">dunaj.coll/assoc</a></code>, <code><a href="dunaj.coll.api.html#dissoc">dunaj.coll/dissoc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_que"><a class="link" href="#empty_que">empty-que</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/batched_queue.clj#L76">dunaj.coll.batched-queue/empty-batched-queue</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>BatchedQueue</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty batched queue.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_lst">empty&#45;lst</a></code>, <code><a href="#empty_seq">empty&#45;seq</a></code>, <code><a href="#que_factory">que&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#peek">dunaj.coll/peek</a></code>, <code><a href="dunaj.coll.api.html#pop">dunaj.coll/pop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_seq"><a class="link" href="#empty_seq">empty-seq</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/empty_list.clj#L68">dunaj.coll.empty-list/empty-list</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>EmptyList</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty list. Same as <code>()</code>.
+Note that if is often more idiomatic to use <code>nil</code> instead of
+(any form of) empty list or collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_lst">empty&#45;lst</a></code>, <code><a href="#empty_que">empty&#45;que</a></code>, <code><a href="#seq_factory">seq&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#peek">dunaj.coll/peek</a></code>, <code><a href="dunaj.coll.api.html#pop">dunaj.coll/pop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_set"><a class="link" href="#empty_set">empty-set</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/hamt_set.clj#L147">dunaj.coll.hamt-set/empty-hamt-set</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>HamtSet</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty HAMT set.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_sorted_set">empty&#45;sorted&#45;set</a></code>, <code><a href="#set_factory">set&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#disj">dunaj.coll/disj</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_sorted_map"><a class="link" href="#empty_sorted_map">empty-sorted-map</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/rbt_sorted_map.clj#L575">dunaj.coll.rbt-sorted-map/empty-rbt-sorted-map</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(empty&#45;sorted&#45;map)</code></p>
+</li>
+<li>
+<p><code>(empty&#45;sorted&#45;map <em>comparator</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → RbtSortedMap</code></p>
+</li>
+<li>
+<p><code>(Function) → RbtSortedMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an empty RBT map with <code><em>comparator</em></code>. Will compare using
+natural total ordering (see
+<code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code>) if no
+comparator is given.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_map">empty&#45;map</a></code>, <code><a href="#sorted_map_factory">sorted&#45;map&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#assoc">dunaj.coll/assoc</a></code>, <code><a href="dunaj.coll.api.html#dissoc">dunaj.coll/dissoc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_sorted_set"><a class="link" href="#empty_sorted_set">empty-sorted-set</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/rbt_sorted_set.clj#L380">dunaj.coll.rbt-sorted-set/empty-rbt-sorted-set</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(empty&#45;sorted&#45;set)</code></p>
+</li>
+<li>
+<p><code>(empty&#45;sorted&#45;set <em>comparator</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → RbtSortedSet</code></p>
+</li>
+<li>
+<p><code>(Function) → RbtSortedSet</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an empty RBT set with <code><em>comparator</em></code>. Will compare using
+natural total ordering (see
+<code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code>) if no
+comparator is given.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_set">empty&#45;set</a></code>, <code><a href="#sorted_set_factory">sorted&#45;set&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#disj">dunaj.coll/disj</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_vec"><a class="link" href="#empty_vec">empty-vec</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L427">dunaj.coll.tuple/empty-tuple</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Tuple0</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty tuple.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_vec_of">empty&#45;vec&#45;of</a></code>, <code><a href="#vec_factory">vec&#45;factory</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_vec_of"><a class="link" href="#empty_vec_of">empty-vec-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L509">dunaj.coll.primitive-vector/empty-primitive-vector-of</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(empty&#45;vec&#45;of <em>t</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil Class Type)) → IPersistentVector</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an empty primitive vector of given type <code><em>t</em></code>, which can be
+a host class, a type or a keyword. See
+<code><a href="dunaj.host.api.html#keyword__GT_class">keyword&#8594;class</a></code> for the
+list of valid keywords.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_vec">empty&#45;vec</a></code>, <code><a href="#vec_factory_of">vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code>, <code><a href="dunaj.coll.api.html#edit">dunaj.coll/edit</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Factories"><a class="link" href="#Factories">Factories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#lst_factory">lst&#45;factory</a></code> <code><a href="#map_factory">map&#45;factory</a></code> <code><a href="#que_factory">que&#45;factory</a></code> <code><a href="#seq_factory">seq&#45;factory</a></code> <code><a href="#set_factory">set&#45;factory</a></code> <code><a href="#sorted_map_factory">sorted&#45;map&#45;factory</a></code> <code><a href="#sorted_set_factory">sorted&#45;set&#45;factory</a></code> <code><a href="#vec_factory">vec&#45;factory</a></code> <code><a href="#vec_factory_of">vec&#45;factory&#45;of</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="lst_factory"><a class="link" href="#lst_factory">lst-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/linked_list.clj#L129">dunaj.coll.linked-list/linked-list-factory</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A Linked List factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of Linked List can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_lst">&#45;&#62;lst</a></code>, <code><a href="#lst">lst</a></code>, <code><a href="#que_factory">que&#45;factory</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="map_factory"><a class="link" href="#map_factory">map-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/array_map.clj#L248">dunaj.coll.array-map/array-map-factory</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>(U ICollectionFactory IConvolutionFactory)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An Array Map factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#IConvolutionFactory">IConvolutionFactory</a></code> and
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocols.</p>
+</div>
+<div class="paragraph">
+<p>New instances of Array Map can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code>,
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>,
+<code><a href="dunaj.coll.api.html#convolution">convolution</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_convolution">->convolution</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_map">&#45;&#62;map</a></code>, <code><a href="#zipmap">zipmap</a></code>, <code><a href="#sorted_map_factory">sorted&#45;map&#45;factory</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code>, <code><a href="dunaj.coll.api.html#convolution">dunaj.coll/convolution</a></code>, <code><a href="dunaj.coll.api.html#__GT_convolution">dunaj.coll/&#45;&#62;convolution</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="que_factory"><a class="link" href="#que_factory">que-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/batched_queue.clj#L105">dunaj.coll.batched-queue/batched-queue-factory</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A Batched Queue factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of Batched Queue can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_que">&#45;&#62;que</a></code>, <code><a href="#que">que</a></code>, <code><a href="#lst_factory">lst&#45;factory</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="seq_factory"><a class="link" href="#seq_factory">seq-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/default.clj#L74">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A seq factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of seq can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#lst_factory">lst&#45;factory</a></code>, <code><a href="#__GT_lst">&#45;&#62;lst</a></code>, <code><a href="#lst">lst</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="set_factory"><a class="link" href="#set_factory">set-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/hamt_set.clj#L172">dunaj.coll.hamt-set/hamt-set-factory</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A HAMT set factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of HAMT set can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_set">&#45;&#62;set</a></code>, <code><a href="#set">set</a></code>, <code><a href="#sorted_set_factory">sorted&#45;set&#45;factory</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sorted_map_factory"><a class="link" href="#sorted_map_factory">sorted-map-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/rbt_sorted_map.clj#L636">dunaj.coll.rbt-sorted-map/rbt-sorted-map-factory</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>(U ICollectionFactory IConvolutionFactory)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A RBT sorted map factory instance.
+Factory has following configuration options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparator</code> - a comparator used for sorting items. <code>nil</code>
+represents a natural ordering, implemented with
+<code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code> protocol.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code> and
+<code><a href="dunaj.coll.spi.html#IConvolutionFactory">IConvolutionFactory</a></code>
+factory protocols.</p>
+</div>
+<div class="paragraph">
+<p>New instances of RBT map can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code>,
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>,
+<code><a href="dunaj.coll.api.html#convolution">convolution</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_convolution">->convolution</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_sorted_map">&#45;&#62;sorted&#45;map</a></code>, <code><a href="#sorted_zipmap">sorted&#45;zipmap</a></code>, <code><a href="#map_factory">map&#45;factory</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code>, <code><a href="dunaj.coll.api.html#convolution">dunaj.coll/convolution</a></code>, <code><a href="dunaj.coll.api.html#__GT_convolution">dunaj.coll/&#45;&#62;convolution</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sorted_set_factory"><a class="link" href="#sorted_set_factory">sorted-set-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/rbt_sorted_set.clj#L419">dunaj.coll.rbt-sorted-set/rbt-sorted-set-factory</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A RBT sorted set factory instance.
+Factory has following configuration options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparator</code> - a comparator used for sorting items. <code>nil</code>
+represents a natural ordering, implemented with
+<code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code> protocol.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocols.</p>
+</div>
+<div class="paragraph">
+<p>New instances of RBT set can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_sorted_set">&#45;&#62;sorted&#45;set</a></code>, <code><a href="#sorted_set">sorted&#45;set</a></code>, <code><a href="#set_factory">set&#45;factory</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="vec_factory"><a class="link" href="#vec_factory">vec-factory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/tuple.clj#L498">dunaj.coll.tuple/tuple-factory</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>ICollectionFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A tuple factory instance.
+Currently there are no options.</p>
+</div>
+<div class="paragraph">
+<p>This factory implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+factory protocol.</p>
+</div>
+<div class="paragraph">
+<p>New instances of tuple can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_vec">&#45;&#62;vec</a></code>, <code><a href="#vec">vec</a></code>, <code><a href="#vec_factory_of">vec&#45;factory&#45;of</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="vec_factory_of"><a class="link" href="#vec_factory_of">vec-factory-of</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of <a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/primitive_vector.clj#L651">dunaj.coll.primitive-vector/primitive-vector-factory-of</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(vec&#45;factory&#45;of <em>t</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U nil Class Type)) → ICollectionFactory</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a primitive vector factory for type <code><em>t</em></code>, which can be
+a host class, a type or a keyword. See
+<code><a href="dunaj.host.api.html#keyword__GT_class">keyword&#8594;class</a></code> for the
+list of valid keywords.</p>
+</div>
+<div class="paragraph">
+<p>New instances of primitive vector can be created with
+<code><a href="dunaj.coll.api.html#collection">collection</a></code> and
+<code><a href="dunaj.coll.api.html#__GT_collection">->collection</a></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#__GT_vec_of">&#45;&#62;vec&#45;of</a></code>, <code><a href="#vec_of">vec&#45;of</a></code>, <code><a href="#vec_factory">vec&#45;factory</a></code>, <code><a href="dunaj.coll.api.html#collection">dunaj.coll/collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">dunaj.coll/&#45;&#62;collection</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:11:04 CET
+</div>
+</div>
+</body>
+</html>

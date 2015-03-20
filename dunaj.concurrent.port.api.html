@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.concurrent.port API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.concurrent.port API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.concurrent.port</a></div><div class="dd-nav-ns-var"><a href="#_LT__BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">&lt;!</span></a></div><div class="dd-nav-ns-var"><a href="#_LT__BANG__BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">&lt;!!</span></a></div><div class="dd-nav-ns-var"><a href="#_GT__BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">>!</span></a></div><div class="dd-nav-ns-var"><a href="#_GT__BANG__BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">>!!</span></a></div><div class="dd-nav-ns-var"><a href="#alt_BANG_"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">alt!</span></a></div><div class="dd-nav-ns-var"><a href="#alt_BANG__BANG_"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">alt!!</span></a></div><div class="dd-nav-ns-var"><a href="#alts_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">alts!</span></a></div><div class="dd-nav-ns-var"><a href="#alts_BANG__BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">alts!!</span></a></div><div class="dd-nav-ns-var"><a href="#close_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">close!</span></a></div><div class="dd-nav-ns-var"><a href="#go"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">go</span></a></div><div class="dd-nav-ns-var"><a href="#go_loop"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">go-loop</span></a></div><div class="dd-nav-ns-var"><a href="#put_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">put!</span></a></div><div class="dd-nav-ns-var"><a href="#take_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">take!</span></a></div><div class="dd-nav-ns-var"><a href="#thread"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">thread</span></a></div><div class="dd-nav-ns-var"><a href="#thread_call"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">thread-call</span></a></div><div class="dd-nav-ns-group"><a href="#Ports">Ports</a></div><div class="dd-nav-ns-var"><a href="#Master"><i class="fa fa-fw fa-archive dd-mmsh"></i><span class="dd-nav-ns-var-text">Master</span></a></div><div class="dd-nav-ns-var"><a href="#PortVal"><i class="dd-referred fa fa-fw fa-cube dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">PortVal</span></a></div><div class="dd-nav-ns-var"><a href="#chan"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">chan</span></a></div><div class="dd-nav-ns-var"><a href="#close_only"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">close-only</span></a></div><div class="dd-nav-ns-var"><a href="#closeable_port_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">closeable-port?</span></a></div><div class="dd-nav-ns-var"><a href="#master"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">master</span></a></div><div class="dd-nav-ns-var"><a href="#master_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">master?</span></a></div><div class="dd-nav-ns-var"><a href="#promise_chan"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">promise-chan</span></a></div><div class="dd-nav-ns-var"><a href="#source"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">source</span></a></div><div class="dd-nav-ns-var"><a href="#source_port_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">source-port?</span></a></div><div class="dd-nav-ns-var"><a href="#target"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">target</span></a></div><div class="dd-nav-ns-var"><a href="#target_port_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">target-port?</span></a></div><div class="dd-nav-ns-var"><a href="#timeout"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">timeout</span></a></div><div class="dd-nav-ns-group"><a href="#Operations">Operations</a></div><div class="dd-nav-ns-var"><a href="#into_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">into!</span></a></div><div class="dd-nav-ns-var"><a href="#map_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">map!</span></a></div><div class="dd-nav-ns-var"><a href="#merge_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">merge!</span></a></div><div class="dd-nav-ns-var"><a href="#onto_chan_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">onto-chan!</span></a></div><div class="dd-nav-ns-var"><a href="#pipe_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">pipe!</span></a></div><div class="dd-nav-ns-var"><a href="#pipeline_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">pipeline!</span></a></div><div class="dd-nav-ns-var"><a href="#pipeline_async_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">pipeline-async!</span></a></div><div class="dd-nav-ns-var"><a href="#pipeline_blocking_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">pipeline-blocking!</span></a></div><div class="dd-nav-ns-var"><a href="#reduce_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">reduce!</span></a></div><div class="dd-nav-ns-var"><a href="#split_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">split!</span></a></div><div class="dd-nav-ns-var"><a href="#take_n_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">take-n!</span></a></div><div class="dd-nav-ns-var"><a href="#to_chan"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">to-chan</span></a></div><div class="dd-nav-ns-group"><a href="#Mult">Mult</a></div><div class="dd-nav-ns-var"><a href="#mult_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">mult!</span></a></div><div class="dd-nav-ns-var"><a href="#mult_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">mult?</span></a></div><div class="dd-nav-ns-var"><a href="#tap_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">tap!</span></a></div><div class="dd-nav-ns-var"><a href="#untap_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">untap!</span></a></div><div class="dd-nav-ns-var"><a href="#untap_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">untap-all!</span></a></div><div class="dd-nav-ns-group"><a href="#Mix">Mix</a></div><div class="dd-nav-ns-var"><a href="#Mix"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">Mix</span></a></div><div class="dd-nav-ns-var"><a href="#admix_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">admix!</span></a></div><div class="dd-nav-ns-var"><a href="#mix"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">mix</span></a></div><div class="dd-nav-ns-var"><a href="#toggle_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">toggle!</span></a></div><div class="dd-nav-ns-var"><a href="#unmix_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">unmix!</span></a></div><div class="dd-nav-ns-var"><a href="#unmix_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">unmix-all!</span></a></div><div class="dd-nav-ns-group"><a href="#Pub">Pub</a></div><div class="dd-nav-ns-var"><a href="#pub_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">pub!</span></a></div><div class="dd-nav-ns-var"><a href="#pub_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">pub?</span></a></div><div class="dd-nav-ns-var"><a href="#sub_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">sub!</span></a></div><div class="dd-nav-ns-var"><a href="#unsub_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">unsub!</span></a></div><div class="dd-nav-ns-var"><a href="#unsub_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">unsub-all!</span></a></div><div class="dd-nav-ns-group"><a href="#Other">Other</a></div><div class="dd-nav-ns-var"><a href="#default_port_executor"><i class="fa fa-fw fa-inbox dd-mmsh"></i><span class="dd-nav-ns-var-text">default-port-executor</span></a></div><div class="dd-nav-ns-var"><a href="#fn_handler"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">fn-handler</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.concurrent.port API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.concurrent.port.spi.html">SPI documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Asynchronous programming through ports and channels.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Documentation needs more work.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#_LT__BANG_">&#60;!</a></code> <code><a href="#_LT__BANG__BANG_">&#60;!!</a></code> <code><a href="#_GT__BANG_">&#62;!</a></code> <code><a href="#_GT__BANG__BANG_">&#62;!!</a></code> <code><a href="#alt_BANG_">alt!</a></code> <code><a href="#alt_BANG__BANG_">alt!!</a></code> <code><a href="#alts_BANG_">alts!</a></code> <code><a href="#alts_BANG__BANG_">alts!!</a></code> <code><a href="#close_BANG_">close!</a></code> <code><a href="#go">go</a></code> <code><a href="#go_loop">go&#45;loop</a></code> <code><a href="#put_BANG_">put!</a></code> <code><a href="#take_BANG_">take!</a></code> <code><a href="#thread">thread</a></code> <code><a href="#thread_call">thread&#45;call</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_LT__BANG_"><a class="link" href="#_LT__BANG_">&lt;!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L132">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#60;! <em>port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISourcePort) → (Maybe PortVal)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a value from source <code><em>port</em></code> and returns it.
+Will return <code>nil</code> if <code><em>port</em></code> is closed.
+Will park if nothing is available.
+Must be called inside a <code>(go &#8230;&#8203;)</code> block.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#take_BANG_">take!</a></code>, <code><a href="#_LT__BANG__BANG_">&#60;!!</a></code>, <code><a href="#go">go</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ISourcePort">ISourcePort</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="#close_BANG_">close!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_LT__BANG__BANG_"><a class="link" href="#_LT__BANG__BANG_">&lt;!!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L122">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#60;!! <em>port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISourcePort) → (Maybe PortVal)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a value from source <code><em>port</em></code> and returns it.
+Will return <code>nil</code> if <code><em>port</em></code> is closed.
+Will block current thread if nothing is available.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#take_BANG_">take!</a></code>, <code><a href="#_LT__BANG_">&#60;!</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ISourcePort">ISourcePort</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="#thread">thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_GT__BANG_"><a class="link" href="#_GT__BANG_">&gt;!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L192">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#62;! <em>port val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ITargetPort ⨯ PortVal) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Puts a non-nil <code><em>val</em></code> into target <code><em>port</em></code>.
+Will park if no buffer space is available.
+Must be called inside a <code>(go &#8230;&#8203;)</code> block.
+Returns <code>true</code> unless port is already closed.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>nil</code> values are not allowed. Use <code>encode-nil</code> to
+pass nil values.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_GT__BANG__BANG_">&#62;!!</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ITargetPort">ITargetPort</a></code>, <code><a href="#take_BANG_">take!</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="dunaj.compare.api.html#encode_nil">dunaj.compare/encode&#45;nil</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_GT__BANG__BANG_"><a class="link" href="#_GT__BANG__BANG_">&gt;!!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L179">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#62;!! <em>port val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ITargetPort ⨯ PortVal) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Puts a non-nil <code><em>val</em></code> into target <code><em>port</em></code>.
+Will block if no buffer space is available.
+Returns <code>true</code> unless port is already closed.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>nil</code> values are not allowed. Use <code>encode-nil</code> to
+pass nil values.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#put_BANG_">put!</a></code>, <code><a href="#_GT__BANG_">&#62;!</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ITargetPort">ITargetPort</a></code>, <code><a href="#take_BANG_">take!</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="dunaj.compare.api.html#encode_nil">dunaj.compare/encode&#45;nil</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="alt_BANG_"><a class="link" href="#alt_BANG_">alt!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L464">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(alt! <em>&amp; clauses</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Makes a single choice between one of several channel operations,
+as if by <code>alts!</code>, returning the value of the result expr
+corresponding to the operation completed.
+Must be called inside a <code>(go &#8230;&#8203;)</code> block.</p>
+</div>
+<div class="paragraph">
+<p>Each clause takes the form of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel-op[s]</code> <code>result-expr</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>where channel-ops is one of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>take-port</code> - a single port to take</p>
+</li>
+<li>
+<p><code>[take-port | [put-port put-val] &#8230;&#8203;]</code> - a vector of ports
+as per <code>alts!</code></p>
+</li>
+<li>
+<p><code>:default</code> | <code>:priority</code> - an option for <code>alts!</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>and <code>result-expr</code> is either a list beginning with a vector,
+whereupon that vector will be treated as a binding for the
+<code>[val port]</code> return of the operation, else any other expression.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage example</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure">(alt!
+  [c t] ([<span class="keyword">val</span> ch] (foo ch <span class="keyword">val</span>))
+  x ([v] v)
+  [[out <span class="keyword">val</span>]] <span class="symbol">:wrote</span>
+  <span class="symbol">:default</span> <span class="integer">42</span>)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each option may appear at most once. The choice and parking
+characteristics are those of <code>alts!</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#alts_BANG__BANG_">alts!!</a></code>, <code><a href="#alt_BANG__BANG_">alt!!</a></code>, <code><a href="#alts_BANG_">alts!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="alt_BANG__BANG_"><a class="link" href="#alt_BANG__BANG_">alt!!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L455">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(alt!! <em>&amp; clauses</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Like <code>alt!</code>, except as if by <code>alts!!</code>, will block until completed,
+and not intended for use in <code>(go &#8230;&#8203;)</code> blocks.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#alts_BANG__BANG_">alts!!</a></code>, <code><a href="#alts_BANG_">alts!</a></code>, <code><a href="#alt_BANG_">alt!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="alts_BANG_"><a class="link" href="#alts_BANG_">alts!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L411">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(alts! <em>ports &amp; {:as opts}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([(U ISourcePort [ITargetPort PortVal&#93;)&#93; ⨯ Any) → [Any Any&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Completes at most one of several channel operations. Must be called
+inside a <code>(go &#8230;&#8203;)</code> block. <code><em>ports</em></code> is a vector of channel
+endpoints, which can be either a channel to take from or a vector
+of <code>[channel-to-put-to val-to-put]</code>, in any combination.
+Takes will be made as if by <code>&lt;!</code>, and puts will be made as if by
+<code>&gt;!</code>.</p>
+</div>
+<div class="paragraph">
+<p>Unless the <code>:priority</code> option is <code>true</code>, if more than one
+port operation is ready a non-deterministic choice will be made.</p>
+</div>
+<div class="paragraph">
+<p>If no operation is ready and a <code>:default</code> value is supplied,
+<code>[default-val :default]</code> will be returned, otherwise <code>alts!</code> will
+park until the first operation to become ready completes.</p>
+</div>
+<div class="paragraph">
+<p>Returns <code>[val port]</code> of the completed operation, where <code>val</code> is
+the value taken for takes, and <code>nil</code> for puts.</p>
+</div>
+<div class="paragraph">
+<p><code><em>opts</em></code> are passed as <code>:key</code> <code>val</code> &#8230;&#8203; Supported options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:default</code> <code>val</code> - the value to use if none of the operations are
+immediately ready</p>
+</li>
+<li>
+<p><code>:priority</code> <code>true</code> - (default <code>nil</code>) when <code>true</code>, the operations
+will be tried in order.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+there is no guarantee that the port exps or val exprs will be
+used, nor in what order should they be, so they should not be
+depended upon for side effects.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#alts_BANG__BANG_">alts!!</a></code>, <code><a href="#alt_BANG__BANG_">alt!!</a></code>, <code><a href="#alt_BANG_">alt!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="alts_BANG__BANG_"><a class="link" href="#alts_BANG__BANG_">alts!!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L445">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(alts!! <em>ports &amp; {:as opts}</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([(U ISourcePort [ITargetPort PortVal&#93;)&#93; ⨯ Any) → [Any Any&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Like <code>alts!</code>, except takes will be made as if by <code>&lt;!!</code>, and puts
+will be made as if by <code>&gt;!!</code>, will block until completed, and not
+intended for use in <code>(go &#8230;&#8203;)</code> blocks.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#alts_BANG_">alts!</a></code>, <code><a href="#alt_BANG__BANG_">alt!!</a></code>, <code><a href="#alt_BANG_">alt!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="close_BANG_"><a class="link" href="#close_BANG_">close!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L236">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(close! <em>port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ICloseablePort) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Closes <code><em>port</em></code>. The <code><em>port</em></code> will no longer accept any puts (they
+will be ignored). Data in the port remains available for taking,
+until exhausted, after which takes will return <code>nil</code>.
+If there are any pending takes, they will be dispatched with <code>nil</code>.
+Closing a closed port is a no-op. Returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#closeable_port_QMARK_">closeable&#45;port?</a></code>, <code><a href="#close_only">close&#45;only</a></code>, <code><a href="#take_BANG_">take!</a></code>, <code><a href="#put_BANG_">put!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="go"><a class="link" href="#go">go</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L260">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(go <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Asynchronously executes the <code><em>body</em></code>, returning immediately to the
+calling thread. Additionally, any visible calls to <code>&lt;!</code>,<code>&gt;!</code> and
+<code>alt!</code>/<code>alts!</code> channel operations within the <code><em>body</em></code> will block
+(if necessary) by 'parking' the calling thread rather than tying
+up an OS thread,
+Upon completion of the operation, the <code><em>body</em></code> will be resumed.</p>
+</div>
+<div class="paragraph">
+<p>Returns a source port which will receive the result of the body
+when completed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#go_loop">go&#45;loop</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#thread_call">thread&#45;call</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="go_loop"><a class="link" href="#go_loop">go-loop</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L278">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(go-loop <em>bindings &amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Like <code>(go (loop &#8230;&#8203;))</code></p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#go">go</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="#thread_call">thread&#45;call</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="put_BANG_"><a class="link" href="#put_BANG_">put!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L154">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(put! <em>port val</em>)</code></p>
+</li>
+<li>
+<p><code>(put! <em>port val fn1</em>)</code></p>
+</li>
+<li>
+<p><code>(put! <em>port val fn1 always&#45;dispatch?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ITargetPort ⨯ PortVal) → Any</code></p>
+</li>
+<li>
+<p><code>(ITargetPort ⨯ PortVal ⨯ (Fn [Any Boolean&#93;)) → Any</code></p>
+</li>
+<li>
+<p><code>(ITargetPort ⨯ PortVal ⨯ (Fn [Any Boolean&#93;) ⨯ Boolean) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Asynchronously puts a non-nil value into target <code><em>port</em></code>, calling
+<code><em>fn1</em></code> (if supplied) when complete, passing <code>false</code> iff port is
+already closed. If <code><em>always-dispatch?</em></code> (default <code>false</code>) is
+<code>false</code>, and the put is immediately accepted, will call <code><em>fn1</em></code> on
+calling thread. Returns <code>true</code> unless port is already closed.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>nil</code> values are not allowed. Use <code>encode-nil</code> to
+pass nil values.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_GT__BANG__BANG_">&#62;!!</a></code>, <code><a href="#_GT__BANG_">&#62;!</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ITargetPort">ITargetPort</a></code>, <code><a href="#take_BANG_">take!</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="dunaj.compare.api.html#encode_nil">dunaj.compare/encode&#45;nil</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="take_BANG_"><a class="link" href="#take_BANG_">take!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L102">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(take! <em>port fn1</em>)</code></p>
+</li>
+<li>
+<p><code>(take! <em>port fn1 always&#45;dispatch?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISourcePort ⨯ (Fn [Any (Maybe PortVal)&#93;)) → nil</code></p>
+</li>
+<li>
+<p><code>(ISourcePort ⨯ (Fn [Any (Maybe PortVal)&#93;) ⨯ Boolean) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Asynchronously takes a value from source <code><em>port</em></code>, passing it to
+<code><em>fn1</em></code>. Will pass <code>nil</code> if closed. If <code><em>always-dispatch?</em></code>
+(default <code>false</code>) is <code>false</code>, and value is immediately available,
+will call <code><em>fn1</em></code> on calling thread. Returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_LT__BANG__BANG_">&#60;!!</a></code>, <code><a href="#_LT__BANG_">&#60;!</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ISourcePort">ISourcePort</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="#close_BANG_">close!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="thread"><a class="link" href="#thread">thread</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L296">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(thread <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Executes the <code><em>body</em></code> in another thread, returning immediately to
+the calling thread. Returns a source port which will receive the
+result of the <code><em>body</em></code> when completed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#go">go</a></code>, <code><a href="#go_loop">go&#45;loop</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="dunaj.concurrent.thread.api.html#thread">dunaj.concurrent.thread/thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="thread_call"><a class="link" href="#thread_call">thread-call</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L286">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(thread&#45;call <em>f</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Fn [Any&#93;)) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Executes <code><em>f</em></code> in another thread, returning immediately to the
+calling thread. Returns a source port which will receive the
+result of calling <code><em>f</em></code> when completed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#go">go</a></code>, <code><a href="#go_loop">go&#45;loop</a></code>, <code><a href="#thread">thread</a></code>, <code><a href="dunaj.concurrent.thread.api.html#thread_call">dunaj.concurrent.thread/thread&#45;call</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Ports"><a class="link" href="#Ports">Ports</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#Master">Master</a></code> <code><a href="#PortVal">PortVal</a></code> <code><a href="#chan">chan</a></code> <code><a href="#close_only">close&#45;only</a></code> <code><a href="#closeable_port_QMARK_">closeable&#45;port?</a></code> <code><a href="#master">master</a></code> <code><a href="#master_QMARK_">master?</a></code> <code><a href="#promise_chan">promise&#45;chan</a></code> <code><a href="#source">source</a></code> <code><a href="#source_port_QMARK_">source&#45;port?</a></code> <code><a href="#target">target</a></code> <code><a href="#target_port_QMARK_">target&#45;port?</a></code> <code><a href="#timeout">timeout</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Master"><a class="link" href="#Master">Master</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L358">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-archive" title="Type"></i></span> TYPE</code></p>
+</div>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-plug" title="Extends"></i></span> Extends: <code><a href="dunaj.concurrent.port.spi.html#ICloseablePort">ICloseablePort</a></code>, <code><a href="dunaj.state.spi.html#IOpenAware">IOpenAware</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ITargetPort">ITargetPort</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A master port type. Will close automatically when garbage
+collected.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#master_QMARK_">master?</a></code>, <code><a href="#master">master</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="dunaj.state.api.html#open_QMARK_">dunaj.state/open?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="PortVal"><a class="link" href="#PortVal">PortVal</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L61">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for values that can be processed by a port.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#_LT__BANG__BANG_">&#60;!!</a></code>, <code><a href="#_LT__BANG_">&#60;!</a></code>, <code><a href="#_GT__BANG__BANG_">&#62;!!</a></code>, <code><a href="#_GT__BANG_">&#62;!</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="#take_BANG_">take!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="chan"><a class="link" href="#chan">chan</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L309">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(chan)</code></p>
+</li>
+<li>
+<p><code>(chan <em>buf&#45;or&#45;n</em>)</code></p>
+</li>
+<li>
+<p><code>(chan <em>buf&#45;or&#45;n xform</em>)</code></p>
+</li>
+<li>
+<p><code>(chan <em>buf&#45;or&#45;n xform exception&#45;handler</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → (I ISourcePort ITargetPort ICloseablePort)</code></p>
+</li>
+<li>
+<p><code>((U Integer IMutableCollection)) → (I ISourcePort ITargetPort ICloseablePort)</code></p>
+</li>
+<li>
+<p><code>((U Integer IMutableCollection) ⨯ Any) → (I ISourcePort ITargetPort ICloseablePort)</code></p>
+</li>
+<li>
+<p><code>((U Integer IMutableCollection) ⨯ Any ⨯ (Fn [Any IException&#93;)) → (I ISourcePort ITargetPort ICloseablePort)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates a channel with an optional buffer, an optional transducer,
+and an optional <code>exception-handler</code>. If <code>buf-or-n</code> is a number,
+will create and use a fixed buffer of that size.</p>
+</div>
+<div class="paragraph">
+<p><code>ex-handler</code> must be a function of one argument. If an exception
+occurs during transformation it will be called with the
+<code>IException</code> as an argument, and any non-nil return value will be
+placed in the channel.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If a transducer is supplied a buffer must be specified.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#timeout">timeout</a></code>, <code><a href="#master">master</a></code>, <code><a href="#source">source</a></code>, <code><a href="#target">target</a></code>, <code><a href="#close_only">close&#45;only</a></code>, <code><a href="#take_BANG_">take!</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="#_LT__BANG__BANG_">&#60;!!</a></code>, <code><a href="#_LT__BANG_">&#60;!</a></code>, <code><a href="#_GT__BANG__BANG_">&#62;!!</a></code>, <code><a href="#_GT__BANG_">&#62;!</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="dunaj.buffer.api.html#buffer">dunaj.buffer/buffer</a></code>, <code><a href="dunaj.state.api.html#open_QMARK_">dunaj.state/open?</a></code>, <code><a href="dunaj.buffer.api.html#dropping_buffer">dunaj.buffer/dropping&#45;buffer</a></code>, <code><a href="dunaj.buffer.api.html#sliding_buffer">dunaj.buffer/sliding&#45;buffer</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="close_only"><a class="link" href="#close_only">close-only</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L248">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(close&#45;only <em>port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ICloseablePort) → ICloseablePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a close-only port from given closeable <code><em>port</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#closeable_port_QMARK_">closeable&#45;port?</a></code>, <code><a href="#close_BANG_">close!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="closeable_port_QMARK_"><a class="link" href="#closeable_port_QMARK_">closeable-port?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L223">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(closeable&#45;port? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>ICloseablePort</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.concurrent.port.spi.html#ICloseablePort">ICloseablePort</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="#close_only">close&#45;only</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ISourcePort">ISourcePort</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ITargetPort">ITargetPort</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="master"><a class="link" href="#master">master</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L375">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(master <em>channel</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((I IOpenAware ICloseablePort ITargetPort)) → (I IOpenAware ICloseablePort ITargetPort)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a closeable target port from a given <code><em>channel</em></code>.
+Port automatically closes when finalized.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#master_QMARK_">master?</a></code>, <code><a href="#Master">Master</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="#source">source</a></code>, <code><a href="#target">target</a></code>, <code><a href="#chan">chan</a></code>, <code><a href="#timeout">timeout</a></code>, <code><a href="#close_only">close&#45;only</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="master_QMARK_"><a class="link" href="#master_QMARK_">master?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L358">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(master? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> is an instance of <code>Master</code> type, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Master">Master</a></code>, <code><a href="#master">master</a></code>, <code><a href="#close_BANG_">close!</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="dunaj.state.api.html#open_QMARK_">dunaj.state/open?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="promise_chan"><a class="link" href="#promise_chan">promise-chan</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L343">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(promise&#45;chan)</code></p>
+</li>
+<li>
+<p><code>(promise&#45;chan <em>xform</em>)</code></p>
+</li>
+<li>
+<p><code>(promise&#45;chan <em>xform exception&#45;handler</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → (I ISourcePort ITargetPort ICloseablePort)</code></p>
+</li>
+<li>
+<p><code>(Any) → (I ISourcePort ITargetPort ICloseablePort)</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ (Fn [Any IException&#93;)) → (I ISourcePort ITargetPort ICloseablePort)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates a promise channel with an optional transducer <code><em>xform</em></code>,
+and an optional <code><em>exception-handler</em></code>. A promise channel can take
+exactly one value that consumers will receive. Once set, puts
+complete but val is dropped (no transfer). Consumers will block
+until either a value is placed in the channel or the channel is
+closed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#chan">chan</a></code>, <code><a href="dunaj.concurrent.api.html#promise">dunaj.concurrent/promise</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="source"><a class="link" href="#source">source</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L385">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(source <em>channel</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((I IOpenAware ISourcePort)) → (I IOpenAware ISourcePort)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a source port from a given <code><em>channel</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#chan">chan</a></code>, <code><a href="#target">target</a></code>, <code><a href="#master">master</a></code>, <code><a href="#close_only">close&#45;only</a></code>, <code><a href="dunaj.state.api.html#open_QMARK_">dunaj.state/open?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="source_port_QMARK_"><a class="link" href="#source_port_QMARK_">source-port?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L91">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(source&#45;port? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>ISourcePort</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.concurrent.port.spi.html#ISourcePort">ISourcePort</a></code>, <code><a href="#take_BANG_">take!</a></code>, <code><a href="#_LT__BANG__BANG_">&#60;!!</a></code>, <code><a href="#_LT__BANG_">&#60;!</a></code>, <code><a href="#source">source</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ITargetPort">ITargetPort</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ICloseablePort">ICloseablePort</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="target"><a class="link" href="#target">target</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L397">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(target <em>channel</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((I IOpenAware ITargetPort)) → (I IOpenAware ITargetPort)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a target port from a given <code><em>channel</em></code> (or master port).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#chan">chan</a></code>, <code><a href="#source">source</a></code>, <code><a href="#master">master</a></code>, <code><a href="#close_only">close&#45;only</a></code>, <code><a href="dunaj.state.api.html#open_QMARK_">dunaj.state/open?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="target_port_QMARK_"><a class="link" href="#target_port_QMARK_">target-port?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L143">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(target&#45;port? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>ITargetPort</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.concurrent.port.spi.html#ITargetPort">ITargetPort</a></code>, <code><a href="#put_BANG_">put!</a></code>, <code><a href="#_GT__BANG__BANG_">&#62;!!</a></code>, <code><a href="#_GT__BANG_">&#62;!</a></code>, <code><a href="#target">target</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ISourcePort">ISourcePort</a></code>, <code><a href="dunaj.concurrent.port.spi.html#ICloseablePort">ICloseablePort</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="timeout"><a class="link" href="#timeout">timeout</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L335">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(timeout <em>duration</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IDuration)) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a source port that will close after <code><em>duration</em></code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Operations"><a class="link" href="#Operations">Operations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#into_BANG_">into!</a></code> <code><a href="#map_BANG_">map!</a></code> <code><a href="#merge_BANG_">merge!</a></code> <code><a href="#onto_chan_BANG_">onto&#45;chan!</a></code> <code><a href="#pipe_BANG_">pipe!</a></code> <code><a href="#pipeline_BANG_">pipeline!</a></code> <code><a href="#pipeline_async_BANG_">pipeline&#45;async!</a></code> <code><a href="#pipeline_blocking_BANG_">pipeline&#45;blocking!</a></code> <code><a href="#reduce_BANG_">reduce!</a></code> <code><a href="#split_BANG_">split!</a></code> <code><a href="#take_n_BANG_">take&#45;n!</a></code> <code><a href="#to_chan">to&#45;chan</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="into_BANG_"><a class="link" href="#into_BANG_">into!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L671">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(into! <em>coll port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed ⨯ ISourcePort) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a source port containing the single (collection) result
+of the items taken from the <code><em>port</em></code> conjoined to the supplied
+<code><em>coll</em></code>. <code><em>port</em></code> must close before into! produces a result.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#to_chan">to&#45;chan</a></code>, <code><a href="#onto_chan_BANG_">onto&#45;chan!</a></code>, <code><a href="#reduce_BANG_">reduce!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="map_BANG_"><a class="link" href="#map_BANG_">map!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L505">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(map! <em>mapf ports</em>)</code></p>
+</li>
+<li>
+<p><code>(map! <em>mapf ports buf&#45;or&#45;n</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ [ISourcePort&#93;) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ [ISourcePort&#93; ⨯ (U Integer IMutableCollection)) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a function <code><em>mapf</em></code> and a collection of source <code><em>ports</em></code>,
+and returns a source port which contains the values produced by
+applying <code><em>mapf</em></code> to the set of first items taken from each
+source port, followed by applying <code><em>mapf</em></code> to the set of second
+items from each port, until any one of the <code><em>ports</em></code> is closed,
+at which point the output port will be closed.</p>
+</div>
+<div class="paragraph">
+<p>The returned port will be unbuffered by default, or a
+<code><em>buf-or-n</em></code> can be supplied</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="merge_BANG_"><a class="link" href="#merge_BANG_">merge!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L658">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(merge! <em>ports</em>)</code></p>
+</li>
+<li>
+<p><code>(merge! <em>ports buf&#45;or&#45;n</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([ISourcePort&#93;) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>([ISourcePort&#93; ⨯ (U Integer IMutableCollection)) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a collection of source <code><em>ports</em></code> and returns a source port
+which contains all values taken from them. The returned channel
+will be unbuffered by default, or a <code><em>buf-or-n</em></code> can be supplied.
+The port will close after all the source <code><em>ports</em></code> have closed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pipe_BANG_">pipe!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="onto_chan_BANG_"><a class="link" href="#onto_chan_BANG_">onto-chan!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L635">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(onto&#45;chan! <em>port coll</em>)</code></p>
+</li>
+<li>
+<p><code>(onto&#45;chan! <em>port coll keep&#45;open?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ITargetPort ⨯ IRed) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(ITargetPort ⨯ IRed ⨯ Boolean) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Puts the contents of <code><em>coll</em></code> into the supplied target <code><em>port</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Returns a source port which will close after the items are copied.</p>
+</div>
+<div class="paragraph">
+<p>By default the <code><em>port</em></code> will be closed after the items are copied,
+but can be determined by the <code><em>keep-open?</em></code> parameter.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#to_chan">to&#45;chan</a></code>, <code><a href="#into_BANG_">into!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pipe_BANG_"><a class="link" href="#pipe_BANG_">pipe!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L523">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pipe! <em>from to</em>)</code></p>
+</li>
+<li>
+<p><code>(pipe! <em>from to keep&#45;open?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISourcePort ⨯ ITargetPort) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(ISourcePort ⨯ ITargetPort ⨯ Boolean) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes items from the <code><em>from</em></code> source port and supplies them to
+the <code><em>to</em></code> target port. By default, the <code><em>to</em></code> port will be closed
+when the <code><em>from</em></code> port closes, but can be determined by the
+<code><em>keep-open?</em></code> parameter.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pipeline_BANG_">pipeline!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pipeline_BANG_"><a class="link" href="#pipeline_BANG_">pipeline!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L535">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pipeline! <em>n to xform from</em>)</code></p>
+</li>
+<li>
+<p><code>(pipeline! <em>n to xform from keep&#45;open?</em>)</code></p>
+</li>
+<li>
+<p><code>(pipeline! <em>n to xform from keep&#45;open? ex&#45;handler</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ Any ⨯ ISourcePort) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ Any ⨯ ISourcePort ⨯ Boolean) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ Any ⨯ ISourcePort ⨯ Boolean ⨯ AnyFn) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes items from the <code><em>from</em></code> source port and supplies them to
+the <code><em>to</em></code> target port, subject to the transducer <code><em>xform</em></code>, with
+parallelism <code><em>n</em></code>. Because it is parallel, the transducer will be
+applied independently to each item, not across items, and
+may produce zero or more outputs per input.  Outputs will be
+returned in order relative to the inputs. By default, the <code><em>to</em></code>
+port will be closed when the <code><em>from</em></code> port closes, but can be
+determined by the <code><em>keep-open?</em></code> parameter. Will stop consuming
+the <code><em>from</em></code> port if the <code><em>to</em></code> port closes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This function should be used for computational parallelism.
+If you have multiple blocking operations to put in flight, use
+<code>pipeline-blocking!</code> instead. If you have multiple asynchronous
+operations to put in flight, use <code>pipeline-async!</code> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pipe_BANG_">pipe!</a></code>, <code><a href="#pipeline_blocking_BANG_">pipeline&#45;blocking!</a></code>, <code><a href="#pipeline_async_BANG_">pipeline&#45;async!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pipeline_async_BANG_"><a class="link" href="#pipeline_async_BANG_">pipeline-async!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L578">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pipeline&#45;async! <em>n to af from</em>)</code></p>
+</li>
+<li>
+<p><code>(pipeline&#45;async! <em>n to af from keep&#45;open?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ AnyFn ⨯ ISourcePort) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ AnyFn ⨯ ISourcePort ⨯ Boolean) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes items from the <code><em>from</em></code> source port and supplies them to
+the <code><em>to</em></code> target port, subject to the async function <code><em>af</em></code>,
+with parallelism <code><em>n</em></code>. <code><em>af</em></code> must be a function of two arguments,
+the first an input value and the second a target port on which to
+place the result(s). <code><em>af</em></code> must close the port before
+returning.</p>
+</div>
+<div class="paragraph">
+<p>The presumption is that <code><em>af</em></code> will return immediately, having
+launched some asynchronous operation (i.e. in another thread)
+whose completion/callback will manipulate the result port.
+Outputs will be returned in order relative to the inputs.
+By default, the <code><em>to</em></code> port will be closed when the <code><em>from</em></code> port
+closes, but can be determined by the <code><em>keep-open?</em></code> parameter.
+Will stop consuming the <code><em>from</em></code> port if the <code><em>to</em></code> port closes.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pipe_BANG_">pipe!</a></code>, <code><a href="#pipeline_blocking_BANG_">pipeline&#45;blocking!</a></code>, <code><a href="#pipeline_BANG_">pipeline!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pipeline_blocking_BANG_"><a class="link" href="#pipeline_blocking_BANG_">pipeline-blocking!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L563">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pipeline&#45;blocking! <em>n to xform from</em>)</code></p>
+</li>
+<li>
+<p><code>(pipeline&#45;blocking! <em>n to xform from keep&#45;open?</em>)</code></p>
+</li>
+<li>
+<p><code>(pipeline&#45;blocking! <em>n to xform from keep&#45;open? ex&#45;handler</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ Any ⨯ ISourcePort) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ Any ⨯ ISourcePort ⨯ Boolean) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ ITargetPort ⨯ Any ⨯ ISourcePort ⨯ Boolean ⨯ AnyFn) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Like <code>pipeline!</code>, but for blocking operations.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pipe_BANG_">pipe!</a></code>, <code><a href="#pipeline_BANG_">pipeline!</a></code>, <code><a href="#pipeline_async_BANG_">pipeline&#45;async!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reduce_BANG_"><a class="link" href="#reduce_BANG_">reduce!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L620">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reduce! <em>reducef init port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Fn [Any Any Any&#93;) ⨯ Any ⨯ ISourcePort) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a source port containing the single result of applying
+<code><em>reducef</em></code> to <code><em>init</em></code> and the first item from the
+<code><em>port</em></code>, then applying <code><em>reducef</em></code> to that result and the 2nd
+item, etc. <code><em>reducef</em></code> should be a function of 2 arguments.
+If the <code><em>port</em></code> closes without yielding items, returns <code><em>init</em></code>
+and <code><em>reducef</em></code> is not called.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code><em>port</em></code> must close before reduce produces a result.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#into_BANG_">into!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="split_BANG_"><a class="link" href="#split_BANG_">split!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L602">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(split! <em>pred port</em>)</code></p>
+</li>
+<li>
+<p><code>(split! <em>pred port t&#45;buf&#45;or&#45;n f&#45;buf&#45;or&#45;n</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Predicate ⨯ ISourcePort) → [ISourcePort ISourcePort&#93;</code></p>
+</li>
+<li>
+<p><code>(Predicate ⨯ ISourcePort ⨯ (U Integer IMutableCollection) ⨯ (U Integer IMutableCollection)) → [ISourcePort ISourcePort&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Takes a <code><em>pred</em></code> and a source <code><em>port</em></code> and returns a vector of two
+source ports, the first of which will contain the values for
+which the predicate <code><em>pred</em></code> returned <code>true</code>, the second those
+for which it returned <code>false</code>.</p>
+</div>
+<div class="paragraph">
+<p>The out ports will be unbuffered by default, or two buf-or-ns
+can be supplied. The ports will close after the <code><em>port</em></code>
+has closed.</p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="take_n_BANG_"><a class="link" href="#take_n_BANG_">take-n!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L681">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(take&#45;n! <em>n port</em>)</code></p>
+</li>
+<li>
+<p><code>(take&#45;n! <em>n port buf&#45;or&#45;n</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ ISourcePort) → ISourcePort</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ ISourcePort ⨯ (U Integer IMutableCollection)) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a source port that will return, at most, <code><em>n</em></code> items from
+<code><em>port</em></code>. After <code><em>n</em></code> items have been returned, or <code><em>port</em></code> has
+been closed, the returned port will close.</p>
+</div>
+<div class="paragraph">
+<p>The output port is unbuffered by default, unless <code><em>buf-or-n</em></code> is
+given.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pipe_BANG_">pipe!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="to_chan"><a class="link" href="#to_chan">to-chan</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L649">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(to&#45;chan <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IRed) → ISourcePort</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates and returns a source port which contains the contents of
+<code><em>coll</em></code>, closing when exhausted.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#onto_chan">onto&#45;chan</a></code>, <code><a href="#into_BANG_">into!</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Mult"><a class="link" href="#Mult">Mult</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#mult_BANG_">mult!</a></code> <code><a href="#mult_QMARK_">mult?</a></code> <code><a href="#tap_BANG_">tap!</a></code> <code><a href="#untap_BANG_">untap!</a></code> <code><a href="#untap_all_BANG_">untap&#45;all!</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="mult_BANG_"><a class="link" href="#mult_BANG_">mult!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L716">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(mult! <em>port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISourcePort) → IMult</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates and returns a mult(iple) of the supplied <code><em>port</em></code>. Ports
+containing copies of the <code><em>port</em></code> can be created with <code>tap!</code>, and
+detached with <code>untap!</code>.</p>
+</div>
+<div class="paragraph">
+<p>Each item is distributed to all taps in parallel and synchronously,
+i.e. each tap must accept before the next item is distributed. Use
+buffering/windowing to prevent slow taps from holding up the mult.</p>
+</div>
+<div class="paragraph">
+<p>Items received when there are no taps get dropped.</p>
+</div>
+<div class="paragraph">
+<p>If a tap put throws an exception, it will be removed from the mult.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mult_QMARK_">mult?</a></code>, <code><a href="#tap_BANG_">tap!</a></code>, <code><a href="#untap_BANG_">untap!</a></code>, <code><a href="#untap_all_BANG_">untap&#45;all!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="mult_QMARK_"><a class="link" href="#mult_QMARK_">mult?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L698">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(mult? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IMult</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.concurrent.port.spi.html#IMult">IMult</a></code>, <code><a href="#mult_BANG_">mult!</a></code>, <code><a href="#tap_BANG_">tap!</a></code>, <code><a href="#untap_BANG_">untap!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="tap_BANG_"><a class="link" href="#tap_BANG_">tap!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L734">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(tap! <em>mult port</em>)</code></p>
+</li>
+<li>
+<p><code>(tap! <em>mult port keep&#45;open?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IMult ⨯ ITargetPort) → nil</code></p>
+</li>
+<li>
+<p><code>(IMult ⨯ ITargetPort ⨯ Boolean) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Copies the <code><em>mult</em></code> source onto the supplied target <code><em>port</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>By default the <code><em>port</em></code> will be closed when the source closes,
+but can be determined by the <code><em>keep-open?</em></code> parameter.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mult_QMARK_">mult?</a></code>, <code><a href="#mult_BANG_">mult!</a></code>, <code><a href="#untap_BANG_">untap!</a></code>, <code><a href="#untap_all_BANG_">untap&#45;all!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="untap_BANG_"><a class="link" href="#untap_BANG_">untap!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L746">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(untap! <em>mult port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IMult ⨯ ITargetPort) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Disconnects a target <code><em>port</em></code> from a <code><em>mult</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mult_QMARK_">mult?</a></code>, <code><a href="#mult_BANG_">mult!</a></code>, <code><a href="#tap_BANG_">tap!</a></code>, <code><a href="#untap_all_BANG_">untap&#45;all!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="untap_all_BANG_"><a class="link" href="#untap_all_BANG_">untap-all!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L754">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(untap&#45;all! <em>mult</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IMult) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Disconnects all target ports from a <code><em>mult</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mult_QMARK_">mult?</a></code>, <code><a href="#mult_BANG_">mult!</a></code>, <code><a href="#untap_BANG_">untap!</a></code>, <code><a href="#tap_BANG_">tap!</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Mix"><a class="link" href="#Mix">Mix</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#Mix">Mix</a></code> <code><a href="#admix_BANG_">admix!</a></code> <code><a href="#mix">mix</a></code> <code><a href="#toggle_BANG_">toggle!</a></code> <code><a href="#unmix_BANG_">unmix!</a></code> <code><a href="#unmix_all_BANG_">unmix&#45;all!</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Mix"><a class="link" href="#Mix">Mix</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L819">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>Signature</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type signature for Mix object.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mix">mix</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="admix_BANG_"><a class="link" href="#admix_BANG_">admix!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L853">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(admix! <em>mix port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Mix ⨯ ISourcePort) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Adds source <code><em>port</em></code> as an input to the <code><em>mix</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Mix">Mix</a></code>, <code><a href="#mix_BANG_">mix!</a></code>, <code><a href="#unmix_BANG_">unmix!</a></code>, <code><a href="#unmix_all_BANG_">unmix&#45;all!</a></code>, <code><a href="#toggle_BANG_">toggle!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="mix"><a class="link" href="#mix">mix</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L826">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(mix <em>out</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ITargetPort) → Mix</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates and returns a mix of one or more input ports which will
+be put on the supplied <code><em>out</em></code> target port. Input sources can be
+added to the mix with <code>admix!</code>, and removed with <code>unmix!</code>.
+A mix supports soloing, muting and pausing multiple inputs
+atomically using <code>toggle!</code>, and can solo using either muting or
+pausing as determined by <code>:solo-mode</code> value in the configuration.</p>
+</div>
+<div class="paragraph">
+<p>Each port can have zero or more boolean modes set via <code>toggle!</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:solo</code>  - when <code>true</code>, only this (ond other soloed) port(s) will
+appear in the mix output port. <code>:mute</code> and <code>:pause</code> states
+of soloed ports are ignored. If <code>:solo-mode</code> is <code>:mute</code>,
+non-soloed ports are muted, if <code>:pause</code>, non-soloed
+ports are paused.</p>
+</li>
+<li>
+<p><code>:mute</code> - muted ports will have their contents consumed but not
+included in the mix</p>
+</li>
+<li>
+<p><code>:pause</code> - paused ports will not have their contents consumed
+(and thus also not included in the mix)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Mix">Mix</a></code>, <code><a href="#admix_BANG_">admix!</a></code>, <code><a href="#unmix_BANG_">unmix!</a></code>, <code><a href="#unmix_all_BANG_">unmix&#45;all!</a></code>, <code><a href="#toggle_BANG_">toggle!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="toggle_BANG_"><a class="link" href="#toggle_BANG_">toggle!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L877">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(toggle! <em>mix state&#45;map</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Mix ⨯ {ISourcePort KeywordMap}) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Atomically sets the state(s) of one or more ports in a <code><em>mix</em></code>.
+The <code><em>state-map</em></code> is a map of <code>channels &#8594; channel-state-map</code>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>channel-state-map</code> is a map of <code>attrs &#8594; boolean</code>, where <code>attr</code>
+is one or more of <code>:mute</code>, <code>:pause</code> or <code>:solo</code>.
+Any states supplied are merged with the current state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Ports can be added to a <code><em>mix</em></code> via <code>toggle!</code>, which can be
+used to add ports in a particular (e.g. paused) state.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Mix">Mix</a></code>, <code><a href="#admix_BANG_">admix!</a></code>, <code><a href="#unmix_BANG_">unmix!</a></code>, <code><a href="#unmix_all_BANG_">unmix&#45;all!</a></code>, <code><a href="#mix_BANG_">mix!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unmix_BANG_"><a class="link" href="#unmix_BANG_">unmix!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L861">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(unmix! <em>mix port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Mix ⨯ ISourcePort) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Removes <code><em>port</em></code> as an input to the <code><em>mix</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Mix">Mix</a></code>, <code><a href="#admix_BANG_">admix!</a></code>, <code><a href="#mix_BANG_">mix!</a></code>, <code><a href="#unmix_all_BANG_">unmix&#45;all!</a></code>, <code><a href="#toggle_BANG_">toggle!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unmix_all_BANG_"><a class="link" href="#unmix_all_BANG_">unmix-all!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L869">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(unmix&#45;all! <em>mix</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Mix) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Removes all inputs from the <code><em>mix</em></code></p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Mix">Mix</a></code>, <code><a href="#admix_BANG_">admix!</a></code>, <code><a href="#unmix_BANG_">unmix!</a></code>, <code><a href="#mix_BANG_">mix!</a></code>, <code><a href="#toggle_BANG_">toggle!</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Pub"><a class="link" href="#Pub">Pub</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#pub_BANG_">pub!</a></code> <code><a href="#pub_QMARK_">pub?</a></code> <code><a href="#sub_BANG_">sub!</a></code> <code><a href="#unsub_BANG_">unsub!</a></code> <code><a href="#unsub_all_BANG_">unsub&#45;all!</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pub_BANG_"><a class="link" href="#pub_BANG_">pub!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L915">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pub! <em>port topic&#45;fn</em>)</code></p>
+</li>
+<li>
+<p><code>(pub! <em>port topic&#45;fn buf&#45;fn</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(ISourcePort ⨯ (Fn [Any PortVal&#93;)) → IPub</code></p>
+</li>
+<li>
+<p><code>(ISourcePort ⨯ (Fn [Any PortVal&#93;) ⨯ (Fn [(U Integer IMutableCollection) Any&#93;)) → IPub</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates and returns a pub(lication) of the supplied source
+<code><em>port</em></code>, partitioned into topics by the <code><em>topic-fn</em></code>.
+<code><em>topic-fn</em></code> will be applied to each value on the port and the
+result will determine the 'topic' on which that value will be put.</p>
+</div>
+<div class="paragraph">
+<p>Ports can be subscribed to receive copies of topics using <code>sub!</code>,
+and unsubscribed using <code>unsub!</code>. Each topic will be handled by an
+internal mult on a dedicated channel. By default these internal
+channels are unbuffered, but a <code><em>buf-fn</em></code> can be supplied which,
+given a topic, creates a buffer with desired properties.</p>
+</div>
+<div class="paragraph">
+<p>Each item is distributed to all subs in parallel and synchronously,
+i.e. each sub must accept before the next item is distributed. Use
+buffering/windowing to prevent slow subs from holding up the pub.</p>
+</div>
+<div class="paragraph">
+<p>Items received when there are no matching subs get dropped.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If buf-fns are used then each topic is handled
+asynchronously, i.e. if a port is subscribed to more than one
+topic it should not expect them to be interleaved identically with
+the source.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pub_QMARK_">pub?</a></code>, <code><a href="#sub_BANG_">sub!</a></code>, <code><a href="#unsub_BANG_">unsub!</a></code>, <code><a href="#unsub_all_BANG_">unsub&#45;all!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="pub_QMARK_"><a class="link" href="#pub_QMARK_">pub?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L895">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(pub? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> satisfies <code>IPub</code> protocol, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.concurrent.port.spi.html#IPub">IPub</a></code>, <code><a href="#pub_BANG_">pub!</a></code>, <code><a href="#sub_BANG_">sub!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sub_BANG_"><a class="link" href="#sub_BANG_">sub!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L946">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sub! <em>pub topic port</em>)</code></p>
+</li>
+<li>
+<p><code>(sub! <em>pub topic port keep&#45;open?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IPub ⨯ Any ⨯ ITargetPort) → nil</code></p>
+</li>
+<li>
+<p><code>(IPub ⨯ Any ⨯ ITargetPort ⨯ Boolean) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Subscribes a <code><em>port</em></code> to a topic of a <code><em>pub</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>By default the <code><em>port</em></code> will be closed when the source closes,
+but can be determined by the <code><em>keep-open?</em></code> parameter.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pub_QMARK_">pub?</a></code>, <code><a href="#pub_BANG_">pub!</a></code>, <code><a href="#unsub_BANG_">unsub!</a></code>, <code><a href="#unsub_all_BANG_">unsub&#45;all!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unsub_BANG_"><a class="link" href="#unsub_BANG_">unsub!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L960">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(unsub! <em>pub topic port</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IPub ⨯ Any ⨯ ITargetPort) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Unsubscribes a <code><em>port</em></code> from a <code><em>topic</em></code> of a <code><em>pub</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pub_QMARK_">pub?</a></code>, <code><a href="#sub_BANG_">sub!</a></code>, <code><a href="#pub_BANG_">pub!</a></code>, <code><a href="#unsub_all_BANG_">unsub&#45;all!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="unsub_all_BANG_"><a class="link" href="#unsub_all_BANG_">unsub-all!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L968">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(unsub&#45;all! <em>pub</em>)</code></p>
+</li>
+<li>
+<p><code>(unsub&#45;all! <em>pub topic</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IPub) → nil</code></p>
+</li>
+<li>
+<p><code>(IPub ⨯ Any) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Unsubscribes all ports from a <code><em>pub</em></code>, or all ports subscribed to
+<code><em>topic</em></code> of a <code><em>pub</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#pub_QMARK_">pub?</a></code>, <code><a href="#sub_BANG_">sub!</a></code>, <code><a href="#unsub_BANG_">unsub!</a></code>, <code><a href="#pub_BANG_">pub!</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Other"><a class="link" href="#Other">Other</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#default_port_executor">default&#45;port&#45;executor</a></code> <code><a href="#fn_handler">fn&#45;handler</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="default_port_executor"><a class="link" href="#default_port_executor">default-port-executor</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L70">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-inbox" title="Var"></i></span> VAR</code> of type <code>Var</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Dynamic var holding default port executor.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Not yet fully integrated.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="fn_handler"><a class="link" href="#fn_handler">fn-handler</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L79">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(fn&#45;handler <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(fn&#45;handler <em>f blockable?</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Any</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Boolean) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a fn handler created from a given function <code><em>f</em></code>.
+Returned handler can be used as an arg in source/target ports'
+protocol methods.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Low level function.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:15:16 CET
+</div>
+</div>
+</body>
+</html>

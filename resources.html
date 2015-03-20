@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Resources</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Resources</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Resources</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter describes language skeleton for designing and
+working with network resources in a distributed system. For this
+purpose, Dunaj defines abstractions for messages, resources and
+services. The goal is to define simple, composable and
+interoperable abstractions which fit into existing language
+concepts.</p>
+</div>
+<div class="paragraph">
+<p>A distributed system is a collection of interacting computer
+processes located on networked computers. These processes
+communicate and coordinate their actions by passing messages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_concepts">Basic concepts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A Message is an information that is sent between communication
+endpoints. Examples of message types: byte, string,
+number, collection or ad-hoc data type. Structure of
+message is defined by a communications protocol.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Message has no predefined structure but can only be
+      represented by a serializable data type. Most persistent or
+      immutable data types can be used for this purpose.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_message_stream">Message stream</h3>
+<div class="paragraph">
+<p>Most of time, messages exchanged between communication endpoints
+form a message stream. Depending on the purpose of communication,
+this stream may be finite, have a predefined length or even be
+infinite.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Stream is represented by a collection recipe. Stream
+      cannot be 'closed' per se, it can only be finished. Because
+      each stream is represented by a reducible collection, there
+      is no need to represent the 'end of stream' value.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_communications_protocol">Communications protocol</h3>
+<div class="paragraph">
+<p>A communications protocol is the set of rules governing message
+exchange between communication endpoints.
+Examples of communication protocols: HTTP, WebDAV,
+TCP, UDP, RS232, Modbus, memcached, WebRTC, websocket, bittorrent.
+Protocols are often built upon other protocols
+(e.g. WebDAV is an extension of HTTP, which can be implemented on
+top of TCP, which uses IP, etc.).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Dunaj does not and will not represent communications
+      protocol per se. If you want to represent communications
+      protocol&#8217;s functionalities which can be futher utilized,
+      use the concept of resources and services.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_communication_channel">Communication channel</h3>
+<div class="paragraph">
+<p>A communication channel mediates a communication between
+endpoints for the purpose of message exchange.
+Messages exchanged between endpoints are defined and sent/received
+according to the specified communications protocol, supported and
+agreed upon by all involved parties.
+A communication channel can be in form of a connection (e.g. TCP),
+or may be connectionless (UDP). It can mediate a communication
+between two entities (e.g. unicast), or between many entities
+(e.g. multicast, broadcast). Communication channel can be one
+direction only (simplex), or it may mediate two way communication
+(half/full duplex).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Dunaj does not and will not represent communication
+      channels per se. Use the representation for computer
+      resources (e.g. TCP socket) that provide abstractions
+      for communication endpoints on a given computer system.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resource">Resource</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A resource is an object of limited availability,
+optionally identified by a URI,
+that models a computer or network resource.
+Resource example: file, web page, message queue service,
+database management system, weather web service, network socket.</p>
+</div>
+<div class="paragraph">
+<p>Resource related concepts described in this section are defined in a
+<a href="dunaj.resource.api.html">dunaj.resource</a> namespace.</p>
+</div>
+<div class="sect2">
+<h3 id="_computer_resource">Computer Resource</h3>
+<div class="paragraph">
+<p>A computer resource, or system resource, is resource of limited
+availability within a computer system. Computer resource and
+services it provides can be used by computer processes running
+in the respective computer system.
+Examples of computer resources: file, network socket.</p>
+</div>
+<div class="paragraph">
+<p>Because these resources are of limited availability, computer
+process needs to acquire computer resource before it can use it.
+More importantly, computer process have to release acquired
+resources as soon as they are no longer needed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_network_resouce">Network resouce</h3>
+<div class="paragraph">
+<p>A network resource is a resource accessible within a computer
+network. Network resources provide services that perform one
+or more functions as a result of a message received over a network
+from a consumer.
+Examples of network resources: weather web service, web
+server, database management system, web page.</p>
+</div>
+<div class="paragraph">
+<p>Computer process can access network resources exclusively via
+a communication channel. This involves often nontrivial process
+of setting up and maintaining a communication channel, in which
+computer resources are utilized and specific steps defined by a
+respective communication protocol have to be taken. If such process
+can be standardized, it can be implemented into a object called
+client, which takes care of network resource setup and management.
+Look further down for descriptions of client
+and other relevant abstractions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resource_acquisition">Resource Acquisition</h3>
+<div class="paragraph">
+<p>Resources are acquired via a respective resource factories.
+(The term 'factory' relates to the process of creating data objects
+representing acquired resources, not to the resource creation as
+such. When acquiring, no new resources are created. If new
+resource of a given type can be created, it is done in an
+API or service unrelated to the resource factory or even to the
+functionalities of a given resource.)</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Resource factory is represented by a record object tha
+      implements <code>IAcquirableFactory</code> protocol. The resource factory
+      contains all configuration in its map-like part. That way the
+      resource can be configured as a normal map. The factory
+      protocol defines <code>-acquire!</code> method, which returns
+      object representing an acquired resource.
+      An <code>acquire!</code> fuction is called with the resource factory as
+      its argument, and it acquires a resource within a given scope
+      as specified in the resource factory configuration.
+      Acquired resource may additionally implement <code>IConfigured</code>
+      protocol, which defines <code>-config</code> method. This method returns
+      the factory configuration used to acquire the respective
+      resource.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_releasing_resources">Releasing resources</h3>
+<div class="paragraph">
+<p>Every resource that is of limited availability has to be released
+as soon as it is no longer needed. Language implements facilities
+for resource scopes that provide automatic release. This feature
+can be opted out with a custom resource acquisition.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+In Dunaj, every object representing such resource has to
+      implement <code>IReleasable</code> protocol. Same applies for objects that
+      'own' a resource outside their method calls. <code>IReleasable</code>
+      protocol defines <code>-release!</code> method. This method
+      should be called when resources this object 'owns' or
+      represents are no longer needed. To prevent resource leaks,
+      objects implementing <code>IReleasable</code> should be wrapped in a
+      <code>with-scope</code> macro. Newly acquired objects are pushed to the
+      current scope, often as a weak refs, if host supports such
+      construct. Scope releases resources in LIFO mode.
+      If supported by host, resources must also be
+      released upon such object&#8217;s finalization (e.g. finalize
+      method in Java). Any further operations on a released
+      resource must throw an exception.
+      For more detailed control over the release process, Dunaj
+      defines <code>grab-scope</code> and <code>release-scope!</code> functions.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_service">Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Service is a set of reusable software functionalities provided by
+a network resource, which can be utilized by a service consumer
+(some computer process) via a communication channel. Network
+resource that provides a service is called a service provider.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Service is represented by a protocol.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_service_providers_consumers_and_requesters">Service providers, consumers and requesters</h3>
+<div class="paragraph">
+<p>Network resource which provides a specific service is called a
+service provider. Computer process that utilizes
+such service is called a service consumer. The middleman between
+consumer and provider is called a service requester, and it is used
+to establish and maintain a communication channel between external
+service provider and a service consumer.</p>
+</div>
+<div class="paragraph">
+<p>Service provider is often called a server and a service requester
+is called a client. In some cases service requester functions also
+as a service provider for other consumers. Such resource is called
+a service peer. This concept is used e.g. in P2P services such
+as bittorrent.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_client">Client</h3>
+<div class="paragraph">
+<p>Client, also known as a service requester, helps to establish a
+communication channel between a service consumer and a service
+provider. It may handle also such tasks as a reconnection,
+service partitioning (load balancing, sharding), handshaking,
+session initialization and other necessary things which may have
+to be realized before service provider&#8217;s functionalities can
+be utilized by a service consumer.
+Client may keep an opened connection, have a connection pool and
+is free to establish new channels if needed or close the ones which
+are no more used. Therefore, it is generally preferred to use a
+client instead of lower level communication channel, if a suitable
+client is provided.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Client may expose to the service consumer a protocol
+           which is different from those of service providers.
+           This is especially true in P2P services, where e.g.
+           handshaking or session initialization may be handled
+           transparently without consumer&#8217;s intervention.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Client objects are created in the same way as resources
+      are acquired. There are client factories, implementing
+      <code>IAcquirableFactory</code> protocol and providing map-like
+      configuration. Actual clients implement <code>IReleasable</code> and
+      <code>IConfigured</code>.
+      Clients factories can alternatively implement <code>ISystem</code>
+      protocol that provides means to start a complex client that
+      requires multiple dependencies.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_server">Server</h3>
+<div class="paragraph">
+<p>Server, also known as a service provider, is a network resource.
+The computer process which implements this network resource
+usually keeps an opened communication channel for listening for
+service requests from clients.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+Server objects are created in the same way as clients.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_peer">Peer</h3>
+<div class="paragraph">
+<p>Peer is a network resource which also serves as a Client for
+the respective computer process. All requirements for the
+Client and Server applies also for Peer.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_service_directory">Service directory</h3>
+<div class="paragraph">
+<p>Data objects which can be used for service coordination.
+In some cases server may compose its components dynamically.
+(e.g. WebRTC peers need to agree on a server for SIP)</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">In Dunaj</div>
+<div class="paragraph">
+<p>Dunaj currently implements only a simple resource discovery
+with a <code>resource</code> function, which uses uri scheme to map resource
+type from currently registered resource providers.
+Alternative proposal consists of separate maps for service
+implementations and service directory</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Service implementation map</p>
+<div class="ulist">
+<ul>
+<li>
+<p>List of client/server factories indexed by services which
+they request/provide.</p>
+</li>
+<li>
+<p>IServiceProtocol symbol &#8594; Client/Server Factory symbol</p>
+</li>
+<li>
+<p>no need to share, is built locally out of available
+client/service implementations.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Service directory</p>
+<div class="ulist">
+<ul>
+<li>
+<p>IServiceProtocol symbol &#8594; factory configuration maps with uri</p>
+</li>
+<li>
+<p>may be passed between computer processes or there may
+be a dedicated network resource which provides service
+directory features.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:38 CET
+</div>
+</div>
+</body>
+</html>

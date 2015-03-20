@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.math.random API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.math.random API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.math.random</a></div><div class="dd-nav-ns-var"><a href="#rand"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">rand</span></a></div><div class="dd-nav-ns-var"><a href="#rand_integer"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">rand-integer</span></a></div><div class="dd-nav-ns-var"><a href="#rand_nth"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">rand-nth</span></a></div><div class="dd-nav-ns-var"><a href="#rng"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">rng</span></a></div><div class="dd-nav-ns-var"><a href="#secure_rng"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">secure-rng</span></a></div><div class="dd-nav-ns-var"><a href="#seedable_rng"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">seedable-rng</span></a></div><div class="dd-nav-ns-var"><a href="#splittable_rng"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">splittable-rng</span></a></div><div class="dd-nav-ns-var"><a href="#thread_local_rng"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">thread-local-rng</span></a></div><div class="dd-nav-ns-group"><a href="#Transducers">Transducers</a></div><div class="dd-nav-ns-var"><a href="#booleans"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">booleans</span></a></div><div class="dd-nav-ns-var"><a href="#floats"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">floats</span></a></div><div class="dd-nav-ns-var"><a href="#floats_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">floats*</span></a></div><div class="dd-nav-ns-var"><a href="#gaussian"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">gaussian</span></a></div><div class="dd-nav-ns-var"><a href="#integers"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">integers</span></a></div><div class="dd-nav-ns-var"><a href="#integers_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">integers*</span></a></div><div class="dd-nav-ns-var"><a href="#sample"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">sample</span></a></div><div class="dd-nav-ns-group"><a href="#Other">Other</a></div><div class="dd-nav-ns-var"><a href="#default_rng_batch_size"><i class="fa fa-fw fa-inbox dd-mmsh"></i><span class="dd-nav-ns-var-text">default-rng-batch-size</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.math.random API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.math.random.spi.html">SPI documentation</a> for this namespace.</div></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Random number generators.</p>
+</div>
+<div class="paragraph">
+<p>While convenience functions <code><a href="#rand">rand</a></code>,
+<code><a href="#rand-integer">rand-integer</a></code> and <code><a href="#rand-nth">rand-nth</a></code> are
+provided, this namespace&#8217;s primary feature is the generation of
+reducible collections of random numbers.</p>
+</div>
+<div class="paragraph">
+<p>Random numbers are generated by a <em>random number generator</em>, which
+produces collection of random bytes. The random number generator
+is created with the <code><a href="#rng">rng</a></code> function. Dunaj provides
+four rng types, each having its own rng factory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="#secure_rng">secure-rng</a></code> - A thread safe secure rng with
+host-specific algorithm and providers</p>
+</li>
+<li>
+<p><code><a href="#seedable_rng">seedable-rng</a></code> - A thread safe rng with the
+ability to specify initial seed and with a guarantee that
+the same seed yields same sequence of items in the first
+reduction of the rng. Slower compared to other rngs.</p>
+</li>
+<li>
+<p><code><a href="#splittable_rng">splittable-rng</a></code> - A non thread safe rng
+which is however intended for fork-join tasks, as it is able to
+split into two separate rngs. Can be seeded with same guarantees
+as in seedable-rng.</p>
+</li>
+<li>
+<p><code><a href="#thread_local_rng">thread-local-rng</a></code> - A fast thread local rng.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code>
+protocol serves as an extension point for custom rngs.</p>
+</div>
+<div class="paragraph">
+<p>To generate numbers of other types, this namespace provides
+several <a href="#Transducers">transducers</a> to convert a collection of
+bytes to the collection of integers, floats, etc.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-53"><label class="dd-example-label" for="toggle-53">1 usage example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+<strong>40</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.math.random <span class="symbol">:refer</span>
+             [rng secure-rng splittable-rng seedable-rng <span class="keyword">floats</span> integers]]))
+
+(<span class="keyword">defn</span> <span class="function">t50</span>
+  [x]
+  (<span class="keyword">seq</span> (<span class="keyword">take</span> <span class="integer">50</span> x)))
+<span class="error">#</span>'foo.bar/t50
+
+<span class="comment">;; default rng is thread-local-rng</span>
+(t50 (rng))
+<span class="comment">;;=&gt; (119 115 42 -52 -65 25 -45 -7 -21 32 -63 74 -89 -119 84 -4 -6 -53 62 57 -70 -99 -81 2 32 82 18 -21 -10 1 38 101 -80 -12 40 -54 -52 -96 56 64 1 -66 125 -76 -41 67 23 62 97 -125)</span>
+
+(t50 (rng splittable-rng))
+<span class="comment">;;=&gt; (-87 68 95 -22 -67 -17 48 -86 -50 -95 125 -43 -113 -9 -103 50 96 52 116 22 111 -35 -31 -3 63 -57 24 13 -126 66 -12 -116 63 -17 73 -108 -34 -43 -42 -115 -126 -103 -24 114 -5 36 -103 54 -116 -94)</span>
+
+<span class="comment">;; different values for each call</span>
+(t50 (rng splittable-rng))
+<span class="comment">;;=&gt; (61 2 -5 -70 -58 20 65 -103 107 -95 -100 14 -31 -51 78 -19 23 24 48 -31 -54 -60 48 -78 78 84 53 -7 -1 48 124 89 -90 127 63 -30 73 -82 -94 -82 78 58 79 106 19 25 36 52 25 -116)</span>
+
+<span class="comment">;; same sequence of values if seed is given</span>
+(t50 (rng splittable-rng <span class="symbol">:seed</span> <span class="integer">37</span>))
+<span class="comment">;;=&gt; (77 -63 -96 60 -45 6 -108 57 17 32 44 -11 116 37 -92 -124 56 82 113 -91 -107 -74 -13 34 -39 -17 -84 -63 -81 -57 27 45 -91 -103 -84 -113 -47 -42 48 -11 -4 -23 122 -41 88 41 -117 -74 -14 122)</span>
+
+(t50 (rng splittable-rng <span class="symbol">:seed</span> <span class="integer">37</span>))
+<span class="comment">;;=&gt; (77 -63 -96 60 -45 6 -108 57 17 32 44 -11 116 37 -92 -124 56 82 113 -91 -107 -74 -13 34 -39 -17 -84 -63 -81 -57 27 45 -91 -103 -84 -113 -47 -42 48 -11 -4 -23 122 -41 88 41 -117 -74 -14 122)</span>
+
+<span class="comment">;; a specific rng algorithm</span>
+(t50 (rng secure-rng <span class="symbol">:algorithm</span> <span class="symbol">:SHA1PRNG</span>))
+<span class="comment">;;=&gt; (-5 20 -46 40 86 115 98 110 -16 -37 104 118 115 88 -92 -62 -65 94 66 -114 4 16 21 82 -8 -109 46 -32 121 -19 104 -7 75 10 -31 24 -110 -61 15 101 37 -119 -76 -105 108 80 33 106 -45 33)</span>
+
+(t50 (<span class="keyword">floats</span> (rng seedable-rng <span class="symbol">:seed</span> <span class="integer">37</span>)))
+<span class="comment">;;=&gt; (0.6213673786196462 0.11767774115427432 0.3057012221689267 0.2779979466319322 0.8238345844110927 0.5771493274960889 0.7395583822711226 0.9952175991966816 0.18484649059100977 0.08544077294128793 0.8076774623917103 0.08376394939840692 0.8039344925877363 0.7668491582256233 0.9489120839560206 0.5222732092107184 0.8755060363988736 0.6321842021329726 0.1410453993499785 0.8890007932941834 0.4521905892448751 0.39626789799103623 0.7140972962963366 0.7894629038956209 0.9099697303814941 0.8886949769154551 0.8426470272412888 0.3620634863965546 0.11123478120858488 0.03851544455319644 0.25191815669293727 0.607718766380739 0.5229288199626858 0.927230088846274 0.8856617752046294 0.3127969113719665 0.2970980055897312 0.6851941591606379 0.004689795859532442 0.28154035458318494 0.2902260155893356 0.4567736079618796 0.7653040745123209 0.9057425555667131 0.7918818831463412 0.6951655518660256 0.4755481079449102 0.31551444942865103 0.2090669792787726 0.03427121432525759)</span>
+
+(t50 (integers (rng seedable-rng <span class="symbol">:seed</span> <span class="integer">37</span>)))
+<span class="comment">;;=&gt; (2484939960054915017 -1407233582011305665 -2505961012080803273 6132965348399674666 2831527535557967913 8525032873404670349 213163188322748885 8357302471195787806 7547268150782053599 6365694898836923311 9167938836495731085 8094593845933113253 808179090903878980 -2949504918879114769 2579348292390082974 5626912148038115921 2846420815215924342 5658591834581413859 -1112267939480947828 6885535682214371679 5318481830143046625 -6226851833088151567 -6999934874497308872 -3807678080828022440 -890640589789670241 -1473233371126622890 1684028349137180073 969048822483567652 1761443495185153707 -6329966957305534863 -503850290705303299 8533843916042578403 -6766805056743537414 -8379655411398162417 1696426505585444650 -6250910704441475923 -1355519215176065282 -3261270747328271806 -575109016053944716 2098761114244222074 5271798724709642839 -3615338865428272884 6273421780089623733 -6944696891458706220 8875155693088084442 7117896854021488764 -6780461618461832764 -3656054042683587424 4383715093420286071 -8348802904759004167)</span>
+
+(t50 (integers <span class="integer">900</span> <span class="integer">1000</span> (rng)))
+<span class="comment">;;=&gt; (952 997 998 970 977 903 911 962 951 988 986 951 916 906 942 902 916 969 983 946 926 905 936 941 972 930 931 944 962 994 936 917 966 910 942 996 968 921 960 977 954 950 903 946 941 988 948 953 954 919)</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#rand">rand</a></code> <code><a href="#rand_integer">rand&#45;integer</a></code> <code><a href="#rand_nth">rand&#45;nth</a></code> <code><a href="#rng">rng</a></code> <code><a href="#secure_rng">secure&#45;rng</a></code> <code><a href="#seedable_rng">seedable&#45;rng</a></code> <code><a href="#splittable_rng">splittable&#45;rng</a></code> <code><a href="#thread_local_rng">thread&#45;local&#45;rng</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rand"><a class="link" href="#rand">rand</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L753">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rand)</code></p>
+</li>
+<li>
+<p><code>(rand <em>end</em>)</code></p>
+</li>
+<li>
+<p><code>(rand <em>begin end</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Float</code></p>
+</li>
+<li>
+<p><code>(Float) → Float</code></p>
+</li>
+<li>
+<p><code>(Float ⨯ Float) → Float</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a random floating point number, with optional
+<code><em>begin</em></code> (inclusive) and <code><em>end</em></code> (exclusive) bounds. Default value
+for <code><em>begin</em></code> is 0.0 and default value for <code><em>end</em></code> is 1.0.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rand_integer">rand&#45;integer</a></code>, <code><a href="#rand_nth">rand&#45;nth</a></code>, <code><a href="#floats">floats</a></code>, <code><a href="#gaussian">gaussian</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rand_integer"><a class="link" href="#rand_integer">rand-integer</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L777">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rand&#45;integer)</code></p>
+</li>
+<li>
+<p><code>(rand&#45;integer <em>end</em>)</code></p>
+</li>
+<li>
+<p><code>(rand&#45;integer <em>begin end</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Integer</code></p>
+</li>
+<li>
+<p><code>(Integer) → Integer</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a random integer number, with optional
+<code><em>begin</em></code> (inclusive) and <code><em>end</em></code> (exclusive) bounds.
+One arg version sets <code><em>begin</em></code> to 0.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rand">rand</a></code>, <code><a href="#rand_nth">rand&#45;nth</a></code>, <code><a href="#integers">integers</a></code>, <code><a href="#booleans">booleans</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rand_nth"><a class="link" href="#rand_nth">rand-nth</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L799">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rand&#45;nth <em>coll</em>)</code></p>
+</li>
+<li>
+<p><code>(rand&#45;nth <em>coll rng</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IIndexed) → Any</code></p>
+</li>
+<li>
+<p><code>(IIndexed ⨯ IRed) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a random item of an <code>IIndexed</code> <code><em>coll</em></code>.
+Can supply a custom <code><em>rng</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rand">rand</a></code>, <code><a href="#rand_integer">rand&#45;integer</a></code>, <code><a href="#sample">sample</a></code>, <code><a href="#rng">rng</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="rng"><a class="link" href="#rng">rng</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L384">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(rng)</code></p>
+</li>
+<li>
+<p><code>(rng <em>factory</em>)</code></p>
+</li>
+<li>
+<p><code>(rng <em>factory seed</em>)</code></p>
+</li>
+<li>
+<p><code>(rng <em>factory key val &amp; keyvals</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IRed</code></p>
+</li>
+<li>
+<p><code>(IRngFactory) → IRed</code></p>
+</li>
+<li>
+<p><code>(IRngFactory ⨯ Integer) → IRed</code></p>
+</li>
+<li>
+<p><code>(IRngFactory ⨯ Keyword ⨯ Any ⨯ (Va Any)) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a newly created random number generator based on given
+<code><em>factory</em></code> and options (integer <code><em>seed</em></code> or <code><em>key</em></code>-<code><em>val</em></code>
+options). <code><em>factory</em></code> defaults to <code><em>thread-local-rng</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Returned random number generator is a homogeneous reducible
+collection, usually with support for batched reduce.</p>
+</div>
+<div class="paragraph">
+<p>The available options and support for <code><em>seed</em></code> is determined
+by a chosen <code><em>factory</em></code> implementation.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code>, <code><a href="#thread_local_rng">thread&#45;local&#45;rng</a></code>, <code><a href="#secure_rng">secure&#45;rng</a></code>, <code><a href="#default_rng_batch_size">default&#45;rng&#45;batch&#45;size</a></code>, <code><a href="#integers">integers</a></code>, <code><a href="#floats">floats</a></code>, <code><a href="#rand">rand</a></code>, <code><a href="dunaj.coll.util.api.html#reduce_batched">dunaj.coll.util/reduce&#45;batched</a></code>, <code><a href="dunaj.coll.api.html#item_type">dunaj.coll/item&#45;type</a></code>, <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="secure_rng"><a class="link" href="#secure_rng">secure-rng</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L359">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IRngFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A secure random number generator factory.</p>
+</div>
+<div class="paragraph">
+<p>Is thread safe, may block if amount of entropy provided by system
+is not sufficient.</p>
+</div>
+<div class="paragraph">
+<p>Supported options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:strong</code> - if <code>true</code>, ignores <code>:algorithm</code> and <code>:provider</code> and
+uses default strong rng as specified by the host.</p>
+</li>
+<li>
+<p><code>:algorithm</code> - rng algorithm (e.g. <code>:NativePRNG</code> or <code>:SHA1PRNG</code>).</p>
+</li>
+<li>
+<p><code>:provider</code> - rng provider (e.g. <code>:SUN</code>). If set, <code>:algorithm</code>
+must also be non-nil.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>No support for <code>:seed</code>.
+In case no algorithm is provided, host&#8217;s default is used instead.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Options used for the random number generator crated with
+this factory can be accessed with
+<code><a href="dunaj.feature.api.html#config">config</a></code>.
+</td>
+</tr>
+</table>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-54"><label class="dd-example-label" for="toggle-54">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.math.random <span class="symbol">:refer</span>
+             [rng secure-rng splittable-rng seedable-rng <span class="keyword">floats</span> integers]]))
+
+<span class="comment">;; current config for secure-rng</span>
+(config (rng secure-rng))
+<span class="comment">;;=&gt; #dunaj.math.random.SecureRngFactory{:strong nil, :algorithm &quot;NativePRNG&quot;, :provider &quot;SUN&quot;}</span>
+
+(config (rng secure-rng <span class="symbol">:strong</span> <span class="predefined-constant">true</span>))
+<span class="comment">;;=&gt; #dunaj.math.random.SecureRngFactory{:strong true, :algorithm &quot;NativePRNGBlocking&quot;, :provider &quot;SUN&quot;}</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rng">rng</a></code>, <code><a href="dunaj.feature.api.html#config">dunaj.feature/config</a></code>, <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="seedable_rng"><a class="link" href="#seedable_rng">seedable-rng</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L263">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IRngFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A seedable random number generator factory.</p>
+</div>
+<div class="paragraph">
+<p>Thread safe, but slower compared to other rngs. Supported options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:seed</code> - if not <code>nil</code>, used to seed the generator.
+It is guaranteed that same seed yields same set of items in the
+first reduction of the rng.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rng">rng</a></code>, <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="splittable_rng"><a class="link" href="#splittable_rng">splittable-rng</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L309">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IRngFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A splittable random number generator factory, useful in fork-join
+tasks. Split can be performed with
+<code><a href="dunaj.state.api.html#clone">dunaj.state/clone</a></code> function.
+Random number generators created with this factory are
+not thread safe.</p>
+</div>
+<div class="paragraph">
+<p>Supported options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:seed</code> - if not <code>nil</code>, used to seed the generator.
+It is guaranteed that same seed yields same set of items in the
+first reduction of the rng.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rng">rng</a></code>, <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code>, <code><a href="dunaj.state.api.html#clone">dunaj.state/clone</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="thread_local_rng"><a class="link" href="#thread_local_rng">thread-local-rng</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L233">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IRngFactory</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A thread local random number generator factory.
+Has no options. Is thread local.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rng">rng</a></code>, <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Transducers"><a class="link" href="#Transducers">Transducers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#booleans">booleans</a></code> <code><a href="#floats">floats</a></code> <code><a href="#floats_STAR_">floats*</a></code> <code><a href="#gaussian">gaussian</a></code> <code><a href="#integers">integers</a></code> <code><a href="#integers_STAR_">integers*</a></code> <code><a href="#sample">sample</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="booleans"><a class="link" href="#booleans">booleans</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L737">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(booleans)</code></p>
+</li>
+<li>
+<p><code>(booleans <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer for converting collection of random bytes into
+a collection of random booleans.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rand_integer">rand&#45;integer</a></code>, <code><a href="#integers">integers</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="floats"><a class="link" href="#floats">floats</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L658">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(floats)</code></p>
+</li>
+<li>
+<p><code>(floats <em>coll</em>)</code></p>
+</li>
+<li>
+<p><code>(floats <em>end coll</em>)</code></p>
+</li>
+<li>
+<p><code>(floats <em>begin end coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IRed</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Float) ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Float) ⨯ (Maybe Float) ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>A transducer for converting collection of random bytes into
+a collection of random floats from the <code>[<em>begin</em> <em>end</em>)</code>
+inteval, both of which can be <code>nil</code>.
+Default <code>begin</code> value is 0.0 and default <code>end</code> value is 1.0.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#floats_STAR_">floats*</a></code>, <code><a href="#rand">rand</a></code>, <code><a href="#gaussian">gaussian</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="floats_STAR_"><a class="link" href="#floats_STAR_">floats*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L575">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(floats* <em>begin end</em>)</code></p>
+</li>
+<li>
+<p><code>(floats* <em>begin end coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Maybe Float) ⨯ (Maybe Float)) → Transducer</code></p>
+</li>
+<li>
+<p><code>((Maybe Float) ⨯ (Maybe Float) ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>A transducer for converting collection of random bytes into
+a collection of random floats from the <code>[<em>begin</em> <em>end</em>)</code>
+inteval, both of which can be <code>nil</code>.
+Default <code>begin</code> value is 0.0 and default <code>end</code> value is 1.0.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#floats">floats</a></code>, <code><a href="#rand">rand</a></code>, <code><a href="#gaussian">gaussian</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="gaussian"><a class="link" href="#gaussian">gaussian</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L712">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(gaussian)</code></p>
+</li>
+<li>
+<p><code>(gaussian <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer for converting collection of random bytes into
+a collection of random floats in normal distribution.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rand">rand</a></code>, <code><a href="#sample">sample</a></code>, <code><a href="#floats">floats</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="integers"><a class="link" href="#integers">integers</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L524">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(integers)</code></p>
+</li>
+<li>
+<p><code>(integers <em>coll</em>)</code></p>
+</li>
+<li>
+<p><code>(integers <em>end coll</em>)</code></p>
+</li>
+<li>
+<p><code>(integers <em>begin end coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IRed</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Integer) ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Integer) ⨯ (Maybe Integer) ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer for converting collection of random bytes into
+a collection of random integers from the <code>[<em>begin</em> <em>end</em>)</code>
+inteval, both of which can be <code>nil</code>. Default <code><em>begin</em></code> is set
+to 0. Ignores <code><em>begin</em></code> if <code><em>end</em></code> is <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#integers_STAR_">integers*</a></code>, <code><a href="#rand_integer">rand&#45;integer</a></code>, <code><a href="#rng">rng</a></code>, <code><a href="#booleans">booleans</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="integers_STAR_"><a class="link" href="#integers_STAR_">integers*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L443">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(integers* <em>begin end</em>)</code></p>
+</li>
+<li>
+<p><code>(integers* <em>begin end coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Maybe Integer) ⨯ (Maybe Integer)) → Transducer</code></p>
+</li>
+<li>
+<p><code>((Maybe Integer) ⨯ (Maybe Integer) ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer for converting collection of random bytes into
+a collection of random integers from the <code>[<em>begin</em> <em>end</em>)</code>
+interval, both of which can be <code>nil</code>. Ignores <code><em>begin</em></code> if <code><em>end</em></code>
+is <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#integers">integers</a></code>, <code><a href="#rand_integer">rand&#45;integer</a></code>, <code><a href="#rng">rng</a></code>, <code><a href="#booleans">booleans</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="sample"><a class="link" href="#sample">sample</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L859">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(sample <em>prob</em>)</code></p>
+</li>
+<li>
+<p><code>(sample <em>prob coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Float) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Float ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that randomly filters out step values with
+probability <code><em>prob</em></code>, a value from the interval <code>[0.0 - 1.0]</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#rand">rand</a></code>, <code><a href="#rand_integer">rand&#45;integer</a></code>, <code><a href="#rand_nth">rand&#45;nth</a></code>, <code><a href="#gaussian">gaussian</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Other"><a class="link" href="#Other">Other</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#default_rng_batch_size">default&#45;rng&#45;batch&#45;size</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="default_rng_batch_size"><a class="link" href="#default_rng_batch_size">default-rng-batch-size</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/math/random.clj#L203">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-inbox" title="Var"></i></span> VAR</code> of type <code>Var</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A var holding a default rng batch size.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.spi.html#IBatchedRed">dunaj.coll/IBatchedRed</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:16:45 CET
+</div>
+</div>
+</body>
+</html>

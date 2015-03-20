@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Math</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Math</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Math</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj follows Clojure&#8217;s design for numbers and math related
+functionalities. Focused on performance, Dunaj uses host number types
+for representing numbers, without any additional wraping.
+Moreover, dedicated functions are available that provide host
+performance, trading off precision and overflow safety.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj provides multitude of math related functionalities, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>comparison and value predicates
+(<code><a href="dunaj.math.api.html#_EQ__EQ_">&#61;&#61;</a></code>,
+<code><a href="dunaj.math.api.html#_LT_">&#60;</a></code>,
+<code><a href="dunaj.math.api.html#_GT_">&#62;</a></code>,
+<code><a href="dunaj.math.api.html#even_QMARK_">even?</a></code>,
+<code><a href="dunaj.math.api.html#odd_QMARK_">odd?</a></code>,
+<code><a href="dunaj.math.api.html#zero_QMARK_">zero?</a></code>,
+&#8230;&#8203;)</p>
+</li>
+<li>
+<p>arithmetics and other basic functions
+(<code><a href="dunaj.math.api.html#_PLUS_">+</a></code>,
+<code><a href="dunaj.math.api.html#_">&#45;</a></code>,
+<code><a href="dunaj.math.api.html#_STAR_">*</a></code>,
+<code><a href="dunaj.math.api.html#_SLASH_">/</a></code>,
+<code><a href="dunaj.math.api.html#inc">inc</a></code>,
+<code><a href="dunaj.math.api.html#max">max</a></code>,
+<code><a href="dunaj.math.api.html#abs">abs</a></code>,
+<code><a href="dunaj.math.api.html#gcd">gcd</a></code>,
+<code><a href="dunaj.math.api.html#mod">mod</a></code>,
+&#8230;&#8203;)</p>
+</li>
+<li>
+<p>bitwise operations
+(<code><a href="dunaj.bit.api.html#and">and</a></code>,
+<code><a href="dunaj.bit.api.html#or">or</a></code>,
+<code><a href="dunaj.bit.api.html#not">not</a></code>,
+<code><a href="dunaj.bit.api.html#shift-left">shift-left</a></code>,
+<code><a href="dunaj.bit.api.html#flip">flip</a></code>,
+&#8230;&#8203;)</p>
+</li>
+<li>
+<p>functions of an angle
+(<code><a href="dunaj.math.angle.api.html#sin">sin</a></code>,
+<code><a href="dunaj.math.angle.api.html#acos">acos</a></code>,
+<code><a href="dunaj.math.angle.api.html#tanh">tanh</a></code>,
+&#8230;&#8203;)</p>
+</li>
+<li>
+<p>exponentiation and logarithms
+(<code><a href="dunaj.math.api.html#pow">pow</a></code>,
+<code><a href="dunaj.math.api.html#sqrt">sqrt</a></code>,
+<code><a href="dunaj.math.api.html#log">log</a></code>,
+<code><a href="dunaj.math.api.html#exp">exp</a></code>,
+&#8230;&#8203;)</p>
+</li>
+<li>
+<p>random number generators
+(<code><a href="dunaj.math.random.api.html#rng">rng</a></code>,
+<code><a href="dunaj.math.random.api.html#rand_integer">rand-integer</a></code>,
+<code><a href="dunaj.math.random.api.html#floats">floats</a></code>,
+<code><a href="dunaj.math.random.api.html#gaussian">gaussian</a></code>,
+&#8230;&#8203;)</p>
+</li>
+<li>
+<p>rounding and precision
+(<code><a href="dunaj.math.api.html#ceil">ceil</a></code>,
+<code><a href="dunaj.math.api.html#floor">floor</a></code>,
+<code><a href="dunaj.math.api.html#round">round</a></code>,
+<code><a href="dunaj.math.api.html#trunc">trunc</a></code>,
+&#8230;&#8203;)</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Math related namespaces</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dunaj.bit.api.html">dunaj.bit</a> - Functions for bitwise manipulation</p>
+</li>
+<li>
+<p><a href="dunaj.host.int.api.html">dunaj.host.int</a> -
+Fast unchecked primitive int operations and constants for
+performance critical loops</p>
+</li>
+<li>
+<p><a href="dunaj.host.number.api.html">dunaj.host.number</a> -
+Coercions to host number types</p>
+</li>
+<li>
+<p><a href="dunaj.math.api.html">dunaj.math</a> - Basic math facilities</p>
+</li>
+<li>
+<p><a href="dunaj.math.angle.api.html">dunaj.math.angle</a> -
+Math functions of an angle, with floating point numbers</p>
+</li>
+<li>
+<p><a href="dunaj.math.precise.api.html">dunaj.math.precise</a> -
+Precise math with an arbitrary precision</p>
+</li>
+<li>
+<p><a href="dunaj.math.random.api.html">dunaj.math.random</a> -
+Random number generators</p>
+</li>
+<li>
+<p><a href="dunaj.math.unchecked.api.html">dunaj.math.unchecked</a> -
+Unchecked math where operations are fast but prone to overflow</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_types_of_numbers">Types of numbers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are no built-in number types provided. Numbers in Dunaj are of
+host specific number types and are not extensible.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In rare cases where specific host number type is required,
+<a href="dunaj.host.number.api.html">dunaj.host.number</a> namespace provides
+coercion functions to host number types.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Dunaj however provides number type signatures and their respective
+predicates. Following type signatures map to one or more host
+number types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.math.api.html#Number">Number</a></code> type signature and
+<code><a href="dunaj.math.api.html#number_QMARK_">number?</a></code>
+predicate - Any number.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.api.html#Integer">Integer</a></code> and
+<code><a href="dunaj.math.api.html#integer_QMARK_">integer?</a></code> -
+Integer numbers. Note that this is not a <code>java.lang.Integer</code> type.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.api.html#Decimal">Decimal</a></code> and
+<code><a href="dunaj.math.api.html#decimal_QMARK_">decimal?</a></code> -
+Decimal numbers.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.api.html#Float">Float</a></code> and
+<code><a href="dunaj.math.api.html#float_QMARK_">float?</a></code> - Floating
+point numbers. Note that this is not a <code>java.lang.Float</code> type.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.api.html#Rational">Rational</a></code> and
+<code><a href="dunaj.math.api.html#rational_QMARK_">rational?</a></code> -
+Rational numbers.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition, an <code><a href="dunaj.math.spi.html#INumerical">INumerical</a></code> protocol
+is provided and a <code><a href="dunaj.math.api.html#num">num</a></code> function returns
+a numerical value for objects that are not a number, but have
+a canonical numerical representation, such as instants, UUIDs and
+characters.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Dunaj&#8217;s <code><a href="dunaj.math.api.html#num">num</a></code> is different from Clojure
+<code>num</code> function, which is in Dunaj renamed to
+<code><a href="dunaj.host.number.api.html#number">number</a></code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_syntax">Syntax</h3>
+<div class="paragraph">
+<p>Dunaj follows Clojure&#8217;s syntax for number literals.
+Following table compares syntax for JSON, EDN and CLJ formats:</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 1. Integers</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top">JSON</th>
+<th class="tableblock halign-center valign-top">EDN</th>
+<th class="tableblock halign-center valign-top">CLJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arbitrary precision indicator</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>N</code> suffix</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>N</code> suffix</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">valid signs</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>-</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>-</code> <code>+</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>-</code> <code>+</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-0</code> is valid</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decimal integer</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">custom radix</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>NNrNNNNN</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hexa integer</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>0xNNNNN</code>, but undocumented <span class="icon yellow"><i class="fa fa-warning"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">octal integer</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>0NNN</code>, but undocumented <span class="icon yellow"><i class="fa fa-warning"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 2. Non-integral numbers</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top">JSON</th>
+<th class="tableblock halign-center valign-top">EDN</th>
+<th class="tableblock halign-center valign-top">CLJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ratios</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>NN/NN</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decimals</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>M</code> suffix</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>M</code> suffix</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">floats</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">valid signs</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>-</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>-</code> <code>+</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>-</code> <code>+</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_precise_and_unchecked_arithmetics">Precise and unchecked arithmetics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Following arithmetic functions have their precise and unchecked
+variants: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>add</code>, <code>dec</code>, <code>inc</code>, <code>multiply</code>,
+<code>negate</code> and <code>subtract</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Arithmetics operations specified in
+<a href="dunaj.math.api.html">dunaj.math</a> namespace do not auto-promote and
+will throw on overflow. These functions are automatically refered
+in Dunaj API.</p>
+</li>
+<li>
+<p>Functions defined in
+<a href="dunaj.math.precise.api.html">dunaj.math.precise</a> are slower than
+normal math operations, but auto-promote when needed.</p>
+</li>
+<li>
+<p><a href="dunaj.math.unchecked.api.html">dunaj.math.unchecked</a> namespace
+defines unchecked operations that are fast but prone to overflow.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.math.unchecked <span class="symbol">:as</span> mu]
+            [dunaj.math.precise <span class="symbol">:as</span> mp]
+            [dunaj.host.number <span class="symbol">:as</span> hn]))
+
+(<span class="keyword">+</span> java.lang.Long/MAX_VALUE <span class="integer">1</span>)
+<span class="comment">;; java.lang.ArithmeticException: integer overflow</span>
+
+(mu/+ java.lang.Long/MAX_VALUE <span class="integer">1</span>)
+<span class="comment">;;=&gt; -9223372036854775808</span>
+
+(mp/+ java.lang.Long/MAX_VALUE <span class="integer">1</span>)
+<span class="comment">;;=&gt; 9223372036854775808N</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>add</code> <code>subtract</code> and <code>multiply</code> are 2 arguments aliases of
+<code>+</code>, <code>-</code> and <code>*</code> functions and are provided for convenience.
+<code>negate</code> is a 1 argument alias of <code>-</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_random_numbers">Random numbers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj defines a concept of a random number generator, which is
+a homogeneous collection recipe of random bytes. Random numbers
+are obtained by reducing given rng collection recipe.
+An <code><a href="dunaj.math.random.spi.html#IRngFactory">IRngFactory</a></code> factory
+protocol is provided for custom random number generators.</p>
+</div>
+<div class="paragraph">
+<p>The random number generator is created with the <code><a href="#rng">rng</a></code>
+function. Dunaj provides four rng types, each having its own rng
+factory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.math.random.api.html#secure_rng">secure-rng</a></code> -
+A thread safe secure rng with host-specific algorithm and providers.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#seedable_rng">seedable-rng</a></code> -
+A thread safe rng with the ability to specify initial seed and with
+a guarantee that the same seed yields same sequence of items in the
+first reduction of the rng. Slower compared to other rngs.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#splittable_rng">splittable-rng</a></code> -
+A non thread safe rng which is however intended for fork-join tasks,
+as it is able to split into two separate rngs. Can be seeded with
+same guarantees as in seedable-rng.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#thread_local_rng">thread-local-rng</a></code> -
+A fast thread local rng.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Collection of random bytes can be futher converted with following
+transducer returning functions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.math.random.api.html#booleans">booleans</a></code> -
+Converts into a collection of random booleans.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#floats">floats</a></code> -
+Converts into a collection of random floats from the <code>[begin end)</code>
+inteval, both of which can be <code>nil</code>.
+Default <code>begin</code> value is <code>0.0</code> and default <code>end</code> value is <code>1.0</code>.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#gaussian">gaussian</a></code> -
+Converts into a collection of random floats in normal distribution.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#integers">integers</a></code> -
+Converts into a collection of random integers from the <code>[begin end)</code>
+inteval, both of which can be <code>nil</code>. Default <code>begin</code> is set to <code>0</code>.</p>
+</li>
+<li>
+<p><code><a href="dunaj.math.random.api.html#sample">sample</a></code> -
+Randomly filters out items with probability <code>prob</code>, a value from the
+interval <code>[0.0 - 1.0]</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additional functions <code><a href="dunaj.math.random.api.html#rand">rand</a></code>,
+<code><a href="dunaj.math.random.api.html#rand_integer">rand-integer</a></code> and
+<code><a href="dunaj.math.random.api.html#rand_nth">rand-nth</a></code> are provided
+for user convenience.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bitwise_operations">Bitwise operations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bitwise functions perform operations on individual bits of the input
+number(s). Following operations are provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.bit.api.html#clear">clear</a></code>,
+<code><a href="dunaj.bit.api.html#flip">flip</a></code>,
+<code><a href="dunaj.bit.api.html#set">set</a></code> and
+<code><a href="dunaj.bit.api.html#test">test</a></code></p>
+</li>
+<li>
+<p>logic operators: <code><a href="dunaj.bit.api.html#and">and</a></code>,
+<code><a href="dunaj.bit.api.html#and_not">and-not</a></code>,
+<code><a href="dunaj.bit.api.html#not">not</a></code>,
+<code><a href="dunaj.bit.api.html#or">or</a></code> and
+<code><a href="dunaj.bit.api.html#xor">xor</a></code></p>
+</li>
+<li>
+<p>shift operators:
+<code><a href="dunaj.bit.api.html#_LT__LT_">&lt;&lt;</a></code>,
+<code><a href="dunaj.bit.api.html#_GT__GT_">&#62;&#62;</a></code>,
+<code><a href="dunaj.bit.api.html#_GT__GT__GT_">&#62;&#62;&#62;</a></code>,
+<code><a href="dunaj.bit.api.html#shift_left">shift-left</a></code>,
+<code><a href="dunaj.bit.api.html#shift_right">shift-right</a></code> and
+<code><a href="dunaj.bit.api.html#unsigned_shift_right">unsigned-shift-right</a></code>,</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>&lt;&lt;</code> <code>&gt;&gt;</code> and <code>&gt;&gt;&gt;</code> are aliases of <code>shift-</code> functions and are
+provided for user convenience
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Functions defined in this namespace work with any integer type.
+More performant functions that work with
+<a href="dunaj.host.int.api.html#Int">Int</a> type (see following section)
+can be found in <a href="dunaj.host.int.api.html#Bitwise">dunaj.host.int</a>.
+Boolean logic functions can be found in
+<a href="dunaj.boolean.api.html#Logic">dunaj.boolean</a> namespace.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can use <code><a href="dunaj.string.api.html#binary">binary</a></code> and
+<code><a href="dunaj.string.api.html#hexa">hexa</a></code> functions that return
+binary and hexadecimal string representation of input number.</p>
+</div>
+<div class="paragraph">
+<p>When using numeric constants, remember that <code>CLJ</code> format supports
+hexadecimal and binary notations for integer literals.
+It will make your code more readable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>(binary (bit/and <span class="integer">2</span>r10110 <span class="integer">2</span>r11011))
+<span class="comment">;;=&gt; \&quot;00010010\&quot;</span>
+
+(hexa (bit/and <span class="integer">0</span>x0F0 <span class="integer">0</span>x1BC))
+<span class="comment">;;=&gt; \&quot;0x00B0\&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Prefer aliasing this namespace to refering its functions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.bit <span class="symbol">:as</span> bit]))
+
+(<span class="keyword">def</span> <span class="function">ALL_OPTS</span>
+  (bit/or java.nio.channels.SelectionKey/OP_READ
+          java.nio.channels.SelectionKey/OP_WRITE
+          java.nio.channels.SelectionKey/OP_ACCEPT
+          java.nio.channels.SelectionKey/OP_CONNECT))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_primitive_number_types">Handling primitive number types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Under JVM, Clojure chose to use <code>Long</code> as a default type for
+integers.
+This simplifies many things, but there are times where it is
+better to directly support an <code>Integer</code> type, as JDK mainly uses
+<code>int</code> for passing integer values.
+For those rare cases, Dunaj provides a dedicated namespace called
+<a href="dunaj.host.int.api.html">dunaj.host.int</a> that implements macros for
+working with <code>int</code> values without unnecessary promoting or boxing.
+Following functionalities are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An <code><a href="dunaj.host.int.api.html#Int">Int</a></code> type,
+<code><a href="dunaj.host.int.api.html#iint">iint</a></code> constructor, and value
+predicates (e.g.
+<code><a href="dunaj.host.int.api.html#izero_QMARK_">izero?</a></code>,
+<code><a href="dunaj.host.int.api.html#ineg_QMARK_">ineg?</a></code> and
+<code><a href="dunaj.host.int.api.html#iodd_QMARK_">iodd?</a></code>)</p>
+</li>
+<li>
+<p>Macro returning common int constants, including ASCII codes
+(as Clojure automatically compiles integer literals and constants
+as longs)</p>
+</li>
+<li>
+<p><code><a href="dunaj.host.int.api.html#iloop">iloop</a></code> macro for loops that do not
+promote ints to longs</p>
+</li>
+<li>
+<p>Basic math facilities for working with ints</p>
+</li>
+<li>
+<p>Bitwise manipulation operations on top of ints</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Names of all vars provided by
+<a href="dunaj.host.int.api.html">dunaj.host.int</a> namespace are prefixed
+with the small letter <code>i</code>. Numerics constants are implemented as
+macros and must be unintuitively enclosed in parens.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example of using array manager and dunaj.host.int namespace</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span>
+   [dunaj.host <span class="symbol">:refer</span> [ArrayManager]]
+   [dunaj.host.array <span class="symbol">:refer</span> [array array-manager-from]]
+   [dunaj.host.int <span class="symbol">:refer</span> [Int iint iloop i=<span class="keyword">=</span> iinc iadd imul i0 i1 i31]]))
+
+(<span class="keyword">defn</span> <span class="function">array-hash</span> <span class="symbol">:-</span> Int
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Compute host hash code for an array section.</span><span class="delimiter">&quot;</span></span>
+  [am <span class="symbol">:-</span> ArrayManager, arr <span class="symbol">:-</span> Array, begin <span class="symbol">:-</span> Int, end <span class="symbol">:-</span> Int]
+  (iloop [i (iint begin), ret (i1)]
+    (<span class="keyword">if</span> (i=<span class="keyword">=</span> i end)
+      ret
+      (<span class="keyword">let</span> [v (<span class="keyword">.</span><span class="keyword">get</span> am arr i)]
+        (<span class="keyword">recur</span>
+         (iinc i)
+         (iadd (<span class="keyword">if</span> (<span class="keyword">nil?</span> v) (i0) (<span class="keyword">.</span>hashCode ^java.lang.Object v))
+               (imul (i31) ret)))))))
+<span class="comment">;;=&gt; #'foo.bar/array-hash</span>
+
+(<span class="keyword">def</span> <span class="function">arr</span> (array [<span class="integer">0</span> <span class="integer">1</span> <span class="integer">2</span> <span class="integer">3</span> <span class="integer">4</span> <span class="integer">5</span> <span class="integer">6</span> <span class="integer">7</span> <span class="integer">8</span> <span class="integer">9</span>]))
+<span class="comment">;;=&gt; #'foo.bar/arr</span>
+
+(<span class="keyword">.</span>hashCode [<span class="integer">5</span> <span class="integer">6</span> <span class="integer">7</span> <span class="integer">8</span>])
+<span class="comment">;;=&gt; 1078467</span>
+
+(array-hash (array-manager-from arr) arr <span class="integer">5</span> <span class="integer">9</span>)
+<span class="comment">;;=&gt; 1078467</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_elimination_of_autoboxing">Elimination of autoboxing</h3>
+<div class="paragraph">
+<p>Clojure compiles functions into host classes that by default treat
+input arguments and the return value as instances of
+<code>java.lang.Object</code>.
+This can be customized by specifying type hints. However, primitive
+types require special handling, and due to the combinatorial
+explosion, not all combinations of primitive types can be supported.
+Clojure supports arbitrary combinations of <code>java.lang.Object</code> with 2
+primitive types (<code>long</code> and <code>double</code>), and only up to 4 input
+arguments.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj adds support for other combinations of primitive types (and a
+non-primitive <code>java.lang.Object</code>):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>0 or 1 arity functions have full support for primitives</p>
+</li>
+<li>
+<p>2 and 3 arity functions are supported when all input arguments are
+of a same type. Return type can be any primitive or
+<code>java.lang.Object</code>.</p>
+</li>
+<li>
+<p>additional 2 and 3 arity functions are supported when first argument
+is <code>java.lang.Object</code> and the rest of arguments are of a same type</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj further simplifies the process of creating functions that
+support primitive types. Type signatures automatically emit primitive
+type hints and only for cases where given combination of primitive
+types is allowed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A special type signature
+<code><a href="dunaj.type.api.html#NotPrimitive">NotPrimitive</a></code> is provided for
+cases where primitive types are not desirable.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code><a href="dunaj.dev.api.html#pt">pt</a></code> macro returns keyword based on type
+of argument, and is used to determine whether value is of primitive
+type or not.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.host.number <span class="symbol">:refer</span> [<span class="keyword">byte</span>]]
+            [dunaj.host.int <span class="symbol">:refer</span> [Int iadd iint]]))
+
+(<span class="keyword">defn</span> <span class="function">foo</span>
+  [x]
+  x)
+
+(pt (foo <span class="integer">4</span>))
+<span class="comment">;;=&gt; :object</span>
+
+(<span class="keyword">defn</span> <span class="function">foo+</span> <span class="symbol">:-</span> java.lang.Byte
+  [x <span class="symbol">:-</span> Int, y <span class="symbol">:-</span> Int]
+  (<span class="keyword">byte</span> (iadd x y)))
+
+(pt (foo+ <span class="integer">40</span> <span class="integer">2</span>))
+<span class="comment">;;=&gt; :byte</span>
+
+(pt (foo+ <span class="integer">400</span> <span class="integer">2</span>))
+<span class="comment">;; java.lang.IllegalArgumentException: Value out of range for byte: 402</span>
+
+<span class="comment">;; following combination of primitive types is not supported,</span>
+<span class="comment">;; Dunaj emits non-primitive type hints</span>
+(<span class="keyword">defn</span> <span class="function">foo++</span> <span class="symbol">:-</span> java.lang.Byte
+  [x <span class="symbol">:-</span> Int, y <span class="symbol">:-</span> Any]
+  (<span class="keyword">byte</span> (iadd x (iint y))))
+
+(pt (foo++ <span class="integer">40</span> <span class="integer">2</span>))
+<span class="comment">;;=&gt; :object</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:25 CET
+</div>
+</div>
+</body>
+</html>

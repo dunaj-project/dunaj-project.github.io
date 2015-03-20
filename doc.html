@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Documentation</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Documentation</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="doc.html">Documentation</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="rationale.html">Rationale</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="todo.html">Future Plans</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Documentation</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj provides an <strong>alternative core API for the Clojure</strong>. Its main aim
+is to experimentally test major additions to the language. Dunaj
+deals with language features that require changes across different
+parts of Clojure and which cannot be evaluated in isolation.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj is not an academic endeavour. It is focused on being practical
+and a significant effort was made to provide implementation that is
+backwards compatible with Clojure. Dunaj code integrates well with
+existing Clojure libraries and tools.
+Dunaj&#8217;s main goal is to bring Clojure even more towards <strong>simplicity</strong>,
+<strong>consistency</strong> and <strong>performance</strong>.
+See <a href="rationale.html">design and rationale</a> for more information about
+Dunaj&#8217;s design and motivations.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dunaj_experiments">Dunaj Experiments</h3>
+<div class="paragraph">
+<p>Dunaj focuses on number of experiments, which are described in more
+detail in a separate <a href="guide.html">crash course for
+Clojure developers</a>.
+List of Dunaj experiments with brief description follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-sitemap"></i></span>&nbsp; <strong>Deconstructed API</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Core functionalities split into several namespaces</p>
+</li>
+<li>
+<p>API 'presets' that automatically refer commonly used vars</p>
+</li>
+<li>
+<p>Bootstrapping and low level stuff no longer part of a public API</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-tags"></i></span>&nbsp; <strong>Type signatures</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Signatures independent from type checking or validation tools</p>
+</li>
+<li>
+<p>Type aware syntax for <code>def</code>-like macros, <code>let</code>, <code>loop</code> and <code>fn</code></p>
+</li>
+<li>
+<p>Automatic generation of host type hints</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-plug"></i></span>&nbsp; <strong>Protocols first</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Using protocols and deftypes instead of host interfaces and classes</p>
+</li>
+<li>
+<p>Separate SPI and helper functions for custom language extensions</p>
+</li>
+<li>
+<p>Protocol factories for explicit extensions of abstract data types</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-bars"></i></span>&nbsp; <strong>Simplified API</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Core functions work on top of protocols, not concrete types</p>
+</li>
+<li>
+<p>Fully qualified special symbols</p>
+</li>
+<li>
+<p>Consistent conventions for names</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-puzzle-piece"></i></span>&nbsp; <strong>Reducers first</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Collection functions return collection recipes instead of lazy seqs</p>
+</li>
+<li>
+<p>A continuation for reductions</p>
+</li>
+<li>
+<p>Multireducibles, foldable transducers</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-rocket"></i></span>&nbsp; <strong>Host Performance</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>More primitive types for function arguments and return values</p>
+</li>
+<li>
+<p>Dedicated namespace for working with host primitive integers</p>
+</li>
+<li>
+<p>Low level data containers for bulk data processing</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-file-archive-o"></i></span>&nbsp; <strong>Data Formatters</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Parsers with transducer support and optional lazy parsing</p>
+</li>
+<li>
+<p>Printers with transducer support and pretty printing</p>
+</li>
+<li>
+<p>Built-in formatters for UTF-8, JSON, EDN/CLJ and more</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-cubes"></i></span>&nbsp; <strong>Resources</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reducible blocking and non-blocking I/O, network resources</p>
+</li>
+<li>
+<p>Scopes, a GC for resources</p>
+</li>
+<li>
+<p>Systems, a concept for managing the lifecycle of resources</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-plus"></i></span>&nbsp; <strong>Improved Math</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Facilities for rounding, with both decimal and significant digits
+precision</p>
+</li>
+<li>
+<p>Reducible secure random number generators with transducer support</p>
+</li>
+<li>
+<p>Math functions of an angle, exponentiations and logarithms</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><span class="icon"><i class="fa fa-book"></i></span>&nbsp; <strong>Documentation</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User friendly and comprehensive documentation</p>
+</li>
+<li>
+<p>Dedicated metadata keys for IDEs</p>
+</li>
+<li>
+<p>Facilities for generating documentation</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_dunaj_specification">Dunaj Specification</h3>
+<div class="paragraph">
+<p>See <a href="spec.html">specification page</a> for a description of
+Dunaj&#8217;s concepts, types, facilities and conventions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_api">API</h3>
+<div class="paragraph">
+<p>API provided by Dunaj is designed as an alternative to <code>clojure.core</code>
+API. See <a href="api.html">Dunaj API page</a> for list of all namespaces and
+their vars. By design, Dunaj API is more user-centric, omiting
+bootstrapping and low level stuff. Functionalities are
+divided into separate namespaces, which prevents name clashes.</p>
+</div>
+<div class="paragraph">
+<p>Having core vars in separate namespaces may worsen the tedious
+task of requiring multiple namespaces for handling basic stuff
+(instead of just requiring one <code>clojure.core</code>).
+To make this more bearable, Dunaj API preset automatically refers
+most commonly used vars. See <code><a href="dunaj.core.api.html">dunaj.core</a></code> for
+list of automatically referred vars.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An additional preset called <code><a href="bare.core.api.html">bare</a></code>
+is provided that does not refer to any var, special symbols or host
+classes. Use this preset if complete control of what is referred in
+the namespace is needed.
+</td>
+</tr>
+</table>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-1"><label class="dd-example-label" for="toggle-1">example of using different APIs</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre><span class="comment">;; classic Clojure API</span>
+(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>)
+
+(<span class="keyword">time</span> (<span class="keyword">reduce</span> <span class="keyword">+</span> (<span class="keyword">take</span> <span class="integer">100000</span> (<span class="keyword">range</span>))))
+<span class="comment">;; Elapsed time: 42.034772 msecs (Clojure 1.7 alpha5)</span>
+<span class="comment">;;=&gt; 4999950000</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre><span class="comment">;; new Dunaj API</span>
+(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj))
+
+(<span class="keyword">time</span> (<span class="keyword">reduce</span> <span class="keyword">+</span> (<span class="keyword">take</span> <span class="integer">100000</span> (<span class="keyword">range</span>))))
+<span class="comment">;; Elapsed time: 15.84147 msecs</span>
+<span class="comment">;;=&gt; 4999950000</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+</pre></td>
+  <td class="code"><pre><span class="comment">;; Bare API, no symbols refered, not even special symbols or host classes</span>
+(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> bare))
+
+(<span class="keyword">+</span> <span class="integer">1</span> <span class="integer">2</span>)
+<span class="comment">;; java.lang.RuntimeException: Unable to resolve symbol: + in this context</span>
+
+(<span class="keyword">if</span> <span class="predefined-constant">true</span> <span class="integer">1</span> <span class="integer">2</span>)
+<span class="comment">;; java.lang.RuntimeException: Unable to resolve symbol: if in this context</span>
+
+String
+<span class="comment">;; java.lang.RuntimeException: Unable to resolve symbol: String in this context</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extending_dunaj">Extending Dunaj</h3>
+<div class="paragraph">
+<p>In Dunaj, a significant effort was put into providing an extensible
+API, so that users can create new types of collections, resources,
+formatters, etc. Such user created types work seamlessly with most
+functions defined in Dunaj API. This has been achieved by defining
+more than a hundred public <strong>protocols</strong> that are used to define
+virtually every extensible functionality in Dunaj. Moreover,
+<strong>helper functions</strong> are available for tasks that often occur when
+implementing custom types or functionalities.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-2"><label class="dd-example-label" for="toggle-2">example of using Dunaj's protocols and helper functions</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
+  (<span class="symbol">:api</span> dunaj)
+  (<span class="symbol">:require</span> [dunaj.coll <span class="symbol">:refer</span> [ISectionable ICounted]]
+            [dunaj.concurrent.forkjoin <span class="symbol">:refer</span> [IFoldable]]
+            [dunaj.coll.helper <span class="symbol">:refer</span> [advance-fn fold-sectionable prepare-ordered-section]]))
+
+(<span class="keyword">deftype</span> FiniteRepeat
+  [n <span class="symbol">:-</span> Integer, <span class="keyword">val</span> <span class="symbol">:-</span> Any]
+  IRed
+  (-reduce [this reducef init]
+    (<span class="keyword">let</span> [af (advance-fn [ret i]
+               (<span class="keyword">zero?</span> i) ret
+               <span class="symbol">:else</span> (<span class="keyword">recur</span> (reducef ret <span class="keyword">val</span>) (<span class="keyword">dec</span> i)))]
+      (af init n)))
+  IFoldable
+  (-fold [this reduce-fn pool n combinef reducef]
+    (fold-sectionable this reduce-fn pool n combinef reducef))
+  ICounted
+  (-count [this] n)
+  ISectionable
+  (-section [this nb ne]
+    (<span class="keyword">let</span> [l (<span class="keyword">count</span> this)
+          ne (prepare-ordered-section nb ne l)]
+      (<span class="keyword">if</span> (<span class="keyword">and</span> (<span class="keyword">zero?</span> nb) (<span class="keyword">==</span> ne l))
+        this
+        (-&gt;FiniteRepeat (<span class="keyword">-</span> ne nb) <span class="keyword">val</span>)))))
+
+(<span class="keyword">defn</span> <span class="function">finite-repeat</span> <span class="symbol">:-</span> IRed
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Returns a collection of vals of length n.</span><span class="delimiter">&quot;</span></span>
+  [n <span class="symbol">:-</span> Integer, <span class="keyword">val</span> <span class="symbol">:-</span> Any]
+  (-&gt;FiniteRepeat n <span class="keyword">val</span>))</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Those same protocols and helper functions are used in Dunaj&#8217;s
+built-in types, so that custom types can be seamlesly integrated
+into Dunaj. Protocols and their respective methods are described in
+<a href="spi.html">separate Dunaj SPI</a> part of the documentation. In addition,
+Dunaj API provides helper functions in following namespaces:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.coll.helper.api.html">dunaj.coll.helper</a></code> - Helpers for
+implementing new collection types</p>
+</li>
+<li>
+<p><code><a href="dunaj.format.helper.api.html">dunaj.format.helper</a></code> - Helpers for
+implementing custom parsers or printers.</p>
+</li>
+<li>
+<p><code><a href="dunaj.format.parser.api.html">dunaj.format.parser</a></code> - Tokenizer
+and Parser engine for implementing custom tokenizers, parsers and
+lazy parsers.</p>
+</li>
+<li>
+<p><code><a href="dunaj.format.printer.api.html">dunaj.format.printer</a></code> - Printer
+engine for implementing custom printers and pretty printers.</p>
+</li>
+<li>
+<p><code><a href="dunaj.resource.helper.api.html">dunaj.resource.helper</a></code> - Helpers
+for implementing new resource types</p>
+</li>
+</ul>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:02 CET
+</div>
+</div>
+</body>
+</html>

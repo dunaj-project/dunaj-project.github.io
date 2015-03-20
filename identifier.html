@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Identifiers</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Identifiers</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Identifiers</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>An identifier is an object that identifies some entity. While in
+certain situations any object may serve as an identifier (e.g. keys
+in a persistent hash map), there are cases where special types of
+identifiers have to be used. Such special identifiers are called
+<strong>symbolic identifiers</strong> or symbolics, and their sole purpose is to
+function as identifiers.</p>
+</div>
+<div class="paragraph">
+<p>Symbolic identifiers share a following set
+of properties, implemented with respective protocols:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>They have a string name and an optional string namespace.
+A symbolic which has a non-nil namespace is called a
+<strong>qualified symbolic identifier</strong>.</p>
+</li>
+<li>
+<p>Symbolics can be invoked like functions. In such case they
+perform a lookup in a provided data structure (first argument)
+with an optional default value (second argument).</p>
+</li>
+<li>
+<p>They provide a very fast value based comparison for equality.
+Two symbolics are considered equal when they have equal names
+and namespaces.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj defines two concrete types of symbolic identifiers,
+<code><a href="dunaj.identifier.api.html#Symbol">Symbols</a></code> and
+<code><a href="dunaj.identifier.api.html#Keyword">Keywords</a></code>.
+Following table summarizes their main differences.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 1. Differences between Symbols and Keywords</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-center valign-top">Symbols</th>
+<th class="tableblock halign-center valign-top">Keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EDN syntax</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">namespace/name or name</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">:namespace/name or :name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Other syntax?</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">special handling of ::name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Evaluates to</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">other object</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">itself</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Are instances automatically interned?</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can have metadata?</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Symbolic identifiers implement
+<code><a href="dunaj.string.spi.html#ICanonical">ICanonical</a></code> protocol and
+<code><a href="dunaj.string.api.html#canonical">canonical</a></code> function can be used
+to retrieve a canonical representation of a Symbol or Keyword.
+Constructors for symbolic identifier accept such canonical string too.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(canonical 'foo/bar)
+<span class="comment">;;=&gt; &quot;foo/bar&quot;</span>
+
+(canonical <span class="symbol">:baz</span>)
+<span class="comment">;;=&gt; &quot;:baz&quot;</span>
+
+(<span class="keyword">keyword</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">:baz</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; :baz</span>
+
+(<span class="keyword">symbol</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">foo/bar</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">;;=&gt; foo/bar</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Symbols and Keywords implement natural total ordering and can be
+compared with <code><a href="dunaj.compare.api.html#compare">compare</a></code>.
+Symbols can have metadata attached, but Keywords cannot.
+Keywords are always interned, and as such can be compared with
+<code><a href="dunaj.compare.api.html#identical_QMARK_">identical?</a></code>.
+Symbolic identifiers can be invoked just like normal functions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(:keyword m)</code> is the same as <code>(get m :keyword)</code></p>
+</li>
+<li>
+<p><code>(:keyword m :not-found)</code> is the same as
+<code>(get m :keyword :not-found)</code></p>
+</li>
+<li>
+<p><code>('symbol m :not-found)</code> is the same as <code>(get m 'symbol :not-found)</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>do not confuse <code>('symbol m)</code> with <code>(symbol m)</code>, later is not symbol
+invocation but a function call because of special evaluation rules
+for lists</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax">Syntax</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>CLJ</code> provides dedicated syntax for symbolic identifiers. Following
+table summarizes its details.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top">EDN</th>
+<th class="tableblock halign-center valign-top">CLJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">symbols</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">symbol start character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">alphabetic, <code>+</code> <code>-</code> <code>.</code> followed by non-numeric symbol character, <code>*</code> <code>!</code> <code>_</code> <code>?</code> <code>$</code> <code>%</code> <code>&amp;</code> <code>=</code> <code>&lt;</code> <code>&gt;</code> (<code>/</code> is special, see below)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">alphabetic, <code>+</code> <code>-</code> <code>*</code> <code>!</code> <code>_</code> <code>?</code> (<code>/</code> and <code>.</code> are special, see below), ( <span class="icon yellow"><i class="fa fa-warning"></i></span> specs does not mention <code>$</code> <code>=</code> <code>&lt;</code> <code>&gt;</code> <code>%</code> <code>&amp;</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">symbol character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">alphanumeric, <code>+</code> <code>-</code> <code>.</code> <code>*</code> <code>!</code> <code>_</code> <code>?</code> <code>$</code> <code>%</code> <code>&amp;</code> <code>=</code> <code>&lt;</code> <code>&gt;</code> <code>:</code> <code>#</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">alphanumeric,  <code>+</code> <code>-</code> <code>*</code> <code>!</code> <code>_</code> <code>?</code> (<code>.</code> <code>/</code> and <code>:</code> are special, see below), ( <span class="icon yellow"><i class="fa fa-warning"></i></span> specs does not mention <code>$</code> <code>=</code> <code>&lt;</code> <code>&gt;</code> <code>%</code> <code>&amp;</code> <code>#</code> <code>'</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">special symbol character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>/</code>, used alone or in following combinations <code>foo/bar</code> (<code>foo//</code> combination is <a href="https://github.com/edn-format/edn/issues/51">questionable</a>). First character after slash must follow rule for symbol start character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>/</code>, used alone or in following combinations <code>foo/bar</code> <code>foo//</code> (<span class="icon yellow"><i class="fa fa-warning"></i></span> latter combination is undocumented). <code>.</code>, used as prefix or suffix is reserved to Clojure, used inside symbol divides namespace or package names. <code>:</code> can be used inside symbol, used as suffix is reserved to Clojure (currently it produces an error). (<span class="icon yellow"><i class="fa fa-warning"></i></span> undocumented restrictions: symbol can not contain <code>::</code>, namespace part can not end with <code>:</code>,  first character after slash must follow rule for symbol start character)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keyword</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">prefixed with <code>:</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">prefixed with <code>:</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keyword character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">alphanumeric, <code>+</code> <code>-</code> <code>.</code> <code>*</code> <code>!</code> <code>_</code> <code>?</code> <code>$</code> <code>%</code> <code>&amp;</code> <code>=</code> <code>&lt;</code> <code>&gt;</code> <code>:</code> <code>#</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">alphanumeric,  <code>+</code> <code>-</code> <code>*</code> <code>!</code> <code>_</code> <code>?</code> (<code>.</code> <code>/</code> and <code>:</code> are special, see below), ( <span class="icon yellow"><i class="fa fa-warning"></i></span> specs does not mention <code>$</code> <code>=</code> <code>&lt;</code> <code>&gt;</code> <code>%</code> <code>&amp;</code> <code>#</code> <code>'</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keyword invalid second character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>:</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">none special</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">special keyword character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>/</code>, used in following combinations <code>:foo//</code> <code>:foo/bar</code>. First character after slash must follow rule for symbol start character</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>/</code>, used in following combinations <code>:foo/bar</code> <code>:foo//</code> (<span class="icon yellow"><i class="fa fa-warning"></i></span> latter combination is undocumented). <code>:</code> used as second character resolves keyword in the current namespace, used as suffix is reserved to Clojure (currently it produces an error). (<span class="icon yellow"><i class="fa fa-warning"></i></span> undocumented restrictions: keyword can not contain <code>::</code> other than as a prefix, namespace part can not end with <code>:</code>,  first character after slash must follow rule for symbol start character) Specs also say that keywords cannot contain '.' ( <span class="icon yellow"><i class="fa fa-warning"></i></span> restriction meant probably only for the name part of the keyword) or name classes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_names_and_namespaces">Names and Namespaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Two protocols are closely related to identifiers. They are
+called
+<code><a href="dunaj.identifier.spi.html#INamed">INamed</a></code> and
+<code><a href="dunaj.identifier.spi.html#INamespaced">INamespaced</a></code> and they define
+name and namespace strings.</p>
+</div>
+<div class="paragraph">
+<p>The object&#8217;s name is a string and can be obtained with the
+<code><a href="dunaj.identifier.api.html#name">name</a></code> function. If object supports
+<code>INamed</code>, its name must not be <code>nil</code>.
+The object&#8217;s namespace is also a string and can also be <code>nil</code>.
+It is obtained with the
+<code><a href="dunaj.identifier.api.html#namespace">namespace</a></code> function.
+Following types support <code>INamed</code> and <code>INamespaced</code> protocol:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Symbolic identifiers (Symbol, Keyword)</p>
+</li>
+<li>
+<p>Vars</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Following types support only <code>INamed</code> protocol:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Strings (including string sections, reversed strings)</p>
+</li>
+<li>
+<p>Exceptions</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">name</span> <span class="symbol">:bar</span>)
+<span class="comment">;;=&gt; &quot;bar&quot;</span>
+
+(<span class="keyword">namespace</span> <span class="symbol">:bar</span>)
+<span class="comment">;;=&gt; nil</span>
+
+(<span class="keyword">name</span> <span class="symbol">:foo/bar</span>)
+<span class="comment">;;=&gt; &quot;bar&quot;</span>
+
+(<span class="keyword">namespace</span> <span class="symbol">:foo/bar</span>)
+<span class="comment">;;=&gt; &quot;foo&quot;</span>
+
+(<span class="keyword">name</span> <span class="error">#</span>'clojure.core/reduce)
+<span class="comment">;;=&gt; &quot;reduce&quot;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:24 CET
+</div>
+</div>
+</body>
+</html>

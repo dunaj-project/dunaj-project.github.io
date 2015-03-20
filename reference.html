@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - References</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - References</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - References</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>References are objects that point to other objects. References are
+usually mutable, i.e. they have a state.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">State related namespaces</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dunaj.state.api.html">dunaj.state</a> - Stateful objects. References,
+mutation, cloning, etc.</p>
+</li>
+<li>
+<p><a href="dunaj.state.basic.api.html">dunaj.state.basic</a> - Atom, Box, Local
+and other basic reference types</p>
+</li>
+<li>
+<p><a href="dunaj.state.ref.api.html">dunaj.state.ref</a> - Refs, a transactional
+references that use software transactional memory (STM) for safe
+shared use of mutable references</p>
+</li>
+<li>
+<p><a href="dunaj.state.var.api.html">dunaj.state.var</a> -  Vars, references with
+mutable root binding and thread local bindings that can be rebound
+dynamically</p>
+</li>
+<li>
+<p><a href="dunaj.state.weak.api.html">dunaj.state.weak</a> - Weak and soft
+references</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Stateful objects that represent the result of an asynchronous
+computation are described in the <a href="#concurrent.ad">Concurrency</a> page.</p>
+</div>
+<div class="paragraph">
+<p>Stateful objects that represent the system or network resource
+are described in the <a href="#resource.ad">Resources</a> page.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Dunaj defines following basic references:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.state.basic.api.html#box">box</a></code> - A basic immutable
+reference</p>
+</li>
+<li>
+<p><code><a href="dunaj.state.basic.api.html#local">local</a></code> - A thread local
+reference</p>
+</li>
+<li>
+<p><code><a href="dunaj.state.basic.api.html#unsynchronized-reference">unsynchronized-reference</a></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>A low level unsynchronized reference</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><a href="dunaj.state.basic.api.html#volatile-reference">volatile-reference</a></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>A low level volatile reference</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><a href="dunaj.state.basic.api.html#atom">atom</a></code> - A reference that manages
+synchronous state</p>
+</li>
+<li>
+<p><code><a href="dunaj.state.ref.api.html#ref">ref</a></code> - A transactional reference
+that uses software transactional memory (STM)</p>
+</li>
+<li>
+<p><code><a href="dunaj.state.var.api.html#var">Var</a></code> - A references with mutable
+root binding and thread local bindings that can be rebound
+dynamically.</p>
+</li>
+<li>
+<p><code><a href="dunaj.state.weak.api.html#weak">weak</a></code> and
+<code><a href="dunaj.state.weak.api.html#soft">soft</a></code> references that control the
+garbage collection of the values they point to</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The very basic feature of a reference is that it can be
+<a href="dunaj.state.api.html#deref">dereferenced</a> in order to get it&#8217;s
+current state. This property is in Dunaj represented by
+<code><a href="dunaj.state.spi.html#IReference">IReference</a></code> and
+<code><a href="dunaj.state.spi.html#IBlockingReference">IBlockingReference</a></code>
+protocols.</p>
+</div>
+<div class="paragraph">
+<p>The way how a reference object changes its state depends on the type
+of the reference. Following protocols are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="dunaj.state.spi.html#IMutable">IMutable</a></code> - support for basic
+value change with
+<code><a href="dunaj.state.api.html#reset_BANG_">reset!</a></code></p>
+</li>
+<li>
+<p><code><a href="dunaj.state.spi.html#IAdjustable">IAdjustable</a></code> - support for
+setting part of the referenced value, with
+<code><a href="dunaj.state.api.html#adjust_BANG_">adjust!</a></code></p>
+</li>
+<li>
+<p><code><a href="dunaj.state.spi.html#IAtomic">IAtomic</a></code> - Signals the reference
+supports synchronous change to the state. Enabled the use of
+<code><a href="dunaj.state.api.html#cas_BANG_">cas!</a></code>,
+<code><a href="dunaj.state.api.html#switch_BANG_">switch!</a></code>,
+<code><a href="dunaj.state.api.html#alter_BANG_">alter!</a></code> and
+<code><a href="dunaj.state.api.html#trade_BANG_">trade!</a></code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dunaj further provides several protocols and functions that are used
+to define and manage auxiliary state (e.g. pending status of lazy
+seqs, open status for resources)</p>
+</div>
+<div class="paragraph">
+<p>Dunaj streamlines the cloning of reference objects by introducing
+<code><a href="dunaj.state.spi.html#ICloneable">ICloneable</a></code> protocol.
+The <code><a href="dunaj.state.api.html#clone">clone</a></code> function returns a cloned
+object. Value objects returns themselves and references that
+do not support cloning must throw.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_state">State</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DRAFT</p>
+</div>
+<div class="paragraph">
+<p>Value:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>immutable</p>
+</li>
+<li>
+<p>an expression that cannot be evaluated any further</p>
+</li>
+<li>
+<p>number, constant, fact?</p>
+</li>
+<li>
+<p>'A value is a location on a dimension, and may be quantitative or
+qualitative'.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>State:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>objects&#8217;s value at a point in time</p>
+</li>
+<li>
+<p>actual value of a reference</p>
+</li>
+<li>
+<p>can change</p>
+</li>
+<li>
+<p>ability of an object to relate to a different value in different
+points of time</p>
+</li>
+<li>
+<p>object can have multiple such states. Even some value objects have
+an auxiliary state</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Stateful:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>contains state and has the ability to manage it and to put
+object/reference into other state (associate object with different
+value), initiated by either user or some external forces.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Stateful types:</p>
+</div>
+<div class="paragraph">
+<p><a href="http://lambda-the-ultimate.org/node/2425" class="bare">http://lambda-the-ultimate.org/node/2425</a></p>
+</div>
+<div class="paragraph">
+<p>"observability: an operation is said to be stateful if you can
+observe that its state has changed, e.g. by repeating the same
+operation with the same arguments but getting different results.
+Such an operation depends on state which is not provided as part of
+invoking the operation."</p>
+</div>
+<div class="paragraph">
+<p><a href="http://lalitpant.blogspot.com/2008/01/object-state-identity-immutability-and.html" class="bare">http://lalitpant.blogspot.com/2008/01/object-state-identity-immutability-and.html</a></p>
+</div>
+<div class="paragraph">
+<p>"an object has state if its behavior (as defined by its methods) may
+observably change over the course of time. In other words, the output
+of (the methods of) a stateful object is determined not only by the
+input received, but also by some modifiable internal state."</p>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:34 CET
+</div>
+</div>
+</body>
+</html>

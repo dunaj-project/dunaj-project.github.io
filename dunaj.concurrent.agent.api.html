@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.concurrent.agent API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.concurrent.agent API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.concurrent.agent</a></div><div class="dd-nav-ns-var"><a href="#Agent"><i class="dd-referred fa fa-fw fa-archive dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Agent</span></a></div><div class="dd-nav-ns-var"><a href="#agent"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">agent</span></a></div><div class="dd-nav-ns-var"><a href="#agent_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">agent?</span></a></div><div class="dd-nav-ns-var"><a href="#await"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">await</span></a></div><div class="dd-nav-ns-var"><a href="#await_for"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">await-for</span></a></div><div class="dd-nav-ns-var"><a href="#current_agent"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">current-agent</span></a></div><div class="dd-nav-ns-var"><a href="#default_send_executor"><i class="fa fa-fw fa-inbox dd-mmsh"></i><span class="dd-nav-ns-var-text">default-send-executor</span></a></div><div class="dd-nav-ns-var"><a href="#default_send_off_executor"><i class="fa fa-fw fa-inbox dd-mmsh"></i><span class="dd-nav-ns-var-text">default-send-off-executor</span></a></div><div class="dd-nav-ns-var"><a href="#release_pending_sends_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">release-pending-sends!</span></a></div><div class="dd-nav-ns-var"><a href="#restart_agent_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">restart-agent!</span></a></div><div class="dd-nav-ns-var"><a href="#send_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">send!</span></a></div><div class="dd-nav-ns-var"><a href="#send_off_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">send-off!</span></a></div><div class="dd-nav-ns-var"><a href="#send_via_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">send-via!</span></a></div><div class="dd-nav-ns-var"><a href="#shutdown_agents_BANG_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">shutdown-agents!</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.concurrent.agent API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Agents, a reference object to the result of an asynchronous
+computation, with additional distinctive features.</p>
+</div>
+<div class="paragraph">
+<p>Action is a function that will be called with agent&#8217;s old state and
+the value it produces will be the new state of an agent. Actions
+are 'sent' to the agents with <code><a href="#send_BANG_">send!</a></code> function and
+its variants. There are additional features which are specific to
+agents' actions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Actions sent to the agent are enqueued and dispatched
+consecutively.</p>
+</li>
+<li>
+<p>Action which throws an exception sets the agent into the failed
+state. The failed state may be later restarted and not yet
+dispatched actions will continue to process the agent&#8217;s state.
+See <code><a href="#restart_agent_BANG_">restart-agent!</a></code> for details.</p>
+</li>
+<li>
+<p>Agent&#8217;s state may be observed by
+<a href="dunaj.concurrent.port.api.html#tap_BANG_">tapping</a>
+into the agent and validated with a custom validator function.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Actions to the agent may be dispatched even in a ref transaction.
+In that case, the actual sending is postponed until the transaction
+completes. This is done to avoid multiple sends when a transaction
+restarts.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Another special case is the sending of an action while currently
+in an action. In that case, the sends to any agent are postponed
+until current action completes. See
+<code><a href="#release_pending_sends_BANG_">release-pending-sends!</a></code> for
+details. Note that pending sends are not dispatched if the action
+fails.
+</td>
+</tr>
+</table>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-39"><label class="dd-example-label" for="toggle-39">1 usage example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+<strong>20</strong>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+<strong>30</strong>
+31
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">defn</span> <span class="function">v</span>
+  [x]
+  (nneg? x))
+<span class="comment">;;=&gt; #'foo.bar/v</span>
+
+(<span class="keyword">def</span> <span class="function">a</span> (<span class="keyword">agent</span> <span class="integer">0</span> <span class="symbol">:validator</span> v))
+<span class="comment">;;=&gt; #'foo.bar/a</span>
+
+(send! a <span class="keyword">inc</span>)
+<span class="comment">;;=&gt; #&lt;Agent@6e82b19b: 1&gt;</span>
+
+@a
+<span class="comment">;;=&gt; 1</span>
+
+(send! a <span class="keyword">dec</span>)
+<span class="comment">;;=&gt; #&lt;Agent@6e82b19b: 0&gt;</span>
+
+(send! a <span class="keyword">dec</span>) <span class="comment">;; validator fails the -1 result from dec</span>
+<span class="comment">;;=&gt; #&lt;Agent@6e82b19b FAILED: 0&gt;</span>
+
+@a
+<span class="comment">;;=&gt; 0</span>
+
+(send! a <span class="keyword">inc</span>)
+<span class="comment">;; java.lang.RuntimeException: Agent is failed, needs restart</span>
+
+(restart-agent! a <span class="integer">5</span>)
+<span class="comment">;;=&gt; 5</span>
+
+(send! a <span class="keyword">inc</span>)
+<span class="comment">;;=&gt; #&lt;Agent@5a053501: 6&gt;</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Agent"><a class="link" href="#Agent">Agent</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L87">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-archive" title="Type"></i></span> TYPE</code></p>
+</div>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-plug" title="Extends"></i></span> Extends: <code><a href="dunaj.error.spi.html#IErrorHandleable">IErrorHandleable</a></code>, <code><a href="dunaj.error.spi.html#IFailAware">IFailAware</a></code>, <code><a href="dunaj.feature.spi.html#IMeta">IMeta</a></code>, <code><a href="dunaj.concurrent.port.spi.html#IMult">IMult</a></code>, <code><a href="dunaj.feature.spi.html#IMutableMeta">IMutableMeta</a></code>, <code><a href="dunaj.state.spi.html#IReference">IReference</a></code>, <code><a href="dunaj.feature.spi.html#IValidator">IValidator</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A type for agents.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#agent_QMARK_">agent?</a></code>, <code><a href="#agent">agent</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="agent"><a class="link" href="#agent">agent</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/agent)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(agent <em>state &amp; options</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ (Va Any)) → Agent</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Creates and returns an agent with an initial value of
+<code><em>state</em></code> and zero or more <code><em>options</em></code> (in any order):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:meta</code> <code>metadata-map</code>. If supplied, it will become the
+metadata on the agent.</p>
+</li>
+<li>
+<p><code>:validator</code> <code>validate-fn</code>. Must be <code>nil</code> or a
+side-effect-free fn of one argument, which will be passed
+the intended new state on any state change. If the new
+state is unacceptable, the <code>validate-fn</code> should return
+<code>false</code> or throw an exception.</p>
+</li>
+<li>
+<p><code>:error-handler</code> <code>handler-fn</code>. Ss called if an action throws
+an exception or if <code>validate-fn</code> rejects a new state.</p>
+</li>
+<li>
+<p><code>:error-mode</code> <code>mode-keyword</code>. May be either <code>:continue</code>
+(the default if an error-handler is given) or <code>:fail</code>
+(the default if no error-handler is given) .</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both error handler and validator may be also set and
+managed through their respective function in
+<a href="dunaj.error.api.html">dunaj.error</a> and
+<a href="dunaj.feature.api.html">dunaj.feature</a> namespaces.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#agent_QMARK_">agent?</a></code>, <code><a href="#Agent">Agent</a></code>, <code><a href="#current_agent">current&#45;agent</a></code>, <code><a href="#send_BANG_">send!</a></code>, <code><a href="#send_off_BANG_">send&#45;off!</a></code>, <code><a href="#shutdown_agents_BANG_">shutdown&#45;agents!</a></code>, <code><a href="dunaj.state.api.html#deref">dunaj.state/deref</a></code>, <code><a href="dunaj.error.api.html#error_handler">dunaj.error/error&#45;handler</a></code>, <code><a href="dunaj.error.api.html#error">dunaj.error/error</a></code>, <code><a href="dunaj.error.api.html#error_mode">dunaj.error/error&#45;mode</a></code>, <code><a href="dunaj.feature.api.html#validator">dunaj.feature/validator</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="agent_QMARK_"><a class="link" href="#agent_QMARK_">agent?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L87">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(agent? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> is an instance of <code>Agent</code> type, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Agent">Agent</a></code>, <code><a href="#agent">agent</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="await"><a class="link" href="#await">await</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/await)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(await <em>&amp; agents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Va Agent)) → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Blocks the current thread (indefinitely!) until all actions
+dispatched thus far, from this thread or agent, to the
+<code><em>agents</em></code> have occurred. Will block on failed agents.
+Returns <code>nil</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>await</code> throws if called in an action.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Will never return if a failed agent is restarted
+with <code>:clear-actions</code> set to <code>true</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#await_for">await&#45;for</a></code>, <code><a href="dunaj.concurrent.thread.api.html#join">dunaj.concurrent.thread/join</a></code>, <code><a href="#restart_agent_BANG_">restart&#45;agent!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="await_for"><a class="link" href="#await_for">await-for</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L262">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(await&#45;for <em>timeout &amp; agents</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((U Integer IDuration) ⨯ (Va Agent)) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Blocks the current thread until all actions dispatched thus
+far (from this thread or agent) to the <code><em>agents</em></code> have occurred,
+or the <code><em>timeout</em></code> (duration) has elapsed. Returns <code>false</code> if
+returning due to <code><em>timeout</em></code>, <code>true</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#await">await</a></code>, <code><a href="dunaj.concurrent.thread.api.html#join">dunaj.concurrent.thread/join</a></code>, <code><a href="#restart_agent_BANG_">restart&#45;agent!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="current_agent"><a class="link" href="#current_agent">current-agent</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L143">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(current&#45;agent)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → (Maybe Agent)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the agent currently running an action on this thread,
+else <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#agent">agent</a></code>, <code><a href="dunaj.concurrent.thread.api.html#current_thread">dunaj.concurrent.thread/current&#45;thread</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="default_send_executor"><a class="link" href="#default_send_executor">default-send-executor</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L203">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-inbox" title="Var"></i></span> VAR</code> of type <code>Var</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A dynamic var holding default <code>send!</code> executor.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#send_BANG_">send!</a></code>, <code><a href="#default_send_off_executor">default&#45;send&#45;off&#45;executor</a></code>, <code><a href="#send_via_BANG_">send&#45;via!</a></code>, <code><a href="#send_off_BANG_">send&#45;off!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="default_send_off_executor"><a class="link" href="#default_send_off_executor">default-send-off-executor</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L226">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-inbox" title="Var"></i></span> VAR</code> of type <code>Var</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A dynamic var holding default <code>send-off!</code> executor.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#send_off_BANG_">send&#45;off!</a></code>, <code><a href="#default_send_executor">default&#45;send&#45;executor</a></code>, <code><a href="#send_via_BANG_">send&#45;via!</a></code>, <code><a href="#send_BANG_">send!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="release_pending_sends_BANG_"><a class="link" href="#release_pending_sends_BANG_">release-pending-sends!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/release-pending-sends)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(release&#45;pending&#45;sends!)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Dispatches any pending sent actions immediately.
+Returns the number of actions dispatched.
+If no action is occurring, does nothing and returns 0.</p>
+</div>
+<div class="paragraph">
+<p>Normally, actions sent directly or indirectly during another
+action are held until the action completes (changes the
+agent’s state). This function can be used to dispatch any
+pending sent actions immediately.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This has no impact on actions sent during a ref
+transaction, which are still held until commit.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#current_agent">current&#45;agent</a></code>, <code><a href="#send">send</a></code>, <code><a href="#send_off">send&#45;off</a></code>, <code><a href="#send_via">send&#45;via</a></code>, <code><a href="#restart_agent_BANG_">restart&#45;agent!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="restart_agent_BANG_"><a class="link" href="#restart_agent_BANG_">restart-agent!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/restart-agent)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(restart&#45;agent! <em>agent new&#45;state &amp; options</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Agent ⨯ Any ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>When an <code><em>agent</em></code> is failed, changes the <code><em>agent</em></code> state to
+<code><em>new-state</em></code> and then un-fails the <code><em>agent</em></code> so that sends
+are allowed again.</p>
+</div>
+<div class="paragraph">
+<p>If a <code>:clear-actions</code> true <code><em>option</em></code> is given, any actions
+queued on the agent that were being held while it was failed
+will be discarded, otherwise those held actions will proceed.</p>
+</div>
+<div class="paragraph">
+<p>The new-state must pass the validator if any, or restart
+will throw an exception and the agent will remain failed
+with its old state and error.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Tapped channels, if any, will NOT be notified of
+the new state. Throws an exception if the agent
+is not failed. Returns <code><em>new-state</em></code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#await">await</a></code>, <code><a href="#agent">agent</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="send_BANG_"><a class="link" href="#send_BANG_">send!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L209">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(send! <em>a f &amp; args</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Agent ⨯ AnyFn ⨯ (Va Any)) → Agent</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Dispatch an <code><em>action</em></code> to an <code><em>agent</em></code>.
+Returns the <code><em>agent</em></code> immediately. Subsequently, in a thread from
+a thread pool, the state of the <code><em>agent</em></code> will be set to the
+value of:</p>
+</div>
+<div class="paragraph">
+<p><code>(apply <em>action</em> state-of-agent <em>args</em>)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Action sent during another action is held until the current
+action completes (changes the agent’s state).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#default_send_executor">default&#45;send&#45;executor</a></code>, <code><a href="#send_off_BANG_">send&#45;off!</a></code>, <code><a href="#send_via_BANG_">send&#45;via!</a></code>, <code><a href="#await">await</a></code>, <code><a href="#await_for">await&#45;for</a></code>, <code><a href="dunaj.concurrent.api.html#future">dunaj.concurrent/future</a></code>, <code><a href="dunaj.concurrent.thread.api.html#thread">dunaj.concurrent.thread/thread</a></code>, <code><a href="dunaj.concurrent.thread.api.html#daemon">dunaj.concurrent.thread/daemon</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="send_off_BANG_"><a class="link" href="#send_off_BANG_">send-off!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L232">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(send&#45;off! <em>agent action &amp; args</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Agent ⨯ AnyFn ⨯ (Va Any)) → Agent</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Dispatch a potentially blocking <code><em>action</em></code> to an <code><em>agent</em></code>.
+Returns the <code><em>agent</em></code> immediately. Subsequently, in a separate
+thread, the state of the <code><em>agent</em></code> will be set to the value of:</p>
+</div>
+<div class="paragraph">
+<p><code>(apply <em>action</em> state-of-agent <em>args</em>)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Action sent during another action is held until the current
+action completes (changes the agent’s state).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#default_send_off_executor">default&#45;send&#45;off&#45;executor</a></code>, <code><a href="#send_BANG_">send!</a></code>, <code><a href="#send_via_BANG_">send&#45;via!</a></code>, <code><a href="#await">await</a></code>, <code><a href="#await_for">await&#45;for</a></code>, <code><a href="dunaj.concurrent.api.html#future">dunaj.concurrent/future</a></code>, <code><a href="dunaj.concurrent.thread.api.html#thread">dunaj.concurrent.thread/thread</a></code>, <code><a href="dunaj.concurrent.thread.api.html#daemon">dunaj.concurrent.thread/daemon</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="send_via_BANG_"><a class="link" href="#send_via_BANG_">send-via!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/send-via)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(send&#45;via! <em>executor agent action &amp; args</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(IExecutor ⨯ Agent ⨯ AnyFn ⨯ (Va Any)) → Agent</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Dispatch an <code><em>action</em></code> to an <code><em>agent</em></code>.
+Returns the <code><em>agent</em></code> immediately.
+Subsequently, in a thread supplied by <code><em>executor</em></code>,
+the state of the <code><em>agent</em></code> will be set to the value of:</p>
+</div>
+<div class="paragraph">
+<p><code>(apply <em>action</em> state-of-agent <em>args</em>)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Action sent during another action is held until the
+current action completes (changes the agent’s state).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#send_BANG_">send!</a></code>, <code><a href="#send_off_BANG_">send&#45;off!</a></code>, <code><a href="#await">await</a></code>, <code><a href="#await_for">await&#45;for</a></code>, <code><a href="dunaj.concurrent.api.html#future">dunaj.concurrent/future</a></code>, <code><a href="dunaj.concurrent.thread.api.html#thread">dunaj.concurrent.thread/thread</a></code>, <code><a href="dunaj.concurrent.thread.api.html#daemon">dunaj.concurrent.thread/daemon</a></code>, <code><a href="dunaj.concurrent.spi.html#IExecutor">dunaj.concurrent/IExecutor</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="shutdown_agents_BANG_"><a class="link" href="#shutdown_agents_BANG_">shutdown-agents!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/agent.clj#L151">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(shutdown&#45;agents!)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → nil</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Initiates a shutdown of the default thread pools that back
+the agent system. Running actions will complete, but no new
+actions will be accepted. Returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#default_send_executor">default&#45;send&#45;executor</a></code>, <code><a href="#default_send_off_executor">default&#45;send&#45;off&#45;executor</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:15:10 CET
+</div>
+</div>
+</body>
+</html>

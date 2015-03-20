@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj - Strings</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj - Strings</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="boolean.html">Booleans</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="math.html">Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="char.html">Characters</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="string.html">Strings</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="identifier.html">Identifiers</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="function.html">Functions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="compare.html">Comparison</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="concurrent.html">Concurrency</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="reference.html">References</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="conventions.html">Conventions</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="resources.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="metadata.html">Metadata</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="types.html">Data types</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Strings</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Dunaj, a <code><a href="dunaj.string.api.html#String">String</a></code> type
+represents strings. This type directly maps to the host string
+type, without any wraping.</p>
+</div>
+<div class="paragraph">
+<p>String is an immutable and
+<a href="dunaj.coll.spi.html#IHomogeneous">homogeneous</a> collection of
+<a href="dunaj.char.api.html">characters</a>.
+String type, constructor, predicates and other related
+functionalities are defined in
+<a href="dunaj.string.api.html">dunaj.string</a> namespace.</p>
+</div>
+<div class="paragraph">
+<p>There is a dedicated abstract type protocol for string-like
+objects called
+<code><a href="dunaj.string.spi.html#ICharSequence">ICharSequence</a></code>.
+This protocol is implemented for strings, string sections,
+reversed strings and mutable strings. Moreover, a
+<code><a href="dunaj.string.api.html#provide_char_sequence">provide-char-sequence</a></code>
+functions wraps arbitrary indexed collection into an instance
+of <code>ICharSequence</code> if needed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Character sequences and strings are immutable but not persistent
+collections. Strings main purpose is to convey a textual
+information and not to be a container of characters. Because of
+this, String is not considered a <a href="dunaj.coll.api.html#sequential_QMARK_">sequential collection</a>
+and is not even equal to other persistent collections with a same content.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_features">Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>String objects are collections (can be
+<a href="dunaj.coll.api.html#reduce">reduced</a> and
+<a href="dunaj.concurrent.forkjoin.api.html#fold">folded</a>),
+implement natural total ordering
+(can be <a href="dunaj.compare.api.html#compare">compared</a>),
+are <a href="dunaj.coll.api.html#counted_QMARK_">counted</a>
+and support random access to their items (via
+<a href="dunaj.coll.api.html#nth">nth</a>). Just like symbols and keywords,
+strings are <a href="dunaj.identifier.spi.html#INamed">INamed</a>.
+Strings are also <a href="dunaj.coll.api.html#edit">editable</a>.</p>
+</div>
+<div class="paragraph">
+<p>String provide fast reduction by implementing
+<code><a href="dunaj.coll.spi.html#IBatchedRed">IBatchedRed</a></code> on chars.
+String support both <a href="dunaj.coll.api.html#slice">slicing</a>
+(shared-nothing slice) and
+<a href="dunaj.coll.api.html#section">sectioning</a> (shared subsection).
+Instances of string can be <a href="dunaj.coll.api.html#reverse">reversed</a>.</p>
+</div>
+<div class="paragraph">
+<p>As string are collections, a
+<code><a href="dunaj.string.api.html#string_factory">string-factory</a></code>
+is provided that implements
+<code><a href="dunaj.coll.spi.html#ICollectionFactory">ICollectionFactory</a></code>
+protocol. A convenience constructors
+<code><a href="dunaj.string.api.html#str">str</a></code> and
+<code><a href="dunaj.string.api.html#__GT_str">-&#62;str</a></code>
+are provided</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Dunaj&#8217;s <code><a href="dunaj.string.api.html#str">str</a></code> has a different
+semantics from Clojure&#8217;s one, which is in Dunaj renamed to
+<code>&#8594;str</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax">Syntax</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dunaj follows Clojure&#8217;s syntax for string. Following table
+compares syntax for JSON, EDN and CLJ formats:</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top">JSON</th>
+<th class="tableblock halign-center valign-top">EDN</th>
+<th class="tableblock halign-center valign-top">CLJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">syntax</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">wrapped in <code>"</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">wrapped in <code>"</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">wrapped in <code>"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">may span multiple lines</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">YES</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">characters which must be escaped</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>"</code> <code>\</code> and control characters (U+0000 to U+001F)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>"</code> <code>\</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>"</code> <code>\</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escape characters</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>\"</code> <code>\\</code> <code>\/</code> <code>\b</code> <code>\f</code> <code>\n</code> <code>\r</code> <code>\t</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>\"</code> <code>\\</code> <code>\n</code> <code>\r</code> <code>\t</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>\"</code> <code>\\</code> <code>\'</code> <code>\b</code> <code>\f</code> <code>\n</code> <code>\r</code> <code>\t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unicode escapes</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>\uNNNN</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO, not mentioned in specs <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>\uNNNN</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">octal escapes</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NO <span class="icon red"><i class="fa fa-remove"></i></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>\0</code> to <code>\377</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:31 CET
+</div>
+</div>
+</body>
+</html>

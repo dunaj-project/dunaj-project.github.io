@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.boolean API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.boolean API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.boolean</a></div><div class="dd-nav-ns-var"><a href="#Boolean"><i class="dd-referred fa fa-fw fa-archive dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">Boolean</span></a></div><div class="dd-nav-ns-var"><a href="#boolean"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">boolean</span></a></div><div class="dd-nav-ns-var"><a href="#boolean_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">boolean?</span></a></div><div class="dd-nav-ns-var"><a href="#false_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">false?</span></a></div><div class="dd-nav-ns-var"><a href="#true_QMARK_"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">true?</span></a></div><div class="dd-nav-ns-group"><a href="#Logic">Logic</a></div><div class="dd-nav-ns-var"><a href="#and"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">and</span></a></div><div class="dd-nav-ns-var"><a href="#implication"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">implication</span></a></div><div class="dd-nav-ns-var"><a href="#nand"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">nand</span></a></div><div class="dd-nav-ns-var"><a href="#nor"><i class="fa fa-fw fa-magic dd-mmsh"></i><span class="dd-nav-ns-var-text">nor</span></a></div><div class="dd-nav-ns-var"><a href="#not"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">not</span></a></div><div class="dd-nav-ns-var"><a href="#or"><i class="dd-referred fa fa-fw fa-magic dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">or</span></a></div><div class="dd-nav-ns-var"><a href="#xnor"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">xnor</span></a></div><div class="dd-nav-ns-var"><a href="#xor"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">xor</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.boolean API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Boolean type and related logic operations.</p>
+</div>
+<div class="paragraph">
+<p>Dunaj (and Clojure) performs an automatic coercion to <code>Boolean</code>
+when e.g. calling a function which expects a boolean argument.
+By definition, <code>nil</code> and <code>false</code> coerce to <code>false</code>, any other
+value coerces to <code>true</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+JVM host specific: Dunaj supports primitive booleans as
+function arguments and return values (subject to the number of
+arguments and combination of argument types).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>JVM host specific: <code>false</code> is identical to <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html#FALSE"><code>Boolean/FALSE</code></a>, so
+using other instances of <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html"><code>java.lang.Boolean</code></a> may lead to surprising
+results. In such cases, you may want to use <code>boolean</code> function
+to coerce into correct boolean value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">if</span> (java.lang.Boolean. <span class="predefined-constant">false</span>) <span class="symbol">:is-true</span> <span class="symbol">:is-false</span>)
+<span class="comment">;;=&gt; :is-true</span>
+
+(<span class="keyword">if</span> (<span class="keyword">boolean</span> (java.lang.Boolean. <span class="predefined-constant">false</span>)) <span class="symbol">:is-true</span> <span class="symbol">:is-false</span>)
+<span class="comment">;;=&gt; :is-false</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#Boolean">Boolean</a></code> <code><a href="#boolean">boolean</a></code> <code><a href="#boolean_QMARK_">boolean?</a></code> <code><a href="#false_QMARK_">false?</a></code> <code><a href="#true_QMARK_">true?</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="Boolean"><a class="link" href="#Boolean">Boolean</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/boolean.clj#L61">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-archive" title="Type"></i></span> TYPE</code></p>
+</div>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-plug" title="Extends"></i></span> Extends: <code><a href="dunaj.compare.spi.html#IComparable">IComparable</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A boolean type, which has two values, <code>true</code> and <code>false</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>JVM host specific: <code>false</code> is identical to <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html#FALSE"><code>Boolean/FALSE</code></a>
+and <code>true</code> is identical to <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html#TRUE"><code>Boolean/TRUE</code></a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#boolean_QMARK_">boolean?</a></code>, <code><a href="#boolean">boolean</a></code>, <code><a href="#false_QMARK_">false?</a></code>, <code><a href="#true_QMARK_">true?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="boolean"><a class="link" href="#boolean">boolean</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/boolean)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(boolean <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>x</em></code> coerced to <code>Boolean</code> type, by returning <code>false</code> if
+<code><em>x</em></code> is <code>nil</code> or <code>false</code> value, and returning <code>true</code> for all
+other values. As a special case, <code>boolean</code> returns <code>false</code> also if
+given instance of host boolean type which represents a
+false value.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-3"><label class="dd-example-label" for="toggle-3">2 examples</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">boolean</span> <span class="symbol">:foo</span>)
+<span class="comment">;;=&gt; true</span>
+
+(<span class="keyword">boolean</span> <span class="predefined-constant">nil</span>)
+<span class="comment">;;=&gt; false</span>
+
+(<span class="keyword">boolean</span> <span class="predefined-constant">false</span>)
+<span class="comment">;;=&gt; false</span>
+
+(<span class="keyword">boolean</span> (java.lang.Boolean. <span class="predefined-constant">false</span>))
+<span class="comment">;;=&gt; false</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">false?</span> <span class="predefined-constant">false</span>)
+<span class="comment">;;=&gt; true</span>
+
+(<span class="keyword">false?</span> java.lang.Boolean/FALSE)
+<span class="comment">;;=&gt; true</span>
+
+(<span class="keyword">false?</span> (java.lang.Boolean. <span class="predefined-constant">false</span>))
+<span class="comment">;;=&gt; false</span>
+
+(<span class="keyword">false?</span> (<span class="keyword">boolean</span> (java.lang.Boolean. <span class="predefined-constant">false</span>)))
+<span class="comment">;;=&gt; true</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Boolean">Boolean</a></code>, <code><a href="#boolean_QMARK_">boolean?</a></code>, <code><a href="#true_QMARK_">true?</a></code>, <code><a href="#false_QMARK_">false?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="boolean_QMARK_"><a class="link" href="#boolean_QMARK_">boolean?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/boolean.clj#L61">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(boolean? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if object <code><em>x</em></code> is an instance of <code>Boolean</code> type, <code>false</code> otherwise.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#Boolean">Boolean</a></code>, <code><a href="#boolean">boolean</a></code>, <code><a href="#false_QMARK_">false?</a></code>, <code><a href="#true_QMARK_">true?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="false_QMARK_"><a class="link" href="#false_QMARK_">false?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/false?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(false? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is <code>false</code>, otherwise returns
+<code>false</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>false?</code> returns <code>false</code> if <code><em>x</em></code> is <code>nil</code>.
+</td>
+</tr>
+</table>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-4"><label class="dd-example-label" for="toggle-4">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">false?</span> <span class="predefined-constant">false</span>)
+<span class="comment">;;=&gt; true</span>
+
+(<span class="keyword">false?</span> <span class="predefined-constant">nil</span>)
+<span class="comment">;;=&gt; false</span>
+
+(<span class="keyword">false?</span> (java.lang.Boolean. <span class="predefined-constant">false</span>))
+<span class="comment">;;=&gt; false</span>
+
+(<span class="keyword">false?</span> (<span class="keyword">boolean</span> (java.lang.Boolean. <span class="predefined-constant">false</span>)))
+<span class="comment">;;=&gt; true</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#boolean_QMARK_">boolean?</a></code>, <code><a href="#true_QMARK_">true?</a></code>, <code><a href="#boolean">boolean</a></code>, <code><a href="dunaj.compare.api.html#nil_QMARK_">dunaj.compare/nil?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="true_QMARK_"><a class="link" href="#true_QMARK_">true?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/true?)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(true? <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph dd-usage">
+<p>Type signature: <code>Predicate</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is <code>true</code>, otherwise returns
+<code>false</code>.</p>
+</div>
+<input type="checkbox" class="dd-example-check" id="toggle-5"><label class="dd-example-label" for="toggle-5">1 example</label>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="clojure"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+<strong>10</strong>
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre>(<span class="keyword">true?</span> <span class="predefined-constant">true</span>)
+<span class="comment">;;=&gt; true</span>
+
+(<span class="keyword">true?</span> <span class="symbol">:foo</span>)
+<span class="comment">;;=&gt; false</span>
+
+(<span class="keyword">true?</span> java.lang.Boolean/TRUE)
+<span class="comment">;;=&gt; true</span>
+
+(<span class="keyword">true?</span> (java.lang.Boolean. <span class="predefined-constant">true</span>))
+<span class="comment">;;=&gt; false</span>
+
+(<span class="keyword">true?</span> (<span class="keyword">boolean</span> (java.lang.Boolean. <span class="predefined-constant">true</span>)))
+<span class="comment">;;=&gt; true</span></pre></td>
+</tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#boolean_QMARK_">boolean?</a></code>, <code><a href="#false_QMARK_">false?</a></code>, <code><a href="#boolean">boolean</a></code>, <code><a href="dunaj.compare.api.html#nil_QMARK_">dunaj.compare/nil?</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Logic"><a class="link" href="#Logic">Logic</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See also <a href="dunaj.bit.api.html#Logic">bitwise logic operators</a>.</p>
+</div>
+<div class="paragraph">
+<p>In this section: <code><a href="#and">and</a></code> <code><a href="#implication">implication</a></code> <code><a href="#nand">nand</a></code> <code><a href="#nor">nor</a></code> <code><a href="#not">not</a></code> <code><a href="#or">or</a></code> <code><a href="#xnor">xnor</a></code> <code><a href="#xor">xor</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="and"><a class="link" href="#and">and</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/and)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(and)</code>&#160;  <code>(and <em>x</em>)</code>&#160;  <code>(and <em>x &amp; next</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates given expressions one at a time, from left to
+right. If a form returns logical false (<code>nil</code> or <code>false</code>),
+<code>and</code> returns that value and doesn’t evaluate any of the
+other expressions, otherwise it returns the value of the
+last expression. <code>(and)</code> returns <code>true</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 1. Truth table for and</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>y</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(and x y)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nand">nand</a></code>, <code><a href="dunaj.bit.api.html#and">dunaj.bit/and</a></code>, <code><a href="dunaj.host.int.api.html#iand">dunaj.host.int/iand</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="implication"><a class="link" href="#implication">implication</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/boolean.clj#L262">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(implication <em>x y</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Returns the result of material implication. Note that implication
+is not supported for more than 2 arguments, as implication is
+not associative.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 2. Truth table for implication</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>y</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(implication x y)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.bit.api.html#and_not">dunaj.bit/and&#45;not</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="nand"><a class="link" href="#nand">nand</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/boolean.clj#L166">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(nand <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>The logical nand operator. Returns the negation of <code>and</code>.
+Stops the evaluation of given expressions on first logical false
+value.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 3. Truth table for nand</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>y</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(nand x y)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#and">and</a></code>, <code><a href="#nor">nor</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="nor"><a class="link" href="#nor">nor</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/boolean.clj#L186">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(nor <em>&amp; body</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>The logical nor operator. Returns the negation of <code>or</code>.
+Stops the evaluation of given expressions on first logical true
+value.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 4. Truth table for nor</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>y</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(nor x y)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#or">or</a></code>, <code><a href="#xor">xor</a></code>, <code><a href="#xnor">xnor</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="not"><a class="link" href="#not">not</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/not)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(not <em>x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>x</em></code> is logical false (<code>nil</code> or <code>false</code>),
+otherwise returns <code>false</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 5. Truth table for not</caption>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(not x)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.bit.api.html#not">dunaj.bit/not</a></code>, <code><a href="dunaj.host.int.api.html#inot">dunaj.host.int/inot</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="or"><a class="link" href="#or">or</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (alias of clojure.core/or)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-magic" title="Macro!"></i></span> MACRO</code>  <code>(or)</code>&#160;  <code>(or <em>x</em>)</code>&#160;  <code>(or <em>x &amp; next</em>)</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Evaluates given expressions one at a time, from left to
+right. If a form returns a logical true value, <code>or</code> returns
+that value and doesn’t evaluate any of the other expressions,
+otherwise it returns the value of the last expression.
+<code>(or)</code> returns <code>nil</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 6. Truth table for or</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>y</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(or x y)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nor">nor</a></code>, <code><a href="#xor">xor</a></code>, <code><a href="dunaj.bit.api.html#or">dunaj.bit/or</a></code>, <code><a href="dunaj.host.int.api.html#ior">dunaj.host.int/ior</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="xnor"><a class="link" href="#xnor">xnor</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/boolean.clj#L238">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(xnor)</code></p>
+</li>
+<li>
+<p><code>(xnor <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(xnor <em>x y</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Boolean</code></p>
+</li>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the negation of <code>xor</code>. Note that <code>xnor</code> is not supported
+for more than 2 arguments, as logical biconditional is ambiguous
+in such cases. <code>(xnor)</code> returns <code>true</code>, <code>(xnor <em>x</em>)</code> is same as
+<code>(not <em>x</em>)</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 7. Truth table for xnor</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>y</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(xnor x y)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#nor">nor</a></code>, <code><a href="#or">or</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="xor"><a class="link" href="#xor">xor</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/boolean.clj#L206">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(xor)</code></p>
+</li>
+<li>
+<p><code>(xor <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(xor <em>x y</em>)</code></p>
+</li>
+<li>
+<p><code>(xor <em>x y &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Any</code></p>
+</li>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ (Va Any)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the last logical true value if odd number of inputs is
+logical true, otherwise returns a logical false value.
+<code>(xor)</code> returns <code>nil</code>, <code>(xor <em>x</em>)</code> returns <code><em>x</em></code>.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 8. Truth table for xor</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><code><strong>x</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>y</strong></code></th>
+<th class="tableblock halign-center valign-top"><code><strong>(xor x y)</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><strong>true</strong></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#or">or</a></code>, <code><a href="#nor">nor</a></code>, <code><a href="#xnor">xnor</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:10:53 CET
+</div>
+</div>
+</body>
+</html>

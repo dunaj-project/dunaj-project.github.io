@@ -1,0 +1,2751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.coll.recipe API</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.coll.recipe API</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="api.html">API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">bare</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="bare.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">clojure</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="https://clojure.github.io/clojure/"><i>official docs</i></a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.bit.api.html">.bit</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.boolean.api.html">.boolean</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.api.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.char.api.html">.char</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.api.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.array-map.api.html">.array-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.batched-queue.api.html">.batched-queue</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.bvt-vector.api.html">.bvt-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.cons-seq.api.html">.cons-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.default.api.html">.default</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.empty-list.api.html">.empty-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-map.api.html">.hamt-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.hamt-set.api.html">.hamt-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq.api.html">.lazy-seq</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-map.api.html">.lazy-seq-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.lazy-seq-set.api.html">.lazy-seq-set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.linked-list.api.html">.linked-list</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.primitive-vector.api.html">.primitive-vector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-map.api.html">.rbt-sorted-map</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.rbt-sorted-set.api.html">.rbt-sorted-set</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.recipe.api.html">.recipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.tuple.api.html">.tuple</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.util.api.html">.util</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.api.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.api.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.agent.api.html">.agent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.api.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.parallel.api.html">.parallel</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.api.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.api.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.core.api.html">.core</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.dev.api.html">.dev</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.env.api.html">.env</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.api.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.api.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.api.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.api.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.charset.api.html">.charset</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.clj.api.html">.clj</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.edn.api.html">.edn</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.html.api.html">.html</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.json.api.html">.json</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.api.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.api.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.api.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.array.api.html">.array</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.batch.api.html">.batch</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.int.api.html">.int</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.host.number.api.html">.number</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.api.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.lib.api.html">.lib</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.macro.api.html">.macro</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.api.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.angle.api.html">.angle</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.precise.api.html">.precise</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.api.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.unchecked.api.html">.unchecked</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.namespace.api.html">.namespace</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.poly.api.html">.poly</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.regex.api.html">.regex</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.repl.api.html">.repl</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.api.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.api.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.helper.api.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.host.api.html">.host</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.http.api.html">.http</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.loopback.api.html">.loopback</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.pipe.api.html">.pipe</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.secure.api.html">.secure</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.api.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.tcp.api.html">.tcp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.udp.api.html">.udp</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.set.api.html">.set</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.api.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.basic.api.html">.basic</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.api.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.var.api.html">.var</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.weak.api.html">.weak</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.api.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.threading.api.html">.threading</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.last.api.html">.last</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.threading.second.api.html">.second</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.api.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.api.html">.type</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uri.api.html">.uri</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.uuid.api.html">.uuid</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.version.api.html">.version</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll.recipe</a></div><div class="dd-nav-ns-var"><a href="#concat"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">concat</span></a></div><div class="dd-nav-ns-var"><a href="#indexed"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">indexed</span></a></div><div class="dd-nav-ns-var"><a href="#interleave"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">interleave</span></a></div><div class="dd-nav-ns-var"><a href="#traverse"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">traverse</span></a></div><div class="dd-nav-ns-var"><a href="#zip"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">zip</span></a></div><div class="dd-nav-ns-group"><a href="#Generators">Generators</a></div><div class="dd-nav-ns-var"><a href="#cycle"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">cycle</span></a></div><div class="dd-nav-ns-var"><a href="#iterate"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">iterate</span></a></div><div class="dd-nav-ns-var"><a href="#range"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">range</span></a></div><div class="dd-nav-ns-var"><a href="#repeat"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">repeat</span></a></div><div class="dd-nav-ns-var"><a href="#repeatedly"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">repeatedly</span></a></div><div class="dd-nav-ns-group"><a href="#Transducers">Transducers</a></div><div class="dd-nav-ns-var"><a href="#append"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">append</span></a></div><div class="dd-nav-ns-var"><a href="#append_coll"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">append-coll</span></a></div><div class="dd-nav-ns-var"><a href="#cap"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">cap</span></a></div><div class="dd-nav-ns-var"><a href="#capped_drop_while"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">capped-drop-while</span></a></div><div class="dd-nav-ns-var"><a href="#concat_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">concat*</span></a></div><div class="dd-nav-ns-var"><a href="#dedupe"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">dedupe</span></a></div><div class="dd-nav-ns-var"><a href="#distinct"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">distinct</span></a></div><div class="dd-nav-ns-var"><a href="#drop"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">drop</span></a></div><div class="dd-nav-ns-var"><a href="#drop_last"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">drop-last</span></a></div><div class="dd-nav-ns-var"><a href="#drop_while"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">drop-while</span></a></div><div class="dd-nav-ns-var"><a href="#filter"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">filter</span></a></div><div class="dd-nav-ns-var"><a href="#flatten"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">flatten</span></a></div><div class="dd-nav-ns-var"><a href="#flatten_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">flatten*</span></a></div><div class="dd-nav-ns-var"><a href="#foldable_lines"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">foldable-lines</span></a></div><div class="dd-nav-ns-var"><a href="#foldable_partition_by_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">foldable-partition-by*</span></a></div><div class="dd-nav-ns-var"><a href="#interpose"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">interpose</span></a></div><div class="dd-nav-ns-var"><a href="#keep"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">keep</span></a></div><div class="dd-nav-ns-var"><a href="#keys"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">keys</span></a></div><div class="dd-nav-ns-var"><a href="#lines"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">lines</span></a></div><div class="dd-nav-ns-var"><a href="#map"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">map</span></a></div><div class="dd-nav-ns-var"><a href="#mapcat"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">mapcat</span></a></div><div class="dd-nav-ns-var"><a href="#partition"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">partition</span></a></div><div class="dd-nav-ns-var"><a href="#partition_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">partition*</span></a></div><div class="dd-nav-ns-var"><a href="#partition_all"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">partition-all</span></a></div><div class="dd-nav-ns-var"><a href="#partition_by"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">partition-by</span></a></div><div class="dd-nav-ns-var"><a href="#partition_by_STAR_"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">partition-by*</span></a></div><div class="dd-nav-ns-var"><a href="#prepend"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">prepend</span></a></div><div class="dd-nav-ns-var"><a href="#prepend_coll"><i class="fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-nav-ns-var-text">prepend-coll</span></a></div><div class="dd-nav-ns-var"><a href="#reductions"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">reductions</span></a></div><div class="dd-nav-ns-var"><a href="#remove"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">remove</span></a></div><div class="dd-nav-ns-var"><a href="#replace"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">replace</span></a></div><div class="dd-nav-ns-var"><a href="#take"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">take</span></a></div><div class="dd-nav-ns-var"><a href="#take_last"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">take-last</span></a></div><div class="dd-nav-ns-var"><a href="#take_nth"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">take-nth</span></a></div><div class="dd-nav-ns-var"><a href="#take_while"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">take-while</span></a></div><div class="dd-nav-ns-var"><a href="#throwing_cap"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">throwing-cap</span></a></div><div class="dd-nav-ns-var"><a href="#vals"><i class="dd-referred fa fa-fw fa-puzzle-piece dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">vals</span></a></div><div class="dd-nav-ns-group"><a href="#Other">Other</a></div><div class="dd-nav-ns-var"><a href="#empty_recipe"><i class="fa fa-fw fa-cube dd-mmsh"></i><span class="dd-nav-ns-var-text">empty-recipe</span></a></div><div class="dd-nav-ns-var"><a href="#split_at"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">split-at</span></a></div><div class="dd-nav-ns-var"><a href="#split_with"><i class="dd-referred fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-referred dd-nav-ns-var-text">split-with</span></a></div><div class="dd-nav-ns-var"><a href="#throwing_recipe"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">throwing-recipe</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll.recipe API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Collection utilities that return transducers or collection
+recipes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Primary"><a class="link" href="#Primary">Primary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#concat">concat</a></code> <code><a href="#indexed">indexed</a></code> <code><a href="#interleave">interleave</a></code> <code><a href="#traverse">traverse</a></code> <code><a href="#zip">zip</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="concat"><a class="link" href="#concat">concat</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L208">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(concat)</code></p>
+</li>
+<li>
+<p><code>(concat <em>a</em>)</code></p>
+</li>
+<li>
+<p><code>(concat <em>a b</em>)</code></p>
+</li>
+<li>
+<p><code>(concat <em>a b &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → [&#93;</code></p>
+</li>
+<li>
+<p><code>([&#93;) → [&#93;</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → [&#93;</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93; ⨯ (Va [&#93;)) → [&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the concatenation of given input collections.
+Does not support infinite number of arguments.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#concat_STAR_">concat*</a></code>, <code><a href="#append">append</a></code>, <code><a href="dunaj.coll.lazy-seq.api.html#lazy_cat">dunaj.coll.lazy&#45;seq/lazy&#45;cat</a></code>, <code><a href="dunaj.coll.api.html#cat">dunaj.coll/cat</a></code>, <code><a href="dunaj.coll.util.api.html#merge">dunaj.coll.util/merge</a></code>, <code><a href="dunaj.coll.util.api.html#into">dunaj.coll.util/into</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="indexed"><a class="link" href="#indexed">indexed</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L441">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(indexed <em>coll</em>)</code></p>
+</li>
+<li>
+<p><code>(indexed <em>coll &amp; colls</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ (Va [&#93;)) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a multireducible with <code>(range)</code> as a first collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#zip">zip</a></code>, <code><a href="dunaj.coll.util.api.html#unpacked">dunaj.coll.util/unpacked</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="interleave"><a class="link" href="#interleave">interleave</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L518">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(interleave)</code></p>
+</li>
+<li>
+<p><code>(interleave <em>c1</em>)</code></p>
+</li>
+<li>
+<p><code>(interleave <em>c1 &amp; more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → [&#93;</code></p>
+</li>
+<li>
+<p><code>([&#93;) → [&#93;</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ (Va [&#93;)) → [&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection recipe which reduces first item in each coll,
+then the second etc.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#interpose">interpose</a></code>, <code><a href="#zip">zip</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="traverse"><a class="link" href="#traverse">traverse</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L614">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(traverse <em>root</em>)</code></p>
+</li>
+<li>
+<p><code>(traverse <em>mode root</em>)</code></p>
+</li>
+<li>
+<p><code>(traverse <em>branch&#45;fn children&#45;fn root</em>)</code></p>
+</li>
+<li>
+<p><code>(traverse <em>mode branch&#45;fn children&#45;fn root</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+<li>
+<p><code>((U nil Keyword Integer) ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Predicate ⨯ AnyFn ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>((U nil Keyword Integer) ⨯ Predicate ⨯ AnyFn ⨯ Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection recipe which contains nodes from tree
+traversion starting at <code><em>root</em></code> node, branching if <code><em>branch-fn</em></code>
+returns true, using <code><em>children-fn</em></code> to produce children from a
+branch node. Works with infinite trees.</p>
+</div>
+<div class="paragraph">
+<p>Depth first search `<em>mode</em>`s:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:pre</code> - pre-order</p>
+</li>
+<li>
+<p><code>:post</code> - post-order</p>
+</li>
+<li>
+<p><code>:in</code> - in-order</p>
+</li>
+<li>
+<p><code>N</code> - in-order where the node is visited after N branches are
+traversed (0 - preorder, 1 - classic inorder)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Breadth first search modes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:level</code> - level order</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="zip"><a class="link" href="#zip">zip</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L409">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(zip <em>a b</em>)</code></p>
+</li>
+<li>
+<p><code>(zip <em>a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(zip <em>a b c &amp; colls</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93; ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93; ⨯ [&#93; ⨯ (Va [&#93;)) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns multireducible from given colls. Reducing multireducible
+will reduce on tuple of items.</p>
+</div>
+<div class="paragraph">
+<p>Use <code><a href="dunaj.coll.util.api.html#unpacked">unpacked</a></code> function to
+get collection which reduces on individual items.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.util.api.html#unpacked">dunaj.coll.util/unpacked</a></code>, <code><a href="dunaj.coll.util.api.html#reduce_unpacked">dunaj.coll.util/reduce&#45;unpacked</a></code>, <code><a href="#indexed">indexed</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Generators"><a class="link" href="#Generators">Generators</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#cycle">cycle</a></code> <code><a href="#iterate">iterate</a></code> <code><a href="#range">range</a></code> <code><a href="#repeat">repeat</a></code> <code><a href="#repeatedly">repeatedly</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="cycle"><a class="link" href="#cycle">cycle</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L898">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(cycle <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns an infinite collection of repetitions of the items
+in <code><em>coll</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#repeat">repeat</a></code>, <code><a href="#range">range</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="iterate"><a class="link" href="#iterate">iterate</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L973">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(iterate <em>f x</em>)</code></p>
+</li>
+<li>
+<p><code>(iterate <em>type f x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type) ⨯ AnyFn ⨯ Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection of <code><em>x</em></code>, <code>(<em>f</em> <em>x</em>)</code>, <code>(<em>f</em> (<em>f</em> <em>x</em>))</code> etc.
+<code><em>f</em></code> must be free of side-effects. For primitive collections,
+<code><em>type</em></code> can be supplied as first arg.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#repeatedly">repeatedly</a></code>, <code><a href="#repeat">repeat</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="range"><a class="link" href="#range">range</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L779">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(range)</code></p>
+</li>
+<li>
+<p><code>(range <em>end</em>)</code></p>
+</li>
+<li>
+<p><code>(range <em>start end</em>)</code></p>
+</li>
+<li>
+<p><code>(range <em>start end step</em>)</code></p>
+</li>
+<li>
+<p><code>(range <em>type start end step</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Number)) → IRed</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ (Maybe Number)) → IRed</code></p>
+</li>
+<li>
+<p><code>(Number ⨯ (Maybe Number) ⨯ Number) → IRed</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type) ⨯ Number ⨯ (Maybe Number) ⨯ Number) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection recipe containing numbers from <code><em>start</em></code> to
+<code><em>end</em></code>, with given <code><em>step</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Optionally supports primitive data types and batched reduce
+when <code><em>type</em></code> is specified.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Implementation note: The implementation incrementally adds
+<code><em>step</em></code> amount, which is faster than using multiplication,
+but precision is gradualy lost if using floating point step.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#repeat">repeat</a></code>, <code><a href="#cycle">cycle</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="repeat"><a class="link" href="#repeat">repeat</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L861">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(repeat <em>val</em>)</code></p>
+</li>
+<li>
+<p><code>(repeat <em>n val</em>)</code></p>
+</li>
+<li>
+<p><code>(repeat <em>type n val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Integer) ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type) ⨯ (Maybe Integer) ⨯ Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection of <code><em>val</em></code>-s
+(infinite, or length <code><em>n</em></code> if supplied). For primitive collections,
+<code><em>type</em></code> can be supplied as an additional argument.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#range">range</a></code>, <code><a href="#cycle">cycle</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="repeatedly"><a class="link" href="#repeatedly">repeatedly</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L931">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(repeatedly <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(repeatedly <em>n f</em>)</code></p>
+</li>
+<li>
+<p><code>(repeatedly <em>type n f</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Integer) ⨯ AnyFn) → IRed</code></p>
+</li>
+<li>
+<p><code>((U nil Class Type) ⨯ (Maybe Integer) ⨯ AnyFn) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a (infinite!, or length <code><em>n</em></code> if supplied) collection of
+calls to <code><em>f</em></code>. For primitive collections,
+<code><em>type</em></code> can be supplied as additional arg.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Be aware that batched reduce may call <code><em>f</em></code> more times
+than requested.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#repeat">repeat</a></code>, <code><a href="#range">range</a></code>, <code><a href="#cycle">cycle</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Transducers"><a class="link" href="#Transducers">Transducers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#append">append</a></code> <code><a href="#append_coll">append&#45;coll</a></code> <code><a href="#cap">cap</a></code> <code><a href="#capped_drop_while">capped&#45;drop&#45;while</a></code> <code><a href="#concat_STAR_">concat*</a></code> <code><a href="#dedupe">dedupe</a></code> <code><a href="#distinct">distinct</a></code> <code><a href="#drop">drop</a></code> <code><a href="#drop_last">drop&#45;last</a></code> <code><a href="#drop_while">drop&#45;while</a></code> <code><a href="#filter">filter</a></code> <code><a href="#flatten">flatten</a></code> <code><a href="#flatten_STAR_">flatten*</a></code> <code><a href="#foldable_lines">foldable&#45;lines</a></code> <code><a href="#foldable_partition_by_STAR_">foldable&#45;partition&#45;by*</a></code> <code><a href="#interpose">interpose</a></code> <code><a href="#keep">keep</a></code> <code><a href="#keys">keys</a></code> <code><a href="#lines">lines</a></code> <code><a href="#map">map</a></code> <code><a href="#mapcat">mapcat</a></code> <code><a href="#partition">partition</a></code> <code><a href="#partition_STAR_">partition*</a></code> <code><a href="#partition_all">partition&#45;all</a></code> <code><a href="#partition_by">partition&#45;by</a></code> <code><a href="#partition_by_STAR_">partition&#45;by*</a></code> <code><a href="#prepend">prepend</a></code> <code><a href="#prepend_coll">prepend&#45;coll</a></code> <code><a href="#reductions">reductions</a></code> <code><a href="#remove">remove</a></code> <code><a href="#replace">replace</a></code> <code><a href="#take">take</a></code> <code><a href="#take_last">take&#45;last</a></code> <code><a href="#take_nth">take&#45;nth</a></code> <code><a href="#take_while">take&#45;while</a></code> <code><a href="#throwing_cap">throwing&#45;cap</a></code> <code><a href="#vals">vals</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="append"><a class="link" href="#append">append</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1348">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(append <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(append <em>x coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that 'appends' val, passing it after all step
+values are processed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#append_coll">append&#45;coll</a></code>, <code><a href="#prepend">prepend</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="append_coll"><a class="link" href="#append_coll">append-coll</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1328">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(append&#45;coll <em>xs</em>)</code></p>
+</li>
+<li>
+<p><code>(append&#45;coll <em>xs coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that 'appends' coll, passing its values after
+all step values are processed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#append">append</a></code>, <code><a href="#prepend">prepend</a></code>, <code><a href="#concat">concat</a></code>, <code><a href="dunaj.coll.api.html#into">dunaj.coll/into</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="cap"><a class="link" href="#cap">cap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2387">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(cap <em>n tail</em>)</code></p>
+</li>
+<li>
+<p><code>(cap <em>n tail coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int ⨯ IRed) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ IRed ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes values from <code>tail</code> after passing
+<code><em>n</em></code> step values. Tail is not passed if less than <code><em>n</em></code> step
+values were passed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#throwing_cap">throwing&#45;cap</a></code>, <code><a href="#capped_drop_while">capped&#45;drop&#45;while</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="capped_drop_while"><a class="link" href="#capped_drop_while">capped-drop-while</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2207">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(capped&#45;drop&#45;while <em>n pred</em>)</code></p>
+</li>
+<li>
+<p><code>(capped&#45;drop&#45;while <em>n pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int ⨯ Predicate) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ Predicate ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that drops step values while they satisfies
+predicate <code><em>pred</em></code>. Throws after more than <code><em>n</em></code> items are dropped.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#drop_while">drop&#45;while</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="concat_STAR_"><a class="link" href="#concat_STAR_">concat*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1034">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(concat*)</code></p>
+</li>
+<li>
+<p><code>(concat* <em>xs</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>(Any) → Transducer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer which concatenates step values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mapcat">mapcat</a></code>, <code><a href="dunaj.coll.api.html#cat">dunaj.coll/cat</a></code>, <code><a href="#concat">concat</a></code>, <code><a href="#keep">keep</a></code>, <code><a href="#map">map</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="dedupe"><a class="link" href="#dedupe">dedupe</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2536">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(dedupe)</code></p>
+</li>
+<li>
+<p><code>(dedupe <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that filters out consecutive duplicate step
+values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#distinct">distinct</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#keep">keep</a></code>, <code><a href="#remove">remove</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="distinct"><a class="link" href="#distinct">distinct</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2476">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(distinct)</code></p>
+</li>
+<li>
+<p><code>(distinct <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes only unique step values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#dedupe">dedupe</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#keep">keep</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="drop"><a class="link" href="#drop">drop</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2089">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(drop <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(drop <em>n coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that drops <code><em>n</em></code> first step values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#drop_while">drop&#45;while</a></code>, <code><a href="#drop_last">drop&#45;last</a></code>, <code><a href="#take">take</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="drop_last"><a class="link" href="#drop_last">drop-last</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2253">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(drop&#45;last <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(drop&#45;last <em>n coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes all but last <code><em>n</em></code> step values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#take_last">take&#45;last</a></code>, <code><a href="#drop">drop</a></code>, <code><a href="#drop_while">drop&#45;while</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="drop_while"><a class="link" href="#drop_while">drop-while</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2147">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(drop&#45;while <em>pred</em>)</code></p>
+</li>
+<li>
+<p><code>(drop&#45;while <em>pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Predicate) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Predicate ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that drops step values while they satisfies
+predicate <code><em>pred</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#drop">drop</a></code>, <code><a href="#take">take</a></code>, <code><a href="#take_while">take&#45;while</a></code>, <code><a href="#drop_last">drop&#45;last</a></code>, <code><a href="#capped_drop_while">capped&#45;drop&#45;while</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="filter"><a class="link" href="#filter">filter</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1061">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(filter <em>pred</em>)</code></p>
+</li>
+<li>
+<p><code>(filter <em>pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Predicate) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Predicate ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that pass only those step values which
+satisfies predicate <code><em>pred</em></code></p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#map">map</a></code>, <code><a href="#remove">remove</a></code>, <code><a href="#keep">keep</a></code>, <code><a href="#mapcat">mapcat</a></code>, <code><a href="#replace">replace</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="flatten"><a class="link" href="#flatten">flatten</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1181">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(flatten)</code></p>
+</li>
+<li>
+<p><code>(flatten <em>coll</em>)</code></p>
+</li>
+<li>
+<p><code>(flatten <em>pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>((U nil IRed (I Function Predicate))) → IRed</code></p>
+</li>
+<li>
+<p><code>((Maybe Predicate) ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that flattens step values, using predicate
+<code><em>pred</em></code> to determine whether to flatten the value or not.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#flatten_STAR_">flatten*</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="flatten_STAR_"><a class="link" href="#flatten_STAR_">flatten*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1169">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(flatten* <em>pred</em>)</code></p>
+</li>
+<li>
+<p><code>(flatten* <em>pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Predicate) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Predicate ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that flattens step values, using predicate
+<code><em>pred</em></code> to determine whether to flatten the value or not.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#flatten">flatten</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="foldable_lines"><a class="link" href="#foldable_lines">foldable-lines</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L3132">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(foldable&#45;lines)</code></p>
+</li>
+<li>
+<p><code>(foldable&#45;lines <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer for foldable-only line splitting.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#lines">lines</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="foldable_partition_by_STAR_"><a class="link" href="#foldable_partition_by_STAR_">foldable-partition-by*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L3007">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(foldable&#45;partition&#45;by* <em>f ir</em>)</code></p>
+</li>
+<li>
+<p><code>(foldable&#45;partition&#45;by* <em>f ir coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ IReducing) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ IReducing ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer for foldable-only partition-by.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#partition_by_STAR_">partition&#45;by*</a></code>, <code><a href="#partition_by">partition&#45;by</a></code>, <code><a href="#partition">partition</a></code>, <code><a href="#lines">lines</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="interpose"><a class="link" href="#interpose">interpose</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2316">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(interpose <em>sep</em>)</code></p>
+</li>
+<li>
+<p><code>(interpose <em>sep coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes <code><em>sep</em></code> value between step
+values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#interleave">interleave</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="keep"><a class="link" href="#keep">keep</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1117">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(keep <em>mapf</em>)</code></p>
+</li>
+<li>
+<p><code>(keep <em>mapf coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that applies <code><em>mapf</em></code> to each step value
+and pass only non-nil results.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#map">map</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#remove">remove</a></code>, <code><a href="#mapcat">mapcat</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="keys"><a class="link" href="#keys">keys</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1390">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(keys)</code></p>
+</li>
+<li>
+<p><code>(keys <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that treats step values as pairs and passes
+only the first item of such pair.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#vals">vals</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#map">map</a></code>, <code><a href="#remove">remove</a></code>, <code><a href="#mapcat">mapcat</a></code>, <code><a href="#keep">keep</a></code>, <code><a href="dunaj.coll.tuple.api.html#pair">dunaj.coll.tuple/pair</a></code>, <code><a href="dunaj.coll.tuple.api.html#key">dunaj.coll.tuple/key</a></code>, <code><a href="dunaj.coll.api.html#first">dunaj.coll/first</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="lines"><a class="link" href="#lines">lines</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L3293">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(lines)</code></p>
+</li>
+<li>
+<p><code>(lines <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer which transform step values into string lines,
+splitting when newline is encountered. Last trailing newline is
+ignored, if present. Recognizes both LF and CR+LF newlines.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#foldable_lines">foldable&#45;lines</a></code>, <code><a href="#partition_by">partition&#45;by</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="map"><a class="link" href="#map">map</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L999">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(map <em>mapf</em>)</code></p>
+</li>
+<li>
+<p><code>(map <em>mapf coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that applies <code><em>mapf</em></code> to each step value.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#mapcat">mapcat</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#remove">remove</a></code>, <code><a href="#flatten">flatten</a></code>, <code><a href="#keep">keep</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="mapcat"><a class="link" href="#mapcat">mapcat</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1022">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(mapcat <em>mapcatf</em>)</code></p>
+</li>
+<li>
+<p><code>(mapcat <em>mapcatf coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that applies <code><em>mapcatf</em></code> to each step value
+and concatenates the results.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#map">map</a></code>, <code><a href="#concat_STAR_">concat*</a></code>, <code><a href="#keep">keep</a></code>, <code><a href="#flatten">flatten</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#remove">remove</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="partition"><a class="link" href="#partition">partition</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2778">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(partition <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(partition <em>n coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition <em>n step coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition <em>n step pad coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition <em>n step icombinef ireducef coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition <em>n step pad icombinef ireducef coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ (U nil true IRed) ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ AnyFn ⨯ AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ (U nil true IRed) ⨯ AnyFn ⨯ AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducers for partitions, splitting each <code><em>step</em></code>
+steps, each partition having <code><em>n</em></code> items passed in. Individual
+partitions are constructed with <code><em>ir</em></code> augmented reducing function.
+<code><em>pad</em></code> may be <code>nil</code> (only complete partitions), <code>true</code>
+(returns all unfinished partitions) or a collection
+(pad and return first unfinished partition).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#partition_STAR_">partition*</a></code>, <code><a href="#partition_all">partition&#45;all</a></code>, <code><a href="#partition_by">partition&#45;by</a></code>, <code><a href="#lines">lines</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="partition_STAR_"><a class="link" href="#partition_STAR_">partition*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2701">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(partition* <em>n step pad ir</em>)</code></p>
+</li>
+<li>
+<p><code>(partition* <em>n step pad ir coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int ⨯ Int ⨯ (U nil true IRed) ⨯ IReducing) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ Int ⨯ (U nil true IRed) ⨯ IReducing ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducers for partitions, splitting each <code><em>step</em></code>
+steps, each partition having <code><em>n</em></code> items passed in.
+Individual partitions are
+constructed with <code><em>ir</em></code> augmented reducing function. <code><em>pad</em></code>
+may be <code>nil</code> (only complete partitions), <code>true</code> (returns all
+unfinished partitions) or a collection (pad and return first
+unfinished partition).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#partition">partition</a></code>, <code><a href="#lines">lines</a></code>, <code><a href="#partition_all">partition&#45;all</a></code>, <code><a href="#partition_by">partition&#45;by</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="partition_all"><a class="link" href="#partition_all">partition-all</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2811">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(partition&#45;all <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(partition&#45;all <em>n coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition&#45;all <em>n step coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition&#45;all <em>n step icombinef ireducef coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(Integer ⨯ Integer ⨯ AnyFn ⨯ AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducers for partitions, splitting each <code><em>step</em></code>
+steps, each partition having <code><em>n</em></code> items passed in. Individual
+partitions are constructed with <code><em>ir</em></code> augmented reducing function.
+Returns all unfinished partitions.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#partition_STAR_">partition*</a></code>, <code><a href="#partition">partition</a></code>, <code><a href="#partition_by">partition&#45;by</a></code>, <code><a href="#lines">lines</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="partition_by"><a class="link" href="#partition_by">partition-by</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L3062">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(partition&#45;by <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(partition&#45;by <em>f coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition&#45;by <em>f ireducef coll</em>)</code></p>
+</li>
+<li>
+<p><code>(partition&#45;by <em>f icombinef ireducef coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ AnyFn ⨯ AnyFn ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns collection of partitions which are split each time <code><em>f</em></code>
+returns new value. Individual partitions are created with
+<code><em>icombinef</em></code> and <code><em>ireducef</em></code> functions.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#partition_by_STAR_">partition&#45;by*</a></code>, <code><a href="#foldable_partition_by_STAR_">foldable&#45;partition&#45;by*</a></code>, <code><a href="#lines">lines</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="partition_by_STAR_"><a class="link" href="#partition_by_STAR_">partition-by*</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L3018">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(partition&#45;by* <em>f ir</em>)</code></p>
+</li>
+<li>
+<p><code>(partition&#45;by* <em>f ir coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ IReducing) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ IReducing ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer for reducible-only partition-by.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#foldable_partition_by_STAR_">foldable&#45;partition&#45;by*</a></code>, <code><a href="#partition_by">partition&#45;by</a></code>, <code><a href="#partition">partition</a></code>, <code><a href="#lines">lines</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="prepend"><a class="link" href="#prepend">prepend</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1751">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(prepend <em>x</em>)</code></p>
+</li>
+<li>
+<p><code>(prepend <em>x coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that 'prepends' val, passing it after all step
+values are processed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#prepend_coll">prepend&#45;coll</a></code>, <code><a href="#append">append</a></code>, <code><a href="dunaj.coll.api.html#conj">dunaj.coll/conj</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="prepend_coll"><a class="link" href="#prepend_coll">prepend-coll</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1732">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(prepend&#45;coll <em>xs</em>)</code></p>
+</li>
+<li>
+<p><code>(prepend&#45;coll <em>xs coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>([&#93;) → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93; ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that 'prepends' coll, passing its values after
+all step values are processed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#append">append</a></code>, <code><a href="#prepend">prepend</a></code>, <code><a href="#concat">concat</a></code>, <code><a href="dunaj.coll.api.html#into">dunaj.coll/into</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="reductions"><a class="link" href="#reductions">reductions</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2608">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(reductions <em>f</em>)</code></p>
+</li>
+<li>
+<p><code>(reductions <em>f init</em>)</code></p>
+</li>
+<li>
+<p><code>(reductions <em>f init coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any) → Transducer</code></p>
+</li>
+<li>
+<p><code>(AnyFn ⨯ Any ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes intermediate results of the
+reduction of step values by <code><em>f</em></code>, starting with <code><em>init</em></code>
+which defaults to <code>(<em>f</em>)</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reduce">dunaj.coll/reduce</a></code>, <code><a href="#repeatedly">repeatedly</a></code>, <code><a href="#iterate">iterate</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="remove"><a class="link" href="#remove">remove</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1072">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(remove <em>pred</em>)</code></p>
+</li>
+<li>
+<p><code>(remove <em>pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Predicate) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Predicate ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that removes those step values which satisfies
+predicate <code><em>pred</em></code></p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#map">map</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#keep">keep</a></code>, <code><a href="#mapcat">mapcat</a></code>, <code><a href="#replace">replace</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="replace"><a class="link" href="#replace">replace</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1088">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(replace <em>m</em>)</code></p>
+</li>
+<li>
+<p><code>(replace <em>m coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>({}) → Transducer</code></p>
+</li>
+<li>
+<p><code>({} ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that replaces any step values which equal to
+the key in map <code><em>m</em></code> with the respective val from <code><em>m</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#map">map</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#remove">remove</a></code>, <code><a href="#keep">keep</a></code>, <code><a href="#mapcat">mapcat</a></code>, <code><a href="dunaj.string.api.html#replace">dunaj.string/replace</a></code>, <code><a href="dunaj.coll.util.api.html#rename_keys">dunaj.coll.util/rename&#45;keys</a></code>, <code><a href="dunaj.coll.util.api.html#walk">dunaj.coll.util/walk</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="take"><a class="link" href="#take">take</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1819">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(take <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(take <em>n coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes at most <code><em>n</em></code> step values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#take_while">take&#45;while</a></code>, <code><a href="#take_nth">take&#45;nth</a></code>, <code><a href="#take_last">take&#45;last</a></code>, <code><a href="#drop">drop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="take_last"><a class="link" href="#take_last">take-last</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2018">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(take&#45;last <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(take&#45;last <em>n coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes at most last <code><em>n</em></code> step values.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#drop">drop</a></code>, <code><a href="#take">take</a></code>, <code><a href="#drop_last">drop&#45;last</a></code>, <code><a href="dunaj.coll.util.api.html#butlast">dunaj.coll.util/butlast</a></code>, <code><a href="dunaj.coll.util.api.html#last">dunaj.coll.util/last</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="take_nth"><a class="link" href="#take_nth">take-nth</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1917">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(take&#45;nth <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(take&#45;nth <em>n coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that passes every <code><em>n</em></code>-th step values,
+starting with first one.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#take">take</a></code>, <code><a href="#drop">drop</a></code>, <code><a href="#partition">partition</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="take_while"><a class="link" href="#take_while">take-while</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1149">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(take&#45;while <em>pred</em>)</code></p>
+</li>
+<li>
+<p><code>(take&#45;while <em>pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Predicate) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Predicate ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that pass step values while they satisfies
+predicate <code><em>pred</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#take">take</a></code>, <code><a href="#take_last">take&#45;last</a></code>, <code><a href="#take_nth">take&#45;nth</a></code>, <code><a href="#drop_while">drop&#45;while</a></code>, <code><a href="#split_with">split&#45;with</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="throwing_cap"><a class="link" href="#throwing_cap">throwing-cap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L2405">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(throwing&#45;cap <em>n</em>)</code></p>
+</li>
+<li>
+<p><code>(throwing&#45;cap <em>n coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Int) → Transducer</code></p>
+</li>
+<li>
+<p><code>(Int ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that throws if more than <code><em>n</em></code> step values
+are passed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#cap">cap</a></code>, <code><a href="#capped_drop_while">capped&#45;drop&#45;while</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="vals"><a class="link" href="#vals">vals</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L1435">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-puzzle-piece" title="Transducer"></i></span> RETURNS TRANSDUCER</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(vals)</code></p>
+</li>
+<li>
+<p><code>(vals <em>coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>() → Transducer</code></p>
+</li>
+<li>
+<p><code>([&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a transducer that treats step values as pairs and passes
+the second item of such pair.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#keys">keys</a></code>, <code><a href="dunaj.coll.tuple.api.html#pair">dunaj.coll.tuple/pair</a></code>, <code><a href="dunaj.coll.tuple.api.html#val">dunaj.coll.tuple/val</a></code>, <code><a href="dunaj.coll.api.html#second">dunaj.coll/second</a></code>, <code><a href="#map">map</a></code>, <code><a href="#filter">filter</a></code>, <code><a href="#keep">keep</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Other"><a class="link" href="#Other">Other</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section: <code><a href="#empty_recipe">empty&#45;recipe</a></code> <code><a href="#split_at">split&#45;at</a></code> <code><a href="#split_with">split&#45;with</a></code> <code><a href="#throwing_recipe">throwing&#45;recipe</a></code></p>
+</div>
+<div class="sect2 dd-var">
+<h3 id="empty_recipe"><a class="link" href="#empty_recipe">empty-recipe</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L120">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-cube" title="Var"></i></span> VAR</code> of type <code>IRed</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An empty recipe.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#throwing_recipe">throwing&#45;recipe</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="split_at"><a class="link" href="#split_at">split-at</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L3311">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(split&#45;at <em>n coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Integer ⨯ IRed) → [&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a vector of <code>[(take <em>n</em> <em>coll</em>) (drop <em>n</em> <em>coll</em>)]</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#split_with">split&#45;with</a></code>, <code><a href="#take">take</a></code>, <code><a href="#drop">drop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="split_with"><a class="link" href="#split_with">split-with</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L3318">view source</a>)</p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(split&#45;with <em>pred coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(AnyFn ⨯ IRed) → [&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a vector of
+<code>[(take-while <em>pred</em> <em>coll</em>) (drop-while <em>pred</em> <em>coll</em>)]</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#split">split</a></code>, <code><a href="#take_while">take&#45;while</a></code>, <code><a href="#drop_while">drop&#45;while</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="throwing_recipe"><a class="link" href="#throwing_recipe">throwing-recipe</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll/recipe.clj#L147">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(throwing&#45;recipe <em>m</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>((Maybe String)) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a collection recipe which throws if any attempt to reduce
+it is performed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#empty_recipe">empty&#45;recipe</a></code></p>
+</div>
+</div>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:14:22 CET
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,3522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Jozef Wagner">
+<title>dunaj.coll SPI</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>dunaj.coll SPI</h1>
+<div class="details">
+<span id="author" class="author">Jozef Wagner</span><br>
+<span id="revdate">0.3.7</span>
+</div>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IAssociative"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IAssociative</span></a></div><div class="dd-nav-ns-var"><a href="#_entry"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-entry</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IBatchedRed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IBatchedRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce_batched"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce-batched</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICapped"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICapped</span></a></div><div class="dd-nav-ns-var"><a href="#_capacity"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-capacity</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICatenable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICatenable</span></a></div><div class="dd-nav-ns-var"><a href="#_cat"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-cat</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICollectionFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICollectionFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_from_coll"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-coll</span></a></div><div class="dd-nav-ns-var"><a href="#_from_items"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-items</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IConvolutionFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IConvolutionFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_convolute"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-convolute</span></a></div><div class="dd-nav-ns-var"><a href="#_from_interleaved"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-interleaved</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICounted"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICounted</span></a></div><div class="dd-nav-ns-var"><a href="#_count"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-count</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEditable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEditable</span></a></div><div class="dd-nav-ns-var"><a href="#_edit"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-edit</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEmptyAware"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEmptyAware</span></a></div><div class="dd-nav-ns-var"><a href="#_empty_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-empty?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEmptyable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEmptyable</span></a></div><div class="dd-nav-ns-var"><a href="#_empty"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-empty</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IFlippable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IFlippable</span></a></div><div class="dd-nav-ns-var"><a href="#_flip"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-flip</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IFullAware"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IFullAware</span></a></div><div class="dd-nav-ns-var"><a href="#_full_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-full?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IHomogeneous"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IHomogeneous</span></a></div><div class="dd-nav-ns-var"><a href="#_item_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-item-type</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IIndexed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IIndexed</span></a></div><div class="dd-nav-ns-var"><a href="#_nth"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-nth</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IInvertible"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IInvertible</span></a></div><div class="dd-nav-ns-var"><a href="#_invert"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-invert</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ILookup"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ILookup</span></a></div><div class="dd-nav-ns-var"><a href="#_contains_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-contains?</span></a></div><div class="dd-nav-ns-var"><a href="#_get"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-get</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableAssociative"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableAssociative</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableBag"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableBag</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj-all!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableCatenable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableCatenable</span></a></div><div class="dd-nav-ns-var"><a href="#_cat_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-cat!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableCollection"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableCollection</span></a></div><div class="dd-nav-ns-var"><a href="#_conj_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-conj!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableMultiMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableMultiMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_one_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc-one!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableSet"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableSet</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableStacked"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableStacked</span></a></div><div class="dd-nav-ns-var"><a href="#_pop_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-pop!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPeekable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPeekable</span></a></div><div class="dd-nav-ns-var"><a href="#_peek"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-peek</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentBag"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentBag</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_all"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj-all</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentCollection"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentCollection</span></a></div><div class="dd-nav-ns-var"><a href="#_conj"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-conj</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentList"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentList</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentMultiMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentMultiMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_one"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc-one</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentSet"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentSet</span></a></div><div class="dd-nav-ns-var"><a href="#_disj"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentVector"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentVector</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IRed"><i class="dd-referred fa fa-fw fa-plug dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">IRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IReducing"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IReducing</span></a></div><div class="dd-nav-ns-var"><a href="#_init"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-init</span></a></div><div class="dd-nav-ns-var"><a href="#_finish"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-finish</span></a></div><div class="dd-nav-ns-var"><a href="#_wrap"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-wrap</span></a></div><div class="dd-nav-ns-var"><a href="#_unwrap"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-unwrap</span></a></div><div class="dd-nav-ns-var"><a href="#_step"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-step</span></a></div><div class="dd-nav-ns-var"><a href="#_combine"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-combine</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IReversible"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IReversible</span></a></div><div class="dd-nav-ns-var"><a href="#_reverse"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reverse</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISectionable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISectionable</span></a></div><div class="dd-nav-ns-var"><a href="#_section"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-section</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISeq"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISeq</span></a></div><div class="dd-nav-ns-var"><a href="#_rest"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-rest</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISeqable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISeqable</span></a></div><div class="dd-nav-ns-var"><a href="#_seq"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-seq</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISequential"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISequential</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISettleable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISettleable</span></a></div><div class="dd-nav-ns-var"><a href="#_settle_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-settle!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISliceable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISliceable</span></a></div><div class="dd-nav-ns-var"><a href="#_slice"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-slice</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISnapshotable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISnapshotable</span></a></div><div class="dd-nav-ns-var"><a href="#_snapshot_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-snapshot!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISorted"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISorted</span></a></div><div class="dd-nav-ns-var"><a href="#_key"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-key</span></a></div><div class="dd-nav-ns-var"><a href="#_ascending_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-ascending?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISortedSectionable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISortedSectionable</span></a></div><div class="dd-nav-ns-var"><a href="#_sorted_section"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-sorted-section</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IStacked"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IStacked</span></a></div><div class="dd-nav-ns-var"><a href="#_pop"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-pop</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IUnpackedRed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IUnpackedRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce_unpacked"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce-unpacked</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IUsageTracking"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IUsageTracking</span></a></div><div class="dd-nav-ns-var"><a href="#_hit"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-hit</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.coll.api.html">API documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Immutable, mutable and persistent collections.
+Reducers and transducers <span class="icon"><i class="fa fa-puzzle-piece"></i></span>.</p>
+</div>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IAssociative"><a class="link" href="#IAssociative">IAssociative</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1819">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_entry">-entry</a></code>, <code><a href="#_assoc">-assoc</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for associative collections.
+For backwards compatibility with Clojure, implementations should
+also implement <code>c.l.Associative/containsKey</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#associative_QMARK_">associative?</a></code>, <code><a href="dunaj.coll.api.html#assoc">assoc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_entry"><a class="link" href="#_entry">-entry</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1819">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;entry <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the entry from <code><em>this</em></code> for a given <code><em>key</em></code> as a counted
+collection with <code><em>key</em></code> as a first item. Depending on a type,
+there may be a value as a second item, or they may be multiple
+values (multimap) present.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IAssociative">IAssociative</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_assoc"><a class="link" href="#_assoc">-assoc</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1819">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;assoc <em>this key val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IAssociative</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>assoc[iate]. Returns a new collection, that contains the
+mapping of <code><em>key</em></code> to <code><em>val</em></code>. For multimap, <code><em>val</em></code> must be a
+collection and this method replaces all previous vals with
+those in <code><em>val</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IAssociative">IAssociative</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IBatchedRed"><a class="link" href="#IBatchedRed">IBatchedRed</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L304">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_reduce_batched">-reduce-batched</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for batchable collections, which reduce in batches
+to optimize data processing. Note that reducing function
+<code><em>reducef</em></code> must accept batch instead of just one value.
+Batchable collections must also implement <code>IHomogeneous</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IRed">IRed</a></code>, <code><a href="#IUnpackedRed">IUnpackedRed</a></code>, <code><a href="dunaj.coll.util.api.html#reduce_batched">dunaj.coll.util/reduce&#45;batched</a></code>, <code><a href="dunaj.coll.util.api.html#batched">dunaj.coll.util/batched</a></code>, <code><a href="dunaj.coll.helper.api.html#reduce_batched_STAR_">dunaj.coll.helper/reduce&#45;batched*</a></code>, <code><a href="dunaj.coll.api.html#ensure_batchable">ensure&#45;batchable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_reduce_batched"><a class="link" href="#_reduce_batched">-reduce-batched</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L304">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;reduce&#45;batched <em>this item&#45;type size&#45;hint reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ (U nil Class Type) ⨯ (Maybe Integer) ⨯ (Fn [Any Any AnyBatch&#93;) ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the reduction of sequence of batches with reducing
+function <code><em>reducef</em></code> and with a starting value <code><em>init</em></code>.
+Batch size may be hinted with <code><em>size-hint</em></code>.
+Batch must be of type <code><em>item-type</em></code>. If <code><em>item-type</em></code> is <code>nil</code>,
+collection uses its default type.
+May return postponed or reduced object.
+Implementations must correctly handle reduced and postponed
+references and care must be taken to correctly handle
+postponed results returned from underlying collection,
+if the implementation has one.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IBatchedRed">IBatchedRed</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ICapped"><a class="link" href="#ICapped">ICapped</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L964">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_capacity">-capacity</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for collections that have a capacity.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#capped_QMARK_">capped?</a></code>, <code><a href="dunaj.coll.api.html#capacity">capacity</a></code>, <code><a href="dunaj.coll.api.html#brimming_QMARK_">brimming?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_capacity"><a class="link" href="#_capacity">-capacity</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L964">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;capacity <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns capacity of a given <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ICapped">ICapped</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ICatenable"><a class="link" href="#ICatenable">ICatenable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1971">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_cat">-cat</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for catenable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#catenable_QMARK_">catenable?</a></code>, <code><a href="dunaj.coll.api.html#cat">cat</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_cat"><a class="link" href="#_cat">-cat</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1971">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;cat <em>this other</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ ICatenable) → ICatenable</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the catenation of <code><em>this</em></code> with <code><em>other</em></code> collection of
+same type. Resulting collection is of the same type as <code><em>this</em></code>.
+Operation must be faster than linear time and may
+share data with original collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ICatenable">ICatenable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ICollectionFactory"><a class="link" href="#ICollectionFactory">ICollectionFactory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2166">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_from_coll">-from-coll</a></code>, <code><a href="#_from_items">-from-items</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A factory protocol for collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#collection">collection</a></code>, <code><a href="dunaj.coll.api.html#__GT_collection">&#45;&#62;collection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_from_coll"><a class="link" href="#_from_coll">-from-coll</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2166">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;from&#45;coll <em>this coll</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ [&#93;) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a new collection from the contents of collection
+<code><em>this</em></code>, which can also be <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ICollectionFactory">ICollectionFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_from_items"><a class="link" href="#_from_items">-from-items</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2166">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;from&#45;items <em>this</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;items <em>this a</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;items <em>this a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;items <em>this a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;items <em>this a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;items <em>this a b c d more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ IRed) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a new collection that contains given items.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ICollectionFactory">ICollectionFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IConvolutionFactory"><a class="link" href="#IConvolutionFactory">IConvolutionFactory</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2183">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_convolute">-convolute</a></code>, <code><a href="#_from_interleaved">-from-interleaved</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>Factory protocol for convoluted collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#convolution">convolution</a></code>, <code><a href="dunaj.coll.api.html#__GT_convolution">&#45;&#62;convolution</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_convolute"><a class="link" href="#_convolute">-convolute</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2183">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;convolute <em>this c1 c2</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;convolute <em>this c1 c2 c3</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;convolute <em>this c1 c2 c3 c4</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;convolute <em>this c1 c2 c3 c4 more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IRed ⨯ IRed) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ IRed ⨯ IRed ⨯ IRed) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ IRed ⨯ IRed ⨯ IRed ⨯ IRed) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ IRed ⨯ IRed ⨯ IRed ⨯ IRed ⨯ IRed) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns new collection which will contain convoluted contents
+from given collections.
+Factory is not required to support all arities.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IConvolutionFactory">IConvolutionFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_from_interleaved"><a class="link" href="#_from_interleaved">-from-interleaved</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2183">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b c</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b c d</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b c d e</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b c d e f</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b c d e f g</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b c d e f g h</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;from&#45;interleaved <em>this a b c d e f g h more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns new collection from given interleaved pieces.
+Factory is not required to support all arities.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IConvolutionFactory">IConvolutionFactory</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ICounted"><a class="link" href="#ICounted">ICounted</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L859">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_count">-count</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for counted collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#counted_QMARK_">counted?</a></code>, <code><a href="dunaj.coll.api.html#count">count</a></code>, <code><a href="dunaj.coll.api.html#full_aware_QMARK_">full&#45;aware?</a></code>, <code><a href="dunaj.coll.api.html#empty_aware_QMARK_">empty&#45;aware?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_count"><a class="link" href="#_count">-count</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L859">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;count <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Integer</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the size of <code><em>this</em></code>, in constant time.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ICounted">ICounted</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IEditable"><a class="link" href="#IEditable">IEditable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1435">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_edit">-edit</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for immutable collections that can be converted
+to mutable ones in a constant time. For backwards compatibility
+with Clojure, implementations should also implement one arg
+<code>c.l.IEditableCollection/asTransient</code> method.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#editable_QMARK_">editable?</a></code>, <code><a href="dunaj.coll.api.html#edit">edit</a></code>, <code><a href="dunaj.coll.api.html#settle_BANG_">settle!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_edit"><a class="link" href="#_edit">-edit</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1435">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;edit <em>this capacity&#45;hint</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ (Maybe Integer)) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the mutable collection based on <code><em>this</em></code>.
+This operation must be (amortized) constant time if <code><em>this</em></code>
+is a persistent collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IEditable">IEditable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IEmptyAware"><a class="link" href="#IEmptyAware">IEmptyAware</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L999">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_empty_QMARK_">-empty?</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for collections that can be empty.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#empty_QMARK_">empty?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_empty_QMARK_"><a class="link" href="#_empty_QMARK_">-empty?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L999">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;empty? <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>this</em></code> is <code>nil</code> or has no items.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IEmptyAware">IEmptyAware</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IEmptyable"><a class="link" href="#IEmptyable">IEmptyable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1035">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_empty">-empty</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for collections that can return their empty
+version.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#emptyable_QMARK_">emptyable?</a></code>, <code><a href="dunaj.coll.api.html#empty">empty</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_empty"><a class="link" href="#_empty">-empty</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1035">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;empty <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the empty collection of same category as <code><em>this</em></code>.
+Metadata must be preserved.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IEmptyable">IEmptyable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IFlippable"><a class="link" href="#IFlippable">IFlippable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1242">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_flip">-flip</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for flipable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#flippable_QMARK_">flippable?</a></code>, <code><a href="dunaj.coll.api.html#flip">flip</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_flip"><a class="link" href="#_flip">-flip</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1242">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;flip <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IFlippable</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns flipped collection from <code><em>this</em></code>, of same type.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IFlippable">IFlippable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IFullAware"><a class="link" href="#IFullAware">IFullAware</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L944">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_full_QMARK_">-full?</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for collections which can be full.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#full_aware_QMARK_">full&#45;aware?</a></code>, <code><a href="dunaj.coll.api.html#capped_QMARK_">capped?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_full_QMARK_"><a class="link" href="#_full_QMARK_">-full?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L944">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;full? <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>this</em></code> is full.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IFullAware">IFullAware</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IHomogeneous"><a class="link" href="#IHomogeneous">IHomogeneous</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1413">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_item_type">-item-type</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for homogeneous collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#homogeneous_QMARK_">homogeneous?</a></code>, <code><a href="dunaj.coll.api.html#item_type">item&#45;type</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_item_type"><a class="link" href="#_item_type">-item-type</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1413">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;item&#45;type <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (U nil Class Type)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns type of items in <code><em>this</em></code> homogeneous collection. Returns
+<code>nil</code> if <code><em>this</em></code> can produce items of any requested type.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IHomogeneous">IHomogeneous</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IIndexed"><a class="link" href="#IIndexed">IIndexed</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1173">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_nth">-nth</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for indexed collections. Indexed collections
+implement fast access to the nth item with integer index.
+For backwards compatibility with Clojure, implementations should
+also implement 2 args <code>c.l.Indexed/nth</code> method.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#indexed_QMARK_">indexed?</a></code>, <code><a href="dunaj.coll.api.html#nth">nth</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_nth"><a class="link" href="#_nth">-nth</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1173">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;nth <em>this index not&#45;found</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Integer ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns item at <code><em>index</em></code> position, or returns <code><em>not-found</em></code>
+if position is out of bounds.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IIndexed">IIndexed</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IInvertible"><a class="link" href="#IInvertible">IInvertible</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1211">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_invert">-invert</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for invertible collections. Example of
+invertible collection is set or bimap.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#invertible_QMARK_">invertible?</a></code>, <code><a href="dunaj.coll.api.html#invert">invert</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_invert"><a class="link" href="#_invert">-invert</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1211">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;invert <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IInvertible</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns inverted collection from <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IInvertible">IInvertible</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ILookup"><a class="link" href="#ILookup">ILookup</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1107">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_contains_QMARK_">-contains?</a></code>, <code><a href="#_get">-get</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for collections with lookup. Lookup collections
+implement fast access to their items based on a key.
+For backwards compatibility with Clojure, implementations should
+also implement both <code>c.l.ILookup/valAt</code> methods.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#lookup_QMARK_">lookup?</a></code>, <code><a href="dunaj.coll.api.html#contains_QMARK_">contains?</a></code>, <code><a href="dunaj.coll.api.html#get">get</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_contains_QMARK_"><a class="link" href="#_contains_QMARK_">-contains?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1107">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;contains? <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>this</em></code> collection contains an entry with a
+given <code><em>key</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ILookup">ILookup</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_get"><a class="link" href="#_get">-get</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1107">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;get <em>this key not&#45;found</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns value for a given <code><em>key</em></code>, or returns <code><em>not-found</em></code>
+if item is not found. Returns collection that implements
+<code>ICounted</code>, if there are multiple values for a given key
+(e.g. in multimaps or bags).</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ILookup">ILookup</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableAssociative"><a class="link" href="#IMutableAssociative">IMutableAssociative</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1555">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_assoc_BANG_">-assoc!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A mutable collection protocol for associative collections.
+For backwards compatibility with clojure, implementations may be
+needed to implement <code>c.l.ITransientVector/assocN</code> method.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#assoc_BANG_">assoc!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_assoc_BANG_"><a class="link" href="#_assoc_BANG_">-assoc!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1555">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;assoc! <em>this key val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IMutableAssociative</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>assoc[iate]. Returns a new collection, that contains the mapping
+of <code><em>key</em></code> to <code><em>val</em></code>. For multimap, <code><em>val</em></code> must be a collection
+and this method replaces all previous vals with those in <code><em>val</em></code>.
+Mutates <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableAssociative">IMutableAssociative</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableBag"><a class="link" href="#IMutableBag">IMutableBag</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1662">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_disj_all_BANG_">-disj-all!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type mutable protocol for bags.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#disj_all_BANG_">disj&#45;all!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_disj_all_BANG_"><a class="link" href="#_disj_all_BANG_">-disj-all!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1662">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;disj&#45;all! <em>coll key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IMutableBag</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>this</em></code> with all instances of <code><em>key</em></code> removed.
+Mutates <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableBag">IMutableBag</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableCatenable"><a class="link" href="#IMutableCatenable">IMutableCatenable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1611">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_cat_BANG_">-cat!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for mutable catenable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#cat_BANG_">cat!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_cat_BANG_"><a class="link" href="#_cat_BANG_">-cat!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1611">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;cat! <em>this other</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ IMutableCatenable) → IMutableCatenable</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the catenation of <code><em>this</em></code> with <code><em>other</em></code> collection of
+same type. Resulting collection is of the same type as <code><em>this</em></code>.
+Mutates <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableCatenable">IMutableCatenable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableCollection"><a class="link" href="#IMutableCollection">IMutableCollection</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1520">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_conj_BANG_">-conj!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A collection protocol for mutable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#conj_BANG_">conj!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_conj_BANG_"><a class="link" href="#_conj_BANG_">-conj!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1520">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;conj! <em>this x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IMutableCollection</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the modified <code><em>this</em></code> with <code><em>x</em></code> conjoined. Original
+<code><em>this</em></code> will never be used again.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableCollection">IMutableCollection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableMap"><a class="link" href="#IMutableMap">IMutableMap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1682">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_dissoc_BANG_">-dissoc!</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type mutable protocol for maps.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#dissoc_BANG_">dissoc!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dissoc_BANG_"><a class="link" href="#_dissoc_BANG_">-dissoc!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1682">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dissoc! <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IMutableMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>dissoc[iate]. Returns a new coll that does not contain any
+mapping for key. Mutates <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableMap">IMutableMap</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableMultiMap"><a class="link" href="#IMutableMultiMap">IMutableMultiMap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1709">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_dissoc_one_BANG_">-dissoc-one!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type mutable protocol for multimaps.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#dissoc_one_BANG_">dissoc&#45;one!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dissoc_one_BANG_"><a class="link" href="#_dissoc_one_BANG_">-dissoc-one!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1709">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dissoc&#45;one! <em>this key val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IMutableMultiMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>dissoc[iate]. Returns a new coll that does not contain mapping
+specified by <code><em>key</em></code> and <code><em>val</em></code>. Mutates <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableMultiMap">IMutableMultiMap</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableSet"><a class="link" href="#IMutableSet">IMutableSet</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1633">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_disj_BANG_">-disj!</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type mutable protocol for sets. For backwards
+compatibility with Clojure, implementations should also implement
+both <code>c.l.ITransientSet/contains</code> and <code>c.l.ITransientSet/get</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#disj_BANG_">disj!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_disj_BANG_"><a class="link" href="#_disj_BANG_">-disj!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1633">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;disj! <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IMutableSet</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the <code><em>this</em></code> with <code><em>key</em></code> removed. For bags, only one
+instance of <code><em>key</em></code> is removed. Mutates <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableSet">IMutableSet</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IMutableStacked"><a class="link" href="#IMutableStacked">IMutableStacked</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1587">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_pop_BANG_">-pop!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A mutable collection protocol for stacked collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#pop_BANG_">pop!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_pop_BANG_"><a class="link" href="#_pop_BANG_">-pop!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1587">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;pop! <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IMutableStacked</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>this</em></code> without one item at a position specified by the
+implementation. It may be the first item (Lists, Queues),
+or it may be the last item (Vector). Mutates <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IMutableStacked">IMutableStacked</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPeekable"><a class="link" href="#IPeekable">IPeekable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1075">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_peek">-peek</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for peekable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#peekable_QMARK_">peekable?</a></code>, <code><a href="dunaj.coll.api.html#peek">peek</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_peek"><a class="link" href="#_peek">-peek</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1075">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;peek <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns item from a collection at a position specified
+by the implementation. It may be the first item (Lists, Queues),
+or it may be the last item (Vector). Peeking an empty collection
+should return <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPeekable">IPeekable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentBag"><a class="link" href="#IPersistentBag">IPersistentBag</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2054">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_disj_all">-disj-all</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type value protocol for persistent bags.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#bag_QMARK_">bag?</a></code>, <code><a href="dunaj.coll.api.html#disj_all">disj&#45;all</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_disj_all"><a class="link" href="#_disj_all">-disj-all</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2054">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;disj&#45;all <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentBag</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the <code><em>this</em></code> with all instances of <code><em>key</em></code> removed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPersistentBag">IPersistentBag</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentCollection"><a class="link" href="#IPersistentCollection">IPersistentCollection</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1765">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_conj">-conj</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for persistent collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#coll_QMARK_">coll?</a></code>, <code><a href="dunaj.coll.api.html#conj">conj</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_conj"><a class="link" href="#_conj">-conj</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1765">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;conj <em>coll x</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentCollection</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the <code><em>this</em></code> collection with <code>x</code> conjoined.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPersistentCollection">IPersistentCollection</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentList"><a class="link" href="#IPersistentList">IPersistentList</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2146">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> MARKER PROTOCOL</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Abstract type value protocol for persistent lists.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#list_QMARK_">list?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentMap"><a class="link" href="#IPersistentMap">IPersistentMap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2073">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_dissoc">-dissoc</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type value protocol for persistent maps.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#map_QMARK_">map?</a></code>, <code><a href="dunaj.coll.api.html#dissoc">dissoc</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dissoc"><a class="link" href="#_dissoc">-dissoc</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2073">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dissoc <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>dissoc[iate]. Returns a new coll that does not contain any
+mapping for key.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPersistentMap">IPersistentMap</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentMultiMap"><a class="link" href="#IPersistentMultiMap">IPersistentMultiMap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2126">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_dissoc_one">-dissoc-one</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>Abstract type value protocol for persistent multimaps.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#multimap_QMARK_">multimap?</a></code>, <code><a href="dunaj.coll.api.html#dissoc_one">dissoc&#45;one</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_dissoc_one"><a class="link" href="#_dissoc_one">-dissoc-one</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2126">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;dissoc&#45;one <em>this key val</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → IPersistentMultiMap</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>dissoc[iate]. Returns a new coll that does not contain mapping
+specified by key and val.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPersistentMultiMap">IPersistentMultiMap</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentSet"><a class="link" href="#IPersistentSet">IPersistentSet</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2023">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_disj">-disj</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type value protocol for persistent sets. For backwards
+compatibility with Clojure, implementations should also implement
+both <code>c.l.IPersistentSet/contains</code> and <code>c.l.IPersistnetSet/get</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#set_QMARK_">set?</a></code>, <code><a href="dunaj.coll.api.html#disj">disj</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_disj"><a class="link" href="#_disj">-disj</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2023">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;disj <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IPersistentSet</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the <code><em>this</em></code> with <code><em>key</em></code> removed. For bags, only one
+instance of <code><em>key</em></code> is removed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IPersistentSet">IPersistentSet</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IPersistentVector"><a class="link" href="#IPersistentVector">IPersistentVector</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2154">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> MARKER PROTOCOL</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>Abstract type value protocol for persistent vectors. For backwards
+compatibility with clojure, implementations should also implement
+<code>c.l.IPersistentVector/assocN</code> and <code>c.l.IPersistentVector/length</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#vector_QMARK_">vector?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IRed"><a class="link" href="#IRed">IRed</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L287">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_reduce">-reduce</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for reducible collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#red_QMARK_">red?</a></code>, <code><a href="#IBatchedRed">IBatchedRed</a></code>, <code><a href="#IUnpackedRed">IUnpackedRed</a></code>, <code><a href="dunaj.coll.api.html#reduce">reduce</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_reduce"><a class="link" href="#_reduce">-reduce</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L287">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;reduce <em>this reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ AnyFn ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the reduction of <code><em>this</em></code> with a reducing function
+<code><em>reducef</em></code> and with a starting value <code><em>init</em></code>, or returns
+a postponed object, if the reduction was postponed either
+by the reducef or by the collection itself. May return reduced
+object. Implementations must correctly handle reduced and
+postponed references and care must be taken to correctly handle
+postponed results returned from the underlying collection,
+if the implementation has one.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IRed">IRed</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IReducing"><a class="link" href="#IReducing">IReducing</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_init">-init</a></code>, <code><a href="#_finish">-finish</a></code>, <code><a href="#_wrap">-wrap</a></code>, <code><a href="#_unwrap">-unwrap</a></code>, <code><a href="#_step">-step</a></code>, <code><a href="#_combine">-combine</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for augmented reducing functions.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reduce_augmented">reduce&#45;augmented</a></code>, <code><a href="dunaj.coll.api.html#reducing_function">reducing&#45;function</a></code>, <code><a href="dunaj.coll.api.html#reducing">reducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_init"><a class="link" href="#_init">-init</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;init <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns default initial unwrapped value.
+May NOT return reduced or postponed object.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IReducing">IReducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_finish"><a class="link" href="#_finish">-finish</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;finish <em>this wrap</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns final unwrapped result, and performs flushing or cleaning
+of internal state. May return reduced or postponed object.
+Input is not postponed but may be reduced, which signals that
+finalization of early terminated reduction should be performed.
+Implementation should return reduced object at least when
+<code><em>wrap</em></code> is reduced.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IReducing">IReducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_wrap"><a class="link" href="#_wrap">-wrap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;wrap <em>this ret</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns wrapped result <code><em>ret</em></code>. Initializes reducing state.
+May NOT return reduced or postponed object.
+Inputs are not reduced nor postponed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IReducing">IReducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_unwrap"><a class="link" href="#_unwrap">-unwrap</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;unwrap <em>this wrap</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns unwrapped result <code><em>ret</em></code>.
+May NOT return reduced or postponed object.
+Inputs are not reduced nor postponed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IReducing">IReducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_step"><a class="link" href="#_step">-step</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;step <em>this wrap val</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;step <em>this wrap val val2</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;step <em>this wrap val val2 val3</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;step <em>this wrap val val2 val3 val4</em>)</code></p>
+</li>
+<li>
+<p><code>(&#45;step <em>this wrap val val2 val3 val4 more</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signatures: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ Any ⨯ [Any&#93;) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns new wrapped result based on applying given input values
+to the <code><em>wrap</em></code>. May return reduced or postponed object.
+Inputs are not reduced nor postponed.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IReducing">IReducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_combine"><a class="link" href="#_combine">-combine</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L467">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;combine <em>this wrap other</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns wrapped result combined from <code><em>wrap</em></code> and <code><em>other</em></code>.
+May NOT return reduced or postponed object.
+Inputs will not be finished and are not reduced nor postponed.
+May NOT return reduced or postponed object.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IReducing">IReducing</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IReversible"><a class="link" href="#IReversible">IReversible</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1268">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_reverse">-reverse</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>Value protocol for reversible collections.
+For backwards compatibility with Clojure, implementations should
+also implement <code>c.l.Reversible/rseq</code> method, which returns
+reversed Seq.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#reversible_QMARK_">reversible?</a></code>, <code><a href="dunaj.coll.api.html#reverse">reverse</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_reverse"><a class="link" href="#_reverse">-reverse</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1268">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;reverse <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns reversed collection from <code><em>this</em></code> in constant time.
+Does not preserve type, is at least a collection.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IReversible">IReversible</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISectionable"><a class="link" href="#ISectionable">ISectionable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1356">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_section">-section</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>Value protocol for indexed sectionable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#sectionable_QMARK_">sectionable?</a></code>, <code><a href="dunaj.coll.api.html#section">section</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_section"><a class="link" href="#_section">-section</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1356">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;section <em>this begin end</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Integer ⨯ Integer) → [&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns new collection which is the result of sectioning <code><em>this</em></code>
+from <code><em>begin</em></code> inclusive into the <code><em>end</em></code> exclusive. <code>nil</code> in
+<code><em>begin</em></code> defaults to the first item and <code>nil</code> in the <code><em>end</em></code>
+defaults to the last item in <code><em>this</em></code>. Resulting coll will be
+of similar type and will share underlying data with <code><em>this</em></code> and
+thus will hold onto all original items. Operation is constant
+time though. Returned collection does not have to be persistent.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISectionable">ISectionable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISeq"><a class="link" href="#ISeq">ISeq</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L696">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_rest">-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>An abstract type value protocol for sequences.
+For backwards compatibility with Clojure, implementations should
+also implement <code>c.l.ISeq/first</code> and <code>c.l.ISeq/next</code> methods.</p>
+</div>
+<div class="paragraph">
+<p>Note for implementers: If seq can be empty, it is important
+to check that calling <code>seq</code> on an empty seq object returns <code>nil</code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#seq_QMARK_">seq?</a></code>, <code><a href="dunaj.coll.api.html#rest">rest</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_rest"><a class="link" href="#_rest">-rest</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L696">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;rest <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → ISeq</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a possibly empty sequence without first item.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISeq">ISeq</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISeqable"><a class="link" href="#ISeqable">ISeqable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L714">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_seq">-seq</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for collections that can be transformed to seqs
+which are faster than ones created with a default IRed &#8594; ISeq
+transformation.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#seq">seq</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_seq"><a class="link" href="#_seq">-seq</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L714">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;seq <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → (Maybe ISeq)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a seq representing <code><em>this</em></code> collection or <code>nil</code>,
+if <code><em>this</em></code> is empty.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISeqable">ISeqable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISequential"><a class="link" href="#ISequential">ISequential</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1730">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> MARKER PROTOCOL</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for sequential collections. Sequential collections
+are dunaj collections which main purpose is to serve as an ordered
+collection of items. This precludes e.g. String from being a
+sequential, as string&#8217;s main purpose is to convey a textual
+information.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#sequential_QMARK_">sequential?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISettleable"><a class="link" href="#ISettleable">ISettleable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1468">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_settle_BANG_">-settle!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A mutable collection protocol for settleable collections,
+a mutable collections that can be transformed into immutable
+or persistent variants.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#settleable_QMARK_">settleable?</a></code>, <code><a href="dunaj.coll.api.html#settle_BANG_">settle!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_settle_BANG_"><a class="link" href="#_settle_BANG_">-settle!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1468">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;settle! <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the immutable (and preferably persistent) version of
+<code><em>this</em></code>. Any subsequent operations on original <code><em>this</em></code> should
+throw. This operation is (amortized) constant time only if
+resulting coll will be a persistent collection. (for other colls,
+there may be normalizing/trimming to size, &#8230;&#8203;)</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISettleable">ISettleable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISliceable"><a class="link" href="#ISliceable">ISliceable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1325">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_slice">-slice</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>Value protocol for sliceable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#sliceable_QMARK_">sliceable?</a></code>, <code><a href="dunaj.coll.api.html#slice">slice</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_slice"><a class="link" href="#_slice">-slice</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1325">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;slice <em>this begin end</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → ISliceable</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns new collection which is the result of slicing <code><em>this</em></code>
+from <code><em>begin</em></code> inclusive into the <code><em>end</em></code> exclusive. <code>nil</code> in
+<code><em>begin</em></code> defaults to the first item and <code>nil</code> in the <code><em>end</em></code>
+defaults to last item in <code><em>this</em></code>. Resulting coll will be
+of same type and will not hold onto items not belonging to it.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISliceable">ISliceable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISnapshotable"><a class="link" href="#ISnapshotable">ISnapshotable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1496">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_snapshot_BANG_">-snapshot!</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A mutable collection protocol for snapshotable collections,
+a concurrent mutable collections that can provide immutable
+or persistent snapshot of its state.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#snapshotable_QMARK_">snapshotable?</a></code>, <code><a href="dunaj.coll.api.html#snapshot_BANG_">snapshot!</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_snapshot_BANG_"><a class="link" href="#_snapshot_BANG_">-snapshot!</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1496">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;snapshot! <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IRed</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the immutable or persistent snapshot of <code><em>this</em></code>.
+Both <code><em>this</em></code> and the returned object can be further freely
+used.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISnapshotable">ISnapshotable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISorted"><a class="link" href="#ISorted">ISorted</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1295">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with methods <code><a href="#_key">-key</a></code>, <code><a href="#_ascending_QMARK_">-ascending?</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>Value protocol for sorted collections.
+Implementation should place comparator in the configuration.
+For backwards compatibility with Cojure, implementations should
+also implement <code>c.l.Sorted</code> interface and its methods.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#sorted_QMARK_">sorted?</a></code>, <code><a href="dunaj.coll.api.html#ascending_QMARK_">ascending?</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_key"><a class="link" href="#_key">-key</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1295">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;key <em>this item</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns a key (from <code><em>item</em></code>) that is used to sort <code><em>this</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISorted">ISorted</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_ascending_QMARK_"><a class="link" href="#_ascending_QMARK_">-ascending?</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1295">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;ascending? <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → Boolean</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code>true</code> if <code><em>this</em></code> is sorted in ascending order with
+regards to the comparator used for sorting, otherwise returns
+<code>false</code>. Users should use <code>flip</code> function to change the order
+of sorting.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISorted">ISorted</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="ISortedSectionable"><a class="link" href="#ISortedSectionable">ISortedSectionable</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1372">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_sorted_section">-sorted-section</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>Value protocol for sorted sectionable collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#sorted_sectionable_QMARK_">sorted&#45;sectionable?</a></code>, <code><a href="dunaj.coll.api.html#section">section</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_sorted_section"><a class="link" href="#_sorted_section">-sorted-section</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1372">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;sorted&#45;section <em>this begin end</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any ⨯ Any) → [&#93;</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns new collection which is the result of sectioning <code><em>this</em></code>
+from <code><em>begin</em></code> inclusive into the <code><em>end</em></code> exclusive. <code>nil</code> in
+<code><em>begin</em></code> defaults to the first item and <code>nil</code> in the <code><em>end</em></code>
+defaults to the last item in <code><em>this</em></code>. Resulting coll will be of
+similar type and will share underlying data with <code><em>this</em></code> and
+thus will hold onto all original items. Operation is constant
+time though. Returned collection does not have to be persistent.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#ISortedSectionable">ISortedSectionable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IStacked"><a class="link" href="#IStacked">IStacked</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1943">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_pop">-pop</a></code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-close" title="Extensions forbidden"></i></span> extensions of this protocol on existing types are <strong>forbidden</strong> (performance and/or backwards compatibility reasons).</code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for stacked collections.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#stacked_QMARK_">stacked?</a></code>, <code><a href="dunaj.coll.api.html#pop">pop</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_pop"><a class="link" href="#_pop">-pop</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1943">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;pop <em>this</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any) → IStacked</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns <code><em>this</em></code> without one item at a position specified by the
+implementation. It may be the first item (Lists, Queues), or it
+may be the last item (Vector). Throws if <code><em>this</em></code> is empty.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IStacked">IStacked</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IUnpackedRed"><a class="link" href="#IUnpackedRed">IUnpackedRed</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L339">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_reduce_unpacked">-reduce-unpacked</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for multireducible collections.
+Multireducible collections can reduce a multiarg function
+(more than 2 args), instead of sending multiple values as a
+vector. Is supported for multireducibles, indexed reducibles
+and maps.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IRed">IRed</a></code>, <code><a href="dunaj.coll.util.api.html#reduce_unpacked">dunaj.coll.util/reduce&#45;unpacked</a></code>, <code><a href="dunaj.coll.util.api.html#unpacked">dunaj.coll.util/unpacked</a></code>, <code><a href="dunaj.coll.helper.api.html#reduce_unpacked_STAR_">dunaj.coll.helper/reduce&#45;unpacked*</a></code>, <code><a href="dunaj.coll.api.html#ensure_unpackable">ensure&#45;unpackable</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_reduce_unpacked"><a class="link" href="#_reduce_unpacked">-reduce-unpacked</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L339">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;reduce&#45;unpacked <em>this reducef init</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ AnyFn ⨯ Any) → Any</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns the reduction of <code><em>this</em></code> where multiple values are
+sent directly into reducing function <code><em>reducef</em></code> instead of
+creating a temporary vector to send multiple values.
+May return postponed or reduced object.
+Implementations must correctly handle reduced and postponed
+references and care must be taken to correctly handle
+postponed results returned from underlying collection,
+if the implementation has one.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IUnpackedRed">IUnpackedRed</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="IUsageTracking"><a class="link" href="#IUsageTracking">IUsageTracking</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1996">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-plug" title="Protocol"></i></span> PROTOCOL</code> with method <code><a href="#_hit">-hit</a></code></p>
+</div>
+<div class="paragraph docstring">
+<p>A value protocol for collections tracking the usage
+of their items. Used e.g. for LRU caches.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="dunaj.coll.api.html#usage_tracking_QMARK_">usage&#45;tracking?</a></code>, <code><a href="dunaj.coll.api.html#hit">hit</a></code></p>
+</div>
+</div>
+<div class="sect2 dd-var">
+<h3 id="_hit"><a class="link" href="#_hit">-hit</a></h3>
+<div class="paragraph dd-added">
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1996">view source</a>)</p>
+</div>
+<div class="paragraph">
+<p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Usage: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(&#45;hit <em>this key</em>)</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist dd-usage">
+<dl>
+<dt class="hdlist1">Type signature: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(Any ⨯ Any) → IUsageTracking</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph docstring">
+<p>Returns collection which has processed a hit (usage)
+notification of a value associated with <code><em>key</em></code>. Undefined
+behavior if <code><em>this</em></code> does not contain mapping for <code><em>key</em></code>.</p>
+</div>
+<div class="paragraph see">
+<p><span class="icon"><i class="fa fa-share" title="See also"></i></span> See also: <code><a href="#IUsageTracking">IUsageTracking</a></code></p>
+</div>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:21:01 CET
+</div>
+</div>
+</body>
+</html>

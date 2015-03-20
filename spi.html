@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Dunaj SPI</title>
+<link rel="stylesheet" href="./dd.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dunaj SPI</h1>
+</div>
+<div id="content">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="doc.html">Documentation</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="rationale.html">Rationale</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="spec.html">Specification</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="api.html">API</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="todo.html">Future Plans</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div class="paragraph">
+<p>Dunaj SPI comprises following namespaces:</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.buffer.spi.html">dunaj.buffer</a></code> Unsynchronized mutable collections with predefined capacity.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.spi.html">dunaj.coll</a></code> Immutable, mutable and persistent collections.
+Reducers and transducers <span class="icon"><i class="fa fa-puzzle-piece"></i></span>.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.coll.helper.spi.html">dunaj.coll.helper</a></code> Collection helpers for the implementation of new collection types.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.compare.spi.html">dunaj.compare</a></code> Comparison, hashing and equality.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.spi.html">dunaj.concurrent</a></code> General concurrency facilities, futures, promises.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.forkjoin.spi.html">dunaj.concurrent.forkjoin</a></code> Parallel computations based on a Fork-join model.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.port.spi.html">dunaj.concurrent.port</a></code> Asynchronous programming through ports and channels.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.concurrent.thread.spi.html">dunaj.concurrent.thread</a></code> Concurrency primitives for creating and managing threads.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.error.spi.html">dunaj.error</a></code> Error handling, exceptions.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.feature.spi.html">dunaj.feature</a></code> Feature protocols for metadata, configuration and validation.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.flow.spi.html">dunaj.flow</a></code> Control Flow. Conditionals, loops, evaluation.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.spi.html">dunaj.format</a></code> Generic formatter (parser/printer).</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.parser.spi.html">dunaj.format.parser</a></code> Fast parser engine with helper functions for tokenizer and parser
+machines.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.format.printer.spi.html">dunaj.format.printer</a></code> Fast printer engine with helper functions.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.function.spi.html">dunaj.function</a></code> Function definition, transformation and memoization facilities.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.identifier.spi.html">dunaj.identifier</a></code> Symbolic identifiers and related protocols.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.math.spi.html">dunaj.math</a></code> Basic math facilities.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.math.random.spi.html">dunaj.math.random</a></code> Random number generators.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.spi.html">dunaj.resource</a></code> Computer and network resources, systems, scopes.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.file.spi.html">dunaj.resource.file</a></code> Host filesystem resources.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.resource.selector.spi.html">dunaj.resource.selector</a></code> Selector resources.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.state.spi.html">dunaj.state</a></code> Stateful objects. References, mutation, cloning, etc.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.state.ref.spi.html">dunaj.state.ref</a></code> Refs, a transactional references that use software transactional
+memory (STM) for safe shared use of mutable references.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.string.spi.html">dunaj.string</a></code> Characters and character sequences.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.time.spi.html">dunaj.time</a></code> Instants (RFC 3339) and duration protocol.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="dunaj.type.spi.html">dunaj.type</a></code> Type signatures. Provides basic facilities for declaring data
+types for vars, function arguments and return values.</p>
+</div></div></section></div><script>window.onload = function() {document.getElementById('dd-focus').focus();}</script>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-03-19 14:20:58 CET
+</div>
+</div>
+</body>
+</html>
