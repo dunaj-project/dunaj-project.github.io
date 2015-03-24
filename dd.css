@@ -908,7 +908,7 @@ table.CodeRay pre span.comment, table pre.CodeRay span.comment { color: #ba3925;
 
 #xlogo { color: #235; font-family: 'Amaranth', sans-serif; font-weight: 400; font-size: 92px; letter-spacing: 10px; }
 
-.xtitle { margin-top: 10px; color: #235; font-family: 'Amaranth', sans-serif; font-weight: 400; font-size: 26px; letter-spacing: 2px; margin-bottom: 0em; line-height:1.5em;}
+.xtitle { margin-top: 20px; color: #235; font-family: 'Amaranth', sans-serif; font-weight: 400; font-size: 26px; letter-spacing: 2px; margin-bottom: 1em; line-height: 1.5em; }
 
 #xlogo > img { height: 65px; margin-right: 0.3em; margin-top: 0px; margin-bottom: 20px; }
 
@@ -934,27 +934,20 @@ div:focus { outline: none; }
 
 @media (max-width: 768px) { #dd-flex { flex-wrap: wrap; }
   #dd-side-nav { flex: 0 1 20%; }
-  #dd-content { max-width: 100%; } 
-  .fc {flex-direction:column;}
-  #xlogo {font-size:36px;}
-  #xlogo > img { height: 30px; margin-right: 0.3em; margin-top: 0px; margin-bottom:5px; }
-  .xp{font-size:14px;}
-  .xtitle{font-size: 18px;} 
-  #xfooter{font-size:16px;}
-  .lx{margin:0.5em;}
-  h1{font-size:22px;}
-  p{text-align:justify;}
-  #dd-flex{flex-direction:column;}
-  #dd-ns-nav{display:none;}
-  td.icon{padding:0; width:45px !important;}
-  .dd-added { position: relative; float: none; top: 0em; color: #999;}
-  .dd-added p { font-size:1em !important;}
-}
-
-@media (max-width: 350px) {
-  #dd-logo > span {display:none;}
-}
-
-@media (max-width: 830px) {
-  .dd-mmlink .dd-mmsh { color: #1d4b8f; }
+  #dd-content { max-width: 100%; }
+  .fc { flex-direction: column; }
+  #xlogo { font-size: 36px; }
+  #xlogo > img { height: 30px; margin-right: 0.3em; margin-top: 0px; margin-bottom: 5px; }
+  .xp { font-size: 14px; }
+  .xtitle { font-size: 18px; }
+  #xfooter { font-size: 16px; }
+  .lx { margin: 0.5em; }
+  h1 { font-size: 22px; }
+  #dd-flex { flex-direction: column; }
+  #dd-ns-nav { display: none; }
+  td.icon { padding: 0; width: 45px !important; }
+  .dd-added { position: relative; float: none; top: 0em; color: #999; }
+  .dd-added p { font-size: 1em !important; } }
+@media (max-width: 350px) { #dd-logo > span { display: none; } }
+@media (max-width: 830px) { .dd-mmlink .dd-mmsh { color: #1d4b8f; }
   .dd-mmlink span { display: none; } }
