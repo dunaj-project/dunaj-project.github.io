@@ -16,11 +16,11 @@
 <h1>dunaj.concurrent.port SPI</h1>
 <div class="details">
 <span id="author" class="author">Jozef Wagner</span><br>
-<span id="revdate">0.3.7</span>
+<span id="revdate">0.4.0</span>
 </div>
 </div>
 <div id="content">
-<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.concurrent.port</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICloseablePort"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICloseablePort</span></a></div><div class="dd-nav-ns-var"><a href="#_close_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-close!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMult"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMult</span></a></div><div class="dd-nav-ns-var"><a href="#_tap_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-tap!</span></a></div><div class="dd-nav-ns-var"><a href="#_untap_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-untap!</span></a></div><div class="dd-nav-ns-var"><a href="#_untap_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-untap-all!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPub"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPub</span></a></div><div class="dd-nav-ns-var"><a href="#_sub_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-sub!</span></a></div><div class="dd-nav-ns-var"><a href="#_unsub_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-unsub!</span></a></div><div class="dd-nav-ns-var"><a href="#_unsub_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-unsub-all!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISourcePort"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISourcePort</span></a></div><div class="dd-nav-ns-var"><a href="#_take_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-take!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ITargetPort"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ITargetPort</span></a></div><div class="dd-nav-ns-var"><a href="#_put_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-put!</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.concurrent.port SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.concurrent.port.api.html">API documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.concurrent.port</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICloseablePort"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICloseablePort</span></a></div><div class="dd-nav-ns-var"><a href="#_close_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-close!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMult"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMult</span></a></div><div class="dd-nav-ns-var"><a href="#_tap_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-tap!</span></a></div><div class="dd-nav-ns-var"><a href="#_untap_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-untap!</span></a></div><div class="dd-nav-ns-var"><a href="#_untap_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-untap-all!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPub"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPub</span></a></div><div class="dd-nav-ns-var"><a href="#_sub_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-sub!</span></a></div><div class="dd-nav-ns-var"><a href="#_unsub_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-unsub!</span></a></div><div class="dd-nav-ns-var"><a href="#_unsub_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-unsub-all!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISourcePort"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISourcePort</span></a></div><div class="dd-nav-ns-var"><a href="#_take_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-take!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ITargetPort"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ITargetPort</span></a></div><div class="dd-nav-ns-var"><a href="#_put_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-put!</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.concurrent.port SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.4.0</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.concurrent.port.api.html">API documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Asynchronous programming through ports and channels.</p>
@@ -30,7 +30,7 @@
 <div class="sect2 dd-var">
 <h3 id="ICloseablePort"><a class="link" href="#ICloseablePort">ICloseablePort</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L223">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L224">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -61,7 +61,7 @@ concept of blocking releasable instead of closeable.
 <div class="sect2 dd-var">
 <h3 id="_close_BANG_"><a class="link" href="#_close_BANG_">-close!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L223">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L224">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -104,7 +104,7 @@ concept of blocking releasable instead of closeable.
 <div class="sect2 dd-var">
 <h3 id="IMult"><a class="link" href="#IMult">IMult</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L698">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L699">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -122,7 +122,7 @@ concept of blocking releasable instead of closeable.
 <div class="sect2 dd-var">
 <h3 id="_tap_BANG_"><a class="link" href="#_tap_BANG_">-tap!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L698">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L699">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -167,7 +167,7 @@ is closed.</p>
 <div class="sect2 dd-var">
 <h3 id="_untap_BANG_"><a class="link" href="#_untap_BANG_">-untap!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L698">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L699">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -210,7 +210,7 @@ is closed.</p>
 <div class="sect2 dd-var">
 <h3 id="_untap_all_BANG_"><a class="link" href="#_untap_all_BANG_">-untap-all!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L698">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L699">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -253,7 +253,7 @@ is closed.</p>
 <div class="sect2 dd-var">
 <h3 id="IPub"><a class="link" href="#IPub">IPub</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L895">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L896">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -271,7 +271,7 @@ is closed.</p>
 <div class="sect2 dd-var">
 <h3 id="_sub_BANG_"><a class="link" href="#_sub_BANG_">-sub!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L895">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L896">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -316,7 +316,7 @@ is closed.</p>
 <div class="sect2 dd-var">
 <h3 id="_unsub_BANG_"><a class="link" href="#_unsub_BANG_">-unsub!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L895">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L896">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -360,7 +360,7 @@ is closed.</p>
 <div class="sect2 dd-var">
 <h3 id="_unsub_all_BANG_"><a class="link" href="#_unsub_all_BANG_">-unsub-all!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L895">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L896">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -410,7 +410,7 @@ unsunscribes all ports, is no topic is given.</p>
 <div class="sect2 dd-var">
 <h3 id="ISourcePort"><a class="link" href="#ISourcePort">ISourcePort</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L91">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L92">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -428,7 +428,7 @@ unsunscribes all ports, is no topic is given.</p>
 <div class="sect2 dd-var">
 <h3 id="_take_BANG_"><a class="link" href="#_take_BANG_">-take!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L91">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L92">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -472,7 +472,7 @@ Returns derefable <code>nil</code> if closed.</p>
 <div class="sect2 dd-var">
 <h3 id="ITargetPort"><a class="link" href="#ITargetPort">ITargetPort</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L143">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L144">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -490,7 +490,7 @@ Returns derefable <code>nil</code> if closed.</p>
 <div class="sect2 dd-var">
 <h3 id="_put_BANG_"><a class="link" href="#_put_BANG_">-put!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L143">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/concurrent/port.clj#L144">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -534,7 +534,7 @@ handled, <code>nil</code> if put was enqueued. Must throw on <code>nil</code> va
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-19 14:21:18 CET
+Last updated 2015-04-12 20:45:46 CEST
 </div>
 </div>
 </body>
