@@ -15,12 +15,29 @@
 <h1>Dunaj - Getting Started</h1>
 </div>
 <div id="content">
-<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink dd-mmcur" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Getting Started</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.3.7</span></div></div><div id="preamble">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink dd-mmcur" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj - Getting Started</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.4.0</span></div></div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can start using Dunaj just like any other Clojure library,
 but with a small exception. As Dunaj is a fork of Clojure,
 you must exclude original Clojure from your dependency tree.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+A library-only variant called
+<a href="http://lite.dunaj.org">Dunaj lite</a> is available for cases where
+custom Clojure forks are not an option. The set of features provided
+by Dunaj lite are nearly identical to ones offered by Dunaj.
+Dunaj lite is also more backwards compatible and uses less
+dependencies.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Dunaj tries hard to be backwards compatible with existing Clojure
@@ -47,10 +64,11 @@ has only been tested under Linux.
 <h2 id="_using_leiningen">Using Leiningen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To start using Dunaj, include following dependency in your leiningen project:</p>
+<p>To start using Dunaj, include following dependency in your leiningen
+project:</p>
 </div>
 <div class="paragraph">
-<p><code><strong>[org.dunaj/dunaj "0.3.7"]</strong></code></p>
+<p><code><strong>[org.dunaj/dunaj "0.4.0"]</strong></code></p>
 </div>
 <div class="paragraph">
 <p>Use leiningen&#8217;s <code>:exclusions</code> to exclude any Clojure dependency:</p>
@@ -173,7 +191,7 @@ Alternatively, you can start a clojure REPL with
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-19 14:10:01 CET
+Last updated 2015-04-12 12:33:07 CEST
 </div>
 </div>
 </body>
