@@ -15,7 +15,7 @@
 <h1>Dunaj  - Computer And Network Resources</h1>
 </div>
 <div id="content">
-<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day5.html">Reducers First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day7.html">Data Formatters</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="day8.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day9.html">Improved Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day10.html">Documentation</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj  - Computer And Network Resources</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.4.0</span></div></div><div id="preamble">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day3.html">Protocols First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day5.html">Reducers First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day7.html">Data Formatters</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="day8.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day9.html">Improved Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day10.html">Documentation</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj  - Computer And Network Resources</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.5.0</span></div></div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Most applications perform some file and networking I/O.
@@ -324,16 +324,12 @@ with transducers and data formatters</p>
 8
 9
 <strong>10</strong>
-11
-12
 </pre></td>
   <td class="code"><pre>(with-io-scope
-  (<span class="keyword">-&gt;&gt;</span> (resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>)
-       acquire!
-       (<span class="keyword">format</span> utf-8)
-       read!
-       (<span class="keyword">take</span> <span class="integer">50</span>)
-       <span class="keyword">str</span>))
+  (<span class="keyword">str</span> (<span class="keyword">take</span> <span class="integer">50</span> (<span class="keyword">-&gt;</span> (resource <span class="string"><span class="delimiter">&quot;</span><span class="content">http://example.com</span><span class="delimiter">&quot;</span></span>)
+                    acquire!
+                    (<span class="keyword">format</span> utf-8)
+                    read!))))
 <span class="comment">;;=&gt; &quot;&lt;!doctype html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Example D&quot;</span>
 
 <span class="comment">;; using slurp convenience function</span>
@@ -562,7 +558,7 @@ functionalities.</p>
 (with-io-scope
   (<span class="keyword">let</span> [r (http <span class="string"><span class="delimiter">&quot;</span><span class="content">http://httpbin.org/post</span><span class="delimiter">&quot;</span></span>)
         c (acquire! (<span class="keyword">assoc</span> r <span class="symbol">:request-method</span> <span class="symbol">:post</span>))
-        fc (<span class="keyword">format</span> utf-8 c)]
+        fc (<span class="keyword">format</span> c utf-8)]
     (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">config</span><span class="delimiter">&quot;</span></span> (config c))
     (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">sent</span><span class="delimiter">&quot;</span></span> (write! fc <span class="string"><span class="delimiter">&quot;</span><span class="content">key1=val1&amp;key2=val2&amp;key1=val3</span><span class="delimiter">&quot;</span></span>))
     (println! <span class="string"><span class="delimiter">&quot;</span><span class="content">response</span><span class="delimiter">&quot;</span></span> (<span class="keyword">str</span> (read! fc)))
@@ -764,8 +760,9 @@ implementing TLS protocol. This resource wraps
 <div class="paragraph">
 <p>System is a Dunaj&#8217;s replacement for Stuart Sierra&#8217;s
 <a href="https://github.com/stuartsierra/component">component library</a>.
-Utilizing scopes and resources, Dunaj&#8217;s system implementation focuses
-on managing dependencies and acquiring resources in correct order.</p>
+Utilizing factories, scopes and resources, Dunaj&#8217;s system
+implementation focuses on managing dependencies and acquiring
+resources in correct order.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -799,7 +796,7 @@ starting systems.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-12 20:34:39 CEST
+Last updated 2015-05-30 21:21:43 CEST
 </div>
 </div>
 </body>

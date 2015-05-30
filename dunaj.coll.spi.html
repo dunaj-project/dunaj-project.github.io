@@ -16,11 +16,11 @@
 <h1>dunaj.coll SPI</h1>
 <div class="details">
 <span id="author" class="author">Jozef Wagner</span><br>
-<span id="revdate">0.4.0</span>
+<span id="revdate">0.5.0</span>
 </div>
 </div>
 <div id="content">
-<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IAssociative"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IAssociative</span></a></div><div class="dd-nav-ns-var"><a href="#_entry"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-entry</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IBatchedRed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IBatchedRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce_batched"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce-batched</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICapped"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICapped</span></a></div><div class="dd-nav-ns-var"><a href="#_capacity"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-capacity</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICatenable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICatenable</span></a></div><div class="dd-nav-ns-var"><a href="#_cat"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-cat</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICollectionFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICollectionFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_from_coll"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-coll</span></a></div><div class="dd-nav-ns-var"><a href="#_from_items"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-items</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IConvolutionFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IConvolutionFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_convolute"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-convolute</span></a></div><div class="dd-nav-ns-var"><a href="#_from_interleaved"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-interleaved</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICounted"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICounted</span></a></div><div class="dd-nav-ns-var"><a href="#_count"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-count</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEditable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEditable</span></a></div><div class="dd-nav-ns-var"><a href="#_edit"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-edit</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEmptyAware"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEmptyAware</span></a></div><div class="dd-nav-ns-var"><a href="#_empty_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-empty?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEmptyable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEmptyable</span></a></div><div class="dd-nav-ns-var"><a href="#_empty"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-empty</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IFlippable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IFlippable</span></a></div><div class="dd-nav-ns-var"><a href="#_flip"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-flip</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IFullAware"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IFullAware</span></a></div><div class="dd-nav-ns-var"><a href="#_full_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-full?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IHomogeneous"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IHomogeneous</span></a></div><div class="dd-nav-ns-var"><a href="#_item_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-item-type</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IIndexed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IIndexed</span></a></div><div class="dd-nav-ns-var"><a href="#_nth"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-nth</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IInvertible"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IInvertible</span></a></div><div class="dd-nav-ns-var"><a href="#_invert"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-invert</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ILookup"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ILookup</span></a></div><div class="dd-nav-ns-var"><a href="#_contains_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-contains?</span></a></div><div class="dd-nav-ns-var"><a href="#_get"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-get</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableAssociative"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableAssociative</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableBag"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableBag</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj-all!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableCatenable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableCatenable</span></a></div><div class="dd-nav-ns-var"><a href="#_cat_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-cat!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableCollection"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableCollection</span></a></div><div class="dd-nav-ns-var"><a href="#_conj_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-conj!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableMultiMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableMultiMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_one_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc-one!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableSet"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableSet</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableStacked"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableStacked</span></a></div><div class="dd-nav-ns-var"><a href="#_pop_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-pop!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPeekable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPeekable</span></a></div><div class="dd-nav-ns-var"><a href="#_peek"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-peek</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentBag"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentBag</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_all"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj-all</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentCollection"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentCollection</span></a></div><div class="dd-nav-ns-var"><a href="#_conj"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-conj</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentList"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentList</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentMultiMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentMultiMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_one"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc-one</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentSet"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentSet</span></a></div><div class="dd-nav-ns-var"><a href="#_disj"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentVector"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentVector</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IRed"><i class="dd-referred fa fa-fw fa-plug dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">IRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IReducing"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IReducing</span></a></div><div class="dd-nav-ns-var"><a href="#_init"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-init</span></a></div><div class="dd-nav-ns-var"><a href="#_finish"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-finish</span></a></div><div class="dd-nav-ns-var"><a href="#_wrap"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-wrap</span></a></div><div class="dd-nav-ns-var"><a href="#_unwrap"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-unwrap</span></a></div><div class="dd-nav-ns-var"><a href="#_step"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-step</span></a></div><div class="dd-nav-ns-var"><a href="#_combine"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-combine</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IReversible"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IReversible</span></a></div><div class="dd-nav-ns-var"><a href="#_reverse"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reverse</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISectionable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISectionable</span></a></div><div class="dd-nav-ns-var"><a href="#_section"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-section</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISeq"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISeq</span></a></div><div class="dd-nav-ns-var"><a href="#_rest"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-rest</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISeqable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISeqable</span></a></div><div class="dd-nav-ns-var"><a href="#_seq"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-seq</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISequential"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISequential</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISettleable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISettleable</span></a></div><div class="dd-nav-ns-var"><a href="#_settle_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-settle!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISliceable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISliceable</span></a></div><div class="dd-nav-ns-var"><a href="#_slice"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-slice</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISnapshotable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISnapshotable</span></a></div><div class="dd-nav-ns-var"><a href="#_snapshot_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-snapshot!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISorted"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISorted</span></a></div><div class="dd-nav-ns-var"><a href="#_key"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-key</span></a></div><div class="dd-nav-ns-var"><a href="#_ascending_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-ascending?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISortedSectionable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISortedSectionable</span></a></div><div class="dd-nav-ns-var"><a href="#_sorted_section"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-sorted-section</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IStacked"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IStacked</span></a></div><div class="dd-nav-ns-var"><a href="#_pop"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-pop</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IUnpackedRed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IUnpackedRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce_unpacked"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce-unpacked</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IUsageTracking"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IUsageTracking</span></a></div><div class="dd-nav-ns-var"><a href="#_hit"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-hit</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.4.0</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.coll.api.html">API documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="spi.html">SPI</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0">dunaj</div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.buffer.spi.html">.buffer</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.coll.spi.html">.coll</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.coll.helper.spi.html">.helper</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.compare.spi.html">.compare</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.concurrent.spi.html">.concurrent</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.forkjoin.spi.html">.forkjoin</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.port.spi.html">.port</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.concurrent.thread.spi.html">.thread</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.error.spi.html">.error</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.feature.spi.html">.feature</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.flow.spi.html">.flow</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.format.spi.html">.format</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.parser.spi.html">.parser</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.format.printer.spi.html">.printer</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.function.spi.html">.function</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.identifier.spi.html">.identifier</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.math.spi.html">.math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.math.random.spi.html">.random</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.resource.spi.html">.resource</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.file.spi.html">.file</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.resource.selector.spi.html">.selector</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.state.spi.html">.state</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-2"><a href="dunaj.state.ref.spi.html">.ref</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.string.spi.html">.string</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.time.spi.html">.time</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-1"><a href="dunaj.type.spi.html">.type</a></div><br></br></div></nav><nav id="dd-ns-nav"><div class="dd-over"><div class="dd-nav-ns-header"><a href="#dd-top">dunaj.coll</a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IAssociative"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IAssociative</span></a></div><div class="dd-nav-ns-var"><a href="#_entry"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-entry</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IBatchedRed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IBatchedRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce_batched"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce-batched</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICapped"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICapped</span></a></div><div class="dd-nav-ns-var"><a href="#_capacity"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-capacity</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICatenable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICatenable</span></a></div><div class="dd-nav-ns-var"><a href="#_cat"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-cat</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICollectionFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICollectionFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_from_coll"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-coll</span></a></div><div class="dd-nav-ns-var"><a href="#_from_items"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-items</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IConvolutionFactory"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IConvolutionFactory</span></a></div><div class="dd-nav-ns-var"><a href="#_convolute"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-convolute</span></a></div><div class="dd-nav-ns-var"><a href="#_from_interleaved"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-from-interleaved</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ICounted"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ICounted</span></a></div><div class="dd-nav-ns-var"><a href="#_count"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-count</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEditable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEditable</span></a></div><div class="dd-nav-ns-var"><a href="#_edit"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-edit</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEmptyAware"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEmptyAware</span></a></div><div class="dd-nav-ns-var"><a href="#_empty_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-empty?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IEmptyable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IEmptyable</span></a></div><div class="dd-nav-ns-var"><a href="#_empty"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-empty</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IFlippable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IFlippable</span></a></div><div class="dd-nav-ns-var"><a href="#_flip"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-flip</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IFullAware"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IFullAware</span></a></div><div class="dd-nav-ns-var"><a href="#_full_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-full?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IHomogeneous"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IHomogeneous</span></a></div><div class="dd-nav-ns-var"><a href="#_item_type"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-item-type</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IIndexed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IIndexed</span></a></div><div class="dd-nav-ns-var"><a href="#_nth"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-nth</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IInvertible"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IInvertible</span></a></div><div class="dd-nav-ns-var"><a href="#_invert"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-invert</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ILookup"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ILookup</span></a></div><div class="dd-nav-ns-var"><a href="#_contains_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-contains?</span></a></div><div class="dd-nav-ns-var"><a href="#_get"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-get</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableAssociative"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableAssociative</span></a></div><div class="dd-nav-ns-var"><a href="#_assoc_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-assoc!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableBag"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableBag</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_all_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj-all!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableCatenable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableCatenable</span></a></div><div class="dd-nav-ns-var"><a href="#_cat_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-cat!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableCollection"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableCollection</span></a></div><div class="dd-nav-ns-var"><a href="#_conj_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-conj!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableMultiMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableMultiMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_one_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc-one!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableSet"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableSet</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IMutableStacked"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IMutableStacked</span></a></div><div class="dd-nav-ns-var"><a href="#_pop_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-pop!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPeekable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPeekable</span></a></div><div class="dd-nav-ns-var"><a href="#_peek"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-peek</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentBag"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentBag</span></a></div><div class="dd-nav-ns-var"><a href="#_disj_all"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj-all</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentCollection"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentCollection</span></a></div><div class="dd-nav-ns-var"><a href="#_conj"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-conj</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentList"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentList</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentMultiMap"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentMultiMap</span></a></div><div class="dd-nav-ns-var"><a href="#_dissoc_one"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-dissoc-one</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentSet"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentSet</span></a></div><div class="dd-nav-ns-var"><a href="#_disj"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-disj</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IPersistentVector"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IPersistentVector</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IRed"><i class="dd-referred fa fa-fw fa-plug dd-mmsh"></i><span class="dd-referred dd-nav-ns-var-text">IRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IReducing"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IReducing</span></a></div><div class="dd-nav-ns-var"><a href="#_init"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-init</span></a></div><div class="dd-nav-ns-var"><a href="#_finish"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-finish</span></a></div><div class="dd-nav-ns-var"><a href="#_wrap"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-wrap</span></a></div><div class="dd-nav-ns-var"><a href="#_unwrap"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-unwrap</span></a></div><div class="dd-nav-ns-var"><a href="#_step"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-step</span></a></div><div class="dd-nav-ns-var"><a href="#_combine"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-combine</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IReversible"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IReversible</span></a></div><div class="dd-nav-ns-var"><a href="#_reverse"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reverse</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISectionable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISectionable</span></a></div><div class="dd-nav-ns-var"><a href="#_section"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-section</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISeq"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISeq</span></a></div><div class="dd-nav-ns-var"><a href="#_rest"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-rest</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISeqable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISeqable</span></a></div><div class="dd-nav-ns-var"><a href="#_seq"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-seq</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISequential"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISequential</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISettleable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISettleable</span></a></div><div class="dd-nav-ns-var"><a href="#_settle_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-settle!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISliceable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISliceable</span></a></div><div class="dd-nav-ns-var"><a href="#_slice"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-slice</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISnapshotable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISnapshotable</span></a></div><div class="dd-nav-ns-var"><a href="#_snapshot_BANG_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-snapshot!</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISorted"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISorted</span></a></div><div class="dd-nav-ns-var"><a href="#_key"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-key</span></a></div><div class="dd-nav-ns-var"><a href="#_ascending_QMARK_"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-ascending?</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#ISortedSectionable"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">ISortedSectionable</span></a></div><div class="dd-nav-ns-var"><a href="#_sorted_section"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-sorted-section</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IStacked"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IStacked</span></a></div><div class="dd-nav-ns-var"><a href="#_pop"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-pop</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IUnpackedRed"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IUnpackedRed</span></a></div><div class="dd-nav-ns-var"><a href="#_reduce_unpacked"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-reduce-unpacked</span></a></div><div class="dd-nav-ns-var dd-nav-ns-proto"><a href="#IUsageTracking"><i class="fa fa-fw fa-plug dd-mmsh"></i><span class="dd-nav-ns-var-text">IUsageTracking</span></a></div><div class="dd-nav-ns-var"><a href="#_hit"><i class="fa fa-fw fa-chevron-right dd-vn"></i><span class="dd-nav-ns-var-text">-hit</span></a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">dunaj.coll SPI</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.5.0</span><div id="dd-switch"><i class="fa fa-fw fa-info-circle"></i> See <a href="dunaj.coll.api.html">API documentation</a> for this namespace.</div></div><div class="details">Additional copyright for parts of documentation and/or underlying implementation: Copyright © 2008, 2015, Rich Hickey and Clojure contributors.</div></div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Immutable, mutable and persistent collections.
@@ -31,7 +31,7 @@ Reducers and transducers <span class="icon"><i class="fa fa-puzzle-piece"></i></
 <div class="sect2 dd-var">
 <h3 id="IAssociative"><a class="link" href="#IAssociative">IAssociative</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1832">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1830">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -54,7 +54,7 @@ also implement <code>c.l.Associative/containsKey</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_entry"><a class="link" href="#_entry">-entry</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1832">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1830">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -100,7 +100,7 @@ values (multimap) present.</p>
 <div class="sect2 dd-var">
 <h3 id="_assoc"><a class="link" href="#_assoc">-assoc</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1832">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1830">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -280,7 +280,7 @@ if the implementation has one.</p>
 <div class="sect2 dd-var">
 <h3 id="ICatenable"><a class="link" href="#ICatenable">ICatenable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1984">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1981">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -298,7 +298,7 @@ if the implementation has one.</p>
 <div class="sect2 dd-var">
 <h3 id="_cat"><a class="link" href="#_cat">-cat</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1984">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1981">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -344,7 +344,7 @@ share data with original collections.</p>
 <div class="sect2 dd-var">
 <h3 id="ICollectionFactory"><a class="link" href="#ICollectionFactory">ICollectionFactory</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2179">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2176">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -362,7 +362,7 @@ share data with original collections.</p>
 <div class="sect2 dd-var">
 <h3 id="_from_coll"><a class="link" href="#_from_coll">-from-coll</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2179">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2176">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -406,7 +406,7 @@ share data with original collections.</p>
 <div class="sect2 dd-var">
 <h3 id="_from_items"><a class="link" href="#_from_items">-from-items</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2179">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2176">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -479,7 +479,7 @@ share data with original collections.</p>
 <div class="sect2 dd-var">
 <h3 id="IConvolutionFactory"><a class="link" href="#IConvolutionFactory">IConvolutionFactory</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2196">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2193">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -497,7 +497,7 @@ share data with original collections.</p>
 <div class="sect2 dd-var">
 <h3 id="_convolute"><a class="link" href="#_convolute">-convolute</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2196">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2193">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -560,7 +560,7 @@ Factory is not required to support all arities.</p>
 <div class="sect2 dd-var">
 <h3 id="_from_interleaved"><a class="link" href="#_from_interleaved">-from-interleaved</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2196">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2193">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -713,7 +713,7 @@ Factory is not required to support all arities.</p>
 <div class="sect2 dd-var">
 <h3 id="IEditable"><a class="link" href="#IEditable">IEditable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1448">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1446">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -734,7 +734,7 @@ with Clojure, implementations should also implement one arg
 <div class="sect2 dd-var">
 <h3 id="_edit"><a class="link" href="#_edit">-edit</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1448">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1446">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -903,7 +903,7 @@ Metadata must be preserved.</p>
 <div class="sect2 dd-var">
 <h3 id="IFlippable"><a class="link" href="#IFlippable">IFlippable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1255">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1253">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -921,7 +921,7 @@ Metadata must be preserved.</p>
 <div class="sect2 dd-var">
 <h3 id="_flip"><a class="link" href="#_flip">-flip</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1255">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1253">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1025,7 +1025,7 @@ Metadata must be preserved.</p>
 <div class="sect2 dd-var">
 <h3 id="IHomogeneous"><a class="link" href="#IHomogeneous">IHomogeneous</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1426">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1424">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1043,7 +1043,7 @@ Metadata must be preserved.</p>
 <div class="sect2 dd-var">
 <h3 id="_item_type"><a class="link" href="#_item_type">-item-type</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1426">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1424">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1087,7 +1087,7 @@ Metadata must be preserved.</p>
 <div class="sect2 dd-var">
 <h3 id="IIndexed"><a class="link" href="#IIndexed">IIndexed</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1186">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1184">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1108,7 +1108,7 @@ also implement 2 args <code>c.l.Indexed/nth</code> method.</p>
 <div class="sect2 dd-var">
 <h3 id="_nth"><a class="link" href="#_nth">-nth</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1186">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1184">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1152,7 +1152,7 @@ if position is out of bounds.</p>
 <div class="sect2 dd-var">
 <h3 id="IInvertible"><a class="link" href="#IInvertible">IInvertible</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1224">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1222">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1171,7 +1171,7 @@ invertible collection is set or bimap.</p>
 <div class="sect2 dd-var">
 <h3 id="_invert"><a class="link" href="#_invert">-invert</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1224">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1222">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1325,7 +1325,7 @@ if item is not found. Returns collection that implements
 <div class="sect2 dd-var">
 <h3 id="IMutableAssociative"><a class="link" href="#IMutableAssociative">IMutableAssociative</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1568">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1566">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1345,7 +1345,7 @@ needed to implement <code>c.l.ITransientVector/assocN</code> method.</p>
 <div class="sect2 dd-var">
 <h3 id="_assoc_BANG_"><a class="link" href="#_assoc_BANG_">-assoc!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1568">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1566">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1391,7 +1391,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IMutableBag"><a class="link" href="#IMutableBag">IMutableBag</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1675">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1673">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1409,7 +1409,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_disj_all_BANG_"><a class="link" href="#_disj_all_BANG_">-disj-all!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1675">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1673">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1453,7 +1453,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IMutableCatenable"><a class="link" href="#IMutableCatenable">IMutableCatenable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1624">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1622">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1471,7 +1471,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_cat_BANG_"><a class="link" href="#_cat_BANG_">-cat!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1624">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1622">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1516,7 +1516,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IMutableCollection"><a class="link" href="#IMutableCollection">IMutableCollection</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1533">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1531">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1534,7 +1534,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_conj_BANG_"><a class="link" href="#_conj_BANG_">-conj!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1533">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1531">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1578,7 +1578,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IMutableMap"><a class="link" href="#IMutableMap">IMutableMap</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1695">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1693">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1599,7 +1599,7 @@ Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_dissoc_BANG_"><a class="link" href="#_dissoc_BANG_">-dissoc!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1695">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1693">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1643,7 +1643,7 @@ mapping for key. Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IMutableMultiMap"><a class="link" href="#IMutableMultiMap">IMutableMultiMap</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1722">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1720">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1661,7 +1661,7 @@ mapping for key. Mutates <code><em>this</em></code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_dissoc_one_BANG_"><a class="link" href="#_dissoc_one_BANG_">-dissoc-one!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1722">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1720">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1705,7 +1705,7 @@ specified by <code><em>key</em></code> and <code><em>val</em></code>. Mutates <c
 <div class="sect2 dd-var">
 <h3 id="IMutableSet"><a class="link" href="#IMutableSet">IMutableSet</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1646">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1644">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1728,7 +1728,7 @@ both <code>c.l.ITransientSet/contains</code> and <code>c.l.ITransientSet/get</co
 <div class="sect2 dd-var">
 <h3 id="_disj_BANG_"><a class="link" href="#_disj_BANG_">-disj!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1646">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1644">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1772,7 +1772,7 @@ instance of <code><em>key</em></code> is removed. Mutates <code><em>this</em></c
 <div class="sect2 dd-var">
 <h3 id="IMutableStacked"><a class="link" href="#IMutableStacked">IMutableStacked</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1600">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1598">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1790,7 +1790,7 @@ instance of <code><em>key</em></code> is removed. Mutates <code><em>this</em></c
 <div class="sect2 dd-var">
 <h3 id="_pop_BANG_"><a class="link" href="#_pop_BANG_">-pop!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1600">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1598">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1899,7 +1899,7 @@ should return <code>nil</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IPersistentBag"><a class="link" href="#IPersistentBag">IPersistentBag</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2067">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2064">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1917,7 +1917,7 @@ should return <code>nil</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_disj_all"><a class="link" href="#_disj_all">-disj-all</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2067">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2064">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1960,7 +1960,7 @@ should return <code>nil</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IPersistentCollection"><a class="link" href="#IPersistentCollection">IPersistentCollection</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1778">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1776">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -1981,7 +1981,7 @@ should return <code>nil</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_conj"><a class="link" href="#_conj">-conj</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1778">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1776">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2024,7 +2024,7 @@ should return <code>nil</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IPersistentList"><a class="link" href="#IPersistentList">IPersistentList</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2159">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2156">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2045,7 +2045,7 @@ should return <code>nil</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="IPersistentMap"><a class="link" href="#IPersistentMap">IPersistentMap</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2086">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2083">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2066,7 +2066,7 @@ should return <code>nil</code>.</p>
 <div class="sect2 dd-var">
 <h3 id="_dissoc"><a class="link" href="#_dissoc">-dissoc</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2086">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2083">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2110,7 +2110,7 @@ mapping for key.</p>
 <div class="sect2 dd-var">
 <h3 id="IPersistentMultiMap"><a class="link" href="#IPersistentMultiMap">IPersistentMultiMap</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2139">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2136">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2128,7 +2128,7 @@ mapping for key.</p>
 <div class="sect2 dd-var">
 <h3 id="_dissoc_one"><a class="link" href="#_dissoc_one">-dissoc-one</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2139">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2136">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2172,7 +2172,7 @@ specified by key and val.</p>
 <div class="sect2 dd-var">
 <h3 id="IPersistentSet"><a class="link" href="#IPersistentSet">IPersistentSet</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2036">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2033">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2195,7 +2195,7 @@ both <code>c.l.IPersistentSet/contains</code> and <code>c.l.IPersistnetSet/get</
 <div class="sect2 dd-var">
 <h3 id="_disj"><a class="link" href="#_disj">-disj</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2036">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2033">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2239,7 +2239,7 @@ instance of <code><em>key</em></code> is removed.</p>
 <div class="sect2 dd-var">
 <h3 id="IPersistentVector"><a class="link" href="#IPersistentVector">IPersistentVector</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2167">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2164">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2645,7 +2645,7 @@ May NOT return reduced or postponed object.</p>
 <div class="sect2 dd-var">
 <h3 id="IReversible"><a class="link" href="#IReversible">IReversible</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1281">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1279">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2666,7 +2666,7 @@ reversed Seq.</p>
 <div class="sect2 dd-var">
 <h3 id="_reverse"><a class="link" href="#_reverse">-reverse</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1281">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1279">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2710,7 +2710,7 @@ Does not preserve type, is at least a collection.</p>
 <div class="sect2 dd-var">
 <h3 id="ISectionable"><a class="link" href="#ISectionable">ISectionable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1369">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1367">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2728,7 +2728,7 @@ Does not preserve type, is at least a collection.</p>
 <div class="sect2 dd-var">
 <h3 id="_section"><a class="link" href="#_section">-section</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1369">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1367">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2914,7 +2914,7 @@ if <code><em>this</em></code> is empty.</p>
 <div class="sect2 dd-var">
 <h3 id="ISequential"><a class="link" href="#ISequential">ISequential</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1743">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1741">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2939,7 +2939,7 @@ information.</p>
 <div class="sect2 dd-var">
 <h3 id="ISettleable"><a class="link" href="#ISettleable">ISettleable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1481">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1479">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -2959,7 +2959,7 @@ or persistent variants.</p>
 <div class="sect2 dd-var">
 <h3 id="_settle_BANG_"><a class="link" href="#_settle_BANG_">-settle!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1481">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1479">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3006,7 +3006,7 @@ there may be normalizing/trimming to size, &#8230;&#8203;)</p>
 <div class="sect2 dd-var">
 <h3 id="ISliceable"><a class="link" href="#ISliceable">ISliceable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1338">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1336">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3024,7 +3024,7 @@ there may be normalizing/trimming to size, &#8230;&#8203;)</p>
 <div class="sect2 dd-var">
 <h3 id="_slice"><a class="link" href="#_slice">-slice</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1338">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1336">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3071,7 +3071,7 @@ of same type and will not hold onto items not belonging to it.</p>
 <div class="sect2 dd-var">
 <h3 id="ISnapshotable"><a class="link" href="#ISnapshotable">ISnapshotable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1509">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1507">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3091,7 +3091,7 @@ or persistent snapshot of its state.</p>
 <div class="sect2 dd-var">
 <h3 id="_snapshot_BANG_"><a class="link" href="#_snapshot_BANG_">-snapshot!</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1509">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1507">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3136,7 +3136,7 @@ used.</p>
 <div class="sect2 dd-var">
 <h3 id="ISorted"><a class="link" href="#ISorted">ISorted</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1308">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1306">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3157,7 +3157,7 @@ also implement <code>c.l.Sorted</code> interface and its methods.</p>
 <div class="sect2 dd-var">
 <h3 id="_key"><a class="link" href="#_key">-key</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1308">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1306">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3200,7 +3200,7 @@ also implement <code>c.l.Sorted</code> interface and its methods.</p>
 <div class="sect2 dd-var">
 <h3 id="_ascending_QMARK_"><a class="link" href="#_ascending_QMARK_">-ascending?</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1308">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1306">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3246,7 +3246,7 @@ of sorting.</p>
 <div class="sect2 dd-var">
 <h3 id="ISortedSectionable"><a class="link" href="#ISortedSectionable">ISortedSectionable</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1385">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1383">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3264,7 +3264,7 @@ of sorting.</p>
 <div class="sect2 dd-var">
 <h3 id="_sorted_section"><a class="link" href="#_sorted_section">-sorted-section</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1385">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1383">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3313,7 +3313,7 @@ time though. Returned collection does not have to be persistent.</p>
 <div class="sect2 dd-var">
 <h3 id="IStacked"><a class="link" href="#IStacked">IStacked</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1956">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1953">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3334,7 +3334,7 @@ time though. Returned collection does not have to be persistent.</p>
 <div class="sect2 dd-var">
 <h3 id="_pop"><a class="link" href="#_pop">-pop</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1956">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L1953">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3451,7 +3451,7 @@ if the implementation has one.</p>
 <div class="sect2 dd-var">
 <h3 id="IUsageTracking"><a class="link" href="#IUsageTracking">IUsageTracking</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2009">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2006">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3470,7 +3470,7 @@ of their items. Used e.g. for LRU caches.</p>
 <div class="sect2 dd-var">
 <h3 id="_hit"><a class="link" href="#_hit">-hit</a></h3>
 <div class="paragraph dd-added">
-<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2009">view source</a>)</p>
+<p>Available since version 1.0 (<a href="https://github.com/dunaj-project/dunaj/tree/master/src/clj/dunaj/coll.clj#L2006">view source</a>)</p>
 </div>
 <div class="paragraph">
 <p><code><span class="icon"><i class="fa fa-unlink" title="Not referred"></i></span> not referred automatically</code></p>
@@ -3515,7 +3515,7 @@ behavior if <code><em>this</em></code> does not contain mapping for <code><em>ke
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-12 20:45:38 CEST
+Last updated 2015-05-30 21:32:16 CEST
 </div>
 </div>
 </body>

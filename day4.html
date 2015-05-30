@@ -15,7 +15,7 @@
 <h1>Dunaj  - Towards Simpler API</h1>
 </div>
 <div id="content">
-<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day3.html">Protocols First</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="day4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day5.html">Reducers First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day7.html">Data Formatters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day8.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day9.html">Improved Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day10.html">Documentation</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj  - Towards Simpler API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.4.0</span></div></div><div id="preamble">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink dd-mmcur" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><nav id="dd-side-nav"><div class="dd-over"><div class="dd-nav-doc-header"><a href="guide.html">Crash Course</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day1.html">Deconstructed API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day2.html">Type Signatures</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day3.html">Protocols First</a></div><div class="dd-nav-doc-item-cur dd-nav-doc-ns dd-nav-doc-item-0"><a href="day4.html">Simplified API</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day5.html">Reducers First</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day6.html">Host Performance</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day7.html">Data Formatters</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day8.html">Resources</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day9.html">Improved Math</a></div><div class="dd-nav-doc-ns dd-nav-doc-item-0"><a href="day10.html">Documentation</a></div><br></br></div></nav><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj  - Towards Simpler API</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.5.0</span></div></div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>With core API splitted into separate namespaces and with protocols
@@ -35,10 +35,15 @@ special symbols, and makes them fully qualified.</p>
 and it is very hard to shadow them with custom implementation when
 needed, as special symbols override any referred vars
 (such need is justified in several libraries, e.g. core.typed or
-synthread). Dunaj makes all special symbols qualified and puts them
-in the <code>clojure.core</code> namespace, subject to standard refer rules.
-Dunaj&#8217;s API does not contain any special symbols (<code>if</code>, <code>loop</code>
-and other special symbols are in Dunaj defined as macros).</p>
+synthread). Dunaj adds qualified versions of all special symbols
+and puts them in the <code>clojure.core</code> namespace, subject to standard
+refer rules. Dunaj&#8217;s API does not contain any special symbols (<code>if</code>,
+<code>loop</code> and other special symbols are in Dunaj defined as macros).
+The handling of unqualified special symbols in both reader and
+compiler is left almost untouched and behaves very similarly as in
+Clojure. Old version of Dunaj had more strict handling of qualified
+specials symbols in reader but this had caused backwards compatibility
+problems with e.g. <code>tools.analyzer</code> or <code>ztellman/potemkin</code>.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -47,9 +52,8 @@ and other special symbols are in Dunaj defined as macros).</p>
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-This feature is not available in Dunaj lite, and all
-special symbols work as in Clojure. Note that for <code>def</code>, Dunaj lite
-provides a <code>def+</code> macro that accepts type signatures.
+Note that for special symbol <code>def</code>, Dunaj provides a <code>def+</code>
+macro that accepts type signatures.
 </td>
 </tr>
 </table>
@@ -80,9 +84,6 @@ provides a <code>def+</code> macro that accepts type signatures.
 6
 7
 8
-9
-<strong>10</strong>
-11
 </pre></td>
   <td class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">foo.bar</span>
   (<span class="symbol">:api</span> dunaj))
@@ -91,26 +92,9 @@ provides a <code>def+</code> macro that accepts type signatures.
 <span class="comment">;;=&gt; #'dunaj.flow/if</span>
 
 (dunaj.macro/macro? <span class="error">#</span>'<span class="keyword">if</span>)
-<span class="comment">;;=&gt; true</span>
-
-(<span class="keyword">macroexpand</span> '(<span class="keyword">if</span> <span class="keyword">test</span> then else))
-<span class="comment">;;=&gt; (clojure.core/if test then else)</span></pre></td>
+<span class="comment">;;=&gt; true</span></pre></td>
 </tr></table></code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Dunaj is implemented in a way that allows a default <code>clojure</code>
-API preset to keep supporting unqualified special symbols just like
-in Clojure.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -476,7 +460,7 @@ safe (or possible) to call within a ref transaction</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-12 20:34:34 CEST
+Last updated 2015-05-30 21:21:38 CEST
 </div>
 </div>
 </body>
