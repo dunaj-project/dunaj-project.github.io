@@ -15,8 +15,49 @@
 <h1>Dunaj News</h1>
 </div>
 <div id="content">
-<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink dd-mmcur" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj News</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.6.0</span></div></div><div class="dlist">
+<header id="dd-header"><div id="dd-logo"><a href="http://www.dunaj.org"><img src="dunaj.png"></img>Dunaj</a></div><div id="dd-mmenu"><a class="dd-mmlink" href="about.html"><i class="fa fa-info-circle dd-mmsh"></i> <span>About</span></a><a class="dd-mmlink dd-mmcur" href="news.html"><i class="fa fa-bullhorn dd-mmsh"></i> <span>News</span></a><a class="dd-mmlink" href="start.html"><i class="fa fa-download dd-mmsh"></i> <span>Getting Started</span></a><a class="dd-mmlink" href="doc.html"><i class="fa fa-book dd-mmsh"></i> <span>Documentation</span></a><a class="dd-mmlink" href="https://github.com/dunaj-project"><i class="fa fa-github dd-mmsh"></i> <span>Source at Github</span></a></div></header><div id="dd-flex"><section id="dd-content"><div class="dd-over" tabindex="-1" id="dd-focus"><div id="header"><h1 id="dd-top">Dunaj News</h1><div class="details">Copyright © 2013, 2015, &nbsp;<span class="author">Jozef Wagner</span><br><span id="revdate">version 0.7.0</span></div></div><div class="dlist">
 <dl>
+<dt class="hdlist1">2015/07/28 </dt>
+<dd>
+<p>Dunaj v0.7.0 has been released, together with Dunaj lite.
+Also announcing <a href="https://github.com/dunaj-project/dunaj.doc">dunaj.doc</a>,
+an open source library that has been used to generate Dunaj&#8217;s
+documentation from Asciidoc sources.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Built on top of Clojure 1.7.0</p>
+</li>
+<li>
+<p>Made more compatible with existing Clojure AOT code</p>
+</li>
+<li>
+<p>Supports <a href="http://boot-clj.com/">Boot</a> (see <a href="https://github.com/boot-clj/boot/pull/252">respective pull request</a>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Boot has replaced Leningen internally to build Dunaj</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Unified codebase between Dunaj and Dunaj lite, with the help of
+reader conditionals</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Dunaj (non-lite) now matches <code>:dunaj</code> reader conditional feature</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Small bugfixes</p>
+</li>
+</ul>
+</div>
+</dd>
 <dt class="hdlist1">2015/06/22 </dt>
 <dd>
 <p>Dunaj v0.6.0 has been released. Dunaj lite has been updated too.</p>
@@ -51,12 +92,7 @@ mappings specified through <code>IConfigurable</code> protocol.</p>
 </dd>
 <dt class="hdlist1">2015/06/20 </dt>
 <dd>
-<p>New blog post:
-<a href="http://blog.wagjo.com/jwt.html">Handling JSON Web Tokens in Dunaj</a></p>
-</dd>
-<dt class="hdlist1">2015/06/15 </dt>
-<dd>
-<p>2 new blog posts:
+<p>2 New blog posts:
 <a href="http://blog.wagjo.com/factory.html">Idiomatic Factory Pattern</a> and
 <a href="http://blog.wagjo.com/jwt.html">Handling JSON Web Tokens in Dunaj</a></p>
 </dd>
@@ -174,7 +210,7 @@ some changes in the API are expected.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-06-21 16:29:00 CEST
+Last updated 2015-07-28 19:55:56 CEST
 </div>
 </div>
 </body>
